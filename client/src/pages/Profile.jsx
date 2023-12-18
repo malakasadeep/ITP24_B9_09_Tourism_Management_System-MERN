@@ -2,15 +2,19 @@ import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
 import { app } from '../firebase'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import { updateUserstart, updateUserFailure, updateUserSuccess } from '../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Profile() {
 
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
+  const [ updateSuccess, setUpdateSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   // firebase storage rules
   //allow read;
@@ -46,10 +50,37 @@ export default function Profile() {
     );
   };
 
+  const  handleChange =  (e) => {
+    setFormData({...formData, [e.target.id]: e.target.value});
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(updateUserstart());
+      const res = await fetch(`api/user/update/${currentUser._id}`,{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  }
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
-      <form className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input 
           onChange={(e)=>setFile(e.target.files[0])} 
           type='file' ref={fileRef} 
@@ -74,14 +105,16 @@ export default function Profile() {
         </p>
 
         <div className='flex flex-row '>
-        <input type='text' placeholder='Fitst Name' id='firstname' className='border p-3 rounded-lg w-56'/>
-        <input type='text' placeholder='Last Name' id = 'lastname' className='border p-3 rounded-lg w-56 ml-10 '/>
+        <input type='text' placeholder='Fitst Name' id='firstname' className='border p-3 rounded-lg w-56' defaultValue={currentUser.firstname} onChange={handleChange}/>
+        <input type='text' placeholder='Last Name' id = 'lastname' className='border p-3 rounded-lg w-56 ml-10 ' defaultValue={currentUser.lastname} onChange={handleChange}/>
         </div>
-        <input type='text' placeholder='Username' className='border p-3 rounded-lg' id='username'/>
-        <input type='email' placeholder='Email' className='border p-3 rounded-lg' id='email'/>
-        <input type='text' placeholder='Country' className='border p-3 rounded-lg' id='country'/>
+        <input type='text' placeholder='Username' className='border p-3 rounded-lg' id='username' defaultValue={currentUser.username} onChange={handleChange}/>
+        <input type='email' placeholder='Email' className='border p-3 rounded-lg' id='email' defaultValue={currentUser.email} onChange={handleChange}/>
+        <input type='text' placeholder='Country' className='border p-3 rounded-lg' id='country' defaultValue={currentUser.country} onChange={handleChange}/>
         <input type='password' placeholder='Password' className='border p-3 rounded-lg' id='password'/>
-        <button className='bg-slate-700 text-yellow-200 rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>update</button>
+        <button  className='bg-slate-700 text-yellow-200 rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>
+          {loading ? 'Loading...' : 'update'}
+        </button>
 
       </form>
 
@@ -89,6 +122,9 @@ export default function Profile() {
         <span className='text-red-700 cursor-pointer'>Delete account</span>
         <span className='text-red-700 cursor-pointer'>Sign out</span>
       </div>
+
+      <p className='text-red-700 mt-5'>{error ? error : ""}</p>
+      <p className='text-green-700 mt-5 font-semibold'>{updateSuccess? 'User is updated successfully!!' : ''}</p>
 
     </div>
   )
