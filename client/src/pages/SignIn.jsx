@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInstart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
-
+import Swal from 'sweetalert2';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -35,15 +35,33 @@ export default function SignIn() {
 
       if (data.success === false) {
         dispatch(signInFailure(data.message));
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error}`,
+        });
         return;
+
       }
 
       dispatch(signInSuccess(data));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login success",
+        showConfirmButton: false,
+        timer: 1500
+      });
       navigation('/');
 
     } catch (error) {
 
       dispatch(signInFailure(error.message));
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+      });
 
     }
   };

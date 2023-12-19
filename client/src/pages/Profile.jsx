@@ -4,6 +4,7 @@ import { app } from '../firebase'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { updateUserstart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserstart, deleteUserSuccess, signOutUserstart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 export default function Profile() {
 
@@ -67,33 +68,70 @@ export default function Profile() {
       const data = await res.json();
       if (data.success === false) {
         dispatch(updateUserFailure(data.message));
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error}`,
+        });
         return;
       }
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Profile updated successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
 
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+      });
     }
   };
 
   const handleDeleteUser = async () =>{
 
-    try {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
 
-      dispatch(deleteUserstart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
-        method: 'DELETE',
-      });
-      const data = await res.json();
-      if (data.success === false){
-        dispatch(deleteUserFailure(data.message));
-        return;
+        try {
+
+          dispatch(deleteUserstart());
+          const res = await fetch(`/api/user/delete/${currentUser._id}`,{
+            method: 'DELETE',
+          });
+          const data = await res.json();
+          if (data.success === false){
+            dispatch(deleteUserFailure(data.message));
+            return;
+          }
+          dispatch(deleteUserSuccess(data));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your account has been deleted.",
+            icon: "success"
+          });
+        } catch (error) {
+          dispatch(deleteUserFailure(error.message));
+        } 
       }
-      dispatch(deleteUserSuccess(data));
-    } catch (error) {
-      dispatch(deleteUserFailure(error.message));
-    }
+    });
+
+    
 
   };
 
@@ -107,6 +145,13 @@ export default function Profile() {
         return;
       }
       dispatch(signOutUserSuccess(data));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign out successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (error) {
       dispatch(signOutUserFailure(data.message));
     }
