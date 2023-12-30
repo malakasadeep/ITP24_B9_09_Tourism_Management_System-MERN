@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInstart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
 import Swal from 'sweetalert2';
+import bgimage from '../assets/img/bg/20852675_6345959.jpg'
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -38,13 +39,19 @@ export default function SignIn() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: `${error}`,
+          text: `${data.message}`,
         });
         return;
 
       }
-
       dispatch(signInSuccess(data));
+      if (data.isadmin === true){
+        navigation("/admin");
+      }else if(data.usertype === 'Seller') {
+        navigation('/additems');
+      }else {
+        navigation('/');
+      }
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -52,7 +59,7 @@ export default function SignIn() {
         showConfirmButton: false,
         timer: 1500
       });
-      navigation('/');
+      
 
     } catch (error) {
 
@@ -67,7 +74,10 @@ export default function SignIn() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+
+    <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+    <br/><br/><br/><br/><br/>
+    <div className='p-3 max-w-lg mx-auto  bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
 
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
 
@@ -85,6 +95,7 @@ export default function SignIn() {
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
+    </div>
     </div>
   );
 }

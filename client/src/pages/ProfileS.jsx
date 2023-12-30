@@ -5,11 +5,10 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { updateUserstart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserstart, deleteUserSuccess, signOutUserstart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import bgimage from '../assets/img/bg/20852675_6345959.jpg'
 
-export default function Profile() {
+export default function ProfileS() {
 
-  const { currentUser, loading, error } = useSelector((state) => state.user);
+    const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -158,12 +157,11 @@ export default function Profile() {
     }
   }
 
-
   return (
     <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}> 
       <br/><br/><br/><br/>
       <div  className='p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
-      <h1 className='text-3xl font-semibold text-center '>Profile</h1>
+      <h1 className='text-3xl font-semibold text-center '>Seller Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
         <input 
           onChange={(e)=>setFile(e.target.files[0])} 
@@ -189,6 +187,7 @@ export default function Profile() {
         </p>
         <input type='text' className='border p-3 rounded-lg' id='usertype' defaultValue={currentUser.usertype} onChange={handleChange} readOnly/>
         <div className='flex flex-row '>
+        
         <input type='text' placeholder='Fitst Name' id='firstname' className='border p-3 rounded-lg w-56' defaultValue={currentUser.firstname} onChange={handleChange}/>
         <input type='text' placeholder='Last Name' id = 'lastname' className='border p-3 rounded-lg w-56 ml-10 ' defaultValue={currentUser.lastname} onChange={handleChange}/>
         </div>

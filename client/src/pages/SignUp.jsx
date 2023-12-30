@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
 import Swal from 'sweetalert2'
+import bgimage from '../assets/img/bg/20852675_6345959.jpg'
 
 
 export default function SignUp() {
@@ -20,21 +21,12 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.email === "" || formData.password === "" || formData.username === "" ) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "missing required fields!",
-      });
-      return;
-    }
-
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
       Swal.fire("Please enter a valid email address", "", "error");
       return;
     }
 
-    if (formData.password.length <= 6) {
+    if (formData.password.length <= 6 ) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -99,14 +91,22 @@ export default function SignUp() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+
+    <div style={{ height: '100vh',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+      <br/><br/><br/><br/><br/>
+    <div className='p-3 max-w-lg mx-auto  bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
 
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
 
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input type='text' placeholder='Username' id='username' className='border p-3 rounded-lg' onChange={handleChange} /> 
-        <input type='text' placeholder='Email' id='email' className='border p-3 rounded-lg' onChange={handleChange} /> 
-        <input type='password' placeholder='Password' id='password' className='border p-3 rounded-lg' onChange={handleChange} /> 
+        <select id='usertype' className='border p-3 rounded-lg' onChange={handleChange} required>
+          <option selected hidden disabled>Select user type</option>
+          <option value="Tourist">Tourist</option>
+          <option value="Seller">Seller</option>
+        </select> 
+        <input type='text' placeholder='Username' id='username' className='border p-3 rounded-lg' onChange={handleChange} required/> 
+        <input type='text' placeholder='Email' id='email' className='border p-3 rounded-lg' onChange={handleChange} required/> 
+        <input type='password' placeholder='Password' id='password' className='border p-3 rounded-lg' onChange={handleChange} required/> 
         <input type='password' placeholder='Re-type Password' id='repeatPassword' className='border p-3 rounded-lg' onChange={handleChange} /> 
         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading ? 'Loading...' : 'sign up'}</button>
         <OAuth/>
@@ -119,6 +119,7 @@ export default function SignUp() {
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
+    </div>
     </div>
   );
 }

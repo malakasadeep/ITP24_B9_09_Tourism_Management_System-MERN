@@ -24,6 +24,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,   
     },
+    isadmin: {
+        type: Boolean,
+        default: false,
+        required: true,   
+    },
+    usertype: {
+        type: String,
+        required: true,   
+    },
     avatar: {
         type: String,
         default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dgckCEFdaR4QrzY1cdQTF_VzmwmPkSV2UA&usqp=CAU"
