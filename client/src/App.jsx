@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import ProfileS from './pages/ProfileS';
 import Admin from './pages/Admin';
 import ProfileAd from './pages/ProfileAd';
+import CreatePkg from './pages/tourPkg/CreatePkg';
 
 
 
@@ -31,12 +32,13 @@ export default function App() {
 
       <Route element = {<PrivateRoute/>}>
         <Route path='/additems' element={<AddItems/>}/>
-        <Route path='/selprofile' element={<ProfileS/>}/>
+        <Route path='/seller/profile' element={<ProfileS/>}/>
+        <Route path='/create-package' element={<CreatePkg/>}/>
       </Route> 
 
       <Route element = {<PrivateRoute/>}>
         <Route path='/admin' element={<Admin/>}/>
-        <Route path='/adminprofile' element={<ProfileAd/>}/>
+        <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
   </Routes> 
   <Footer/>

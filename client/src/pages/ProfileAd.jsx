@@ -59,7 +59,7 @@ export default function ProfileAd() {
       e.preventDefault();
       try {
         dispatch(updateUserstart());
-        const res = await fetch(`api/user/update/${currentUser._id}`,{
+        const res = await fetch(`../api/user/update/${currentUser._id}`,{
           method: 'POST',
           headers: {'Content-Type': 'application/json',},
           body: JSON.stringify(formData),
@@ -145,13 +145,6 @@ export default function ProfileAd() {
           return;
         }
         dispatch(signOutUserSuccess(data));
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign out successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
       } catch (error) {
         dispatch(signOutUserFailure(data.message));
       }

@@ -22,9 +22,9 @@ const Layout = () => {
 
     //const showHeader = location.pathname === "/" || location.pathname === '/signup' || location.pathname === "/signin" || location.pathname === "profile";
 
-    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/selprofile";
+    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package";
     
-    const showAdminHeader = location.pathname === "/admin" || location.pathname === "/adminprofile";
+    const showAdminHeader = location.pathname === "/admin" || location.pathname === "/admin/profile";
   return (
     <div>
         {showAdminHeader? (<Adminheader/>) : showSellerHeader? (<SellerHeader/>): (<Header/>)}

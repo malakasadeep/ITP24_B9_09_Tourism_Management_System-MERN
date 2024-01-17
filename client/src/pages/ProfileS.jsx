@@ -6,9 +6,10 @@ import { updateUserstart, updateUserFailure, updateUserSuccess, deleteUserFailur
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
-export default function ProfileS() {
 
-    const { currentUser, loading, error } = useSelector((state) => state.user);
+export default function Profile() {
+
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -59,7 +60,7 @@ export default function ProfileS() {
     e.preventDefault();
     try {
       dispatch(updateUserstart());
-      const res = await fetch(`api/user/update/${currentUser._id}`,{
+      const res = await fetch(`../api/user/update/${currentUser._id}`,{
         method: 'POST',
         headers: {'Content-Type': 'application/json',},
         body: JSON.stringify(formData),
@@ -145,23 +146,17 @@ export default function ProfileS() {
         return;
       }
       dispatch(signOutUserSuccess(data));
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Sign out successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
     } catch (error) {
       dispatch(signOutUserFailure(data.message));
     }
   }
 
+
   return (
     <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}> 
-      <br/><br/><br/><br/>
-      <div  className='p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
-      <h1 className='text-3xl font-semibold text-center '>Seller Profile</h1>
+      
+      <div  className='p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl mt-32'>
+      <h1 className='text-3xl font-semibold text-center '>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
         <input 
           onChange={(e)=>setFile(e.target.files[0])} 
@@ -187,7 +182,6 @@ export default function ProfileS() {
         </p>
         <input type='text' className='border p-3 rounded-lg' id='usertype' defaultValue={currentUser.usertype} onChange={handleChange} readOnly/>
         <div className='flex flex-row '>
-        
         <input type='text' placeholder='Fitst Name' id='firstname' className='border p-3 rounded-lg w-56' defaultValue={currentUser.firstname} onChange={handleChange}/>
         <input type='text' placeholder='Last Name' id = 'lastname' className='border p-3 rounded-lg w-56 ml-10 ' defaultValue={currentUser.lastname} onChange={handleChange}/>
         </div>

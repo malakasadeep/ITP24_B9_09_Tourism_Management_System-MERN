@@ -5,7 +5,6 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { updateUserstart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserstart, deleteUserSuccess, signOutUserstart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import bgimage from '../assets/img/bg/20852675_6345959.jpg'
 
 export default function Profile() {
 
@@ -146,13 +145,6 @@ export default function Profile() {
         return;
       }
       dispatch(signOutUserSuccess(data));
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Sign out successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
     } catch (error) {
       dispatch(signOutUserFailure(data.message));
     }

@@ -7,27 +7,31 @@ const pkglistningSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        description: {
+        category: {
             type: String,
-            trim: true,
-        },
-        price: {
-            type: Number,
-            required: true,
-        },
-        offerprice: {
-            type: Number,
             required: true,
         },
         type: {
             type: String,
             required: true,
         },
-        itinerary: {
-            type: Number,
+        dining: {
+            type: Boolean,
+            required: true,
+        },
+        transport: {
+            type: Boolean,
+            required: true,
+        },
+        offer: {
+            type: Boolean,
             required: true,
         },
         days: {
+            type: Number,
+            required: true,
+        },
+        itinerary: {
             type: Number,
             required: true,
         },
@@ -39,21 +43,29 @@ const pkglistningSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        hoteltype: {
-            type: String,
+        price: {
+            type: Number,
             required: true,
         },
-        category: {
-            type: String,
+        offerprice: {
+            type: Number,
             required: true,
         },
         citys: {
             type: String,
             required: true,
         },
+        hoteltype: {
+            type: String,
+            required: true,
+        },
         specialactivities: {
             type: String,
             required: true,
+        },
+        description: {
+            type: String,
+            trim: true,
         },
         policy: {
             type: String,
@@ -74,6 +86,6 @@ const pkglistningSchema = new mongoose.Schema(
     }
 );
 
-const PkgListning = mongoose.model("PkgListning", pkglistningSchema);
+const PkgListning = mongoose.model("package", pkglistningSchema);
 
 export default PkgListning;
