@@ -1,3 +1,4 @@
+import PkgListning from "../models/pkglistning.model.js";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
@@ -45,4 +46,18 @@ export const deleteUser = async (req, res, next) => {
         next(error);
     }
 
+};
+
+export const getUserPackages = async(req, res, next) => {
+    if(req.user.id === req.params.id){
+        try {
+            const packages = await PkgListning.find({userRef: req.params.id});
+            res.status(200).json(packages);
+        } catch (error) {
+            next(error);
+        }
+
+    }else{
+        return next(errorHandler(401, 'you can only see your own packages'))
+    }
 };
