@@ -154,7 +154,7 @@ export default function CreatePkg() {
             }
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/pkglistning/createpkg', {
+            const res = await fetch('/api/Package/createpkg', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

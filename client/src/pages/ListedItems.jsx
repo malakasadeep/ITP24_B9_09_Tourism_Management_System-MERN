@@ -10,6 +10,7 @@ import restaurant from '../assets/img/icons/restaurant.png';
 import vehicle from '../assets/img/icons/vehicle.png';
 import event from '../assets/img/icons/event.png';
 import tour_agent from '../assets/img/icons/tour-agent.png';
+import Swal from 'sweetalert2';
 
 
 export default function ListedItems() {
@@ -32,6 +33,41 @@ export default function ListedItems() {
         } catch (error) {
             setShowPackageError(true);
         }
+      };
+
+      const handlePackageDelete = async (packageId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+      
+              try {
+      
+                const res = await fetch(`/api/Package/delete/${packageId}`,{
+                    method: 'DELETE',
+                });
+                const data = await res.json();
+                if (data.success === false) {
+                    console.log(data.message);
+                    return;
+                }
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your package has been deleted.",
+                  icon: "success"
+                });
+                setUserPackages((prev)=> prev.filter((pkg)=> pkg._id !== packageId));
+              } catch (error) {
+                console.log(error.message);
+              } 
+            }
+          });
       };
   return (
     <div className='flex items-center justify-center mt-32 container mx-auto'>
@@ -60,7 +96,7 @@ export default function ListedItems() {
                             </Link>
 
                             <div className='flex flex-row item-center gap-4'>
-                                <button className='text-red-700  text-4xl hover:text-red-400 focus:scale-95 transition-all duration-200 ease-out '> <MdDeleteOutline /></button>
+                                <button onClick={()=>handlePackageDelete(pkg._id)} className='text-red-700  text-4xl hover:text-red-400 focus:scale-95 transition-all duration-200 ease-out '> <MdDeleteOutline /></button>
                                 <button className='text-green-700 text-4xl hover:text-green-400 focus:scale-95 transition-all duration-200 ease-out '><FaRegEdit /></button>
                             </div>
                         </div>
