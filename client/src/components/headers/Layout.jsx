@@ -22,7 +22,7 @@ const Layout = () => {
 
     //const showHeader = location.pathname === "/" || location.pathname === '/signup' || location.pathname === "/signin" || location.pathname === "profile";
 
-    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package";
+    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package" || location.pathname === "/my-items";
     
     const showAdminHeader = location.pathname === "/admin" || location.pathname === "/admin/profile";
   return (

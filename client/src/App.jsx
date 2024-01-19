@@ -12,6 +12,7 @@ import ProfileS from './pages/ProfileS';
 import Admin from './pages/Admin';
 import ProfileAd from './pages/ProfileAd';
 import CreatePkg from './pages/tourPkg/CreatePkg';
+import ListedItems from './pages/ListedItems';
 
 
 
@@ -34,6 +35,7 @@ export default function App() {
         <Route path='/additems' element={<AddItems/>}/>
         <Route path='/seller/profile' element={<ProfileS/>}/>
         <Route path='/create-package' element={<CreatePkg/>}/>
+        <Route path='/my-items' element={<ListedItems/>}/>
       </Route> 
 
       <Route element = {<PrivateRoute/>}>

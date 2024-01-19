@@ -28,7 +28,7 @@ export default function SellerHeader() {
               <span className='text-blue-900 hover:bg-blue-500 hover:text-blue-200 rounded-lg p-2 text-lg'>Add items</span>
             </Link>
 
-            <Link to={''}>
+            <Link to={'/my-items'}>
               <span className='text-blue-900 hover:bg-blue-500 hover:text-blue-200 rounded-lg p-2 text-lg'>My items</span>
             </Link>
 
