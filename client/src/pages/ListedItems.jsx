@@ -18,6 +18,7 @@ export default function ListedItems() {
     const[showPackageError, setShowPackageError] = useState(false);
     const { currentUser } = useSelector((state) => state.user);
     const [userPackages, setUserPackages] = useState([]);
+    const [packagesLoaded, setPackagesLoaded] = useState(false);
 
     const handleShowPackages = async () => {
         try {
@@ -30,6 +31,8 @@ export default function ListedItems() {
             }
     
             setUserPackages(data);
+            setPackagesLoaded(true);
+
         } catch (error) {
             setShowPackageError(true);
         }
@@ -81,12 +84,13 @@ export default function ListedItems() {
                 </div>
                 <button onClick={handleShowPackages} className='text-center bg-blue-400 text-blue-800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-200 focus:scale-95 transition-all duration-200 ease-out '>Explore  </button>
                 <p className='text-red-700 mt-5'>
-                    {showPackageError && 'Error showing listings' }
+                    {showPackageError && 'Error showing listings'}
+                   
                 </p>
-                {userPackages && userPackages.length > 0 &&
+                {packagesLoaded  && userPackages.length > 0 ?(
                     <div className="flex flex-col gap-4">
                     <h1 className='text-center mt-7 text-4xl font-extralight'>Your Packages</h1>
-                    {userPackages.map((pkg) => (
+                    { userPackages.map((pkg) => (
                         <div key={pkg._id} className='border border-blue-600 rounded-lg p-3 flex justify-between items-center gap-4 transition duration-300 ease-in-out hover:scale-105'>
                             <Link to={`/listing/${pkg._id}`}>
                                 <img src={pkg.imageUrls[0]} alt='listing cover' className='h-20 w-20 object-contain'/>
@@ -103,8 +107,13 @@ export default function ListedItems() {
                                 
                             </div>
                         </div>
-                    ))}
+                    ))} 
                     </div>
+                    ) : packagesLoaded ? (
+                                    <div className="text-center mt-7 text-4xl font-extralight">
+                                        {showPackageError ? 'Error showing listings' : 'No packages found.'}
+                                    </div>
+                        ) : null
                 }
             </div>
         </div>

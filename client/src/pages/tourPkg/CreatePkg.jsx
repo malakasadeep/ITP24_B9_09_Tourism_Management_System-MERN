@@ -154,7 +154,7 @@ export default function CreatePkg() {
             }
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/Package/createpkg', {
+            const res = await fetch('/api/package/createpkg', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -299,7 +299,7 @@ export default function CreatePkg() {
                 </p>
                 <div className='flex gap-4'>
                     <input onChange={(e) => setFiles(e.target.files)} type='file' className='p-3 border border-blue-700 rounded w-full' id='images' accept='image/*' multiple  />
-                    <button  onClick={handleImageSubmit} className='p-3 text-blue-700 border border-blue-700 rounded uppercase hover:shadow-xl disabled:opacity-80' disabled = {uploading} >{uploading ? 'Uploading...' : 'Upload'}</button>
+                    <button type='button' onClick={handleImageSubmit} className='p-3 text-blue-700 border border-blue-700 rounded uppercase hover:shadow-xl disabled:opacity-80' disabled = {uploading} >{uploading ? 'Uploading...' : 'Upload'}</button>
                 </div>
                 <p className='text-sm self-center font-semibold'>
                     {fileUploadError ?
@@ -319,7 +319,7 @@ export default function CreatePkg() {
                         </div>
                     ))
                 }
-                <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80' disabled={loading || uploading}>{loading ? 'Loading' : 'List the Package'}</button>
+                <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80' disabled={loading}>{loading ? 'Loading' : 'List the Package'}</button>
                 {error && <p className='text-red-600'>{error}</p>}
             </div>
         </form>

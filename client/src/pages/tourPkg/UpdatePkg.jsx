@@ -315,7 +315,7 @@ export default function UpdatePkg() {
                 </p>
                 <div className='flex gap-4'>
                     <input onChange={(e) => setFiles(e.target.files)} type='file' className='p-3 border border-blue-700 rounded w-full' id='images' accept='image/*' multiple  />
-                    <button  onClick={handleImageSubmit} className='p-3 text-blue-700 border border-blue-700 rounded uppercase hover:shadow-xl disabled:opacity-80' disabled = {uploading} >{uploading ? 'Uploading...' : 'Upload'}</button>
+                    <button type='button' onClick={handleImageSubmit} className='p-3 text-blue-700 border border-blue-700 rounded uppercase hover:shadow-xl disabled:opacity-80' disabled = {uploading} >{uploading ? 'Uploading...' : 'Upload'}</button>
                 </div>
                 <p className='text-sm self-center font-semibold'>
                     {fileUploadError ?
