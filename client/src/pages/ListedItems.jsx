@@ -97,7 +97,10 @@ export default function ListedItems() {
 
                             <div className='flex flex-row item-center gap-4'>
                                 <button onClick={()=>handlePackageDelete(pkg._id)} className='text-red-700  text-4xl hover:text-red-400 focus:scale-95 transition-all duration-200 ease-out '> <MdDeleteOutline /></button>
+                                <Link to={`/update-package/${pkg._id}`}>
                                 <button className='text-green-700 text-4xl hover:text-green-400 focus:scale-95 transition-all duration-200 ease-out '><FaRegEdit /></button>
+                                </Link>
+                                
                             </div>
                         </div>
                     ))}

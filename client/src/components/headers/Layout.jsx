@@ -1,9 +1,8 @@
-import React, { createContext, useContext} from 'react'
+import React, { createContext, useContext, useEffect} from 'react'
 import { useLocation } from "react-router-dom";
 import Header from './Header';
 import SellerHeader from './SellerHeader';
 import Adminheader from './Adminheader';
-
 
 
 const Layout = () => {
@@ -20,14 +19,14 @@ const Layout = () => {
 
     const location = useLocation();
 
-    //const showHeader = location.pathname === "/" || location.pathname === '/signup' || location.pathname === "/signin" || location.pathname === "profile";
+    const showHeader = location.pathname === "/" || location.pathname === '/sign-up' || location.pathname === "/sign-in" || location.pathname === "profile";
 
-    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package" || location.pathname === "/my-items";
+    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package" || location.pathname === "/my-items" || location.pathname.startsWith('/update-package/');
     
     const showAdminHeader = location.pathname === "/admin" || location.pathname === "/admin/profile";
   return (
     <div>
-        {showAdminHeader? (<Adminheader/>) : showSellerHeader? (<SellerHeader/>): (<Header/>)}
+        {showAdminHeader? (<Adminheader/>) : showSellerHeader? (<SellerHeader/>): showHeader? (<Header/>) : ''}
     </div>
   )
 }

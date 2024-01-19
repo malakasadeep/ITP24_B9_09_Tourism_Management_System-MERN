@@ -32,3 +32,35 @@ export const deletePkg = async (req, res, next) => {
         next(error);
     }
 }
+
+export const updatePkg = async (req, res, next) => {
+    const pkg = await PkgListning.findById(req.params.id);
+
+    if (!pkg) {
+        return next(errorHandler(404, 'Package not found'));
+    }
+
+    if(req.user.id !== pkg.userRef){
+        return next(errorHandler(401, 'you can update your own packages'))
+    }
+
+    try {
+        const updatedPkg = await PkgListning.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.status(200).json(updatedPkg)
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getPkg = async (req, res, next) => {
+    
+    try {
+        const pkg = await PkgListning.findById(req.params.id);
+        if (!pkg) {
+            return next(errorHandler(404, 'Package not found'));
+        }
+        res.status(200).json(pkg)
+    } catch (error) {
+        next(error);
+    }
+};
