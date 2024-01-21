@@ -14,6 +14,7 @@ import ProfileAd from './pages/ProfileAd';
 import CreatePkg from './pages/tourPkg/CreatePkg';
 import ListedItems from './pages/ListedItems';
 import UpdatePkg from './pages/tourPkg/UpdatePkg';
+import Packages from './pages/tourPkg/Packages';
 
 
 
@@ -37,7 +38,9 @@ export default function App() {
         <Route path='/seller/profile' element={<ProfileS/>}/>
         <Route path='/create-package' element={<CreatePkg/>}/>
         <Route path='/update-package/:packageId' element={<UpdatePkg/>}/>
+        <Route path='/my-packages/:packageId' element={<Packages/>}/>
         <Route path='/my-items' element={<ListedItems/>}/>
+
       </Route> 
 
       <Route element = {<PrivateRoute/>}>

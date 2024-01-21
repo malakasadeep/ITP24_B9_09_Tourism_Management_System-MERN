@@ -19,11 +19,20 @@ const Layout = () => {
 
     const location = useLocation();
 
-    const showHeader = location.pathname === "/" || location.pathname === '/sign-up' || location.pathname === "/sign-in" || location.pathname === "profile";
+    const showHeader = location.pathname === "/" || 
+                       location.pathname === '/sign-up' || 
+                       location.pathname === "/sign-in" || 
+                       location.pathname === "profile";
 
-    const showSellerHeader = location.pathname === "/additems" || location.pathname === "/seller/profile" || location.pathname === "/create-package" || location.pathname === "/my-items" || location.pathname.startsWith('/update-package/');
+    const showSellerHeader = location.pathname === "/additems" || 
+                             location.pathname === "/seller/profile" ||
+                             location.pathname === "/create-package" || 
+                             location.pathname === "/my-items" || 
+                             location.pathname.startsWith('/update-package/') ||
+                             location.pathname.startsWith('/my-packages/');
     
-    const showAdminHeader = location.pathname === "/admin" || location.pathname === "/admin/profile";
+    const showAdminHeader = location.pathname === "/admin" || 
+                            location.pathname === "/admin/profile";
   return (
     <div>
         {showAdminHeader? (<Adminheader/>) : showSellerHeader? (<SellerHeader/>): showHeader? (<Header/>) : ''}

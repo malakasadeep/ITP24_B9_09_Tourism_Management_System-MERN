@@ -95,7 +95,7 @@ export default function ListedItems() {
                             <Link to={`/listing/${pkg._id}`}>
                                 <img src={pkg.imageUrls[0]} alt='listing cover' className='h-20 w-20 object-contain'/>
                             </Link>
-                            <Link className='text-slate-700 font-semibold  hover:underline truncate flex-1' to={`/listing/${pkg._id}`}>
+                            <Link className='text-slate-700 font-semibold  hover:underline truncate flex-1' to={`/my-packages/${pkg._id}`}>
                                 <p className='text-2lg'>{pkg.title}</p>
                             </Link>
 

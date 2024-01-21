@@ -195,7 +195,7 @@ export default function UpdatePkg() {
                     title: "Success",
                     text: "Package Updated successfully",
                 });
-                navigate(`/packages/${data._id}`);
+                navigate(`/my-packages/${data._id}`);
             }
         } catch (error) {
             setError(error.message);

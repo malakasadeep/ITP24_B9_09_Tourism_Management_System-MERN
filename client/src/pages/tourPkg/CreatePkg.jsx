@@ -179,7 +179,7 @@ export default function CreatePkg() {
                     title: "Success",
                     text: "Package added successfully",
                 });
-                navigate(`/packages/${data._id}`);
+                navigate(`/my-packages/${data._id}`);
             }
         } catch (error) {
             setError(error.message);
