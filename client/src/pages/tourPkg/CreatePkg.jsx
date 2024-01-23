@@ -108,7 +108,7 @@ export default function CreatePkg() {
                 ...formData,
                 type: e.target.id,
             });
-        } if (e.target.id === '3star' || e.target.id === '4star' || e.target.id === '5star') {
+        } if (e.target.id === '3 Star Hotel' || e.target.id === '4 Star Hotel' || e.target.id === '5 Star Hotel') {
             setFormData({
                 ...formData,
                 hoteltype: e.target.id,
@@ -276,19 +276,19 @@ export default function CreatePkg() {
                 <p>Type of Hotel</p>
                 <div className='flex gap-4 flex-wrap'>
                     <div className='flex gap-2'>
-                        <input type='checkbox' id='3star' className='w-5' onChange={handleChange} checked={formData.hoteltype === '3star'} />
+                        <input type='checkbox' id='3 Star Hotel' className='w-5' onChange={handleChange} checked={formData.hoteltype === '3 Star Hotel'} />
                         <span className='text-2xl'> &#9733; &#9733; &#9733;</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input type='checkbox' id='4star' className='w-5' onChange={handleChange} checked={formData.hoteltype === '4star'} />
+                        <input type='checkbox' id='4 Star Hotel' className='w-5' onChange={handleChange} checked={formData.hoteltype === '4 Star Hotel'} />
                         <span className='text-2xl'> &#9733; &#9733; &#9733; &#9733;</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input type='checkbox' id='5star' className='w-5' onChange={handleChange} checked={formData.hoteltype === '5star'}/>
+                        <input type='checkbox' id='5 Star Hotel' className='w-5' onChange={handleChange} checked={formData.hoteltype === '5 Star Hotel'}/>
                         <span className='text-2xl'> &#9733; &#9733; &#9733; &#9733; &#9733;</span>
                     </div>
                 </div>
-                <input type='text' placeholder='Special Activity' className='border p-3 rounded-lg' id='specialactivities'  required onChange={handleChange} value={formData.specialactivities}/>
+                <textarea type='text' placeholder='Special Activity' className='border p-3 rounded-lg' id='specialactivities'  required onChange={handleChange} value={formData.specialactivities}/>
                 <textarea type='text' placeholder='Description' className='border p-3 rounded-lg' id='description'  required onChange={handleChange} value={formData.description} />
                 <textarea type='text' placeholder='Policies' className='border p-3 rounded-lg' id='policy'  required onChange={handleChange} value={formData.policy}/>
                 

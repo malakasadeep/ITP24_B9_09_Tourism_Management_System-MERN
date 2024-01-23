@@ -6,13 +6,16 @@ import addhotelimg from '../assets/img/addhotelimg.jpg'
 import addresturentimg from '../assets/img/addresturentimg.jpg'
 import addvehiimg from '../assets/img/addvehiimg.jpg'
 import addagentimg from '../assets/img/addagentimg.jpg'
+import pkgbanner from '../assets/img/bg/pkg-banner.jpg';
 
 export default function AddItems() {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
-      <h1 className='text-5xl font-sans font-extrabold mt-24 text-center bg-gradient-to-br from-red-500 to-purple-600 text-transparent bg-clip-text'>Hi, {currentUser.firstname || currentUser.username}</h1>
-      <h1 className='text-4xl font-sans font-light text-center'>Add your own Business here....👉👉</h1>
+    <div>
+      <div style={{background:`url(${pkgbanner})center no-repeat`, backgroundSize:'cover', height: '400px'}} ></div>
+      <div className='-mt-48'>
+      {/*<h1 className='text-5xl font-sans font-extrabold mt-24 text-center bg-gradient-to-br from-red-500 to-purple-600 text-transparent bg-clip-text'>Hi, {currentUser.firstname || currentUser.username}</h1>
+      <h1 className='text-4xl font-sans font-semibold text-center border-blue-800 text-white'>Add your own Business here....👉👉</h1>*/}
       <div className='flex items-center justify-center mt-2 container mx-auto'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
         <div className='rounded-xl shadow-lg w-80 h-auto bg-white transition duration-300 ease-in-out hover:scale-105'>
@@ -86,6 +89,8 @@ export default function AddItems() {
 
       </div>
       </div>
+      </div>
+      
     </div>
   )
 }

@@ -153,9 +153,9 @@ export default function Profile() {
 
 
   return (
-    <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat"}}> 
+    <div> 
       
-      <div  className='p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl mt-32'>
+      <div  className='p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
       <h1 className='text-3xl font-semibold text-center '>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
         <input 
