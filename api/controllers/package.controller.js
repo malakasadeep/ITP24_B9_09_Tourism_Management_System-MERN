@@ -64,3 +64,62 @@ export const getPkg = async (req, res, next) => {
         next(error);
     }
 };
+
+export const getPkgsSearch = async (req, res, next) => {
+    try {
+        const limit = parseInt(req.query.limit) || 9;
+        const startIndex = parseInt(req.query.startIndex) || 0;
+
+        let offer = req.query.offer;
+        if (offer === undefined || offer === 'false'){
+            offer = {$in: [false, true]};
+        }
+
+        let dining = req.query.dining;
+        if (dining === undefined || dining === 'false'){
+            dining = {$in: [false, true]};
+        }
+
+        let transport = req.query.transport;
+        if (transport === undefined || transport === 'false'){
+            transport = {$in: [false, true]};
+        }
+
+        let type = req.query.type;
+        if (type === undefined || type === 'all'){
+            type = {$in: ['reguler', 'couple', 'family']};
+        }
+
+        let hoteltype = req.query.hoteltype;
+        if (hoteltype === undefined || hoteltype === 'all'){
+            hoteltype = {$in: ['3 Star Hotel', '4 Star Hotel', '5 Star Hotel']};
+        }
+
+        const searchTerm = req.query.searchTerm || '';
+
+        const days = req.query.days || 0;
+
+        const sort = req.query.sort || 'createdAt';
+
+        const order = req.query.order || 'desc';
+
+        const pkgs = await PkgListning.find({
+            title: {$regex: searchTerm, $options: 'i'},
+            days: {$gte: days},
+            offer,
+            dining,
+            transport,
+            type,
+            hoteltype,
+        })
+        .sort({[sort]: order})
+        .limit(limit)
+        .skip(startIndex);
+
+        return res.status(200).json(pkgs);
+
+
+    } catch (error) {
+        next(error);
+    }
+};
