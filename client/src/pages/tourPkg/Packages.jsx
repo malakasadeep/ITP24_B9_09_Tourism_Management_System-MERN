@@ -34,6 +34,8 @@ import policy from '../../assets/img/icons/package-page/policy.png'
 
 
 import { useSelector } from 'react-redux';
+import Contact from '../../components/tour-packages/Contact';
+import Booking from '../../components/tour-packages/Booking';
 
 export default function Packages() {
 
@@ -42,6 +44,9 @@ export default function Packages() {
     const [ loading , setLoading ] = useState(false)
     const [ error, setError ] = useState(false)
     const params = useParams();
+    const {currentUser} = useSelector((state) => state.user)
+    const [ contact, setContact ] = useState(false)
+    
 
     useEffect(() => {
       const fetchPackage = async () =>{
@@ -369,11 +374,26 @@ export default function Packages() {
                       <div className='text-center'>
                         <span>&#9733; <span className='text-red-600'>This offer valid for limited tme.</span>&#9733;</span>
                       </div>
-                      
-                      
+                      <div>
+                        {currentUser && currentUser.usertype === 'Tourist' && (
+                          <div>
+                            <Booking/>
+                          </div>
+                        )}
+                      </div>
                     </div>)}
                 </div>
           </div>
+
+          <div className='absolute top-[1000px] right-[30px] w-[400px]'>
+            {currentUser && currentUser.usertype === 'Tourist' && !contact && (
+              <div>
+                <button className='bg-sky-800 text-white rounded-lg uppercase hover:opacity-95 p-3 w-[400px]' onClick={()=>setContact(true)}>Contact for more details.</button>
+              </div>
+            )}
+            {contact && <Contact packagee={packagee}/>}
+          </div>
+
         </div>
         }
       </main>
