@@ -47,7 +47,7 @@ export default function SignIn() {
       dispatch(signInSuccess(data));
       if (data.isadmin === true){
         navigation("/admin");
-      }else if(data.usertype === 'Seller') {
+      }else if(data.usertype === 'Travel Service Providers') {
         navigation('/additems');
       }else {
         navigation('/');

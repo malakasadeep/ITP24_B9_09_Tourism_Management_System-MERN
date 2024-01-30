@@ -102,7 +102,7 @@ export default function SignUp() {
         <select id='usertype' className='border p-3 rounded-lg' onChange={handleChange} required>
           <option selected hidden disabled>Select user type</option>
           <option value="Tourist">Tourist</option>
-          <option value="Seller">Seller</option>
+          <option value="Travel Service Providers">Travel Service Providers</option>
         </select> 
         <input type='text' placeholder='Username' id='username' className='border p-3 rounded-lg' onChange={handleChange} required/> 
         <input type='text' placeholder='Email' id='email' className='border p-3 rounded-lg' onChange={handleChange} required/> 

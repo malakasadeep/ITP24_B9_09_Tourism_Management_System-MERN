@@ -79,7 +79,7 @@ export default function Header() {
               </li>
             ))}
             <Link to='/profile'>
-                {currentUser ? (
+                {currentUser && currentUser.usertype === 'Tourist' ? (
                     <img src={currentUser.avatar} alt = 'profile' className='rounded-full h-10 w-10 object-cover ml-16 transition duration-300 ease-in-out hover:scale-125'/>
                 ) : (
                     <button className='bg-blue-950 w-36  text-white hover:bg-blue-500 transition duration-300 ease-in-out hover:text-black rounded-full p-2 ml-16 '>Sign In</button>
