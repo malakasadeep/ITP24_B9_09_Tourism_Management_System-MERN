@@ -23,7 +23,8 @@ const Layout = () => {
                        location.pathname === '/sign-up' || 
                        location.pathname === "/sign-in" || 
                        location.pathname === "/profile"||
-                       location.pathname.startsWith('/packages/');
+                       location.pathname.startsWith('/packages/') ||
+                       location.pathname === "/package-search";
 
     const showSellerHeader = location.pathname === "/additems" || 
                              location.pathname === "/seller/profile" ||

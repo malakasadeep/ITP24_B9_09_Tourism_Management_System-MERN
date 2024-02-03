@@ -17,6 +17,7 @@ import CreatePkg from './pages/tourPkg/CreatePkg';
 import ListedItems from './pages/ListedItems';
 import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
+import SearchPkg from './pages/tourPkg/SearchPkg';
 
 
 
@@ -31,6 +32,7 @@ export default function App() {
       <Route path='/sign-up' element={<SignUp />} />
       <Route path='/about' element={<About />} />
       <Route path='/packages/:packageId' element={<Packages/>}/>
+      <Route path='/package-search' element={<SearchPkg/>}/>
 
       <Route  element={<PrivateRouteTourist />} >
         <Route path='/profile' element={<Profile />} />

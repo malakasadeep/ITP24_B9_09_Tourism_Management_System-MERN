@@ -9,7 +9,7 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/navigation';
 import 'swiper/css/bundle';
 import pkgbanner from '../../assets/img/bg/pkg-banner.jpg';
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import loadingimg from '../../assets/img/loading.gif'
 import personico from '../../assets/img/icons/package-page/person.png'
 import family from '../../assets/img/icons/package-page/family.png'
 import couple from '../../assets/img/icons/package-page/couple.png'
@@ -75,7 +75,11 @@ export default function Packages() {
     <div>
       <div style={{background:`url(${pkgbanner})center no-repeat`, backgroundSize:'cover', height: '400px'}} ></div>
       <main >
-        {loading && <p className='text-center my-7 text-2xl'><AiOutlineLoading3Quarters />Loading...</p>}
+        {loading && 
+        <div className='flex flex-col items-center justify-center'>
+          <img src={loadingimg} alt="loading" className='w-28'/><p className='text-center my-7 text-2xl'>Loading...</p>
+        </div>
+        }
         {error && <p className='text-center my-7 text-2xl'>Something went wrong!!</p>}
         {packagee && !loading && !error && 
         <div className=''>
