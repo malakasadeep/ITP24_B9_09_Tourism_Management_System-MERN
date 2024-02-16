@@ -35,7 +35,7 @@ app.use("/api/Package", packageRouter);
 //const rooms = require('./routes/rooms');
 //const hotelreservation = require('./routes/hotelReservationRoute');
 
-app.use('/api/hotel', hotelRouter);
+app.use("/api/hotel", hotelRouter);
 app.use('/api/rooms', rooms);
 app.use('/api/hotelreservation',hotelreservation)
 app.use('/api/hotels/images', express.static(path.join(__dirname, 'images')));
