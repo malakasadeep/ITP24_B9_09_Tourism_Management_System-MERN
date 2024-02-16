@@ -28,11 +28,6 @@ import location from '../../assets/img/icons/package-page/location.png'
 import spactivity from '../../assets/img/icons/package-page/spactivity.png'
 import description from '../../assets/img/icons/package-page/description.png'
 import policy from '../../assets/img/icons/package-page/policy.png'
-
-
-
-
-
 import { useSelector } from 'react-redux';
 import Contact from '../../components/tour-packages/Contact';
 import Booking from '../../components/tour-packages/Booking';
