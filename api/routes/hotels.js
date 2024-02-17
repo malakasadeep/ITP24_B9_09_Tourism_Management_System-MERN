@@ -1,5 +1,5 @@
 const express=require("express");
-const Hotel = require("../models/HotelModel.js");
+const Hotel = require("../models/Hotel.js");
 
 const {
     createHotel,

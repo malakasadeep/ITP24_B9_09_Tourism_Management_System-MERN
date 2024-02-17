@@ -5,7 +5,10 @@ import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import packageRouter from './routes/package.route.js';
 import cookieParser from 'cookie-parser';
-import hotelRouter from './routes/hotel.route.js';
+import hotels from './routes/hotels.js';
+import rooms from './routes/rooms.js';
+import hotelreservationRoute from './routes/hotelReservationRoute.js';
+import path from 'path';
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URL).then(() =>{
@@ -29,15 +32,12 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
 
-//sasindu
 
-//const hotels = require('./routes/hotels');
-//const rooms = require('./routes/rooms');
-//const hotelreservation = require('./routes/hotelReservationRoute');
+//
 
-app.use("/api/hotel", hotelRouter);
+app.use('/api/hotels', hotels);
 app.use('/api/rooms', rooms);
-app.use('/api/hotelreservation',hotelreservation)
+app.use('/api/hotelreservationRoute',hotelreservationRoute);
 app.use('/api/hotels/images', express.static(path.join(__dirname, 'images')));
 
 app.use((err, req, res, next) => {
