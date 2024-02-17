@@ -1,9 +1,7 @@
 
-const express=require("express");
+import express from 'express';
+import { createRoom,updateRoom, deleteRoom, getRoom, getAllRoom, updateRoomAvailability } from "../controllers/room.js";
 
-const {
-    createRoom,updateRoom, deleteRoom, getRoom, getAllRoom, updateRoomAvailability
-  } = require("../controllers/room.js");
 
 const router =express.Router();
 
@@ -28,4 +26,4 @@ router.get("/:id", getRoom)
 router.get("/",getAllRoom)
 
 
-module.exports = router 
+export default router

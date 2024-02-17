@@ -1,6 +1,6 @@
-const hotelReservation = require("../models/hotelReservationModel");
+import hotelReservation from "../models/hotelReservationModel.js"
 
- const reservation=async (req, res, next) => {
+export const reservation=async (req, res, next) => {
 
     const {
         hotelName,
@@ -28,7 +28,7 @@ const hotelReservation = require("../models/hotelReservationModel");
     }
 };
 
-const getAllReservation = async (req, res, next) => {
+export const getAllReservation = async (req, res, next) => {
     
     try {
       const hotels = await hotelReservation.find({
@@ -40,9 +40,3 @@ const getAllReservation = async (req, res, next) => {
   };
 
 
-
-
-module.exports = {
-    reservation,
-    getAllReservation
-  };

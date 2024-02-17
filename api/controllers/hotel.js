@@ -1,11 +1,13 @@
-const Hotel = require("../models/Hotel");
-const Room = require("../models/Room");
-const multer = require("multer");
-const path = require("path");
+import Hotel from "../models/Hotel.js"
+import Room from "../models/Room.js"
+import multer from "multer"
+import path from "path"
+
+
 
 
 //img upload part
- const storage = multer.diskStorage({
+export const storage = multer.diskStorage({
     destination : (req, file, cb) => {
         cb(null,"images")
     },
@@ -15,7 +17,7 @@ const path = require("path");
     } 
 });
 
- const upload = multer({ 
+export const upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
       if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -30,7 +32,7 @@ const path = require("path");
   ]);
 
   // Create a new hotel
-  const createHotel = async (req, res) => {
+  export const createHotel = async (req, res) => {
     try {
       // Use Multer middleware to handle file upload
       upload(req, res, async (err) => {
@@ -65,7 +67,7 @@ const path = require("path");
   };  
   
  // update Hotel
-const  updateHotel =async (req,res,next)=>{
+ export const  updateHotel =async (req,res,next)=>{
     try{
         const updatedHotel= await Hotel.findByIdAndUpdate(req.params.id, {$set:req.body}
             ,{new:true})
@@ -77,7 +79,7 @@ const  updateHotel =async (req,res,next)=>{
 }
 
 //delete Hotel
-const deleteHotel =async (req,res,next)=>{
+export const deleteHotel =async (req,res,next)=>{
     try{
         console.log(req.params.id)
         const deleteHotel= await Hotel.findByIdAndDelete(req.params.id);
@@ -90,7 +92,7 @@ const deleteHotel =async (req,res,next)=>{
 }
  
 //get Hotel
-const getHotel =async (req,res,next)=>{
+export const getHotel =async (req,res,next)=>{
     try{
         const viewHotel= await Hotel.findById(req.params.id);
         res.status(200).json(viewHotel);
@@ -101,7 +103,7 @@ const getHotel =async (req,res,next)=>{
 }
 
 //get all Hotels
-const getAllHotel = async (req, res, next) => {
+export const getAllHotel = async (req, res, next) => {
     const { min, max, ...others } = req.query;
     try {
       const hotels = await Hotel.find({
@@ -117,7 +119,7 @@ const getAllHotel = async (req, res, next) => {
 
 
 //count by city
- const countByCity =async (req,res,next)=>{
+export const countByCity =async (req,res,next)=>{
     const cities = req.query.cities.split(",")
     try{
         const list = await Promise.all(cities.map(city => {
@@ -133,7 +135,7 @@ const getAllHotel = async (req, res, next) => {
 
 
 //count by type
-const countByType =async (req,res,next)=>{
+export const countByType =async (req,res,next)=>{
     
     try{
 
@@ -160,7 +162,7 @@ const countByType =async (req,res,next)=>{
 
 // get hotel by hotel type and city
 
-const getHotelbyCity = async(req, res) => {
+export const getHotelbyCity = async(req, res) => {
     const city = req.params.city;
     console.log(city);
   try{
@@ -175,7 +177,7 @@ const getHotelbyCity = async(req, res) => {
   }
 }
 
- const getHotelRooms = async(req,res,next)=>{
+export const getHotelRooms = async(req,res,next)=>{
   try{
     const hotel= await Hotel.findById(req.params.id);
     const list= await  Promise.all(hotel.rooms.map((room)=>{
@@ -188,15 +190,3 @@ const getHotelbyCity = async(req, res) => {
   }  
  }
 
-module.exports = {
-    createHotel,
-    updateHotel,
-    deleteHotel,
-    getHotel,
-    getAllHotel,
-    countByCity,
-    countByType,
-    getHotelbyCity,
-    getHotelRooms
-    
-  };

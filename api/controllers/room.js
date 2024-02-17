@@ -1,9 +1,10 @@
+import Room from "../models/Room.js"
+import Hotel from "../models/Hotel.js"
 
-const Room = require("../models/Room.js");
-const Hotel = require("../models/Hotel.js");
 
 
-const createRoom= async (req,res,next) =>{
+
+export const createRoom= async (req,res,next) =>{
 
     const hotelId=req.params.hotelid;
     const newRoom=new Room(req.body)
@@ -21,7 +22,7 @@ const createRoom= async (req,res,next) =>{
     }   
 }
 
-const updateRoom =async (req,res,next)=>{
+export const updateRoom =async (req,res,next)=>{
     try{
         const updatedRoom= await Room.findByIdAndUpdate(req.params.id, {$set:req.body}
             ,{new:true})
@@ -32,7 +33,7 @@ const updateRoom =async (req,res,next)=>{
     }
 }
 
-const updateRoomAvailability =async (req,res,next)=>{
+export const updateRoomAvailability =async (req,res,next)=>{
     try{
         console.log(req.body.dates)
         await Room.updateOne({"roomNumbers._id":req.params.id},{
@@ -51,7 +52,7 @@ const updateRoomAvailability =async (req,res,next)=>{
 
 
 
-const deleteRoom =async (req,res,next)=>{
+export const deleteRoom =async (req,res,next)=>{
     const hotelId=req.params.hotelid;
     try{
         const deleteRoom= await Room.findByIdAndDelete(req.params.id);
@@ -67,7 +68,7 @@ const deleteRoom =async (req,res,next)=>{
     }
 }
 
-const getRoom=async (req,res,next)=>{
+export const getRoom=async (req,res,next)=>{
     try{
         const viewRoom= await Room.findById(req.params.id);
         res.status(200).json(viewRoom);
@@ -77,7 +78,7 @@ const getRoom=async (req,res,next)=>{
     }
 }
 
-const getAllRoom =async (req,res,next)=>{
+export const getAllRoom =async (req,res,next)=>{
     try{
         const Rooms= await Room.find();
         res.status(200).json(Rooms);
@@ -86,7 +87,3 @@ const getAllRoom =async (req,res,next)=>{
         res.status(500).json(err);
     }
 }
-
-module.exports = {
-    createRoom, updateRoom, deleteRoom, getRoom, getAllRoom,updateRoomAvailability
-  };

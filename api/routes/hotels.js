@@ -1,18 +1,6 @@
-const express=require("express");
-const Hotel = require("../models/Hotel.js");
+import  express  from "express";
+import { createHotel,updateHotel, deleteHotel, getHotel, getAllHotel, countByCity, countByType, getHotelbyCity, getHotelRooms } from "../controllers/hotel.js";
 
-const {
-    createHotel,
-    updateHotel,
-    deleteHotel,
-    getHotel,
-    getAllHotel,
-    countByCity,
-    countByType,
-    getHotelbyCity,
-    getHotelRooms
-
-  } = require("../controllers/hotel.js");
 
 
 
@@ -45,4 +33,4 @@ router.get("/room/:id",getHotelRooms);
 
 
 
-module.exports = router    
+export default router  

@@ -1,4 +1,4 @@
-const mongoose=require('mongoose')
+import mongoose from "mongoose";
 
 const hotelReservationModel=new mongoose.Schema({
     hotelName:{
@@ -30,4 +30,5 @@ const hotelReservationModel=new mongoose.Schema({
    
 },{timestamps :true}) 
 
-module.exports =  mongoose.model("hotelReservation",hotelReservationModel)  
+const HotelReservation =  mongoose.model("hotelReservation",hotelReservationModel)  
+export default HotelReservation

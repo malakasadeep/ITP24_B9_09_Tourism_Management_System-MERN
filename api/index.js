@@ -40,6 +40,7 @@ app.use('/api/rooms', rooms);
 app.use('/api/hotelreservationRoute',hotelreservationRoute);
 app.use('/api/hotels/images', express.static(path.join(__dirname, 'images')));
 
+
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
