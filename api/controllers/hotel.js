@@ -1,3 +1,4 @@
+import express from 'express';
 import Hotel from "../models/Hotel.js"
 import Room from "../models/Room.js"
 import multer from "multer"
