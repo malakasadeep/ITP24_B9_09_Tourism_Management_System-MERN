@@ -19,10 +19,11 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import Vehicle from './pages/VehicleManagement/Vehicle';
-import AddVehicle from './pages/VehicleManagement/AddVehicle'
-import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle'
-import EditBook from './pages/VehicleManagement/EditVehicle'
-import ShowBook from './pages/VehicleManagement/ShowVehicle'
+import AddVehicle from './pages/VehicleManagement/AddVehicle';
+import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
+import EditBook from './pages/VehicleManagement/EditVehicle';
+import ShowBook from './pages/VehicleManagement/ShowVehicle';
+
 
 
 
