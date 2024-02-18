@@ -18,6 +18,7 @@ import ListedItems from './pages/ListedItems';
 import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
+import SignUpN from './pages/SignUpN';
 
 
 
@@ -27,9 +28,11 @@ export default function App() {
   
   <Layout/>
   <Routes>
+
       <Route path='/' element={<Home />} />
-      <Route path='/sign-in' element={<Signin />} />
-      <Route path='/sign-up' element={<SignUp />} />
+
+      <Route path='/sign-in' element={<SignUpN />} />
+      <Route path='/sign-up' element={<SignUpN />} />
       <Route path='/about' element={<About />} />
       <Route path='/packages/:packageId' element={<Packages/>}/>
       <Route path='/package-search' element={<SearchPkg/>}/>
