@@ -14,7 +14,6 @@ mongoose.connect(process.env.MONGODB_URL).then(() =>{
 })
 
 
-
 const app = express();
 
 app.use(express.json());
