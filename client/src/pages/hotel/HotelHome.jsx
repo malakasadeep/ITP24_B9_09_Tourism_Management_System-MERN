@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { HotelHero } from "../../components/hotel/HotelHero";
-import { HotelSearchBar } from "../../components/hotel/HotelSearchBar";
+import  HotelSearchBar  from "../../components/hotel/HotelSearchBar";
 import HotelCard from "../../components/hotel/HotelCard";
 import { useLocation } from "react-router-dom";
 //import { Link } from "react-router-dom";
 import SearchCard from "../../components/hotel/SearchCard";
-import { AuthContext } from "../../context/authContext";
+
 
 export const HotelHome = () => {
   const location = useLocation();

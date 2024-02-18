@@ -23,7 +23,8 @@
     "react-vite-range-datepicker": "^1.0.2",
     "redux-persist": "^6.0.0",
     "sweetalert2": "^11.10.1",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "vue": "^3.4.19"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../context/authContext';
+import  AuthContext from '../../context/authContext';
 
 
 const HotelReserve = ({setOpen,hotelId,checkInDate,checkOutDate,date_difference}) => {

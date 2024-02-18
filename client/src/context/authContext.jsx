@@ -1,5 +1,5 @@
 import axios from "axios";
-import vue from '@vitejs/plugin-vue'
+//import vue from '@vitejs/plugin-vue';
 import { createContext, useEffect, useReducer } from "react";
 
 const INITIAL_STATE = {
@@ -8,8 +8,8 @@ const INITIAL_STATE = {
   error: null,
 };
 
-export const AuthContext = createContext(INITIAL_STATE);
-
+ const AuthContext = createContext(INITIAL_STATE);
+ export default AuthContext
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":

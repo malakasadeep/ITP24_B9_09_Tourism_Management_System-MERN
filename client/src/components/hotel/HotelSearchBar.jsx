@@ -1,13 +1,11 @@
 import React,{ useContext, useEffect, useState }  from 'react'
 import { useLocation, useNavigate} from 'react-router-dom';
 
-import { FontAwesomeIcon } from "@fortawesome/fontawesome-free";
-import {  faCalendarDays,
-} from "@fortawesome/fontawesome-free";
 
-import useFetch from './../';
 
-export const HotelSearchBar = ({type}) => {
+import {useFetch} from '../../context/authContext';
+
+export default function HotelSearchBar  ({type})  {
 
 
 
@@ -25,7 +23,7 @@ export const HotelSearchBar = ({type}) => {
   
   const date = {checkInDate, checkOutDate}
 
-  const {data} = useFetch(`hotels/get/${city}`)
+  const {data} =  useFetch(`hotels/get/${city}`)
 
     
 
@@ -50,7 +48,7 @@ export const HotelSearchBar = ({type}) => {
     }
   };
  
- 
+
 
   return (
     <div className="bg-white mt-4 lg:mt-[0px] px-8 shadow-lg max-w-[1240px]  p-4 lg:text-left text-center h-full  items-center   mx-auto rounded-lg">

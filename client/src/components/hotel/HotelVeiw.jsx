@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { AuthContext } from "./context/authContext";
+import  AuthContext  from "../../context/authContext";
 import HotelReserve from "./HotelReserve";
 
 const HotelView = () => {

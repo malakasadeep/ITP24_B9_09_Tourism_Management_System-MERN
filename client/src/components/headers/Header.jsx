@@ -20,8 +20,8 @@ export default function Header() {
       link: "/services",
     },
     {
-      name: "Portfolio",
-      link: "/portfolio",
+      name: "Hotel",
+      link: "./HotelHome",
     },
     {
       name: "Contact",
