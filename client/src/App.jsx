@@ -19,8 +19,16 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 
-
-
+//sasindu
+import { HotelHome } from "./pages/hotel/HotelHome";
+import AddHotel from "./pages/hotel/AddHotel";
+import { AddRoom } from "./pages/hotel/AddRoom";
+import UpdateHotel from "./pages/hotel/UpdateHotel";
+import HotelVeiw from './components/hotel/HotelVeiw'
+import HotelOverView from "./components/hotel/HotelOverview";
+import HadminView from "./pages/hotel/HadminView";
+import HotelReserve from "./components/hotel/HotelReserve";
+import HotelBook from "./pages/hotel/HotelBook";
 
 export default function App() {
   return <BrowserRouter>
@@ -52,6 +60,18 @@ export default function App() {
         <Route path='/admin' element={<Admin/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
+
+        {/* Sasindu */}
+      <Route path="/hotelhome" element={<HotelHome />} />
+      <Route path="/hotels/new" element={<AddHotel />} />
+      <Route path="/rooms/new/:id" element={<AddRoom />} />
+      <Route path="/hotels/update/:id" element={<UpdateHotel />} />
+      <Route path="/hotel/:id" element={<HotelVeiw />} />
+      <Route path="/hoteloverview/:id" element={<HotelOverView />} />
+      <Route path="/hoteladmin" element={<HadminView />} />
+      <Route path="/hotelreserve/:id" element={<HotelReserve />} />
+      <Route path="/hotelbooking" element={<HotelBook />} />
+      
   </Routes> 
   <Footer/>
 
