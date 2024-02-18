@@ -1,30 +1,28 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios';
-// import Spinner from './../../components/spinner';
 import{Link} from 'react-router-dom';
-
 
 
 function Vehicle() {
   const[vehicles,setVehicles]=useState([]);
   const[loading,setLoading]=useState(false);
   useEffect(()=>{
-    setLoading(true);
-     axios
-    .get('http://localhost:5000/api/vehicles.js')
-    .then((res)=>{
-      setVehicles(res.data);
-      setLoading(false);
-    })
-    
-    .catch((error) => { 
-    console.log(error);
+  setLoading(true);
+   axios
+  .get('http://localhost:5000/api/vehicles.js')
+  .then((res)=>{
+    setVehicles(res.data);
     setLoading(false);
-    });
-  }); // Add a closing curly brace here
+  })
+  
+  .catch((error) => { 
+  console.log(error);
+  setLoading(false);
+  });
+  }); 
   
   return (
-  <div>
+    <div>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 <main class="main">
     <div class="container">
@@ -192,6 +190,9 @@ function Vehicle() {
   </main>
   </div>
   );
-}
+  }
 
 export default Vehicle;
+
+
+
