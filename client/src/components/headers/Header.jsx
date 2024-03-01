@@ -21,7 +21,7 @@ export default function Header() {
     },
     {
       name: "Hotel",
-      link: "./HotelHome",
+      link: "./hotels/new",
     },
     {
       name: "Contact",

@@ -85,7 +85,7 @@ export const AddHotel = () => {
     formData.append("cheapestPrice", price);
 
     axios
-      .post("/hotels", formData, {
+      .post("../api/hotels/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

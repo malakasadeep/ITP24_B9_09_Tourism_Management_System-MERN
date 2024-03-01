@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { HotelHero } from "../../components/hotel/HotelHero";
-import  HotelSearchBar  from "../../components/hotel/HotelSearchBar";
+//import  HotelSearchBar  from "../../components/hotel/HotelSearchBar";
 import HotelCard from "../../components/hotel/HotelCard";
 import { useLocation } from "react-router-dom";
 //import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ export const HotelHome = () => {
   return (
     <div>
       <HotelHero />
-      <HotelSearchBar />
+     { /*<HotelSearchBar />*/}
       {data?.map((item) => (
         <SearchCard
         name={item.name}

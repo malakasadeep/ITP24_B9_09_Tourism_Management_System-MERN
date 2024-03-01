@@ -29,6 +29,7 @@ import HotelOverView from "./components/hotel/HotelOverview";
 import HadminView from "./pages/hotel/HadminView";
 import HotelReserve from "./components/hotel/HotelReserve";
 import HotelBook from "./pages/hotel/HotelBook";
+import HotelSearchBar from './components/hotel/HotelSearchBar';
 
 export default function App() {
   return <BrowserRouter>
@@ -71,6 +72,7 @@ export default function App() {
       <Route path="/hoteladmin" element={<HadminView />} />
       <Route path="/hotelreserve/:id" element={<HotelReserve />} />
       <Route path="/hotelbooking" element={<HotelBook />} />
+      <Route path="/hotelsearchbar" element={<HotelSearchBar />} />
       
   </Routes> 
   <Footer/>

@@ -3,7 +3,7 @@ import { useLocation, useNavigate} from 'react-router-dom';
 
 
 
-import {useFetch} from '../../context/authContext';
+//import {useFetch} from '../../context/authContext';
 
 export default function HotelSearchBar  ({type})  {
 
@@ -23,7 +23,7 @@ export default function HotelSearchBar  ({type})  {
   
   const date = {checkInDate, checkOutDate}
 
-  const {data} =  useFetch(`hotels/get/${city}`)
+  //const {data} =  useFetch(`hotels/get/${city}`)
 
     
 
