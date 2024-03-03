@@ -23,6 +23,9 @@ import SignUpN from './pages/SignUpN';
 
 
 
+
+
+
 export default function App() {
   return <BrowserRouter>
   
@@ -55,6 +58,9 @@ export default function App() {
         <Route path='/admin' element={<Admin/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
+
+      
+    
   </Routes> 
   <Footer/>
 
