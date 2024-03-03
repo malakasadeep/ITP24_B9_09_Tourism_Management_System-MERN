@@ -25,6 +25,8 @@ import AddVehicle from './pages/VehicleManagement/AddVehicle';
 import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
 import EditBook from './pages/VehicleManagement/EditVehicle';
 import ShowBook from './pages/VehicleManagement/ShowVehicle';
+import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
+import EditVehicle from './pages/VehicleManagement/EditVehicle';
 
 
 
@@ -65,10 +67,10 @@ export default function App() {
 
       
       <Route path='/Vehicle' element={<Vehicle/>}/>
-      <Route path='/add' element={<AddVehicle/>}/>
-      <Route path='/delete/:id' element={<DeleteVehicle/>}/>
-      <Route path='/update/:id' element={<EditBook/>}/>
-      <Route path='/get/:id' element={<ShowBook/>}/>
+      <Route path='/Vehicle/add' element={<AddVehicle/>}/>
+      <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
+      <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
+      <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
     
   </Routes> 
   <Footer/>
