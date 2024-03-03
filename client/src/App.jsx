@@ -20,6 +20,13 @@ import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
 
+import Vehicle from './pages/VehicleManagement/Vehicle';
+import AddVehicle from './pages/VehicleManagement/AddVehicle';
+import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
+import EditBook from './pages/VehicleManagement/EditVehicle';
+import ShowBook from './pages/VehicleManagement/ShowVehicle';
+
+
 
 
 
@@ -55,6 +62,14 @@ export default function App() {
         <Route path='/admin' element={<Admin/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
+
+      
+      <Route path='/Vehicle' element={<Vehicle/>}/>
+      <Route path='/add' element={<AddVehicle/>}/>
+      <Route path='/delete/:id' element={<DeleteVehicle/>}/>
+      <Route path='/update/:id' element={<EditBook/>}/>
+      <Route path='/get/:id' element={<ShowBook/>}/>
+    
   </Routes> 
   <Footer/>
 
