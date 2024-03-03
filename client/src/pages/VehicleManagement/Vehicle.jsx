@@ -26,10 +26,9 @@ function Vehicle() {
     <div>
     
       <div className="md:px-24">
-       
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+      
           <h1>hi</h1>
-        </div>
+    <th>Vehicle</th><th>type</th><th>location</th>
       </div>
     </div>
   );
