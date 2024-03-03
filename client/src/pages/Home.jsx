@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PackageCard from '../components/tour-packages/PackageCard';
 import { Link } from 'react-router-dom';
+import'./../assets/css/Home.css';
 
 export default function Home() {
 
@@ -32,12 +33,14 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent Packages</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/package-search'}>Show more Packages</Link>
             </div>
+        
             <div className='flex flex-wrap gap-10'>
               {packages.map((pkg) => (
                 <PackageCard pkg={pkg} key={pkg._id} />
               ))}
             </div>
-          </div>
+            </div>
+        
         )}
         </div>
       </div>

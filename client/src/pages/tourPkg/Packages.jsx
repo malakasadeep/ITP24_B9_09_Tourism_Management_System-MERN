@@ -103,8 +103,8 @@ export default function Packages() {
                 <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                 <img src={couple} alt="" className='w-12 h-auto object-contain' />
                 <div className='text-center'>
-                  <p className='text-xl font-light text-slate-900'>Cuple Package</p>
-                  <p className='text-base text-slate-700'>For Two Person</p>
+                  <p className='text-xl font-serif text-slate-900'>Cuple Package</p>
+                  <p className='text-sm font-serif text-slate-700'>For Two Person</p>
                 </div>
               </div>
                   ) :
@@ -112,8 +112,8 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={family} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-xl font-light text-slate-900'>Family Package</p>
-                      <p className='text-base text-slate-700'>For Four Person</p>
+                      <p className='text-xl font-serif text-slate-900'>Family Package</p>
+                      <p className='text-sm font-serif text-slate-700'>For Four Person</p>
                     </div>
                   </div>
                   ) :
@@ -121,8 +121,8 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={personico} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-xl font-light text-slate-900'>Reguler Package</p>
-                      <p className='text-base text-slate-700'>For one Person</p>
+                      <p className='text-xl font-serif text-slate-900'>Reguler Package</p>
+                      <p className='text-sm font-serif text-slate-700'>For one Person</p>
                     </div>
                   </div>) :''}
               </div>
@@ -133,7 +133,7 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={culture} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Culture Activities</p>
+                    <p className='text-sm font-serif text-slate-900'>Culture Activities</p>
                   </div>
                 </div>
                 ) :
@@ -141,7 +141,7 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={wild} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Wildlife Activities</p>
+                    <p className='text-sm font-serif text-slate-900'>Wildlife Activities</p>
                   </div>
                 </div>
                 ):
@@ -149,7 +149,7 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={adventurer} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Adventure Activities</p>
+                    <p className='text-sm font-serif text-slate-900'>Adventure Activities</p>
                   </div>
                 </div>
                 ):
@@ -157,7 +157,7 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={namaste} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Pilgrimade Activities</p>
+                    <p className='text-sm  font-serif text-slate-900'>Pilgrimade Activities</p>
                   </div>
                 </div>
                 ):''}
@@ -169,8 +169,8 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={dining} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Dining Options</p>
-                    <p className='text-base text-slate-700'>Breakfast,Lunch & Dinner</p>
+                    <p className='text-xl font-serif text-slate-900'>Dining Options</p>
+                    <p className='text-sm font-serif text-slate-700'>Breakfast,Lunch & Dinner</p>
                   </div>
                 </div>
                 )}
@@ -181,8 +181,8 @@ export default function Packages() {
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                   <img src={transport} alt="" className='w-12 h-auto object-contain' />
                   <div className='text-center'>
-                    <p className='text-xl font-light text-slate-900'>Transportation</p>
-                    <p className='text-base text-slate-700'>Private Car</p>
+                    <p className='text-xl font-serif text-slate-900'>Transportation</p>
+                    <p className='text-sm font-serif text-slate-700'>Private Car</p>
                   </div>
                 </div>
                 )}
@@ -199,8 +199,8 @@ export default function Packages() {
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={days} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-light text-slate-900'>{+packagee.days}</p>
-                      <p className='text-xl text-slate-700'>Days</p>
+                      <p className='text-3xl font-serif text-slate-900'>{+packagee.days}</p>
+                      <p className='text-sm font-serif text-slate-700'>Days</p>
                     </div>
                   </div>
                   )}
@@ -211,8 +211,8 @@ export default function Packages() {
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={transfers} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-light text-slate-900'>{+packagee.itinerary}</p>
-                      <p className='text-xl text-slate-700'>Transfers</p>
+                      <p className='text-3xl font-serif text-slate-900'>{+packagee.itinerary}</p>
+                      <p className='text-sm font-serif text-slate-700'>Transfers</p>
                     </div>
                   </div>
                   )}
@@ -223,8 +223,8 @@ export default function Packages() {
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={hotels} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-light text-slate-900'>{+packagee.noofhotels}</p>
-                      <p className='text-xl text-slate-700'>Hotels</p>
+                      <p className='text-3xl font-serif text-slate-900'>{+packagee.noofhotels}</p>
+                      <p className='text-sm font-serif text-slate-700'>Hotels</p>
                     </div>
                   </div>
                   )}
@@ -235,8 +235,8 @@ export default function Packages() {
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={activities} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-light text-slate-900'>{+packagee.noofactivities}</p>
-                      <p className='text-xl text-slate-700'>Activities</p>
+                      <p className='text-3xl font-serif text-slate-900'>{+packagee.noofactivities}</p>
+                      <p className='text-sm font-serif text-slate-700'>Activities</p>
                     </div>
                   </div>
                   )}
@@ -250,9 +250,9 @@ export default function Packages() {
                 <div>
                   <div className='flex flex-row  h-auto gap-4 mt-9 ml-9 mr-9 items-center justify-center'>
                   <img src={hotels} alt="" className='w-12 h-auto object-contain' />
-                      <p className='text-xl font-light text-slate-700'>Accomodation Type: </p>                        
+                      <p className='text-xl font-serif text-slate-700'>Accomodation Type: </p>                        
                   </div>
-                  <p className='text-xl text-slate-900 m-7 mt-0 text-center justify-center'>{packagee.hoteltype}</p>
+                  <p className='text-sm font-serif text-slate-900 m-7 mt-0 text-center justify-center'>{packagee.hoteltype}</p>
                 </div>
                 
                 )}
@@ -263,9 +263,9 @@ export default function Packages() {
                 <div>
                   <div className='flex flex-row h-auto gap-4 mt-9 ml-9 mr-9 items-center justify-center'>
                   <img src={location} alt="" className='w-12 h-auto object-contain' />
-                      <p className='text-xl font-light text-slate-700'>Locations: </p>                        
+                      <p className='text-xl font-serif text-slate-700'>Locations: </p>                        
                   </div>
-                  <p className='text-xl text-slate-900 m-7 mt-0 text-center justify-center'>{packagee.citys}</p>
+                  <p className='text-sm font-serif text-slate-900 m-7 mt-0 text-center justify-center'>{packagee.citys}</p>
                 </div>
                 
                 )}
@@ -276,9 +276,9 @@ export default function Packages() {
                 <div>
                   <div className='flex flex-row h-auto gap-4 mt-9 ml-9 mr-9 items-center justify-center'>
                   <img src={spactivity} alt="" className='w-12 h-auto object-contain' />
-                      <p className='text-xl font-light text-slate-700 '>Activities: </p>                        
+                      <p className='text-xl font-serif text-slate-700 '>Activities: </p>                        
                   </div>
-                  <p className='text-xl text-slate-900 text-center justify-center m-7 mt-0'>{packagee.specialactivities}</p>
+                  <p className='text-sm font-serif text-slate-900 text-center justify-center m-7 mt-0'>{packagee.specialactivities}</p>
                 </div>
                 
                 )}
@@ -289,9 +289,9 @@ export default function Packages() {
                 <div>
                   <div className='flex flex-row h-auto gap-4 mt-9 ml-9 mr-9 justify-center items-center'>
                     <img src={description} alt="" className='w-12 h-auto object-contain' />
-                    <p className='text-xl font-light text-slate-900 '>Description: </p>                        
+                    <p className='text-xl font-serif text-slate-900 '>Description: </p>                        
                   </div>
-                  <p className='text-xl text-slate-700 m-7 mt-0'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.description}</p>
+                  <p className='text-sm text-slate-700 font-serif m-7 mt-0'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.description}</p>
                 </div>
                 
                 )}
@@ -302,9 +302,9 @@ export default function Packages() {
                 <div>
                   <div className='flex flex-row h-auto gap-4 mt-9 ml-9 mr-9 items-center justify-center'>
                   <img src={policy} alt="" className='w-12 h-auto object-contain' />
-                      <p className='text-xl font-light text-slate-900 '>Policy: </p>                   
+                      <p className='text-xl font-serif text-slate-900 '>Policy: </p>                   
                   </div>
-                  <p className='text-xl text-slate-700 m-7 mt-0'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.policy}</p>  
+                  <p className='text-sm font-serif text-slate-700 m-7 mt-0 '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.policy}</p>  
                 </div>
                 
                 )}
