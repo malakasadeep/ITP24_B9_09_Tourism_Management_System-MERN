@@ -78,7 +78,7 @@ export default function Packages() {
         {error && <p className='text-center my-7 text-2xl'>Something went wrong!!</p>}
         {packagee && !loading && !error && 
         <div className=''>
-          <div className='w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl'>
+          <div className='w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl '>
           <Swiper autoplay={{ delay: 3000 }} effect="cards" className='w-[600px] h-[400px] object-contain' >
             {packagee.imageUrls.map((url) => (
               <SwiperSlide key={url} className='mt-10'>
@@ -291,7 +291,7 @@ export default function Packages() {
                     <img src={description} alt="" className='w-12 h-auto object-contain' />
                     <p className='text-xl font-serif text-slate-900 '>Description: </p>                        
                   </div>
-                  <p className='text-sm text-slate-700 font-serif m-7 mt-0'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.description}</p>
+                  <p className='text-sm font-serif text-slate-700 m-7 mt-0'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{packagee.description}</p>
                 </div>
                 
                 )}
@@ -328,41 +328,41 @@ export default function Packages() {
                       </div>  
                       </div>
                       <div className='text-center'>
-                        <span>&#9733; Offers : <span className='text-slate-600'>No any Offers</span></span>
+                        <span>&#9733; Offers : <span className=' font-serif text-slate-600'>No any Offers</span></span>
                       </div>
                     </div>
                   ):
                   (<div>
                       <div className=' grid grid-cols-2 justify-between gap-x-3 gap-y-3 items-center m-4'>
                       <div>
-                            <p className='font-extralight text-4xl text-blue-700'>{packagee.days} Days</p>
+                            <p className='font-serif text-4xl text-blue-700'>{packagee.days} Days</p>
                       </div>
                       <div className='text-center'>
-                            <p className='font-semibold text-5xl text-slate-800'>$ {packagee.price}</p>
+                            <p className='font-semibold font-serif text-5xl text-slate-800'>$ {packagee.price}</p>
                             {packagee.type === 'reguler' ? (<p>Per Person</p>) :
                             packagee.type === 'couple' ? (<p>Per two Person</p>):
                             packagee.type === 'family' ? (<p>Per two Person</p>):''}
                             
                       </div>
                       <div className='mt-7'>
-                            <p className='font-extralight text-base text-slate-600'>Reguler Price</p>
+                            <p className='font-extralight font-serif text-base text-slate-600'>Reguler Price</p>
                       </div>
                       <div className='text-center mt-7'>
-                            <p className='font-thin text-2xl text-slate-800'>$ {packagee.price}</p>
+                            <p className='font-thin font-serif text-2xl text-slate-800'>$ {packagee.price}</p>
                       </div>
                       <div>
-                            <p className='font-extralight text-base text-slate-600'>Offer</p>
+                            <p className='font-extralight font-serif text-base text-slate-600'>Offer</p>
                       </div>
                       <div className='text-center'>
-                            <p className='font-thin text-2xl text-red-800'>$ {packagee.price - packagee.offerprice}</p>
+                            <p className='font-thin font-serif text-2xl text-red-800'>$ {packagee.price - packagee.offerprice}</p>
                       </div>
                       <hr className='w-full h-2  bg-gray-100 border-0 rounded  dark:bg-blue-950'/> 
                       <hr className='w-full h-2  bg-gray-100 border-0 rounded  dark:bg-blue-950'/> 
                       <div>
-                            <p className='font-extralight text-base text-slate-600'>Final Price</p>
+                            <p className='font-extralight font-serif text-base text-slate-600'>Final Price</p>
                       </div>
                       <div className='text-center'>
-                            <p className='font-semibold text-5xl text-slate-700'>$ {packagee.offerprice}</p>
+                            <p className='font-semibold font-serif text-5xl text-slate-700'>$ {packagee.offerprice}</p>
                             {packagee.type === 'reguler' ? (<p>Per Person</p>) :
                             packagee.type === 'couple' ? (<p>Per two Person</p>):
                             packagee.type === 'family' ? (<p>Per two Person</p>):''}
@@ -371,7 +371,7 @@ export default function Packages() {
                       
                       </div>
                       <div className='text-center'>
-                        <span>&#9733; <span className='text-red-600'>This offer valid for limited tme.</span>&#9733;</span>
+                        <span>&#9733; <span className='font-serif text-red-600'>This offer valid for limited tme.</span>&#9733;</span>
                       </div>
                       <div>
                         {currentUser && currentUser.usertype === 'Tourist' && (
@@ -387,7 +387,7 @@ export default function Packages() {
           <div className='absolute top-[1000px] right-[30px] w-[400px]'>
             {currentUser && currentUser.usertype === 'Tourist' && !contact && (
               <div>
-                <button className='bg-sky-800 text-white rounded-lg uppercase hover:opacity-95 p-3 w-[400px]' onClick={()=>setContact(true)}>Contact for more details.</button>
+                <button className='bg-sky-800 text-white font-serif rounded-lg uppercase hover:opacity-95 p-3 w-[400px]' onClick={()=>setContact(true)}>Contact for more details.</button>
               </div>
             )}
             {contact && <Contact packagee={packagee}/>}
