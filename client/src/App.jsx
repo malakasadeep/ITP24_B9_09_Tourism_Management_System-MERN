@@ -8,7 +8,7 @@ import PrivateRouteTourist from './components/PrivateRouteTourist';
 import PrivateRouteSeller from './components/PrivateRouteSeller';
 import PrivateRouteAdmin from './components/PrivateRouteAdmin';
 import AddItems from './pages/AddItems';
-import Layout from './components/headers/layout';
+import Layout from './components/headers/Layout';
 import Footer from './components/Footer';
 import ProfileS from './pages/ProfileS';
 import Admin from './pages/Admin';
@@ -19,6 +19,7 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
+
 
 
 
