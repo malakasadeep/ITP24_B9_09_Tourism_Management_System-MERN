@@ -19,10 +19,10 @@ import UpdatePkg from "./pages/tourPkg/UpdatePkg";
 import Packages from "./pages/tourPkg/Packages";
 import SearchPkg from "./pages/tourPkg/SearchPkg";
 import SignUpN from "./pages/SignUpN";
-import CreateEvent from "./pages/Event/CreateEvent";
-import ShowEvent from "./pages/Event/ShowEvent";
-import UpdateEvent from "./pages/Event/UpdateEvent";
-import DeleteEvent from "./pages/Event/DeleteEvent";
+import CreateEvent from "./pages/eventAct/CreateEvent";
+import ShowEvent from "./pages/eventAct/ShowEvent";
+import UpdateEvent from "./pages/eventAct/UpdateEvent";
+import DeleteEvent from "./pages/eventAct/DeleteEvent";
 
 export default function App() {
   return (
