@@ -65,11 +65,11 @@ router.route("/delete/:id").delete(async (req,res)=>{
     res.status(500).send({status:"Error with delete vehicle",erroe: err.message});
 })
 })
-router.route("/get/:id").get(async (req, res) => {
+router.get("/get-vehi/:id",async (req, res) => {
   try {
-    const vehiId = req.params.id;
-    const vehicle = await Vehicle.findById(vehiId);
-    res.status(200).send({ status: "user fetched", vehicle });
+    const {id} = req.params;
+    const vehicle = await Vehicle.findById(id);
+    res.status(200).json( vehicle );
   } catch (err) {
     console.log(err.message);
     res.status(500).send({ status: "error with get user", error: err.message });

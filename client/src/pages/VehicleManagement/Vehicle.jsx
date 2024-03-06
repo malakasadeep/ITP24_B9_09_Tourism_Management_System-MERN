@@ -56,7 +56,8 @@ function Vehicle() {
                     <td className="border px-4 py-2">{vehicle.location}</td>
                     <td className="border px-4 py-2">{vehicle.fuelType}</td>
                     <td className="border px-4 py-2">
-                      <Link to={`/vehicle/edit/${vehicle._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md">Edit</Link>
+                      <Link to={`/vehicle/get/${vehicle._id}`} className="px-4 py-2 bg-green-500 text-white rounded-md">Show</Link>
+                      <Link to={`/vehicle/update/${vehicle._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md">Edit</Link>
                       <Link to={`/vehicle/delete/${vehicle._id}`} className="px-4 py-2 bg-red-500 text-white rounded-md ml-2">Delete</Link>
                     </td>
                   </tr>
