@@ -2,12 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background: linear-gradient(to bottom, rgb(244, 245, 246), rgb(90, 139, 207),rgb(30, 58, 138) );
-    height: '100vh';
-    line-height: '100vh';
-    background-position: 'center';
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'Poppins', sans-serif;
-}
+
+
