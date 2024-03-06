@@ -1,22 +1,21 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import userRouter from './routes/user.route.js';
-import authRouter from './routes/auth.route.js';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRouter from "./routes/user.route.js";
+import authRouter from "./routes/auth.route.js";
 import eventRouter from "./routes/events.js";
-import packageRouter from './routes/package.route.js';
-import cookieParser from 'cookie-parser';
+import packageRouter from "./routes/package.route.js";
+import cookieParser from "cookie-parser";
 
 //sasindu
-import hotels from './routes/hotels.js';
-import rooms from './routes/rooms.js';
-import hotelreservationRoute from './routes/hotelReservationRoute.js';
-import path from 'path';
+import hotels from "./routes/hotels.js";
+import rooms from "./routes/rooms.js";
+import hotelreservationRoute from "./routes/hotelReservationRoute.js";
+import path from "path";
 const __dirname = path.resolve();
-=======
-  
- //vehicle
-import Vehicle from './routes/Vehicle.js';
+
+//vehicle
+import Vehicle from "./routes/Vehicle.js";
 
 dotenv.config();
 
@@ -44,14 +43,12 @@ app.use("/api/Package", packageRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/vehicle", Vehicle);
 
-
 //sasindu
 
-app.use('/api/hotels', hotels);
-app.use('/api/rooms', rooms);
-app.use('/api/hotelreservationRoute',hotelreservationRoute);
-app.use('/api/images', express.static(path.join(__dirname, 'photos')));
-
+app.use("/api/hotels", hotels);
+app.use("/api/rooms", rooms);
+app.use("/api/hotelreservationRoute", hotelreservationRoute);
+app.use("/api/images", express.static(path.join(__dirname, "photos")));
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
