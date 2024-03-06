@@ -1,79 +1,113 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useLocation, useNavigate } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
+export const AddHotel = () => {
+  const navigate = useNavigate();
+  const [hotelName, setHotelName] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [hotelType, setHotelType] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [province, setProvince] = React.useState("");
+  const [zip, setZip] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [distance, setDistance] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [contactName, setContactName] = React.useState("");
+  const [contactNumber, setContactNumber] = React.useState("");
+  const [noOfRoomTypes, setNoOfRoomTypes] = React.useState("");
+  const [price, setprice] = React.useState("");
+  const [raiting, setRaiting] = React.useState(""); //must be added later
+  const [hotelImg, setHotelImg] = React.useState("");
 
-export const UpdateHotel= () => {
-
-    const navigate = useNavigate();
-const location=useLocation();
-    const id= location.pathname.split("/")[3];
-    
-    const {data, loading,error }=useFetch(`/hotels/find/${id}`)
-
-  const [name, setHotelName] = React.useState(data.name);
-  const [title, setTitle] = React.useState(data.title);
-  const [type, setHotelType] = React.useState(data.type);
-  const [city, setCity] = React.useState(data.city);
-  const [province, setProvince] = React.useState(data.province);
-  const [zip, setZip] = React.useState(data.zip);
-  const [address, setAddress] = React.useState(data.address);
-  const [distance, setDistance] = React.useState(data.distance);
-  const [description, setDescription] = React.useState(data.description);
-  const [contactName, setContactName] = React.useState(data.contactName);
-  const [contactNo, setContactNumber] = React.useState(data.contactNumber);
- // const [noOfRoomTypes, setNoOfRoomTypes] = React.useState("");
-  const [cheapestPrice, setprice] = React.useState(data.cheapestPrice);
+  const [hotelImgs, setHotelImgs] = useState([]);
+  const [certificates, setCertificates] = React.useState([]);
 
   
+  
+  console.log(hotelImgs);
 
   
-
-  
-
   function sendData(e) {
     e.preventDefault();
 
-    
+    if (isNaN(zip)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Enter valid zip code",
+      });
+      return;
+    }
+     if (isNaN(distance)) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Enter distance in Km",
+        });
+         return;
+    }
+    if (contactNumber.length !== 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "enter valid mobile number",
+      });
+      return;
+    }
 
-    const updateHotel = {
-        name,
-        title,
-        type,
-        city,
-        province,
-        zip,
-        address,
-        distance,
-        description,
-        contactName,
-        contactNo,
-        cheapestPrice
-      };
+    const formData = new FormData();
+
+    formData.append("name", hotelName);
+    formData.append("title", title);
+    formData.append("type", hotelType);
+    formData.append("city", city);
+    formData.append("province", province);
+    formData.append("zip", zip);
+    formData.append("address", address);
+    formData.append("distance", distance);
+    formData.append("contactName", contactName);
+    formData.append("contactNo", contactNumber);
+    formData.append("numberOfRoomTypes", noOfRoomTypes);
+    formData.append("HotelImg", hotelImg);
+
+    for (let i = 0; i < hotelImgs.length; i++) {
+      formData.append("HotelImgs", hotelImgs[i]);
+      console.log(i);
+    }
+    for (let i = 0; i < certificates.length; i++) {
+      formData.append("certificates", certificates[i]);
+      console.log(i);
+    }
+
+    formData.append("description", description);
+    formData.append("cheapestPrice", price);
 
     axios
-      .put(`/hotels/${id}`,updateHotel) 
+      .post("../api/hotels/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         Swal.fire({
-          position: 'top-end',
+          position: 'top-start',
           icon: 'success',
-          title: 'Your Hotel updated Successfully',
+          title: 'Hotel added Successfully',
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,
+          
         }) 
-        navigate(`/hotels`)
-
+        navigate("/hotels");
       })
       .catch((err) => {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: err 
-          })
-
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: err 
+        })
       });
   }
 
@@ -84,7 +118,10 @@ const location=useLocation();
         onSubmit={sendData}
         encType="multipart/form-data"
       >
-        <h1 className="text-2xl font-bold mb-8 mt-8">Update <span class='text-[#41A4FF]'>Hotel</span> and <span class='text-[#41A4FF]'>Join</span> with us</h1>
+        <h1 className="text-2xl font-bold mb-8 mt-8">
+          List Your <span class="text-[#41A4FF]">Hotel</span> and{" "}
+          <span class="text-[#41A4FF]">Join</span> with us
+        </h1>
         <div class="flex flex-wrap -mx-3 mb-3">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -96,7 +133,6 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="hotelName"
-              defaultValue={data.name}
               type="text"
               placeholder="Enter your Hotel name"
               required
@@ -116,7 +152,6 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="hotelName"
-              defaultValue={data.title}
               type="text"
               placeholder="Enter title for your Hotel"
               required
@@ -135,10 +170,10 @@ const location=useLocation();
             </label>
             <select
               id="hotelType"
-              defaultValue={data.type}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              onChange={(e) =>setHotelType(e.target.value)}
+              onChange={(e) => setHotelType(e.target.value)}
             >
+              <option>--Add hotel type</option>
               <option>Hotel</option>
               <option>Apartment</option>
               <option>Resort</option>
@@ -159,9 +194,8 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="city"
-              defaultValue={data.city}
               type="text"
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setCity(e.target.value.toLowerCase())}
             />
           </div>
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -175,7 +209,6 @@ const location=useLocation();
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="province"
-                defaultValue={data.province}
                 onChange={(e) => setProvince(e.target.value)}
               >
                 <option>SOUTHERN PROVINCE</option>
@@ -209,9 +242,8 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="zip"
-              defaultValue={data.zip}
               type="text"
-              
+              placeholder="90210"
               onChange={(e) => setZip(e.target.value)}
             />
           </div>
@@ -228,7 +260,6 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="address"
-              defaultValue={data.address}
               type="text"
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -246,7 +277,6 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="distance"
-              defaultValue={data.distance}
               type="text"
               onChange={(e) => setDistance(e.target.value)}
             />
@@ -264,7 +294,6 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="contactName"
-              defaultValue={data.contactName}
               type="text"
               onChange={(e) => setContactName(e.target.value)}
             />
@@ -282,13 +311,28 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="contactNumber"
-              defaultValue={data.contactNo}
               type="tel"
               onChange={(e) => setContactNumber(e.target.value)}
             />
           </div>
         </div>
 
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-first-name"
+            >
+              NUmber of room types
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700 borderrounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="noOfRoomTypes"
+              type="number"
+              onChange={(e) => setNoOfRoomTypes(e.target.value)}
+            />
+          </div>
+        </div>
 
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
@@ -301,7 +345,6 @@ const location=useLocation();
             <textarea
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="desc"
-              defaultValue={data.description}
               type="String"
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -319,14 +362,13 @@ const location=useLocation();
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="price"
-              defaultValue={data.cheapestPrice}
               type="Number"
               onChange={(e) => setprice(e.target.value)}
             />
           </div>
         </div>
 
-        {/* <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -341,15 +383,89 @@ const location=useLocation();
               onChange={(e) => setRaiting(e.target.value)}
             />
           </div>
-        </div> */}
+        </div>
 
-    
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-first-name"
+            >
+              Upload main hotel image
+            </label>
+            <input
+              type="file"
+              name="mainImage"
+              id="mainImg"
+              class=" bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+              onChange={(e) => setHotelImg(e.target.files[0])}
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-first-name"
+            >
+              Upload hotel images (upload 5 iamges)
+            </label>
+            <input
+              type="file"
+              name="mainImage"
+              id="mainImg"
+              class=" bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              multiple
+              required
+              onChange={(e) => {
+                const files = e.target.files;
+                const images = [];
+                for (let i = 0; i < files.length; i++) {
+                  images.push(files[i]);
+                }
+                setHotelImgs(images);
+              }}
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-first-name"
+            >
+              Provide buissness registration certificate and Hotel license
+            </label>
+            <input
+              type="file"
+              name="Certificate"
+              id="Certificate"
+              class=" bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              multiple
+              required
+              onChange={(e) => {
+                const cfiles = e.target.files;
+                const cimages = [];
+                for (let i = 0; i < cfiles.length; i++) {
+                  cimages.push(cfiles[i]);
+                }
+                setCertificates(cimages);
+              }}
+            />
+          </div>
+        </div>
+
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-8">
-          Update
+          SUBMIT
         </button>
+        <input class="bg-[#787878] hover:bg-[#474747] text-white font-bold py-2 px-4 rounded-full ml-5
+        " type="reset" value="Reset" />
       </form>
     </div>
   );
 };
 
-export default UpdateHotel;
+export default AddHotel;
