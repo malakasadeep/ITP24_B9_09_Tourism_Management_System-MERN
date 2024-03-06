@@ -103,26 +103,10 @@ export const getPkgsSearch = async (req, res, next) => {
 
         const order = req.query.order || 'desc';
 
-        if(days === 0){
-            const pkgs = await PkgListning.find({
-                title: {$regex: searchTerm, $options: 'i'},
-                offer,
-                dining,
-                transport,
-                type,
-                hoteltype,
-            })
-            .sort({[sort]: order})
-            .limit(limit)
-            .skip(startIndex);
-
-            return res.status(200).json(pkgs);
-
-        }
 
         const pkgs = await PkgListning.find({
             title: {$regex: searchTerm, $options: 'i'},
-            days: {$eq: days},
+            days: {$gte: days},
             offer,
             dining,
             transport,
