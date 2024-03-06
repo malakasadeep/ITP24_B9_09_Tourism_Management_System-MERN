@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 
+import mongoose from "mongoose";
 const HotelSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -82,13 +82,12 @@ const HotelSchema=new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    isApproved:{ // for accomodation admin
-        type: Boolean,
-        default: true,
-    }
+  
    
-},{timestamps :true}) 
+}) 
 
 const Hotel =  mongoose.model("Hotel",HotelSchema)    
 
 export default Hotel;
+
+
