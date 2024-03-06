@@ -19,6 +19,12 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
+import CreateEvent from './pages/Event/CreateEvent';
+import ShowEvent from './pages/Event/ShowEvent';
+import UpdateEvent from './pages/Event/UpdateEvent';
+import DeleteEvent from './pages/Event/DeleteEvent';
+
+
 
 
 
@@ -55,6 +61,14 @@ export default function App() {
         <Route path='/admin' element={<Admin/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
+
+      <Route>
+        <Route path='/events/create' element={<CreateEvent/>}/>
+        <Route path='/events/details/:id' element={<ShowEvent/>}/>
+        <Route path='/events/update/:id' element={<UpdateEvent/>}/>
+        <Route path='/events/delete/:id' element={<DeleteEvent/>}/>
+      </Route>
+
   </Routes> 
   <Footer/>
 
