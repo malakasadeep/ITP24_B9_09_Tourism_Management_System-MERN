@@ -1,5 +1,5 @@
 import React from 'react'
-import BackButton from '/../components/BackButton' // Import the BackButton component
+import BackButton from '../../components/VehicleManagement/BackButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ const AddVehicle = () => {
   const [type, settype] = React.useState();
   const [location, setlocation] = React.useState();
   const [fuelType, setfuelType] = React.useState();
+  const [loading, setloading] = React.useState(false);
   const navigate = useNavigate();
  const handleSubmit = () => {
     const data={
@@ -19,19 +20,19 @@ const AddVehicle = () => {
       fuelType
       };
             setloading(true);
-            axios.post('http://localhost:5000/api/vehicles',data)
+             axios.post('/api/vehicle/add',data)
             .then(()=>{
                setloading(false);
-               navigate('/vehicles');
+               navigate('/Vehicle');
         })
         .catch((error) => {
           setloading(false);
           alert(error.message)
           console.error(error);
-        }); // Add a comma here
+        }); 
       }
 
-        // Add the missing closing tag for the CreateVehicle component
+        
         return (
     <div>
       <div>AddVehicle</div>
@@ -100,7 +101,7 @@ const AddVehicle = () => {
             />
           </div>
           <div className='my-4'>
-            <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold text-2xl  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-3/4 ml-12 mb-4'>Add Vehicle</button>
+            <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold text-2xl  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-3/4 ml-12 mb-4' onClick={handleSubmit}>Add Vehicle</button>
           </div>
         </div>
       </div>
@@ -108,6 +109,6 @@ const AddVehicle = () => {
   );
 }
 
-
+export default AddVehicle;
 
 
