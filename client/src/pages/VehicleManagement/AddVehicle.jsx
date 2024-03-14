@@ -1,5 +1,5 @@
 import React from 'react'
-//import BackButton from '/../components/BackButton' // Import the BackButton component
+import BackButton from '/../components/BackButton' // Import the BackButton component
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,25 +10,29 @@ const AddVehicle = () => {
   const [location, setlocation] = React.useState();
   const [fuelType, setfuelType] = React.useState();
   const navigate = useNavigate();
- const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3000/api/vehicle/add', {
-        registerNumber,
-        model,
-        type,
-        location,
-        fuelType
-      });
-      console.log(response);
-      navigate('/vehicle');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+ const handleSubmit = () => {
+    const data={
+      registerNumber,
+      model,
+      type,
+      location,
+      fuelType
+      };
+            setloading(true);
+            axios.post('http://localhost:5000/api/vehicles',data)
+            .then(()=>{
+               setloading(false);
+               navigate('/vehicles');
+        })
+        .catch((error) => {
+          setloading(false);
+          alert(error.message)
+          console.error(error);
+        }); // Add a comma here
+      }
 
-  // Add the missing closing tag for the CreateVehicle component
-  return (
+        // Add the missing closing tag for the CreateVehicle component
+        return (
     <div>
       <div>AddVehicle</div>
       <div className='p-4'>
@@ -101,9 +105,9 @@ const AddVehicle = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 
 
-export default AddVehicle;
+
