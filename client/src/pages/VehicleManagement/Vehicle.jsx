@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 import{Link} from 'react-router-dom';
-//import VehicleHero from '../../components/VehicleManagement/VehicleHero';
+import Swal from 'sweetalert2';
 
 
 function Vehicle() {
@@ -21,6 +21,41 @@ function Vehicle() {
   setLoading(false);
   });
   },[]); 
+
+  const handleVehicleDelete = async (vehicleId) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+  
+          try {
+  
+            const res = await fetch(`/api/vehicle/delete/${vehicleId}`,{
+                method: 'DELETE',
+            });
+            const data = await res.json();
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your package has been deleted.",
+              icon: "success"
+            });
+            setUserPackages((prev)=> prev.filter((vehicles)=> vehicles._id !== packageId));
+          } catch (error) {
+            console.log(error.message);
+          } 
+        }
+      });
+  };
   
   return (
     <div>
@@ -58,7 +93,7 @@ function Vehicle() {
                     <td className="border px-4 py-2">
                       <Link to={`/vehicle/get/${vehicle._id}`} className="px-4 py-2 bg-green-500 text-white rounded-md">Show</Link>
                       <Link to={`/vehicle/update/${vehicle._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md">Edit</Link>
-                      <Link to={`/vehicle/delete/${vehicle._id}`} className="px-4 py-2 bg-red-500 text-white rounded-md ml-2">Delete</Link>
+                      <Link onClick={()=>handleVehicleDelete(vehicle._id)} className="px-4 py-2 bg-red-500 text-white rounded-md ml-2">Delete</Link>
                     </td>
                   </tr>
                 ))
