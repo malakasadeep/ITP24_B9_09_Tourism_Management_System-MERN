@@ -8,7 +8,7 @@ import PrivateRouteTourist from './components/PrivateRouteTourist';
 import PrivateRouteSeller from './components/PrivateRouteSeller';
 import PrivateRouteAdmin from './components/PrivateRouteAdmin';
 import AddItems from './pages/AddItems';
-import Layout from './components/headers/layout';
+import Layout from './components/headers/Layout';
 import Footer from './components/Footer';
 import ProfileS from './pages/ProfileS';
 import Admin from './pages/Admin';
@@ -20,6 +20,7 @@ import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
 
+
 import Vehicle from './pages/VehicleManagement/Vehicle';
 import AddVehicle from './pages/VehicleManagement/AddVehicle';
 import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
@@ -27,6 +28,7 @@ import EditBook from './pages/VehicleManagement/EditVehicle';
 import ShowBook from './pages/VehicleManagement/ShowVehicle';
 import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
 import EditVehicle from './pages/VehicleManagement/EditVehicle';
+
 
 
 
@@ -72,6 +74,7 @@ export default function App() {
       <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
       <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
     
+
   </Routes> 
   <Footer/>
 
