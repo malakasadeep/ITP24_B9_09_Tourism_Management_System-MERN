@@ -22,6 +22,14 @@ import SignUpN from './pages/SignUpN';
 import { AdminUM } from './components/user/AdminUM';
 
 
+import Vehicle from './pages/VehicleManagement/Vehicle';
+import AddVehicle from './pages/VehicleManagement/AddVehicle';
+import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
+import EditBook from './pages/VehicleManagement/EditVehicle';
+import ShowBook from './pages/VehicleManagement/ShowVehicle';
+import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
+import EditVehicle from './pages/VehicleManagement/EditVehicle';
+
 
 
 
@@ -62,6 +70,15 @@ export default function App() {
       </Route> 
 
       
+<<<<<<< HEAD
+=======
+      <Route path='/Vehicle' element={<Vehicle/>}/>
+      <Route path='/Vehicle/add' element={<AddVehicle/>}/>
+      <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
+      <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
+      <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
+    
+>>>>>>> f1bb13ef56ffbd85c8f860b2a269f6e3b2315734
 
   </Routes> 
   <Footer/>

@@ -1,36 +1,14 @@
-import  express  from "express";
-import { createHotel,updateHotel, deleteHotel, getHotel, getAllHotel, countByCity, countByType, getHotelbyCity, getHotelRooms } from "../controllers/hotel.js";
+import  Express  from "express";
+import { createhotel, deletehotel, gethotel, gethotelsSearch, updatehotel } from "../controllers/package.controller.js";
+import { veryfyTocken } from "../utils/verifyUser.js";
+
+const router = Express.Router();
+
+router.post('/createhotel', veryfyTocken, createhotel);
+router.delete('/delete/:id', veryfyTocken, deletehotel);
+router.post('/update/:id', veryfyTocken, updatehotel);
+router.get('/get-update/:id', gethotel);
+router.get('/gethotels', gethotelsSearch);
 
 
-
-
-const router =express.Router();
-//Create
-router.post("/",createHotel)
-
-//update
-
-router.put("/:id",updateHotel)
-
-//Delete
-
-router.delete("/:id",deleteHotel)
-
-//get
-router.get("/find/:id", getHotel)
-
-// Get all hotels
-router.get("/",getAllHotel)
-
-router.get("/countByCity",countByCity)
-
-router.get("/countByType",countByType)
-
-
-router.get("/get/:city",getHotelbyCity)
-
-router.get("/room/:id",getHotelRooms);   
-
-
-
-export default router  
+export default router;
