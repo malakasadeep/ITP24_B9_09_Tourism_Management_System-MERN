@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.route.js";
 import eventRouter from "./routes/events.js";
 import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //sasindu
 import hotels from "./routes/hotels.js";
@@ -30,6 +31,7 @@ mongoose
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
@@ -49,6 +51,55 @@ app.use("/api/hotels", hotels);
 app.use("/api/rooms", rooms);
 app.use("/api/hotelreservationRoute", hotelreservationRoute);
 app.use("/api/images", express.static(path.join(__dirname, "photos")));
+
+// app.get("/events/admin", (req, res) => {
+//   eventModel
+//     .find({})
+//     .then((events) => res.json(events))
+//     .catch((err) => res.json(err));
+// });
+
+// app.get("/api/events/:id", (req, res) => {
+//   const id = req.params.id;
+//   eventModel
+//     .findById({ _id: id })
+//     .then((events) => res.json(events))
+//     .catch((err) => res.json(err));
+// });
+
+// app.put("/:id", (req, res) => {
+//   const id = req.params.id;
+//   eventModel
+//     .findByIdAndUpdate(
+//       { _id: id },
+//       {
+//         type: req.body.type,
+//         name: req.body.name,
+//         date: req.body.date,
+//         time: req.body.time,
+//         location: req.body.location,
+//         price: req.body.price,
+//         MaxParticipants: req.body.MaxParticipants,
+//         description: req.body.description,
+//       }
+//     )
+//     .then((events) => res.json(events))
+//     .catch((err) => res.json(err));
+// });
+
+// app.delete('/ /:id', (req,res) => {
+//   const id= req.params.id;
+//   eventModel.findByIdAndDelete({_id:id})
+//   .then((events) => res.json(events))
+//   .catch((err) => res.json(err));
+// })
+
+// app.post("/events/create", (req, res) => {
+//   eventModel
+//     .create(req.body)
+//     .then((events) => res.json(events))
+//     .catch((err) => res.json(err));
+// });
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

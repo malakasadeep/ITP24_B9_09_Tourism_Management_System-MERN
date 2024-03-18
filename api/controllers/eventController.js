@@ -27,7 +27,7 @@ export const getEvent = async (req, res) => {
 
 //create new event
 export const createEvent = async (req, res) => {
-  const { type, name, date, time, location, price, description } = req.body;
+  const { type, name, date, time, location, price, description, MaxParticipants } = req.body;
 
   //add doc to db
   try {
@@ -38,6 +38,7 @@ export const createEvent = async (req, res) => {
       time,
       location,
       price,
+      MaxParticipants,
       description
     });
     res.status(200).json(event);

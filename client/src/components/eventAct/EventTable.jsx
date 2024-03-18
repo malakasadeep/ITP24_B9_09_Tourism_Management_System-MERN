@@ -1,121 +1,113 @@
-import React from 'react'
+import axios from "axios";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function EventTable() {
+  const [events, SetEventTable] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/events")
+      .then((result) => SetEventTable(result.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleDelete = (id) => {
+    axios
+      .delete("http://localhost:3000/api/events/" + id)
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    
-
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
+    <div className=" mt-36">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <Link to="/events/create" className="btn btn-success">
+            Add Events
+          </Link>
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
+                  Type
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                  Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                  Date
                 </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
+                <th scope="col" class="px-6 py-3">
+                  Time
                 </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
+                <th scope="col" class="px-6 py-3">
+                  Location
                 </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
+                <th scope="col" class="px-6 py-3">
+                  Price
                 </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Google Pixel Phone
+                <th scope="col" class="px-6 py-3">
+                  Participants
                 </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple Watch 5
+                <th scope="col" class="px-6 py-3">
+                  Action
                 </th>
+              </tr>
+            </thead>
+            <tbody>
+              {events?.map((event) => {
+                return (
+                  <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <td>{event.type}</td>
+                    <td>{event.name}</td>
+                    <td>{event.date?.toString().split("T")[0]}</td>
+                    <td>{event.time}</td>
+                    <td>{event.location}</td>
+                    <td>{event.price}</td>
+                    <td>
+                      {event.participants}/{event.MaxParticipants}
+                    </td>
+                    <td>
+                      <Link
+                        to={`/events/update/${event._id}`}
+                        className="btn btn-success"
+                      >
+                        Update
+                      </Link>
+                      <button
+                        className="btn btn-danger"
+                        onClick={(e) => handleDelete(event._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+              {/* <td class="px-6 py-4">Silver</td>
+                <td class="px-6 py-4">Laptop</td>
+                <td class="px-6 py-4">$2999</td>
+                <td class="px-6 py-4">Silver</td>
+                <td class="px-6 py-4">Silver</td>
+                <td class="px-6 py-4">Silver</td>
                 <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-  )
+                  <a
+                    href="#"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                    Edit
+                  </a>
+                </td> */}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default EventTable
+export default EventTable;

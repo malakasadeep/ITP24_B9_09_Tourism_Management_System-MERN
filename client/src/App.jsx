@@ -10,6 +10,7 @@ import PrivateRouteAdmin from "./components/PrivateRouteAdmin";
 import AddItems from "./pages/AddItems";
 import Layout from "./components/headers/Layout";
 import Footer from "./components/Footer";
+import EventTable from "./components/eventAct/EventTable";
 import ProfileS from "./pages/ProfileS";
 import Admin from "./pages/Admin";
 import ProfileAd from "./pages/ProfileAd";
@@ -57,6 +58,7 @@ export default function App() {
 
         <Route>
           <Route path="/events/create" element={<CreateEvent />} />
+          <Route path="/events/admin" element={<EventTable />} />
           <Route path="/events/details/:id" element={<ShowEvent />} />
           <Route path="/events/update/:id" element={<UpdateEvent />} />
           <Route path="/events/delete/:id" element={<DeleteEvent />} />

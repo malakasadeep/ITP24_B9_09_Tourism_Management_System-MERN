@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const CreateEvent = () => {
+function CreateEvent() {
+  const [type, setType] = useState();
+  const [name, setName] = useState();
+  const [date, setDtae] = useState();
+  const [time, setTime] = useState();
+  const [location, setLocation] = useState();
+  const [price, setPrice] = useState();
+  const [MaxParticipants, setMaxParticipants] = useState();
+  const [description, setDescription] = useState();
+  const navigate = useNavigate();
+
+  const Submit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/api/events/", {
+        type,
+        name,
+        date,
+        time,
+        location,
+        price,
+        MaxParticipants,
+        description,
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/events/admin");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className=" mt-36">
       <h1 className="text-3xl font-semibold text-center my-7 mt-24">
         Create a New Event or Activity
       </h1>
       <div className="flex items-center justify-center mt-2 container mx-auto">
-        <form class="w-full max-w-lg">
+        <form class="w-full max-w-lg" onSubmit={Submit}>
           <div class="grid grid-cols-2 gap-y-4 gap-x-2">
             <div class="w-full mb-6 md:mb-0">
               <label
@@ -16,15 +48,17 @@ const CreateEvent = () => {
               >
                 Type
               </label>
-              <div class="relative">
+              <div className="relative">
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                  onChange={(e) => setType(e.target.value)}
                 >
                   <option>Event</option>
                   <option>Activity</option>
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
                     class="fill-current h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +70,7 @@ const CreateEvent = () => {
               </div>
             </div>
 
-            <div class="w-full mb-6 md:mb-0">
+            <div className="w-full mb-6 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
@@ -44,14 +78,15 @@ const CreateEvent = () => {
                 Name
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div class="col-span-2 w-full">
+            <div className="col-span-2 w-full">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
                 Date
@@ -60,9 +95,10 @@ const CreateEvent = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="date"
+                onChange={(e) => setDtae(e.target.value)}
               />
             </div>
-            <div class="w-full mb-6 md:mb-0">
+            <div className="w-full mb-6 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-city"
@@ -70,78 +106,81 @@ const CreateEvent = () => {
                 Time
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
                 type="text"
                 placeholder="12.00 AM"
+                onChange={(e) => setTime(e.target.value)}
               />
             </div>
 
-            <div class="w-full mb-6 md:mb-0">
+            <div className="w-full mb-6 md:mb-0">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-zip"
               >
                 Location
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
                 type="text"
-                // placeholder="Colombo"
+                onChange={(e) => setLocation(e.target.value)}
               />
             </div>
 
-            <div class="w-full">
+            <div className="w-full">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
                 Price
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="text"
-                // placeholder="12/06/2023"
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
 
-            <div class="w-full ">
+            <div className="w-full ">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
                 Max participants (0 = unlimited)
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
-                type="text"
-                // placeholder="12/06/2023"
+                type="number"
+                onChange={(e) => setMaxParticipants(e.target.value)}
               />
             </div>
 
-            <div class="w-full col-span-2">
+            <div className="w-full col-span-2">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
                 Description
               </label>
               <textarea
                 type="text"
-                className="border p-3 rounded-lg resize"
+                className="border p-3 rounded-lg resize appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="description"
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
           </div>
 
-          <div class="flex flex-wrap -mx-3 my-4">
+          <div className="flex flex-wrap -mx-3 my-4">
             <div className="flex items-center justify-center mt-4 container mx-auto">
               <button
-                class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
+                onClick={Submit}
               >
                 Add Event
               </button>
@@ -151,6 +190,6 @@ const CreateEvent = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CreateEvent;
