@@ -5,9 +5,7 @@ import './../../assets/css/header.css';
 
 export default function Header() {
   const { currentUser } = useSelector(state => state.user);
-  
-  
-  return (
+return (
     <>
     <header>
     <a href="#" className="logo">Logo</a>

@@ -1,18 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 
-const HotelCard = () => {
-  const { data, loading, error } = useFetch(`/hotels`);
+const SearchCard = (item) => {
+
+
   
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(item.date)
+  const date= item.date
+
+  const handleClick = () => {
+    navigate(`/hotel/${item._id}`, { state: date  });
+  };
+
+  
+ 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-8">
+        
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {loading ? (
-          "Loading"
-        ) : (
-          <>
-            {data.map((item) => (
+        
+        
+        
               <div
                 className="bg-white rounded-lg shadow-md overflow-hidden"
                 key={item.id}
@@ -31,20 +42,20 @@ const HotelCard = () => {
                     Starting from Rs.{item.cheapestPrice}
                   </p>
                   <div className="flex items-center">
-                  <Link to ={`/hotelOverview/${item._id}`}>
-                    <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
+                  
+                    <button onClick= {handleClick} className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
                       View
                     </button>
-                    </Link>
+                    
                   </div>
                 </div>
               </div>
-            ))}
-          </>
-        )}
+            
+          
+        
       </div>
     </div>
   );
 };
 
-export default HotelCard;
+export default SearchCard;
