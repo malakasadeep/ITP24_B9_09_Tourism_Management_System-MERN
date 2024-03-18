@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect} from 'react'
 import { useLocation } from "react-router-dom";
 import Header from './Header';
 import SellerHeader from './SellerHeader';
-import Adminheader from './Adminheader';
 
 
 const Layout = () => {
@@ -33,11 +32,9 @@ const Layout = () => {
                              location.pathname.startsWith('/update-package/') ||
                              location.pathname.startsWith('/my-packages/');
     
-    const showAdminHeader = location.pathname === "/admin" || 
-                            location.pathname === "/admin/profile";
   return (
     <div>
-        {showAdminHeader? (<Adminheader/>) : showSellerHeader? (<SellerHeader/>): showHeader? (<Header/>) : ''}
+        {showSellerHeader? (<SellerHeader/>): showHeader? (<Header/>) : ''}
     </div>
   )
 }

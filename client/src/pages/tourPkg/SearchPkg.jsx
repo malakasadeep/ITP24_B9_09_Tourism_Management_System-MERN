@@ -18,7 +18,7 @@ export default function SearchPkg() {
     });
     const [loading, setLoading] = useState(false);
     const [packages, setPackages] = useState([]);
-    console.log(packages);
+    
     useEffect (() => {
         const urlParams = new URLSearchParams(window.location.search);
         const searchTerm = urlParams.get('searchTerm') || '';

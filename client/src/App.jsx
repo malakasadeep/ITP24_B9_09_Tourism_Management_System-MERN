@@ -19,6 +19,7 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
+import { AdminUM } from './components/user/AdminUM';
 
 
 
@@ -56,8 +57,11 @@ export default function App() {
 
       <Route element = {<PrivateRouteAdmin/>}>
         <Route path='/admin' element={<Admin/>}/>
+        <Route path='/admin/user' element={<AdminUM/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
+
+      
 
   </Routes> 
   <Footer/>

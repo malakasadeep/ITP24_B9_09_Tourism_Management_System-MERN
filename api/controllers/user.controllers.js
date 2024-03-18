@@ -74,3 +74,31 @@ export const getUser = async (req, res, next) => {
         next(error);
     }
 };
+
+export const getUserSearch = async (req, res, next) => {
+    try {
+        const limit = parseInt(req.query.limit) || 50;
+        const startIndex = parseInt(req.query.startIndex) || 0;
+
+        let usertype = req.query.usertype;
+        if (usertype === undefined || usertype === 'all'){
+            usertype = {$in: ['Travel Service Providers', 'Tourist']};
+        }
+        const searchTerm = req.query.searchTerm || '';
+        const sort = req.query.sort || 'createdAt';
+        const order = req.query.order || 'desc';
+
+        const users = await User.find({
+            username: {$regex: searchTerm, $options: 'i'},
+            usertype,
+        })
+        .sort({[sort]: order})
+        .limit(limit)
+        .skip(startIndex);
+
+        return res.status(200).json(users);
+
+    } catch (error) {
+        next(error);
+    }
+};
