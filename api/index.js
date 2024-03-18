@@ -9,9 +9,6 @@ import cookieParser from 'cookie-parser';
 
 //sasindu
 
-import hotels from './routes/hotels.js';
-import rooms from './routes/rooms.js';
-import hotelreservationRoute from './routes/hotelReservationRoute.js';
 import path from 'path';
 const __dirname = path.resolve();
 
