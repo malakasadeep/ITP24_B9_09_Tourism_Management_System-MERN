@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-const RestuarantSchema=new Schema({
+const RestuarantSchema=mongoose.Schema({
     Res_OwnerName : {
         type :String,
         required:true
@@ -18,8 +17,10 @@ const RestuarantSchema=new Schema({
         type :String,
         required:true
     },
-})
+    },
+    {
+        timestamps:true,
+    }
+);
 
-const Restuarant=mongoose.model("Restuarant",RestuarantSchema);
-
-export default Restuarant;
+export const Restuarants=mongoose.model("Restuarant",RestuarantSchema);

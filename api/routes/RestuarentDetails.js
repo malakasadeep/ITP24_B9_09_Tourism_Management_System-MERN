@@ -1,82 +1,111 @@
 import express from 'express';
-import Restuarant from '../models/RestuarantDetails.js';
+import { Restuarant } from '../models/RestuarantDetails'
+
 const router = express.Router();
 
-//insert a restuarant
-router.route("/add").post((req,res)=>{
-   
-    const Res_OwnerName=req.body.Res_OwnerName;
-    const Res_Name=req.body.Res_Name;
-    const Location=req.body.Location;
-    const Description=req.body.Description;
+// Route for Save a new Restuarant
+router.post('/', async (request, response) => {
+  try {
+    if (
+      !request.body.Res_OwnerName||
+      !request.body.Res_Name ||
+      !request.body.Location ||
+      !request.body.Description
 
-    const newRestuarant=new Restuarant({
-        Res_OwnerName,
-        Res_Name,
-        Location,
-        Description,
-    })
-    //error or not
-    newRestuarant.save().then(()=>{
-        res.json("Restuarant added")
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
-//read
-//calling backend url
-router.route("/").get((req,res)=>{
-    //get all records
-    Restuarant.find().then((Restuarants)=>{
-        res.json(Restuarants)
-    }).catch((err)=>{
-        console.log(err);
-    })  
-})
- 
-//update Restuarant Details
-router.route("/update/:id").put(async(req,res)=>{
-  let ResId=res.params.id;
+    ) {
+      return response.status(400).send({
+        message: 'Send all required fields: Res_OwnerName, Res_Name, Location,Description',
+      });
+    }
+    const newRestuarant = {
+        Res_OwnerName: request.body.Res_OwnerName,
+        Res_Name: request.body.Res_Name,
+        Location: request.body.Location,
+    };
 
-  const{Res_OwnerName,Res_Name,Location,Description}=req.body;
+    const restuarant = await Restuarant.create(newRestuarant);
 
-  const updateRestuarant ={
-    Res_OwnerName,
-    Res_Name,
-    Location,
-    Description,
+    return response.status(201).send(restuarant);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
   }
-  
-  const update=await Restuarant.findByIdAndUpdate(ResId,updateRestuarant).then(()=>{
-  res.status(200).send({status: " Restuarant updated",Restuarant:update})
-}).catch((err)=>{
-    console.log(err);
-    res.status(500).send({status: "Error found updating",error:err.message});
-})
+});
 
-  
-})
+// Route for Get All Retuarants from database
+router.get('/', async (request, response) => {
+  try {
+    const restuarant = await Book.find({});
 
-router.route("/delete/:id").delete(async(req,res)=>{
-    let ResId=req.params.id;
+    return response.status(200).json({
+      count: restuarant.length,
+      data: restuarant,
+    });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 
-    await Restuarant.findByIdAndDelete(ResId)
-    .then(()=>{
-       res.status(200).send({status:"Error found deleting",error:err.message});
-    })
-})
+// Route for Get One Restuarant from database by id
+router.get('/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
 
-router.route("/get/:id").get(async(req,res)=>{
-    let ResId=req.params.id;
-     const ResOwner =await Restuarant.findById(ResId)
-    .then(()=>{
-        res.status(200).send({status: "Restuarant feched",ResOwner:ResOwner})
-    }).catch(()=>
-    {console.log(err.message).send({status:"Error with get user",error:errr.message});
-   })
-})
+    const  retuarant= await Restuarant.findById(id);
 
+    return response.status(200).json(book);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 
+// Route for Update a Restuarant
+router.put('/:id', async (request, response) => {
+  try {
+    if (
+        !request.body.Res_OwnerName||
+        !request.body.Res_Name ||
+        !request.body.Location ||
+        !request.body.Description
+    ) {
+      return response.status(400).send({
+        message: 'Send all required fields: Res_OwnerName, Res_Name, Location,Description',
+      });
+    }
 
+    const { id } = request.params;
+
+    const result = await Restuarant.findByIdAndUpdate(id, request.body);
+
+    if (!result) {
+      return response.status(404).json({ message: 'Restuarant not found' });
+    }
+
+    return response.status(200).send({ message: 'Restuarant updated successfully' });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+// Route for Delete a Restuarant
+router.delete('/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    const result = await Restuarant.findByIdAndDelete(id);
+
+    if (!result) {
+      return response.status(404).json({ message: 'Restuarant not found' });
+    }
+
+    return response.status(200).send({ message: 'Restuarant deleted successfully' });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 
 export default router;

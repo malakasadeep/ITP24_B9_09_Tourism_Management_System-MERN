@@ -21,7 +21,8 @@ import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
 import CreateRestuarant from './pages/restaurants/CreateRestuarant';
 import ShowRestaurant from './pages/restaurants/ShowRestuarant';
-import Up
+import UpdateRestaurants from './pages/restaurants/UpdateRestaurants';
+import DeleteRestuarants from './pages/restaurants/DeleteRestuarants';
 
 
 
@@ -66,9 +67,10 @@ export default function App() {
       </Route> 
 
       <Route element={<ResHome/>}>
-         <Route path='/restuarants/create' element ={<CreateRestuarant/>}/>
-         <Route path='/restuarants/details/:id' element ={<ShowRestuarant/>}/>
-         <Route path='/restuarants/update/:id' element ={<UpdateRestuarant/>}/>
+         <Route path='/restuarants/save' element ={<CreateRestuarant/>}/>
+         <Route path='/restuarants/get/:id' element ={<ShowRestuarant/>}/>
+         <Route path='/restuarants/update/:id' element ={<UpdateRestaurants/>}/>
+         <Route path='/restuarants/delete/:id' element ={<DeleteRestuarants/>}/>
          
       </Route>
 
