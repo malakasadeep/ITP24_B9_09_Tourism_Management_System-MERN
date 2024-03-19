@@ -84,6 +84,18 @@ export default function AddItems() {
           </div>
         </div>
 
+
+        <div className='rounded-xl shadow-lg w-80 h-auto bg-white transition duration-300 ease-in-out hover:scale-105'>
+          <div className='p-5 flex flex-col'>
+            <div className='rounded-xl overflow-hidden'>
+              <img src={addvehiimg} alt='addvehiimg' className='h-64 w-80'/>
+            </div>
+            <h5 className='text-slate-800 text-2xl md:text-3xl font-medium mt-3'>Add Events</h5>
+            <p className='text-slate-500 text-lg mt-3'>The "Add Events" web page lets users easily suggest and describe new events and activities, contributing to the platform's diverse offerings.</p>
+            <Link to={"/events/create"} className='text-center bg-blue-400 text-blue-800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-200 focus:scale-95 transition-all duration-200 ease-out'>Explore</Link>
+          </div>
+        </div>
+
         
 
 
