@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-
+const Schema = mongoose.Schema;
 const RestuarantSchema=new Schema({
     Res_OwnerName : {
         type :String,
@@ -22,4 +22,4 @@ const RestuarantSchema=new Schema({
 
 const Restuarant=mongoose.model("Restuarant",RestuarantSchema);
 
-module.exports=Restuarant;
+export default Restuarant;

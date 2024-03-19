@@ -19,6 +19,10 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
+import CreateRestuarant from './pages/restaurants/CreateRestuarant';
+import ShowRestaurant from './pages/restaurants/ShowRestuarant';
+import Up
+
 
 
 
@@ -58,7 +62,15 @@ export default function App() {
       <Route element = {<PrivateRouteAdmin/>}>
         <Route path='/admin' element={<Admin/>}/>
         <Route path='/admin/profile' element={<ProfileAd/>}/>
+
       </Route> 
+
+      <Route element={<ResHome/>}>
+         <Route path='/restuarants/create' element ={<CreateRestuarant/>}/>
+         <Route path='/restuarants/details/:id' element ={<ShowRestuarant/>}/>
+         <Route path='/restuarants/update/:id' element ={<UpdateRestuarant/>}/>
+         
+      </Route>
 
       
     

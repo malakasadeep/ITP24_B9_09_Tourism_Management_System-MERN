@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UpdateRestaurants() {
+function ShowRestuarant() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function UpdateRestaurants() {
   )
 }
 
-export default UpdateRestaurants
+export default ShowRestuarant

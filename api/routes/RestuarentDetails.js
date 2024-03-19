@@ -36,18 +36,19 @@ router.route("/").get((req,res)=>{
  
 //update Restuarant Details
 router.route("/update/:id").put(async(req,res)=>{
-  let userId=res.params.id;
+  let ResId=res.params.id;
 
-  const{name,age,gender}=req.body;
+  const{Res_OwnerName,Res_Name,Location,Description}=req.body;
 
-  const updateStudent ={
-    name,
-    age,
-    gender,
+  const updateRestuarant ={
+    Res_OwnerName,
+    Res_Name,
+    Location,
+    Description,
   }
   
-  const update=await Restuarant.findByIdAndUpdate(userId,updateStudent).then(()=>{
-  res.status(200).send({status: " Restuarant updated",user:update})
+  const update=await Restuarant.findByIdAndUpdate(ResId,updateRestuarant).then(()=>{
+  res.status(200).send({status: " Restuarant updated",Restuarant:update})
 }).catch((err)=>{
     console.log(err);
     res.status(500).send({status: "Error found updating",error:err.message});
@@ -57,19 +58,19 @@ router.route("/update/:id").put(async(req,res)=>{
 })
 
 router.route("/delete/:id").delete(async(req,res)=>{
-    let userId=req.params.id;
+    let ResId=req.params.id;
 
-    await Student.findByIdAndDelete(userId)
+    await Restuarant.findByIdAndDelete(ResId)
     .then(()=>{
        res.status(200).send({status:"Error found deleting",error:err.message});
     })
 })
 
 router.route("/get/:id").get(async(req,res)=>{
-    let userId=req.params.id;
-     const user =await Student.findById(userId)
+    let ResId=req.params.id;
+     const ResOwner =await Restuarant.findById(ResId)
     .then(()=>{
-        res.status(200).send({status: "user feched",user:user})
+        res.status(200).send({status: "Restuarant feched",ResOwner:ResOwner})
     }).catch(()=>
     {console.log(err.message).send({status:"Error with get user",error:errr.message});
    })

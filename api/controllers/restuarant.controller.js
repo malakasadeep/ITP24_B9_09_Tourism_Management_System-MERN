@@ -1,1 +1,0 @@
-import {Restuarant} from './models/Restuarant'
