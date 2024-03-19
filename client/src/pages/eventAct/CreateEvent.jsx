@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
-  const [type, setType] = useState();
+  const [type, setType] = useState("Event");
   const [name, setName] = useState();
   const [date, setDtae] = useState();
   const [time, setTime] = useState();
