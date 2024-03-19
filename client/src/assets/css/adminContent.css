@@ -1,0 +1,109 @@
+.content{
+    width: 75%;
+}
+
+.content--header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header--title{
+    color: #526d82;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.header--activity{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.search-box{
+    background: #dde6ed;
+    padding: 8px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.search-box input{
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+}
+
+.search-box .icon{
+    color: #969393;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.notify{
+    background: #dde6ed;
+    padding: 12px;
+    border-radius: 10px;
+    color: #969393;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notify .icon{
+    font-size: 20px;
+    transition: 0.5s ease-in-out;
+
+}
+.icon:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.card--container{
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    gap: 20px;
+    align-items: flex-start; /* Align items to the start of the cross axis */
+    margin-top: 2rem;
+}
+
+.card{
+    flex: 1 0 calc(25% - 20px); /* Each card takes up 25% of the container width minus the gap */
+    background: #dde6ed;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+    box-sizing: border-box; /* Ensure padding and border are included in the width calculation */
+}
+
+.card:hover{
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
+.card--cover{
+    background: #fff;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    color: #969393;
+}
+
+.card--title{
+    background: #fff;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    color: #526d82;
+}

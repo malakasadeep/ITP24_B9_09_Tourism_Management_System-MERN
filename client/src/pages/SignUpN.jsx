@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInstart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
 import Swal from 'sweetalert2';
-import './../assets/css/SignUp.css'
+import './../assets/css/signUp.css'
 import { FaUser, FaLock, FaEnvelope} from 'react-icons/fa';
 export default function SignUpN() {
 

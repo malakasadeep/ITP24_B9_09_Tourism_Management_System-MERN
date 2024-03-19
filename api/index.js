@@ -8,7 +8,9 @@ import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+
 //sasindu
+
 import hotels from "./routes/hotels.js";
 import rooms from "./routes/rooms.js";
 import hotelreservationRoute from "./routes/hotelReservationRoute.js";
@@ -17,6 +19,21 @@ const __dirname = path.resolve();
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
+
+
+import hotels from './routes/hotels.js';
+import rooms from './routes/rooms.js';
+import hotelreservationRoute from './routes/hotelReservationRoute.js';
+import path from 'path';
+const __dirname = path.resolve();
+
+  
+ //vehicle
+import Vehicle from './routes/Vehicle.js';
+
+import trainRouter from './routes/train.routes.js';
+dotenv.config();
+
 
 dotenv.config();
 
@@ -44,6 +61,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/vehicle", Vehicle);
+app.use("/api/train",trainRouter);
+
 
 //sasindu
 
@@ -52,54 +71,7 @@ app.use("/api/rooms", rooms);
 app.use("/api/hotelreservationRoute", hotelreservationRoute);
 app.use("/api/images", express.static(path.join(__dirname, "photos")));
 
-// app.get("/events/admin", (req, res) => {
-//   eventModel
-//     .find({})
-//     .then((events) => res.json(events))
-//     .catch((err) => res.json(err));
-// });
 
-// app.get("/api/events/:id", (req, res) => {
-//   const id = req.params.id;
-//   eventModel
-//     .findById({ _id: id })
-//     .then((events) => res.json(events))
-//     .catch((err) => res.json(err));
-// });
-
-// app.put("/:id", (req, res) => {
-//   const id = req.params.id;
-//   eventModel
-//     .findByIdAndUpdate(
-//       { _id: id },
-//       {
-//         type: req.body.type,
-//         name: req.body.name,
-//         date: req.body.date,
-//         time: req.body.time,
-//         location: req.body.location,
-//         price: req.body.price,
-//         MaxParticipants: req.body.MaxParticipants,
-//         description: req.body.description,
-//       }
-//     )
-//     .then((events) => res.json(events))
-//     .catch((err) => res.json(err));
-// });
-
-// app.delete('/ /:id', (req,res) => {
-//   const id= req.params.id;
-//   eventModel.findByIdAndDelete({_id:id})
-//   .then((events) => res.json(events))
-//   .catch((err) => res.json(err));
-// })
-
-// app.post("/events/create", (req, res) => {
-//   eventModel
-//     .create(req.body)
-//     .then((events) => res.json(events))
-//     .catch((err) => res.json(err));
-// });
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

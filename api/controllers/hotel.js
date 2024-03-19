@@ -67,41 +67,71 @@ export const upload = multer({
     } 
   };  
   
- // update Hotel
- export const  updateHotel =async (req,res,next)=>{
-    try{
-        const updatedHotel= await Hotel.findByIdAndUpdate(req.params.id, {$set:req.body}
-            ,{new:true})
-        res.status(200).json(updatedHotel);
+ // create Hotel//
+ export const createhotel = async (req, res, next) => {
 
-    }catch(err){ 
-        next(err);
-    }
+  try {
+
+      const hotelListning = await hotelListning.create(req.body);
+      return res.status(201).json(hotelListning);
+      
+  } catch (error){
+      next(error);
+      
+  }
 }
+//delete Hotel//
+export const deletehotel = async (req, res, next) => {
+  const hotel = await hotelListning.findById(req.params.id);
 
-//delete Hotel
-export const deleteHotel =async (req,res,next)=>{
-    try{
-        console.log(req.params.id)
-        const deleteHotel= await Hotel.findByIdAndDelete(req.params.id);
-        res.status(200).json("Hotel has been deleted.");
+  if (!hotel) {
+      return next(errorHandler(404, 'Package not found'));
+  }
 
-    }catch(err){
-  
-        res.status(500).json(err);
-    }
+  if(req.user.id !== pkg.userRef){
+      return next(errorHandler(401, 'you can delete your own packages'))
+  }
+
+  try {
+      await hotelListning.findByIdAndDelete(req.params.id);
+      res.status(200).json('Package deleted')
+  } catch (error) {
+      next(error);
+  }
 }
+//update Hotel//
+export const updatehotel = async (req, res, next) => {
+  const hotel = await hotelListning.findById(req.params.id);
+
+  if (!hotel) {
+      return next(errorHandler(404, 'Package not found'));
+  }
+
+  if(req.user.id !== hotel.userRef){
+      return next(errorHandler(401, 'you can update your own packages'))
+  }
+
+  try {
+      const updatedhotel = await hotelListning.findByIdAndUpdate(req.params.id, req.body, {new: true});
+      res.status(200).json(updatedhotel)
+  } catch (error) {
+      next(error);
+  }
+};
  
-//get Hotel
-export const getHotel =async (req,res,next)=>{
-    try{
-        const viewHotel= await Hotel.findById(req.params.id);
-        res.status(200).json(viewHotel);
-
-    }catch(err){
-        next(err);
-    }
-}
+//get Hotel//
+export const gethotel = async (req, res, next) => {
+    
+  try {
+      const hotel = await hotelListning.findById(req.params.id);
+      if (!hotel) {
+          return next(errorHandler(404, 'Package not found'));
+      }
+      res.status(200).json(hotel)
+  } catch (error) {
+      next(error);
+  }
+};
 
 //get all Hotels
 export const getAllHotel = async (req, res, next) => {
@@ -119,75 +149,70 @@ export const getAllHotel = async (req, res, next) => {
   };
 
 
-//count by city
-export const countByCity =async (req,res,next)=>{
-    const cities = req.query.cities.split(",")
-    try{
-        const list = await Promise.all(cities.map(city => {
-            return Hotel.countDocuments({city: city})
-        }))
 
-        res.status(200).json(list);
+/*export const gethotelsSearch = async (req, res, next) => {
+  try {
+      const limit = parseInt(req.query.limit) || 9;
+      const startIndex = parseInt(req.query.startIndex) || 0;
 
-    }catch(err){
-        res.status(500).json(err);
-    }
-}
-
-
-//count by type
-export const countByType =async (req,res,next)=>{
-    
-    try{
-
-    const hotelCount  =await Hotel.countDocuments({type:"Hotel"})
-    const apratmentCount =await Hotel.countDocuments({type:"apartment"})
-    const resortCount  =await Hotel.countDocuments({type:"resort"})
-    const villaCount  =await Hotel.countDocuments({type:"villa"})
-    const cabinCount  =await Hotel.countDocuments({type:"cabin"})
-   
-        res.status(200).json([
-            {type:"hotel", count:hotelCount},
-            {type:"apartment", count:apratmentCount},
-            {type:"resort", count:resortCount},
-            {type:"villa", count:villaCount},
-            {type:"cabin", count:cabinCount},
-        ]);
-
-    }catch(err){
-        res.status(500).json(err);
-    }
-}
-
-
-
-// get hotel by hotel type and city
-
-export const getHotelbyCity = async(req, res) => {
-    const city = req.params.city;
-    console.log(city);
-  try{
-      const hotels = await Hotel.find({city:city}); 
-      if(!hotels){
-          res.status(404).send("No hotels found");
+      let offer = req.query.offer;
+      if (offer === undefined || offer === 'false'){
+          offer = {$in: [false, true]};
       }
-      console.log(hotels);
-      res.send(hotels);
-  }catch(err){
-      res.status(500).send(err.message);
+
+      let dining = req.query.dining;
+      if (dining === undefined || dining === 'false'){
+          dining = {$in: [false, true]};
+      }
+
+      let transport = req.query.transport;
+      if (transport === undefined || transport === 'false'){
+          transport = {$in: [false, true]};
+      }
+
+      let type = req.query.type;
+      if (type === undefined || type === 'all'){
+          type = {$in: ['reguler', 'couple', 'family']};
+      }
+
+      let hoteltype = req.query.hoteltype;
+      if (hoteltype === undefined || hoteltype === 'all'){
+          hoteltype = {$in: ['3 Star Hotel', '4 Star Hotel', '5 Star Hotel']};
+      }
+
+      const searchTerm = req.query.searchTerm || '';
+
+      const days = req.query.days || 0;
+
+      const sort = req.query.sort || 'createdAt';
+
+      const order = req.query.order || 'desc';
+
+
+      const pkgs = await PkgListning.find({
+          title: {$regex: searchTerm, $options: 'i'},
+          days: {$gte: days},
+          offer,
+          dining,
+          transport,
+          type,
+          hoteltype,
+      })
+      .sort({[sort]: order})
+      .limit(limit)
+      .skip(startIndex);
+
+      return res.status(200).json(pkgs);
+
+
+  } catch (error) {
+      next(error);
   }
-}
+};*/
 
-export const getHotelRooms = async(req,res,next)=>{
-  try{
-    const hotel= await Hotel.findById(req.params.id);
-    const list= await  Promise.all(hotel.rooms.map((room)=>{
-        return Room.findById(room);
 
-    }))
-    res.status(200).json(list)  
-  }catch(err){
-    next(err);
-  }  
- }
+
+
+
+
 
