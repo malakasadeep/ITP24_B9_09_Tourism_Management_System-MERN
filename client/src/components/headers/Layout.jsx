@@ -32,59 +32,11 @@ const Layout = () => {
     location.pathname === "/create-package" ||
     location.pathname === "/my-items" ||
     location.pathname.startsWith("/update-package/") ||
-    location.pathname.startsWith("/my-packages/") ||
-    location.pathname.startsWith("/events/");
+    location.pathname.startsWith("/my-packages/");
 
-  const showAdminHeader =
-    location.pathname === "/admin" || location.pathname === "/admin/profile";
   return (
     <div>
-      {showAdminHeader ? (
-        <Adminheader />
-      ) : showSellerHeader ? (
-        <SellerHeader />
-      ) : showHeader ? (
-        <Header />
-      ) : (
-        ""
-      )}
-
-import Header from './Header';
-import SellerHeader from './SellerHeader';
-
-
-const Layout = () => {
-
-    const INITIAL_STATE = {
-        user: JSON.parse(localStorage.getItem("user")) || null,
-        loading: false,
-        error: null,
-      };
-
-    const AuthContext = createContext(INITIAL_STATE);  
-
-    const { user } = useContext(AuthContext);
-
-    const location = useLocation();
-
-    const showHeader = location.pathname === "/" || 
-                       location.pathname === '/sign-up' || 
-                       location.pathname === "/sign-in" || 
-                       location.pathname === "/profile"||
-                       location.pathname.startsWith('/packages/') ||
-                       location.pathname === "/package-search";
-
-    const showSellerHeader = location.pathname === "/additems" || 
-                             location.pathname === "/seller/profile" ||
-                             location.pathname === "/create-package" || 
-                             location.pathname === "/my-items" || 
-                             location.pathname.startsWith('/update-package/') ||
-                             location.pathname.startsWith('/my-packages/');
-    
-  return (
-    <div>
-        {showSellerHeader? (<SellerHeader/>): showHeader? (<Header/>) : ''}
-
+      {showSellerHeader ? <SellerHeader /> : showHeader ? <Header /> : ""}
     </div>
   );
 };
