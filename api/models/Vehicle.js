@@ -5,27 +5,58 @@ const Schema = mongoose.Schema;
 
 const vehicleSchema = new Schema({
 
-    registerNumber:{
+    ownername:{
+        type : String,
+        required: true,
+    },
+    brand:{
         type : String,
         required: true,
     },
     model:{
         type : String,
         required: true,
+
     },
     type:{
         type : String,
         required: true,
-
+    },
+    regno:{
+        type : String,
+        required: true,
+    },
+    seats:{
+        type : Number,
+        required: true,
+    },
+    transmission:{
+        type : String,
+       
+    },
+    price:{
+        type : Number,
+        required: true,
+    },
+    description:{
+        type : String,
+        required: true,
     },
     location:{
         type : String,
         required: true,
     },
-    fuelType:{
-        type : String,
+    imageUrls: {
+        type: Array,
         required: true,
-    }
+    },
+    userRef: {
+        type: String,
+        required: true,
+    },
+},
+{
+    timestamps: true,
 })
 
 const Vehicle = mongoose.model("Vehicle ",vehicleSchema);

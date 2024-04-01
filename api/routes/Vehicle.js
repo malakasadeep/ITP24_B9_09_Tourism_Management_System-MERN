@@ -3,12 +3,9 @@ import Vehicle from '../models/Vehicle.js';
 const router = express.Router();
 
 
+router.route("/add").post(async(req,res,next)=>{
 
-
-
-router.route("/add").post((req,res)=>{
-
-    const  registerNumber = req.body.registerNumber;
+    /*const  registerNumber = req.body.registerNumber;
     const  model = req.body.model;
     const  type = req.body.type;
     const  location = req.body.location;
@@ -26,7 +23,17 @@ router.route("/add").post((req,res)=>{
     res.json("Vehicle Added")
  }).catch((err) =>{
     console.log(err);
-})
+})*/
+
+    try {
+
+        const vehicleList = await Vehicle.create(req.body);
+        return res.status(201).json(vehicleList);
+        
+    } catch (error){
+        next(error);
+        
+    }
 })
 
 router.get("/", (req, res)=>{
