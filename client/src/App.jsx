@@ -22,11 +22,12 @@ import SignUpN from './pages/SignUpN';
 
 import Vehicle from './pages/VehicleManagement/Vehicle';
 import AddVehicle from './pages/VehicleManagement/AddVehicle';
-import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
+//import DeleteVehicle from './pages/VehicleManagement/DeleteVehicle';
 import EditBook from './pages/VehicleManagement/EditVehicle';
 import ShowBook from './pages/VehicleManagement/ShowVehicle';
 import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
 import EditVehicle from './pages/VehicleManagement/EditVehicle';
+// import VehicleCard from './components/VehicleManagement/vehicleCard';
 
 
 
@@ -68,7 +69,7 @@ export default function App() {
       
       <Route path='/Vehicle' element={<Vehicle/>}/>
       <Route path='/Vehicle/add' element={<AddVehicle/>}/>
-      <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
+      {/* <Route path='/VehicleCard'element={<VehicleCard/>}/> */}
       <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
       <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
     

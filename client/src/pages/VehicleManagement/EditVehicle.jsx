@@ -2,6 +2,7 @@ import React ,{useEffect,useState} from 'react'
 import BackButton from '../../components/VehicleManagement/BackButton'
 import axios from 'axios'
 import { useNavigate ,useParams} from 'react-router-dom'
+import { useSnackbar } from 'notistack'
 
 
 const EditVehicle = () => {
@@ -12,6 +13,7 @@ const EditVehicle = () => {
   const [fuelType, setfuelType] = React.useState();
   const [loading, setloading] = React.useState(false);
   const navigate = useNavigate();
+  const {enqueueSnackbar} = useSnackbar();
   const { id } = useParams();
   useEffect(() => {
     axios.get(`/api/vehicle/get-vehi/${id}`)
@@ -36,10 +38,12 @@ const EditVehicle = () => {
     axios.put(`/api/vehicle/update/${id}`,data)
       .then(() => {
         setloading(false);
+        enqueueSnackbar('Vehicle Updated', { variant:'info' });
         navigate('/Vehicle');
       })
       .catch((error) => {
         setloading(false);
+        enqueueSnackbar('Vehicle Updating Failed', { variant: 'error' });
         alert(error.message);
         console.error(error);
       }); 
