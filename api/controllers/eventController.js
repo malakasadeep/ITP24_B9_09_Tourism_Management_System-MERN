@@ -1,5 +1,6 @@
-import Event from "../models/eventModel.js"
+import Event from "../models/eventModel.js";
 import mongoose from "mongoose";
+//const router = express.Router();
 
 //get all events
 export const getEvents = async (req, res) => {
@@ -26,8 +27,18 @@ export const getEvent = async (req, res) => {
 };
 
 //create new event
-export const createEvent = async (req, res) => {
-  const { type, name, date, time, location, price, description, MaxParticipants } = req.body;
+export const createEvent = async (req, res, next) => {
+  /* const {
+    type,
+    name,
+    date,
+    time,
+    location,
+    price,
+    description,
+    MaxParticipants,
+    imageUrls,
+  } = req.body;
 
   //add doc to db
   try {
@@ -39,11 +50,19 @@ export const createEvent = async (req, res) => {
       location,
       price,
       MaxParticipants,
-      description
+      description,
+      imageUrls,
     });
     res.status(200).json(event);
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }*/
+
+  try {
+    const addevent = await Event.create(req.body);
+    return res.status(201).json(addevent);
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -86,5 +105,4 @@ export const updateEvent = async (req, res) => {
 
   res.status(200).json(event);
 };
-
 

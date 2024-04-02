@@ -2,6 +2,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Sidebar } from "../Sidebar";
+import { MdInfo } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
 function EventTable() {
   const [events, SetEventTable] = useState([]);
@@ -36,9 +39,7 @@ function EventTable() {
               <h1>Event Management</h1>
               <div className="user--btn">
                 <button className="btn1">
-                  <Link
-                          to={`/events/create`}>Add Event
-                  </Link>
+                  <Link to={`/events/create`}>Add Event</Link>
                 </button>
                 <button className="btn2">Download Report</button>
               </div>
@@ -63,8 +64,8 @@ function EventTable() {
               <table className="list">
                 <tbody>
                   <tr className="font-semibold text-blue-900 text-lg text-center">
+                    <td>Event</td>
                     <td>Type</td>
-                    <td>Name</td>
                     <td>Date</td>
                     <td>Time</td>
                     <td>Location</td>
@@ -74,8 +75,21 @@ function EventTable() {
                   </tr>
                   {events?.map((event) => (
                     <tr className="text-center" key={event._id}>
+                      <td>
+                        <div className="flex flex-col items-center justify-center">
+                          <div className="flex items-center">
+                            <img
+                              src={event.imageUrls[0]}
+                              alt=""
+                              className="h-20 w-20 object-contain"
+                            />
+                          </div>
+                          <div>
+                            <h2>{event.title}</h2>
+                          </div>
+                        </div>
+                      </td>
                       <td>{event.type}</td>
-                      <td>{event.name}</td>
                       <td>{event.date?.toString().split("T")[0]}</td>
                       <td>{event.time}</td>
                       <td>{event.location}</td>
@@ -83,19 +97,24 @@ function EventTable() {
                       <td>
                         {event.participants}/{event.MaxParticipants}
                       </td>
-                      <td>
-                        <Link
-                          to={`/events/update/${event._id}`}
-                          className="btnU" 
-                        >
-                          Update
-                        </Link>
-                        <button
-                          className="btnD" 
-                          onClick={(e) => handleDelete(event._id)}
-                        >
-                          Delete
-                        </button>
+                      <td className="">
+                        <div className="flex">
+                          <Link to={`/event/get/${event._id}`} className="btn1">
+                            <MdInfo className="text-2xl" />
+                          </Link>
+                          <Link
+                            to={`/events/update/${event._id}`}
+                            className="btnU"
+                          >
+                            <FaEdit className="text-2xl" />
+                          </Link>
+                          <button
+                            className="btnD"
+                            onClick={(e) => handleDelete(event._id)}
+                          >
+                            <MdDeleteForever className="text-2xl" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -106,77 +125,6 @@ function EventTable() {
         </div>
       </div>
     </div>
-    // <div className=" mt-36">
-    //   <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-    //     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    //       <Link to="/events/create" className="btn btn-success">
-    //         Add Events
-    //       </Link>
-    //       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    //         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-    //           <tr>
-    //             <th scope="col" class="px-6 py-3">
-    //               Type
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Name
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Date
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Time
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Location
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Price
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Participants
-    //             </th>
-    //             <th scope="col" class="px-6 py-3">
-    //               Action
-    //             </th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           {events?.map((event) => {
-    //             return (
-    //               <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-    //                 <td>{event.type}</td>
-    //                 <td>{event.name}</td>
-    //                 <td>{event.date?.toString().split("T")[0]}</td>
-    //                 <td>{event.time}</td>
-    //                 <td>{event.location}</td>
-    //                 <td>{event.price}</td>
-    //                 <td>
-    //                   {event.participants}/{event.MaxParticipants}
-    //                 </td>
-    //                 <td>
-    //                   <Link
-    //                     to={`/events/update/${event._id}`}
-    //                     className="btn btn-success"
-    //                   >
-    //                     Update
-    //                   </Link>
-    //                   <button
-    //                     className="btn btn-danger"
-    //                     onClick={(e) => handleDelete(event._id)}
-    //                   >
-    //                     Delete
-    //                   </button>
-    //                 </td>
-    //               </tr>
-    //             );
-    //           })}
-
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 
