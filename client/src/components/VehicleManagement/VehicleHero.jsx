@@ -1,6 +1,6 @@
 import React from 'react'
-import carMainImg from '../../assets/vehicleImg/carMain.png'
-import evImg from '../../assets/vehicleImg/ev.png'
+import carMainImg from '../../assets/img/VehicleImg/carmain.png'
+import evImg from '../../assets/img/VehicleImg/ev.png'
 
 
 const VehicleHero = () => {
