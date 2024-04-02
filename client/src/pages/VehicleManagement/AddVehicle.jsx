@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../../components/VehicleManagement/BackButton';
 
 const AddVehicle = () => {
   const [files, setFiles] = useState([]);
@@ -118,6 +119,7 @@ const handleChange = (e) => {
                     title: "Error",
                     text: 'Please upload atleast one image',
                 })
+                
                 return;
             }
             const regex = /^[A-Z]{3}-\d{4}$|^\d{2}-\d{4}$|^[A-Z]{2}-\d{4}$|^\d{1}-\d{4}$/;
@@ -157,7 +159,7 @@ const handleChange = (e) => {
                     title: "Success",
                     text: "Package added successfully",
                 });
-                //navigate(`/my-packages/${data._id}`);
+                navigate('/Vehicle');
             }
         } catch (error) {
             setError(error.message);
@@ -172,6 +174,7 @@ const handleChange = (e) => {
 
         return (
           <main className='p-3 max-w-4xl mx-auto'>
+            <BackButton/>
           <h1 className='text-3xl font-semibold text-center my-7 mt-24'>Add a New Vehicle</h1>
   
           <form className='flex flex-col sm:flex-row gap-4' onSubmit={handleSubmit}>

@@ -46,14 +46,19 @@ router.get("/", (req, res)=>{
 
 router.route("/update/:id").put(async (req,res)=>{
     let vehiId =req.params.id;
-    const {registerNumber,model,type,location,fuelType} = req.body;
+    const {ownername,brand,model,type,regno,seats,transmission,price,description,location} = req.body;
 
     const updateVehicle = {
-        registerNumber,
+        ownername,
+        brand,
         model,
         type,
-        location,
-        fuelType
+        regno,
+        seats,
+        transmission,
+        price,
+        description,
+        location
     }
     const update = await Vehicle.findByIdAndUpdate(vehiId, updateVehicle).then(()=>{
         res.status(200).send({status: "Vehicle updated"})
