@@ -3,19 +3,21 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-import eventRouter from "./routes/events.js";
 import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
 //sasindu
+import hotels from "./routes/hotels.js";
 
 //vehicle
+import Vehicle from "./routes/Vehicle.js";
 
-//vehicle
+//shadini
+import trainRouter from './routes/train.routes.js';
 
-import trainRouter from "./routes/train.routes.js";
-dotenv.config();
+//dewni
+import eventRouter from "./routes/events.js";
 
 dotenv.config();
 
@@ -41,10 +43,19 @@ app.listen(3000, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
+
+//dewni
 app.use("/api/events", eventRouter);
-app.use("/api/train", trainRouter);
+
+//vehicle
+app.use("/api/vehicle", Vehicle);
+
+//shadini
+app.use("/api/train",trainRouter);
 
 //sasindu
+app.use("/api/hotels", hotels);
+
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
