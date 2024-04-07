@@ -69,16 +69,13 @@ export default function App() {
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
 
-      
-<<<<<<< HEAD
-=======
       <Route path='/Vehicle' element={<Vehicle/>}/>
       <Route path='/Vehicle/add' element={<AddVehicle/>}/>
       <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
       <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
       <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
     
->>>>>>> f1bb13ef56ffbd85c8f860b2a269f6e3b2315734
+
 
   </Routes> 
   <Footer/>
