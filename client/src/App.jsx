@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -21,14 +20,14 @@ import UpdatePkg from "./pages/tourPkg/UpdatePkg";
 import Packages from "./pages/tourPkg/Packages";
 import SearchPkg from "./pages/tourPkg/SearchPkg";
 import SignUpN from "./pages/SignUpN";
-import { AdminUM } from './components/user/AdminUM';
+
 
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 
-
+import { AdminUM } from './components/user/AdminUM';
 
 
 import Vehicle from './pages/VehicleManagement/Vehicle';
@@ -72,30 +71,26 @@ export default function App() {
           <Route path="/my-items" element={<ListedItems />} />
         </Route>
 
-      <Route element = {<PrivateRouteAdmin/>}>
-        <Route path='/admin' element={<Admin/>}/>
-        <Route path='/admin/user' element={<AdminUM/>}/>
-        <Route path='/admin/profile' element={<ProfileAd/>}/>
-      </Route> 
+        <Route element = {<PrivateRouteAdmin/>}>
+          <Route path='/admin' element={<Admin/>}/>
+          <Route path='/admin/user' element={<AdminUM/>}/>
+          <Route path='/admin/profile' element={<ProfileAd/>}/>
+        </Route> 
 
-
-      
-      <Routes>
         <Route path='/Vehicle' element={<Vehicle/>}/>
         <Route path='/Vehicle/add' element={<AddVehicle/>}/>
         <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
         <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
         <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
-      </Routes> 
 
-      <Route>
-          <Route path="/events/create" element={<CreateEvent />} />
-          <Route path="/events/admin" element={<EventTable />} />
-          <Route path="/events/details/:id" element={<ShowEvent />} />
-          <Route path="/events/update/:id" element={<UpdateEvent />} />
-          <Route path="/events/delete/:id" element={<DeleteEvent />} />
-      </Route>
-     
+
+
+        <Route path="/events/create" element={<CreateEvent />} />
+        <Route path="/events/admin" element={<EventTable />} />
+        <Route path="/events/details/:id" element={<ShowEvent />} />
+        <Route path="/events/update/:id" element={<UpdateEvent />} />
+        <Route path="/events/delete/:id" element={<DeleteEvent />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -3,33 +3,21 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-import eventRouter from "./routes/events.js";
 import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-
 //sasindu
-
-
 import hotels from "./routes/hotels.js";
-import rooms from "./routes/rooms.js";
-import hotelreservationRoute from "./routes/hotelReservationRoute.js";
-import path from "path";
-const __dirname = path.resolve();
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
 
-
-
-
-  
- //vehicle
-import Vehicle from './routes/Vehicle.js';
-
+//shadini
 import trainRouter from './routes/train.routes.js';
 
+//dewni
+import eventRouter from "./routes/events.js";
 
 dotenv.config();
 
@@ -55,17 +43,19 @@ app.listen(3000, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
+
+//dewni
 app.use("/api/events", eventRouter);
+
+//vehicle
 app.use("/api/vehicle", Vehicle);
+
+//shadini
 app.use("/api/train",trainRouter);
 
-
 //sasindu
-
 app.use("/api/hotels", hotels);
-app.use("/api/rooms", rooms);
-app.use("/api/hotelreservationRoute", hotelreservationRoute);
-app.use("/api/images", express.static(path.join(__dirname, "photos")));
+
 
 
 
