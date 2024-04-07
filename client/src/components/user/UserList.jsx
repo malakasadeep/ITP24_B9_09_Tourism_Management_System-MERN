@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Image1  from '../../assets/img/icons/package-page/person.png'
 import '../../assets/css/user/userList.css'
+import UserReport from './UserReport';
 export const UserList = () => {
 
   const navigate = useNavigate();
@@ -53,14 +54,15 @@ const handleSubmit = (e) => {
   navigate(`/admin/user?${searchQuery}`)
 };
 
+
+
   return (
     <div>
       <div className="list--header">
         <div className='user--title'>
           <h1>Users Management</h1>
           <div className='user--btn'>
-            <button className="btn1">Add User</button>
-            <button className="btn2">Download Report</button>
+            <UserReport />
           </div>
           
         </div>
@@ -73,7 +75,7 @@ const handleSubmit = (e) => {
         <div class="list--container">
           <table class="list">
             <tbody>
-              <tr className='font-semibold text-blue-900 text-lg text-center'>
+              <tr className='font-semibold text-blue-900 text-lg text-left'>
                 <td>User</td>
                 <td>Name</td>
                 <td>Email</td>
@@ -81,7 +83,7 @@ const handleSubmit = (e) => {
                 <td>Country</td>
               </tr>
               {users.map((user) => (
-                <tr className='text-center'>
+                <tr className='text-left'>
                   <td>
                     <div className='user--details text-left '>
                       <img src={user.avatar} alt="" className='user--img'/>

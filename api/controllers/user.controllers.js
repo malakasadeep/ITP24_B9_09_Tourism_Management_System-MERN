@@ -102,3 +102,10 @@ export const getUserSearch = async (req, res, next) => {
         next(error);
     }
 };
+
+//get all Users
+export const getAllUsers = async (req, res) => {
+    const users = await User.find({}).sort({ createdAt: -1 });
+  
+    res.status(200).json(users);
+  };
