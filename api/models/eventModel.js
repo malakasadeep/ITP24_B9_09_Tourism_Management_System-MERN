@@ -8,7 +8,7 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    name: {
+    title: {
       type: String,
       required: true,
     },
@@ -17,7 +17,7 @@ const eventSchema = new Schema(
       required: true,
     },
     time: {
-      type: Number,
+      type: String,
       required: true,
     },
     location: {
@@ -39,8 +39,12 @@ const eventSchema = new Schema(
     },
     MaxParticipants: {
       type: Number,
-      required: false,
+      required: true,
       default: 0,
+    },
+    imageUrls: {
+      type: Array,
+      required: true,
     },
   },
   { timestamps: true }

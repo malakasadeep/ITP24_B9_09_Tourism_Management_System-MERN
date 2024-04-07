@@ -17,7 +17,7 @@ router.get("/", getEvents);
 router.get("/:id", getEvent);
 
 //POST a new event
-router.post("/", createEvent);
+router.post("/add", createEvent);
 
 //DELETE a event
 router.delete("/:id", deleteEvent);
