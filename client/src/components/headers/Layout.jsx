@@ -35,13 +35,9 @@ const Layout = () => {
     location.pathname.startsWith("/my-packages/") ||
     location.pathname.startsWith("/events/");
 
-  const showAdminHeader =
-    location.pathname === "/admin" || location.pathname === "/admin/profile";
   return (
     <div>
-      {showAdminHeader ? (
-        <Adminheader />
-      ) : showSellerHeader ? (
+      { showSellerHeader ? (
         <SellerHeader />
       ) : showHeader ? (
         <Header />
