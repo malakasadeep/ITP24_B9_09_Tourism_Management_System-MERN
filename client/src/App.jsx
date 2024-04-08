@@ -35,6 +35,7 @@ import EditBook from "./pages/VehicleManagement/EditVehicle";
 import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
+import Bubbles from "./components/Bubbles";
 
 export default function App() {
   return (
@@ -81,6 +82,7 @@ export default function App() {
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
+        <Route path="/bub" element={<Bubbles />} />
 
       </Routes>
       <Footer />
