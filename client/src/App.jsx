@@ -27,7 +27,6 @@ import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 
-
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
 import DeleteVehicle from "./pages/VehicleManagement/DeleteVehicle";
@@ -36,20 +35,20 @@ import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import Bubbles from "./components/Bubbles";
+import ProfileCard from "./components/user/ProfileCard";
+import AdminUserInfo from "./components/user/AdminUserInfo";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Layout />
       <Routes>
-        
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignUpN />} />
         <Route path="/sign-up" element={<SignUpN />} />
         <Route path="/about" element={<About />} />
         <Route path="/packages/:packageId" element={<Packages />} />
         <Route path="/package-search" element={<SearchPkg />} />
-
 
         <Route element={<PrivateRouteTourist />}>
           <Route path="/profile" element={<Profile />} />
@@ -67,6 +66,7 @@ export default function App() {
         <Route element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/user" element={<AdminUM />} />
+          <Route path="/admin/user/:id" element={<AdminUserInfo />} />
           <Route path="/admin/profile" element={<ProfileAd />} />
         </Route>
 
@@ -83,7 +83,7 @@ export default function App() {
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
         <Route path="/bub" element={<Bubbles />} />
-
+        <Route path="/pc" element={<ProfileCard />} />
       </Routes>
       <Footer />
     </BrowserRouter>
