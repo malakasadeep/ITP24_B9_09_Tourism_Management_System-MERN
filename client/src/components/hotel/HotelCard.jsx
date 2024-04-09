@@ -14,7 +14,7 @@ export default function HotelCard({hotell}) {
     <div className='frame'>
     <div className='border-collapse- shadow-md hover:shadow-lg transition-colors overflow-hidden rounded-lg w-[330px] h-auto backdrop-blur-md' >
         <Link to={`/packages/${hotell._id}`}>
-            <img src={hotell.imageUrls[0]} className='h-[320px] sm:h-[220px] w-full hover:scale-105 transition-scale duration-300'/>
+            <img src={hotell.hotelimgs[0]} className='h-[320px] sm:h-[220px] w-full hover:scale-105 transition-scale duration-300'/>
             <div>
                 
           <div className='flex flex-col items-center justify-center container '>

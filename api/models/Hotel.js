@@ -9,7 +9,7 @@ const HotelSchema=new mongoose.Schema({
         type:String,
         required:true 
     },
-    hoteltype:{  
+    type:{  
         type:String
          
     },
@@ -58,7 +58,7 @@ const HotelSchema=new mongoose.Schema({
         type:String,
         reqiured:true
     }, 
-    cheapestPrice:{ 
+    price:{ 
         type:Number,
         reqiured:true 
     },
@@ -81,6 +81,10 @@ const HotelSchema=new mongoose.Schema({
     featured:{
         type: Boolean,
         default: true,
+    },
+    roomtype:{
+        type: String,
+        reqiured:true
     },
   
    

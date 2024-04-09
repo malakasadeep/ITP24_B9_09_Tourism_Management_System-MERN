@@ -13,19 +13,19 @@ export default function CreateHotel() {
         hotelImg: '',
         title: '',
         name:'',
-        category: '',
+        roomtype: '',
         type: 'reguler',
         city: '',
-	    province: '',
-	    zip: '',
+	      province: '',
+	      zip: '',
         address: '',
-	    distance: '',
-	    description: '',
-	    contactName: '',
-	    contactNo: '',
-	    numberOfRoom: '',
-	    price: "",
-	    hotelImgs: [],
+	      distance: '',
+	      description: '',
+	      contactName: '',
+	      contactNo: '',
+	      numberOfRoom: '',
+	      price: "",
+	      hotelImgs: [],
 	    
     });
     const [fileUploadError, setFileUploadError] = useState(false);
@@ -107,6 +107,7 @@ export default function CreateHotel() {
                 ...formData,
                 type: e.target.id,
             });
+          
         } if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
             setFormData({
                 ...formData,
@@ -407,6 +408,19 @@ export default function CreateHotel() {
                 />
               </div>
             </div>
+            <div className='flex gap-2'>
+                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype}/>
+                        <span>Single Room</span>
+                    </div>
+                    <div className='flex gap-2'>
+                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
+                        <span>Double Room</span>
+                    </div>
+                    <div className='flex gap-2'>
+                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
+                        <span>Family Room</span>
+                    </div>
+
     
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
