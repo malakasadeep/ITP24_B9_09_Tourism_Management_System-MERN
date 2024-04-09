@@ -9,7 +9,7 @@ const HotelSchema=new mongoose.Schema({
         type:String,
         required:true 
     },
-    type:{  
+    hoteltype:{  
         type:String
          
     },
@@ -41,7 +41,7 @@ const HotelSchema=new mongoose.Schema({
         type:Number,
         reqiured:true
     },
-    numberOfRoomTypes:{
+    numberOfRoom:{
         type:Number, 
         reqiured:true 
     },
@@ -86,8 +86,8 @@ const HotelSchema=new mongoose.Schema({
    
 }) 
 
-const Hotel =  mongoose.model("Hotel",HotelSchema)    
+const hotelListning =  mongoose.model("Hotel",HotelSchema)    
 
-export default Hotel;
+export default hotelListning;
 
 

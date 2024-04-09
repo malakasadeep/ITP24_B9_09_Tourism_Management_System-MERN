@@ -6,6 +6,7 @@ import'./../assets/css/Home.css';
 export default function Home() {
 
   const [packages, setPackages] = useState([]);
+  const [hotels, sethotels] = useState([])
   
   useEffect(() => {
     const fetchPkg = async () => {
@@ -34,21 +35,21 @@ export default function Home() {
 <div id="parallax-world-of-ugg">
   
   <section>
-    <div class="title">
+    <div className="title">
       <h3>Let's do some</h3>
       <h1>TravalCraft</h1>
     </div>
   </section>
   
   <section>
-      <div class="parallax-one">
+      <div className="parallax-one">
         <h2>EXPLORE SRI LANKA</h2>
       </div>
   </section>
   
   <section>
-    <div class="block">
-      <p><span class="first-character sc">T</span>he "TourCraft” is the one of the leading pioneers of providing innovative technology solutions for 
+    <div className="block">
+      <p><span className="first-character sc">T</span>he "TourCraft” is the one of the leading pioneers of providing innovative technology solutions for 
 the tourism industry. With over a decade of experience, we have been at the forefront of 
 designing modern software applications that assist tour operators, tour agencies.
 Our proposed web-application " TourCraft " allows travelers to connect with each other, make 
@@ -66,15 +67,15 @@ sharing real travel experiences etc</p>
 
   
   <section>
-  <div class="parallax-three">
+  <div className="parallax-three">
     <h2>ENCHANTED FOREST</h2>
   </div>
 </section>
 
 <section>
-  <div class="block">
-    <p><span class="first-character atw">W</span>hen the New York fashion community notices your brand, the world soon follows. The widespread love for UGG extended to Europe in the mid-2000's along with the stylish casual movement and demand for premium casual fashion. UGG boots and shoes were now seen walking the streets of London, Paris and Amsterdam with regularity. To meet the rising demand from new fans, UGG opened flagship stores in the UK and an additional location in Moscow. As the love spread farther East, concept stores were opened in Beijing, Shanghai and Tokyo. UGG Australia is now an international brand that is loved by all. This love is a result of a magical combination of the amazing functional benefits of sheepskin and the heightened emotional feeling you get when you slip them on your feet. In short, you just feel better all over when you wear UGG boots, slippers, and shoes.</p>
-    <p class="line-break margin-top-10"></p>
+  <div className="block">
+    <p><span className="first-character atw">W</span>hen the New York fashion community notices your brand, the world soon follows. The widespread love for UGG extended to Europe in the mid-2000's along with the stylish casual movement and demand for premium casual fashion. UGG boots and shoes were now seen walking the streets of London, Paris and Amsterdam with regularity. To meet the rising demand from new fans, UGG opened flagship stores in the UK and an additional location in Moscow. As the love spread farther East, concept stores were opened in Beijing, Shanghai and Tokyo. UGG Australia is now an international brand that is loved by all. This love is a result of a magical combination of the amazing functional benefits of sheepskin and the heightened emotional feeling you get when you slip them on your feet. In short, you just feel better all over when you wear UGG boots, slippers, and shoes.</p>
+    <p className="line-break margin-top-10"></p>
   
   </div>
 </section>
@@ -93,6 +94,27 @@ sharing real travel experiences etc</p>
             <div className='flex flex-wrap gap-10'>
               {packages.map((pkg) => (
                 <PackageCard pkg={pkg} key={pkg._id} />
+              ))}
+            </div>
+            </div>
+        
+        )}
+        </div>
+      </div>
+
+
+      <div>
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
+        {hotels && hotels.length > 0 && (
+          <div className=''>
+            <div className='my-3'>
+              <h2 className='text-2xl font-semibold text-slate-600'>Recent Hotels</h2>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/hotel-search'}>Show more Hotel</Link>
+            </div>
+        
+            <div className='flex flex-wrap gap-10'>
+              {hotels.map((hotell) => (
+                <HotelCard hotell={hotell} key={hotell._id} />
               ))}
             </div>
             </div>

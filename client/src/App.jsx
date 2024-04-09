@@ -19,6 +19,7 @@ import UpdatePkg from './pages/tourPkg/UpdatePkg';
 import Packages from './pages/tourPkg/Packages';
 import SearchPkg from './pages/tourPkg/SearchPkg';
 import SignUpN from './pages/SignUpN';
+import CreateHotel from './pages/hotel/CreateHotel';
 
 
 
@@ -51,6 +52,9 @@ export default function App() {
         <Route path='/update-package/:packageId' element={<UpdatePkg/>}/>
         <Route path='/my-packages/:packageId' element={<Packages/>}/>
         <Route path='/my-items' element={<ListedItems/>}/>
+        <Route path='/create-hotel' element={<CreateHotel/>}/>
+
+
 
       </Route> 
 

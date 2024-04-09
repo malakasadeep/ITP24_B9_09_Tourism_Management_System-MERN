@@ -36,7 +36,7 @@ export default function AddItems() {
             </div>
             <h5 className='text-slate-800 text-2xl md:text-2xl font-medium mt-3'>Add Hotel and Residence</h5>
             <p className='text-slate-500 text-lg mt-3'>The "Add Package" web page lets users easily suggest and describe new travel packages, actively contributing to the platform's diverse offerings.</p>
-            <Link to={"/create-package"} className='text-center bg-blue-400 text-blue-800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-200 focus:scale-95 transition-all duration-200 ease-out'>Explore</Link>
+            <Link to={"/create-hotel"} className='text-center bg-blue-400 text-blue-800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-200 focus:scale-95 transition-all duration-200 ease-out'>Explore</Link>
           </div>
         </div>
 
