@@ -38,7 +38,7 @@ const Bubbles = () => {
       context.fillStyle = "#112434";
       context.font = "clamp(5rem, 7vw + .5rem, 3rem) Mooli";
       context.textAlign = "center";
-      context.fillText("TravalCraft", canvas.width / 2, canvas.height / 2);
+      context.fillText("TourCraft", canvas.width / 2, canvas.height / 2);
       context.fillStyle = "#112434";
       context.font = "clamp(1rem, 1vw + .5rem, 3rem) Mooli";
       context.textAlign = "center";

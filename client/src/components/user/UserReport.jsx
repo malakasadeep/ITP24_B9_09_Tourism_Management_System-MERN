@@ -60,7 +60,7 @@ export default function UserReport() {
     logo.src = "../../assets/img/Logo14.png";
 
     doc.setFontSize(28).setFont("Mooli", "bold").setTextColor(65, 164, 255);
-    doc.text("TravelCraft", 80, 15);
+    doc.text("TourCraft", 80, 15);
 
     doc.setFont("helvetica", "normal").setFontSize(20).setTextColor(0, 0, 0);
     doc.text("User Details Report", 75, 25);
