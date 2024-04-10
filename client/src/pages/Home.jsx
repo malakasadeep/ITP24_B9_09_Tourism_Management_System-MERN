@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PackageCard from '../components/tour-packages/PackageCard';
+import HotelCard from '../components/hotel/HotelCard';
 import { Link } from 'react-router-dom';
 import'./../assets/css/Home.css';
 
