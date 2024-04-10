@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -21,6 +22,10 @@ import Packages from "./pages/tourPkg/Packages";
 import SearchPkg from "./pages/tourPkg/SearchPkg";
 import SignUpN from "./pages/SignUpN";
 import { AdminUM } from "./components/user/AdminUM";
+import Bubbles from "./components/Bubbles";
+import ProfileCard from "./components/user/ProfileCard";
+import AdminUserInfo from "./components/user/AdminUserInfo";
+
 
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
@@ -34,9 +39,10 @@ import EditBook from "./pages/VehicleManagement/EditVehicle";
 import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
-import Bubbles from "./components/Bubbles";
-import ProfileCard from "./components/user/ProfileCard";
-import AdminUserInfo from "./components/user/AdminUserInfo";
+
+
+import CreateHotel from './pages/hotel/CreateHotel';
+import Hotel from'./pages/hotel/Hotel';
 
 export default function App() {
   return (
@@ -84,6 +90,12 @@ export default function App() {
         <Route path="/event/get/:id" element={<ShowEvent />} />
         <Route path="/bub" element={<Bubbles />} />
         <Route path="/pc" element={<ProfileCard />} />
+          
+          
+        <Route path='/create-hotel' element={<CreateHotel/>}/>
+        <Route path='/my-hotel/:hotelId' element={<Hotel/>}/>
+          
+          
       </Routes>
       <Footer />
     </BrowserRouter>

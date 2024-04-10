@@ -1,77 +1,19 @@
+
 import express from 'express';
 import Hotel from "../models/Hotel.js"
 import multer from "multer"
 import path from "path"
+import Hotel from "../models/Hotel.js"
+import { errorHandler } from "../utils/error.js";
 
 
-
-
-//img upload part
-export const storage = multer.diskStorage({
-    destination : (req, file, cb) => {
-        cb(null,"images")
-    },
-    filename : (req, file, cb) => {
-        console.log(file);
-        cb(null, Date.now() + path.extname(file.originalname) );
-    } 
-});
-
-export const upload = multer({ 
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-      if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-        return cb(new Error('Only image files are allowed!'));
-      }
-      cb(null, true);
-    }
-  }).fields([
-    { name: 'HotelImg', maxCount: 1 },
-    { name: 'HotelImgs', maxCount: 5 },
-    { name: 'certificates', maxCount: 2}
-  ]);
-
-  // Create a new hotel
-  export const createHotel = async (req, res) => {
-    try {
-      // Use Multer middleware to handle file upload
-      upload(req, res, async (err) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ message: "Error uploading images" });
-        }  
-  
-        // Extract the file names from the request object
-        const hotelImg = req.files.HotelImg[0].filename;
-        const HotelImgs = req.files.HotelImgs.map((file) => file.filename);
-        const certificates=req.files.certificates.map((file)=>file.filename);
-  
-        // Create a new hotel object from the request body and file names
-        const newHotel = new Hotel({ 
-          ...req.body,   
-          HotelImg: hotelImg,
-          HotelImgs:HotelImgs,
-          certificates:certificates
-        }); 
-  
-        // Save the new hotel to the database
-        await newHotel.save();
-  
-        // Send a response with the new hotel object 
-        res.status(200).json(newHotel); 
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: err.message });
-    } 
-  };  
   
  // create Hotel//
  export const createhotel = async (req, res, next) => {
 
   try {
 
-      const hotelListning = await hotelListning.create(req.body);
+      const hotelListning = await Hotel.create(req.body);
       return res.status(201).json(hotelListning);
       
   } catch (error){
@@ -84,16 +26,16 @@ export const deletehotel = async (req, res, next) => {
   const hotel = await hotelListning.findById(req.params.id);
 
   if (!hotel) {
-      return next(errorHandler(404, 'Package not found'));
+      return next(errorHandler(404, 'Hotel not found'));
   }
 
   if(req.user.id !== pkg.userRef){
-      return next(errorHandler(401, 'you can delete your own packages'))
+      return next(errorHandler(401, 'you can delete your own Hotel'))
   }
 
   try {
       await hotelListning.findByIdAndDelete(req.params.id);
-      res.status(200).json('Package deleted')
+      res.status(200).json('Hotel deleted')
   } catch (error) {
       next(error);
   }
@@ -103,11 +45,11 @@ export const updatehotel = async (req, res, next) => {
   const hotel = await hotelListning.findById(req.params.id);
 
   if (!hotel) {
-      return next(errorHandler(404, 'Package not found'));
+      return next(errorHandler(404, 'Hotel not found'));
   }
 
   if(req.user.id !== hotel.userRef){
-      return next(errorHandler(401, 'you can update your own packages'))
+      return next(errorHandler(401, 'you can update your own Hotel'))
   }
 
   try {
@@ -124,7 +66,7 @@ export const gethotel = async (req, res, next) => {
   try {
       const hotel = await hotelListning.findById(req.params.id);
       if (!hotel) {
-          return next(errorHandler(404, 'Package not found'));
+          return next(errorHandler(404, 'Hotel not found'));
       }
       res.status(200).json(hotel)
   } catch (error) {
@@ -147,26 +89,26 @@ export const getAllHotel = async (req, res, next) => {
     }
   };
 
+//search hotel
 
-
-/*export const gethotelsSearch = async (req, res, next) => {
+export const gethotelsSearch = async (req, res, next) => {
   try {
       const limit = parseInt(req.query.limit) || 9;
       const startIndex = parseInt(req.query.startIndex) || 0;
 
-      let offer = req.query.offer;
-      if (offer === undefined || offer === 'false'){
-          offer = {$in: [false, true]};
+      let featured = req.query.featured;
+      if (featured === undefined || featured === 'false'){
+          featured = {$in: [false, true]};
       }
 
-      let dining = req.query.dining;
-      if (dining === undefined || dining === 'false'){
-          dining = {$in: [false, true]};
+      let availableWork = req.query.availableWork;
+      if (availableWork === undefined || availableWork === 'false'){
+        availableWork = {$in: [false, true]};
       }
 
-      let transport = req.query.transport;
-      if (transport === undefined || transport === 'false'){
-          transport = {$in: [false, true]};
+      let sustainability = req.query.sustainability;
+      if (sustainability === undefined || sustainability === 'false'){
+        sustainability = {$in: [false, true]};
       }
 
       let type = req.query.type;
@@ -181,19 +123,24 @@ export const getAllHotel = async (req, res, next) => {
 
       const searchTerm = req.query.searchTerm || '';
 
-      const days = req.query.days || 0;
+      const province = req.query.province || '';
+      
+      const city = req.query.city || '';
 
       const sort = req.query.sort || 'createdAt';
 
       const order = req.query.order || 'desc';
 
 
-      const pkgs = await PkgListning.find({
-          title: {$regex: searchTerm, $options: 'i'},
+      const pkgs = await HotelListning.find({
+        name: {$regex: searchTerm, $options: 'i'},
+        province: {$regex: province, $options: 'i'},
+        city: {$regex: city, $options: 'i'},
+
           days: {$gte: days},
-          offer,
-          dining,
-          transport,
+          featured,
+          availableWork,
+          sustainability,
           type,
           hoteltype,
       })
@@ -207,7 +154,7 @@ export const getAllHotel = async (req, res, next) => {
   } catch (error) {
       next(error);
   }
-};*/
+};
 
 
 

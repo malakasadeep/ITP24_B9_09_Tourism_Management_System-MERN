@@ -7,7 +7,7 @@ export const AddHotel = () => {
   const navigate = useNavigate();
   const [hotelName, setHotelName] = React.useState("");
   const [title, setTitle] = React.useState("");
-  const [hotelType, setHotelType] = React.useState("");
+  const [type, setHotelType] = React.useState("");
   const [city, setCity] = React.useState("");
   const [province, setProvince] = React.useState("");
   const [zip, setZip] = React.useState("");
@@ -15,10 +15,10 @@ export const AddHotel = () => {
   const [distance, setDistance] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [contactName, setContactName] = React.useState("");
-  const [contactNumber, setContactNumber] = React.useState("");
-  const [noOfRoomTypes, setNoOfRoomTypes] = React.useState("");
+  const [contactNo, setContactNumber] = React.useState("");
+  const [numberOfRoomTypes, setNoOfRoomTypes] = React.useState("");
   const [price, setprice] = React.useState("");
-  const [raiting, setRaiting] = React.useState(""); //must be added later
+  //const [raiting, setRaiting] = React.useState(""); //must be added later
   const [hotelImg, setHotelImg] = React.useState("");
 
   const [hotelImgs, setHotelImgs] = useState([]);

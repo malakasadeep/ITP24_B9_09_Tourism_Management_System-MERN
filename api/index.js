@@ -1,3 +1,4 @@
+
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -8,13 +9,16 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 //sasindu
-import hotels from "./routes/hotels.js";
+import Hotel from './routes/hotels.js';
+import path from 'path';
+const __dirname = path.resolve();
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
 
 //shadini
 import trainRouter from './routes/train.routes.js';
+
 
 //dewni
 import eventRouter from "./routes/events.js";
@@ -44,6 +48,9 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
 
+//sasindu
+app.use("/api/hotel",Hotel);
+
 //dewni
 app.use("/api/events", eventRouter);
 
@@ -53,8 +60,6 @@ app.use("/api/vehicle", Vehicle);
 //shadini
 app.use("/api/train",trainRouter);
 
-//sasindu
-app.use("/api/hotels", hotels);
 
 
 app.use((err, req, res, next) => {
