@@ -20,6 +20,8 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -161,19 +163,13 @@ export default function Profile() {
   };
 
   return (
-    <div
-      style={{
-        height: "100%",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className="p-3 max-w-lg mx-auto bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl">
+    <div className="mt-28 mb-12">
+      <div className="p-3 max-w-lg mx-auto bg-white/50 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl">
+        <Link to={"/profile"}>
+          <button className="bg-blue-600 rounded-xl text-white ml-1 mt-1 text-4xl">
+            <IoMdArrowRoundBack />
+          </button>
+        </Link>
         <h1 className="text-3xl font-semibold text-center ">Profile</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           <input
@@ -253,28 +249,20 @@ export default function Profile() {
             defaultValue={currentUser.country}
             onChange={handleChange}
           />
-          <input
-            type="password"
-            placeholder="Password"
-            className="border p-3 rounded-lg"
-            id="password"
-          />
           <button className="bg-slate-700 text-yellow-200 rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
             {loading ? "Loading..." : "update"}
           </button>
-        </form>
+          <p className="bg-green-700 text-yellow-200 rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 text-center cursor-pointer">
+            Reset Password
+          </p>
 
-        <div className="flex justify-between mt-5">
           <span
             onClick={handleDeleteUser}
-            className="text-red-700 cursor-pointer"
+            className="bg-red-700 text-yellow-200 rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 cursor-pointer text-center"
           >
             Delete account
           </span>
-          <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-            Sign out
-          </span>
-        </div>
+        </form>
 
         <p className="text-red-700 mt-5">{error ? error : ""}</p>
         <p className="text-green-700 mt-5 font-semibold">

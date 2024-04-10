@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -26,7 +25,6 @@ import Bubbles from "./components/Bubbles";
 import ProfileCard from "./components/user/ProfileCard";
 import AdminUserInfo from "./components/user/AdminUserInfo";
 
-
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
@@ -40,9 +38,9 @@ import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 
-
-import CreateHotel from './pages/hotel/CreateHotel';
-import Hotel from'./pages/hotel/Hotel';
+import CreateHotel from "./pages/hotel/CreateHotel";
+import Hotel from "./pages/hotel/Hotel";
+import ProfileView from "./pages/ProfileView";
 
 export default function App() {
   return (
@@ -57,12 +55,14 @@ export default function App() {
         <Route path="/package-search" element={<SearchPkg />} />
 
         <Route element={<PrivateRouteTourist />}>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfileView />} />
+          <Route path="/profile-update" element={<Profile />} />
         </Route>
 
         <Route element={<PrivateRouteSeller />}>
           <Route path="/additems" element={<AddItems />} />
-          <Route path="/seller/profile" element={<ProfileS />} />
+          <Route path="/seller/profile" element={<ProfileView />} />
+          <Route path="/seller/profile-update" element={<ProfileS />} />
           <Route path="/create-package" element={<CreatePkg />} />
           <Route path="/update-package/:packageId" element={<UpdatePkg />} />
           <Route path="/my-packages/:packageId" element={<Packages />} />
@@ -73,7 +73,8 @@ export default function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/user" element={<AdminUM />} />
           <Route path="/admin/user/:id" element={<AdminUserInfo />} />
-          <Route path="/admin/profile" element={<ProfileAd />} />
+          <Route path="/admin/profile" element={<ProfileView />} />
+          <Route path="/admin/profile-update" element={<ProfileAd />} />
         </Route>
 
         <Route path="/Vehicle" element={<Vehicle />} />
@@ -90,12 +91,9 @@ export default function App() {
         <Route path="/event/get/:id" element={<ShowEvent />} />
         <Route path="/bub" element={<Bubbles />} />
         <Route path="/pc" element={<ProfileCard />} />
-          
-          
-        <Route path='/create-hotel' element={<CreateHotel/>}/>
-        <Route path='/my-hotel/:hotelId' element={<Hotel/>}/>
-          
-          
+
+        <Route path="/create-hotel" element={<CreateHotel />} />
+        <Route path="/my-hotel/:hotelId" element={<Hotel />} />
       </Routes>
       <Footer />
     </BrowserRouter>
