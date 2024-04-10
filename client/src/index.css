@@ -3,4 +3,12 @@
 @tailwind utilities;
 
 
-
+body {
+    background: #dde6ed ;
+    height: '100vh';
+    line-height: '100vh';
+    background-position: 'center';
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Mooli", sans-serif;
+}

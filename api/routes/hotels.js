@@ -8,7 +8,7 @@ router.post('/createhotel', createhotel);
 router.delete('/delete/:id', veryfyTocken, deletehotel);
 router.post('/update/:id', veryfyTocken, updatehotel);
 router.get('/get-update/:id', gethotel);
-router.get('/gethotels', gethotelsSearch);
+
 
 
 export default router;

@@ -3,6 +3,7 @@ import PackageCard from '../components/tour-packages/PackageCard';
 import HotelCard from '../components/hotel/HotelCard';
 import { Link } from 'react-router-dom';
 import'./../assets/css/Home.css';
+import Bubbles from '../components/Bubbles';
 
 export default function Home() {
 
@@ -27,19 +28,15 @@ export default function Home() {
    // <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat*/"}}>
     //  <h1 className='text-3xl'>Home</h1>
     <div>
-      <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> 
-      <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> 
-      <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> 
-      <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> 
-      <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> <hr></hr> 
+      
       
 <div id="parallax-world-of-ugg">
   
   <section>
-    <div className="title">
-      <h3>Let's do some</h3>
-      <h1>TravalCraft</h1>
+
+    <div class="title">
     </div>
+    <Bubbles/>
   </section>
   
   <section>

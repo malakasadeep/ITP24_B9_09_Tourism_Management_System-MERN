@@ -1,56 +1,66 @@
-import React from 'react'
-import {BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,BsListCheck, BsMenuButtonWideFill, BsFillGearFill}from 'react-icons/bs'
-import '../assets/css/sidebar.css'
+import React from "react";
+import {
+  BiHome,
+  BiBookAlt,
+  BiSolidUserAccount,
+  BiPackage,
+  BiHotel,
+  BiCar,
+  BiRestaurant,
+  BiCalendarEvent,
+  BiTrain,
+} from "react-icons/bi";
+import { PiChalkboardTeacher } from "react-icons/pi";
+import "../assets/css/sidebar.css";
+import logo from "../assets/img/Logo14.png";
 
-export default function Sidebar({openSidebarToggle, OpenSidebar}) {
+export const Sidebar = () => {
   return (
-    <div>
-        <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
-        <div className='sidebar-title'>
-            <div className='sidebar-brand'>
-                <BsCart3  className='icon_header'/> SHOP
-            </div>
-            <span className='icon close_icon' onClick={OpenSidebar}>X</span>
-        </div>
+    <div className="menu">
+      <div className="logo">
+        <a href="/" className="">
+          <img src={logo} className="w-56" />
+        </a>
+      </div>
 
-        <ul className='sidebar-list'>
-            <li className='sidebar-list-item'>
-                <a href="/admin">
-                    <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillArchiveFill className='icon'/> Products
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGrid3X3GapFill className='icon'/> Categories
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsPeopleFill className='icon'/> Customers
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsListCheck className='icon'/> Inventory
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsMenuButtonWideFill className='icon'/> Reports
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGearFill className='icon'/> Setting
-                </a>
-            </li>
-        </ul>
-    </aside>
+      <div className="menu--list">
+        <a href="/admin" className="item">
+          <BiHome className="icon" />
+          Dashboard
+        </a>
+        <a href="/admin/user" className="item">
+          <BiSolidUserAccount className="icon" />
+          User Management
+        </a>
+        <a href="" className="item">
+          <BiPackage className="icon" />
+          Package Management
+        </a>
+        <a href="" className="item">
+          <BiHotel className="icon" />
+          Hotel Management
+        </a>
+        <a href="" className="item">
+          <BiCar className="icon" />
+          Vehicle Management
+        </a>
+        <a href="" className="item">
+          <BiRestaurant className="icon" />
+          Restourent Management
+        </a>
+        <a href="" className="item">
+          <PiChalkboardTeacher className="icon" />
+          Guid Management
+        </a>
+        <a href="/events/admin" className="item">
+          <BiCalendarEvent className="icon" />
+          Event Management
+        </a>
+        <a href="" className="item">
+          <BiTrain className="icon" />
+          Train Management
+        </a>
+      </div>
     </div>
-  )
-}
+  );
+};
