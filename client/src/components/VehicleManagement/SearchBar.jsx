@@ -60,7 +60,7 @@ const Searchbar = () => {
                 </div>
                 {/* Other form elements */}
             </form>
-            <button className='bg-[#989999] text-white rounded-md font-medium py-3 w-full'  >Search</button>
+            <button className='bg-[#989999] text-white rounded-md font-medium py-3 w-full'>Search</button>
         </div>
     );
 }

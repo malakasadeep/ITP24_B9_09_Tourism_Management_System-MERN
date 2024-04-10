@@ -88,4 +88,40 @@ router.get("/get-vehi/:id",async (req, res) => {
   }
 });
 
+router.get("/find",async (req, res, next) => {
+    try {
+        const limit = parseInt(req.query.limit) || 9;
+        const startIndex = parseInt(req.query.startIndex) || 0;
+
+        let type = req.query.type;
+        if (type === undefined || type === 'all'){
+            type = {$in: ['E-Vehicles', 'Car', 'SUV', 'Van', 'Motor Bike', 'Tuk Tuk', 'Bus']};
+        }
+
+        let location = req.query.location;
+        if (location === undefined || location === 'all'){
+            location = {$in: ['Colombo', 'Galle', 'Matara', 'Mount Lavinia', 'Kandy', 'Katunayake Airport', 'Negombo']};
+        }
+
+        const searchTerm = req.query.searchTerm || '';
+
+        const sort = req.query.sort || 'createdAt';
+
+        const order = req.query.order || 'desc';
+
+        const vehi = await Vehicle.find({
+            //title: {$regex: searchTerm, $options: 'i'},
+            type,
+            location,
+        })
+        .sort({[sort]: order})
+        .limit(limit)
+        .skip(startIndex);
+
+        return res.status(200).json(vehi);
+    } catch (error) {
+        next(error);
+    }
+  });
+
 export default router;
