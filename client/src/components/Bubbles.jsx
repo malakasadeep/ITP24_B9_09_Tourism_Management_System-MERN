@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "../assets/css/buble.css"; // Import your CSS file
+import "../assets/css/buble.css"; // Import the css file
 
 const Bubbles = () => {
   const canvasRef = useRef(null);

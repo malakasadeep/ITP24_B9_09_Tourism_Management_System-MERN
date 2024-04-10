@@ -114,7 +114,7 @@ export default function UserReport() {
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-1">
-        <Link to="/" className="btn1">
+        <Link to="" className="btn1">
           Add User
         </Link>
         <button

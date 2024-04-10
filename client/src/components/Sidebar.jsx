@@ -12,13 +12,15 @@ import {
 } from "react-icons/bi";
 import { PiChalkboardTeacher } from "react-icons/pi";
 import "../assets/css/sidebar.css";
+import logo from "../assets/img/Logo14.png";
 
 export const Sidebar = () => {
   return (
     <div className="menu">
       <div className="logo">
-        <BiBookAlt className="logo-icon" />
-        <h1>TourCraft</h1>
+        <a href="/" className="">
+          <img src={logo} className="w-56" />
+        </a>
       </div>
 
       <div className="menu--list">

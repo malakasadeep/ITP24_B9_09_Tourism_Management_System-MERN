@@ -1,29 +1,30 @@
-.menu{
-    display: flex;
-    flex-direction: column;
-    gap: 2.3rem;
-    height: 94vh;
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2.3rem;
+  height: 94vh;
+  margin-bottom: 30px;
 }
 
-.logo{
+.logo {
   text-align: center;
-  padding: 20px;
+  padding: 5px;
   color: #27474d;
   display: flex;
-  gap: 20px;
+  gap: 5px;
 }
 
-.logo-icon{
+.logo-icon {
   font-size: 2.4rem;
 }
 
-.menu--list{
+.menu--list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.menu--list .item{
+.menu--list .item {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -37,17 +38,17 @@
   color: #27474d;
 }
 
-.menu--list .item:hover{
+.menu--list .item:hover {
   background-color: #27474d;
   color: #dde6ed;
-}  
+}
 
-.dashboard{
+.dashboard {
   display: flex;
   gap: 20px;
 }
 
-.dashboard--content{
+.dashboard--content {
   background: #fff;
   flex: 1;
   border-radius: 20px;
