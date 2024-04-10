@@ -30,6 +30,7 @@ import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
 import EditVehicle from './pages/VehicleManagement/EditVehicle';
 import VehicleHome from './pages/VehicleManagement/VehicleHome';
 // import VehicleCard from './components/VehicleManagement/vehicleCard';
+import VehicleBook from './pages/VehicleManagement/VehicleBook';
 
 
 
@@ -76,7 +77,8 @@ export default function App() {
       {/* <Route path='/VehicleCard'element={<VehicleCard/>}/> */}
       <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
       <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
-      <Route path='Vehicles' element={<VehicleHome/>}/>
+      <Route path='/Vehicles' element={<VehicleHome/>}/>
+      <Route path='/VehicleBook/:id' element={<VehicleBook/>}/>
     
 
   </Routes> 
