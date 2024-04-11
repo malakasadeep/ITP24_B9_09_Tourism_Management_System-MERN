@@ -42,6 +42,8 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
 import AdminAddUser from "./components/user/AdminAddUser";
+import AdminPM from "./components/tour-packages/AdminPM";
+import AdminPackageInfo from "./components/tour-packages/AdminPackageUpdate";
 
 export default function App() {
   return (
@@ -77,6 +79,12 @@ export default function App() {
           <Route path="/admin/user/:id" element={<AdminUserInfo />} />
           <Route path="/admin/profile" element={<ProfileView />} />
           <Route path="/admin/profile-update" element={<ProfileAd />} />
+          <Route path="/admin/packages" element={<AdminPM />} />
+          <Route
+            path="/admin/update-package/:packageId"
+            element={<AdminPackageInfo />}
+          />
+          <Route path="/admin/packages/:packageId" element={<Packages />} />
         </Route>
 
         {/*Wikasith*/}

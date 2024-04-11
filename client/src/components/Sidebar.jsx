@@ -32,7 +32,7 @@ export const Sidebar = () => {
           <BiSolidUserAccount className="icon" />
           User Management
         </a>
-        <a href="" className="item">
+        <a href="/admin/packages" className="item">
           <BiPackage className="icon" />
           Package Management
         </a>

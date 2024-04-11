@@ -21,6 +21,7 @@ const functions = [
   {
     name: "Tour Package Management",
     icon: "📦",
+    link: "/admin/packages",
   },
   {
     name: "Hotel Management",
