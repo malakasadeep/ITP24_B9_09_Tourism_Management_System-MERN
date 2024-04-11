@@ -1,7 +1,5 @@
 //malaka
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Signin from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
@@ -43,6 +41,7 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
+import AdminAddUser from "./components/user/AdminAddUser";
 
 export default function App() {
   return (
@@ -74,6 +73,7 @@ export default function App() {
         <Route element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/user" element={<AdminUM />} />
+          <Route path="/admin/add-user" element={<AdminAddUser />} />
           <Route path="/admin/user/:id" element={<AdminUserInfo />} />
           <Route path="/admin/profile" element={<ProfileView />} />
           <Route path="/admin/profile-update" element={<ProfileAd />} />
