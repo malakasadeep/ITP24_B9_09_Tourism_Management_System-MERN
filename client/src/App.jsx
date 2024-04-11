@@ -1,3 +1,4 @@
+//malaka
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -21,15 +22,16 @@ import Packages from "./pages/tourPkg/Packages";
 import SearchPkg from "./pages/tourPkg/SearchPkg";
 import SignUpN from "./pages/SignUpN";
 import { AdminUM } from "./components/user/AdminUM";
-import Bubbles from "./components/Bubbles";
-import ProfileCard from "./components/user/ProfileCard";
 import AdminUserInfo from "./components/user/AdminUserInfo";
+import ProfileView from "./pages/ProfileView";
 
+//dewni
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 
+//wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
 import DeleteVehicle from "./pages/VehicleManagement/DeleteVehicle";
@@ -38,9 +40,9 @@ import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 
+//sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
-import ProfileView from "./pages/ProfileView";
 
 export default function App() {
   return (
@@ -63,7 +65,7 @@ export default function App() {
           <Route path="/additems" element={<AddItems />} />
           <Route path="/seller/profile" element={<ProfileView />} />
           <Route path="/seller/profile-update" element={<ProfileS />} />
-          <Route path="/create-package" element={<CreatePkg />} />
+          <Route path="/seller/create-package" element={<CreatePkg />} />
           <Route path="/update-package/:packageId" element={<UpdatePkg />} />
           <Route path="/my-packages/:packageId" element={<Packages />} />
           <Route path="/my-items" element={<ListedItems />} />
@@ -77,21 +79,22 @@ export default function App() {
           <Route path="/admin/profile-update" element={<ProfileAd />} />
         </Route>
 
+        {/*Wikasith*/}
         <Route path="/Vehicle" element={<Vehicle />} />
         <Route path="/Vehicle/add" element={<AddVehicle />} />
         <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
 
+        {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
         <Route path="/events/admin" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
-        <Route path="/bub" element={<Bubbles />} />
-        <Route path="/pc" element={<ProfileCard />} />
 
+        {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
       </Routes>

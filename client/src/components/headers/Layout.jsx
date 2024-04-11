@@ -35,6 +35,7 @@ const Layout = () => {
     location.pathname === "/my-items" ||
     location.pathname.startsWith("/update-package/") ||
     location.pathname.startsWith("/my-packages/") ||
+    location.pathname.startsWith("/seller/") ||
     location.pathname.startsWith("/events/");
 
   return (

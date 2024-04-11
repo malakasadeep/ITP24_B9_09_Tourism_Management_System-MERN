@@ -12,7 +12,7 @@ export default function SellerHeader() {
     <>
       <>
         <header>
-          <a href="/" className="">
+          <a href="/additems" className="">
             <img src={logo} className="w-56" />
           </a>
           <ul className="navigation">

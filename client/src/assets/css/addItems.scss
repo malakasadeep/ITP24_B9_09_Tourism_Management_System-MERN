@@ -1,0 +1,114 @@
+/* Font */
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
+
+/* Design */
+.add-item-containe,
+.add-item-containe::before,
+.add-item-containe::after {
+  box-sizing: border-box;
+}
+
+.add-item-container body {
+  font-family: "Quicksand", serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 1rem;
+}
+
+.add-item-containe .main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.add-item-containe h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.add-item-containe img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.add-item-containe .btn {
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  color: #070955;
+  border: 1px solid #070955;
+  background: transparent;
+}
+
+.add-item-containe .btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.add-item-containe .cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.add-item-containe .cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+.add-item-containe .card123 {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.add-item-containe .card_content {
+  padding: 1rem;
+  background: linear-gradient(to bottom left, #87cefa 40%, #add8e6 100%);
+}
+
+.add-item-containe .card_title {
+  color: #070955;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.add-item-containe .card_text {
+  color: #070955;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+.add-item-containe .made_by {
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}
