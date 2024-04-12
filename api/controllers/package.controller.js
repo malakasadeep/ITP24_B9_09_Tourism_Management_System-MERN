@@ -17,9 +17,9 @@ export const deletePkg = async (req, res, next) => {
     return next(errorHandler(404, "Package not found"));
   }
 
-  if (req.user.id !== pkg.userRef) {
+  /*if (req.user.id !== pkg.userRef) {
     return next(errorHandler(401, "you can delete your own packages"));
-  }
+  }*/
 
   try {
     await PkgListning.findByIdAndDelete(req.params.id);

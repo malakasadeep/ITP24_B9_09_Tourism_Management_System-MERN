@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import loadingimg from "../../assets/img/loading.gif";
 import PackageReport from "./PackageReport";
+import Swal from "sweetalert2";
 
 export default function PackageList() {
   const navigate = useNavigate();
@@ -119,6 +120,39 @@ export default function PackageList() {
     }
     return `${words.slice(0, 2).join(" ")} ...`;
   }
+
+  const handlePackageDelete = async (packageId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch(`/api/Package/delete/${packageId}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (data.success === false) {
+            console.log(data.message);
+            return;
+          }
+          Swal.fire({
+            title: "Deleted!",
+            text: "Package has been deleted.",
+            icon: "success",
+          });
+          setPackages((prev) => prev.filter((pkg) => pkg._id !== packageId));
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+    });
+  };
   return (
     <div>
       <div className="list--header">
@@ -213,7 +247,7 @@ export default function PackageList() {
                         </Link>
                         <button
                           className="p-2 bg-red-700 rounded-lg text-white"
-                          onClick={() => handleUserDelete(pkg._id)}
+                          onClick={() => handlePackageDelete(pkg._id)}
                         >
                           <MdDeleteForever className="text-2xl" />
                         </button>
