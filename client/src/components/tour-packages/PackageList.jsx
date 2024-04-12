@@ -240,7 +240,7 @@ export default function PackageList() {
                           <MdInfo className="text-2xl" />
                         </Link>
                         <Link
-                          to={`/admin/update-package/${pkg._id}`}
+                          to={`/admin/packages/update/${pkg._id}`}
                           className="p-2 bg-green-700 rounded-lg text-white"
                         >
                           <FaEdit className="text-2xl" />

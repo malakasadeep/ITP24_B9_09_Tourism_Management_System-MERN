@@ -74,19 +74,19 @@ export default function App() {
         </Route>
 
         <Route element={<PrivateRouteAdmin />}>
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/dashbard" element={<Admin />} />
           <Route path="/admin/user" element={<AdminUM />} />
-          <Route path="/admin/add-user" element={<AdminAddUser />} />
+          <Route path="/admin/user/add" element={<AdminAddUser />} />
           <Route path="/admin/user/:id" element={<AdminUserInfo />} />
           <Route path="/admin/profile" element={<ProfileView />} />
           <Route path="/admin/profile-update" element={<ProfileAd />} />
           <Route path="/admin/packages" element={<AdminPM />} />
           <Route
-            path="/admin/update-package/:packageId"
+            path="/admin/packages/update/:packageId"
             element={<AdminPackageInfo />}
           />
           <Route path="/admin/packages/:packageId" element={<Packages />} />
-          <Route path="/admin/add-pkg" element={<AdminAddPkg />} />
+          <Route path="/admin/packages/add-pkg" element={<AdminAddPkg />} />
         </Route>
 
         {/*Wikasith*/}

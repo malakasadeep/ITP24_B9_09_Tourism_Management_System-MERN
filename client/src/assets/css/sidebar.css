@@ -38,9 +38,10 @@
   color: #27474d;
 }
 
-.menu--list .item:hover {
+.menu--list .item:hover,
+.active {
   background-color: #27474d;
-  color: #dde6ed;
+  color: #dde6ed !important;
 }
 
 .dashboard {
