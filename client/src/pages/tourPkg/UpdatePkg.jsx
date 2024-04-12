@@ -211,7 +211,7 @@ export default function UpdatePkg() {
         },
         body: JSON.stringify({
           ...formData,
-          userRef: currentUser._id,
+          userRef: formData.userRef,
         }),
       });
       const data = await res.json();

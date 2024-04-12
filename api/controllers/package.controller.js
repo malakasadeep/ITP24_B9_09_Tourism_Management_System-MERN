@@ -36,7 +36,8 @@ export const updatePkg = async (req, res, next) => {
     return next(errorHandler(404, "Package not found"));
   }
 
-  /*if (req.user.isadmin === true || req.user.id !== pkg.userRef) {
+  /*if (req.user.isadmin === false || req.user.id !== pkg.userRef) {
+
     return next(errorHandler(401, "you can update your own packages"));
   }*/
 
@@ -119,4 +120,11 @@ export const getPkgsSearch = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+//get all Packages
+export const getAllPackages = async (req, res) => {
+  const pkg = await PkgListning.find({}).sort({ createdAt: -1 });
+
+  res.status(200).json(pkg);
 };

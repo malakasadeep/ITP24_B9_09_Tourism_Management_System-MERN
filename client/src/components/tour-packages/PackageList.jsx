@@ -4,6 +4,7 @@ import { MdInfo } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import loadingimg from "../../assets/img/loading.gif";
+import PackageReport from "./PackageReport";
 
 export default function PackageList() {
   const navigate = useNavigate();
@@ -123,7 +124,9 @@ export default function PackageList() {
       <div className="list--header">
         <div className="user--title">
           <h1>Tour Package Management</h1>
-          <div className="user--btn ml-96">{/** */}</div>
+          <div className="user--btn ml-60">
+            <PackageReport />
+          </div>
         </div>
         <br />
         <div className="search--line">
