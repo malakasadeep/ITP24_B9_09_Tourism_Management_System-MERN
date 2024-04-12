@@ -41,7 +41,7 @@ export default function ProfileView() {
           <Link
             to={`${
               currentUser.isadmin
-                ? "/admin"
+                ? "/admin/dashbard"
                 : currentUser.usertype === "Travel Service Providers"
                 ? "/additems"
                 : "/"

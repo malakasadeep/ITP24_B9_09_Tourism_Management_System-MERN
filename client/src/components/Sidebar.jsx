@@ -18,7 +18,7 @@ export const Sidebar = () => {
   return (
     <div className="menu">
       <div className="logo">
-        <a href="/" className="">
+        <a href="/admin/dashbard" className="">
           <img src={logo} className="w-56" alt="Logo" />
         </a>
       </div>

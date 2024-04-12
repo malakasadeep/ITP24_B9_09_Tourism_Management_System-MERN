@@ -22,6 +22,10 @@ import SignUpN from "./pages/SignUpN";
 import { AdminUM } from "./components/user/AdminUM";
 import AdminUserInfo from "./components/user/AdminUserInfo";
 import ProfileView from "./pages/ProfileView";
+import AdminAddUser from "./components/user/AdminAddUser";
+import AdminPM from "./components/tour-packages/AdminPM";
+import AdminPackageUpdate from "./components/tour-packages/AdminPackageUpdate";
+import AdminAddPkg from "./components/tour-packages/AdminAddPkg";
 
 //dewni
 import CreateEvent from "./pages/eventAct/CreateEvent";
@@ -41,10 +45,6 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
-import AdminAddUser from "./components/user/AdminAddUser";
-import AdminPM from "./components/tour-packages/AdminPM";
-import AdminPackageInfo from "./components/tour-packages/AdminPackageUpdate";
-import AdminAddPkg from "./components/tour-packages/AdminAddPkg";
 
 export default function App() {
   return (
@@ -83,7 +83,7 @@ export default function App() {
           <Route path="/admin/packages" element={<AdminPM />} />
           <Route
             path="/admin/packages/update/:packageId"
-            element={<AdminPackageInfo />}
+            element={<AdminPackageUpdate />}
           />
           <Route path="/admin/packages/:packageId" element={<Packages />} />
           <Route path="/admin/packages/add-pkg" element={<AdminAddPkg />} />
