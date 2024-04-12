@@ -44,6 +44,7 @@ import Hotel from "./pages/hotel/Hotel";
 import AdminAddUser from "./components/user/AdminAddUser";
 import AdminPM from "./components/tour-packages/AdminPM";
 import AdminPackageInfo from "./components/tour-packages/AdminPackageUpdate";
+import AdminAddPkg from "./components/tour-packages/AdminAddPkg";
 
 export default function App() {
   return (
@@ -85,6 +86,7 @@ export default function App() {
             element={<AdminPackageInfo />}
           />
           <Route path="/admin/packages/:packageId" element={<Packages />} />
+          <Route path="/admin/add-pkg" element={<AdminAddPkg />} />
         </Route>
 
         {/*Wikasith*/}

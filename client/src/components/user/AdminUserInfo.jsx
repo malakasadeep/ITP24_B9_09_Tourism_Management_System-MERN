@@ -1,8 +1,9 @@
 import React from "react";
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function AdminUserInfo() {
   return (
@@ -12,7 +13,12 @@ export default function AdminUserInfo() {
     >
       <Sidebar />
       <div className="dashboard--content">
-        <div className="ml-60">
+        <Link to={"/admin/user"}>
+          <button className="bg-slate-700 rounded-xl text-white  text-4xl">
+            <IoMdArrowRoundBack />
+          </button>
+        </Link>
+        <div className="ml-44">
           <Routes>
             <Route path="/" element={<ProfileCard />} />
           </Routes>

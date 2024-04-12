@@ -105,7 +105,7 @@ export default function PackageReport() {
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-1 ">
-        <Link to={"/admin/add-user"} className="btn1">
+        <Link to={"/admin/add-pkg"} className="btn1">
           Add New Package
         </Link>
         <button

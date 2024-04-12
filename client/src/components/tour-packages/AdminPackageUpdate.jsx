@@ -1,8 +1,9 @@
 import React from "react";
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import UpdatePkg from "../../pages/tourPkg/UpdatePkg";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function AdminPackageUpdate() {
   return (
@@ -12,6 +13,11 @@ export default function AdminPackageUpdate() {
     >
       <Sidebar />
       <div className="dashboard--content">
+        <Link to={"/admin/packages"}>
+          <button className="bg-slate-700 rounded-xl text-white  text-4xl">
+            <IoMdArrowRoundBack />
+          </button>
+        </Link>
         <div className="ml-20 bg-slate-100 rounded-lg">
           <Routes>
             <Route path="/" element={<UpdatePkg />} />

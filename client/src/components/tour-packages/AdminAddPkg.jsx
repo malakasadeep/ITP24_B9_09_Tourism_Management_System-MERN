@@ -2,10 +2,10 @@ import React from "react";
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
 import { Link, Route, Routes } from "react-router-dom";
-import AddUser from "./AddUser";
+import CreatePkg from "../../pages/tourPkg/CreatePkg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-export default function AdminAddUser() {
+export default function AdminAddPkg() {
   return (
     <div
       className="dashboard"
@@ -13,14 +13,14 @@ export default function AdminAddUser() {
     >
       <Sidebar />
       <div className="dashboard--content">
-        <Link to={"/admin/user"}>
+        <Link to={"/admin/packages"}>
           <button className="bg-slate-700 rounded-xl text-white  text-4xl">
             <IoMdArrowRoundBack />
           </button>
         </Link>
-        <div className="ml-52">
+        <div className="ml-20 bg-slate-100 rounded-lg">
           <Routes>
-            <Route path="/" element={<AddUser />} />
+            <Route path="/" element={<CreatePkg />} />
           </Routes>
         </div>
       </div>

@@ -85,7 +85,7 @@ export const getUserSearch = async (req, res, next) => {
 
     let usertype = req.query.type;
     if (usertype === undefined || usertype === "all") {
-      usertype = { $in: ["Travel Service Providers", "Tourist"] };
+      usertype = { $in: ["Travel Service Providers", "Tourist", "Admin"] };
     }
     const searchTerm = req.query.searchTerm || "";
     const sort = req.query.sort || "createdAt";
