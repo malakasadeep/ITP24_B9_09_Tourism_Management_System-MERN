@@ -32,13 +32,20 @@ const Layout = () => {
     location.pathname === "/create-package" ||
     location.pathname === "/my-items" ||
     location.pathname.startsWith("/update-package/") ||
-    location.pathname.startsWith("/my-packages/");
+    location.pathname.startsWith("/my-packages/") ||
+    location.pathname.startsWith("/events/");
 
   return (
     <div>
-      {showSellerHeader ? <SellerHeader /> : showHeader ? <Header /> : ""}
+      { showSellerHeader ? (
+        <SellerHeader />
+      ) : showHeader ? (
+        <Header />
+      ) : (
+        ""
+      )}
     </div>
-  );
+    )
 };
 
 export default Layout;

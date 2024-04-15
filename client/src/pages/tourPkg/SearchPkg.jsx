@@ -87,7 +87,7 @@ export default function SearchPkg() {
     <>
     <div className='flex flex-col md:flex-row mt-16'>
         <div className='p-7 border-b-2  md:border-r-2  border-white md:min-h-screen'>
-            <form onSubmit={handleSubmit} className=' flex flex-col gap-8'>
+            <form onSubmit={handleSubmit} className=' flex flex-col gap-8 mt-16'>
                 <div className='flex items-center gap-2'>
                     <label className='whitespace-nowrap font-semibold'> Search Term:</label>
                     <input type="text" id='searchTerm' placeholder='Search....' className='border rounded-lg p-3 w-full' value={searchData.searchTerm} onChange={handleChange}/>

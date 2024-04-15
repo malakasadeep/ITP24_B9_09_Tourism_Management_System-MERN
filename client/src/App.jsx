@@ -20,12 +20,13 @@ import UpdatePkg from "./pages/tourPkg/UpdatePkg";
 import Packages from "./pages/tourPkg/Packages";
 import SearchPkg from "./pages/tourPkg/SearchPkg";
 import SignUpN from "./pages/SignUpN";
+import { AdminUM } from "./components/user/AdminUM";
+
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 
-import { AdminUM } from "./components/user/AdminUM";
 
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
@@ -40,13 +41,14 @@ export default function App() {
     <BrowserRouter>
       <Layout />
       <Routes>
+        
         <Route path="/" element={<Home />} />
-
         <Route path="/sign-in" element={<SignUpN />} />
         <Route path="/sign-up" element={<SignUpN />} />
         <Route path="/about" element={<About />} />
         <Route path="/packages/:packageId" element={<Packages />} />
         <Route path="/package-search" element={<SearchPkg />} />
+
 
         <Route element={<PrivateRouteTourist />}>
           <Route path="/profile" element={<Profile />} />
@@ -63,11 +65,6 @@ export default function App() {
 
         <Route element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/profile" element={<ProfileAd />} />
-        </Route>
-
-        <Route element={<PrivateRouteAdmin />}>
-          <Route path="/admin" element={<Admin />} />
           <Route path="/admin/user" element={<AdminUM />} />
           <Route path="/admin/profile" element={<ProfileAd />} />
         </Route>
@@ -77,8 +74,7 @@ export default function App() {
         <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
-
-        <Route>
+        
           <Route path="/events/create" element={<CreateEvent />} />
           <Route path="/events/admin" element={<EventTable />} />
           <Route path="/events/details/:id" element={<ShowEvent />} />
@@ -87,7 +83,6 @@ export default function App() {
           <Route path="/event/get/:id" element={<ShowEvent />} />
           <Route path="/events/search/:id" element={<SearchEvent />} />
 
-        </Route>
       </Routes>
       <Footer />
     </BrowserRouter>
