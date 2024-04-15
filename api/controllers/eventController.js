@@ -116,7 +116,7 @@ export const getEventSearch = async (req, res, next) => {
 
     // if(offer === undefined || offer === 'false'){
     //   offer = { $in: [false, true] };
-    // }
+    // }  
 
     const searchTerm = req.query.searchTerm || "";
 

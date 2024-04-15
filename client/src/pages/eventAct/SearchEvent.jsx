@@ -3,6 +3,79 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react'
 
 export const SearchEvent = () => {
+
+    const navigate = useNavigate();
+    const [searchData, setSearchData] = useState({
+        searchTerm:'',
+        type:'all',
+        Event: false,
+        Activity: false,
+        participants:0,
+        sort:'created_at',
+        order: 'desc',
+    });
+
+    const [loading, setLoading] = useState(false);
+    const [events, setEvents] = useState([]);
+
+    useEffect (() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get('searchTerm') || '';
+        const type = urlParams.get('type') || 'all';
+        const offer = urlParams.get('Event') || false;
+        const dining = urlParams.get('Activity') || false;
+        const days = urlParams.get('Participants') || 0;
+        const sort = urlParams.get('sort') || 'created_at';
+        const order = urlParams.get('order') || 'desc';
+        setSearchData({searchTerm, type, Event, Activity, participants, sort, order});
+
+        const fetchEvent = async () => {
+            setLoading(true);
+            const searchQuery = urlParams.toString();
+            const res = await fetch(`/api/Event/search/get?${searchQuery}`);
+            const data = await res.json();
+            setEvents(data);
+            setLoading(false);
+        }
+        fetchEvent();
+        
+    }, [location.search]
+    )
+
+    const handleChange = (e) => {
+        if(e.target.id === 'all' || e.target.id === 'Event' || e.target.id === 'Activity' ){
+            setSearchData({...searchData, type: e.target.id});
+        }
+
+        if(e.target.id === 'Participants'){
+            setSearchData({...searchData, days: e.target.value});
+        }
+
+        if(e.target.id === 'searchTerm'){
+            setSearchData({...searchData, searchTerm: e.target.value});
+        }
+
+        if(e.target.id === 'sort_order'){
+            const sort = e.target.value.split('_')[0] || 'created_at';
+            const order = e.target.value.split('_')[1] || 'desc';
+            setSearchData({...searchData, sort, order});
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const urlParame = new URLSearchParams()
+        urlParame.set('searchTerm', searchData.searchTerm)
+        urlParame.set('type', searchData.type)
+        urlParame.set('Event', searchData.Event)
+        urlParame.set('Activity', searchData.Activity)
+        urlParame.set('Participants', searchData.participants)
+        urlParame.set('sort', searchData.sort)
+        urlParame.set('order', searchData.order)
+        const searchQuery = urlParame.toString();
+        navigate(`/events/search/:id?${searchQuery}`)
+    };
+
   return (
     <>
     <div className='flex flex-col md:flex-row mt-16'>
