@@ -85,6 +85,7 @@ export default function App() {
           <Route path="/events/update/:id" element={<UpdateEvent />} />
           <Route path="/events/delete/:id" element={<DeleteEvent />} />
           <Route path="/event/get/:id" element={<ShowEvent />} />
+          <Route path="/events/search/:id" element={<SearchEvent />} />
 
         </Route>
       </Routes>
