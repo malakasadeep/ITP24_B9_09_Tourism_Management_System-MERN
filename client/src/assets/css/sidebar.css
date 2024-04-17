@@ -38,9 +38,10 @@
   color: #27474d;
 }
 
-.menu--list .item:hover {
+.menu--list .item:hover,
+.active {
   background-color: #27474d;
-  color: #dde6ed;
+  color: #dde6ed !important;
 }
 
 .dashboard {
@@ -55,5 +56,4 @@
   padding: 2rem;
   display: flex;
   gap: 1.5rem;
-  justify-content: space-between;
 }

@@ -5,52 +5,56 @@ import "jspdf-autotable";
 import moment from "moment";
 import "../../assets/css/user/userList.css";
 
-export default function UserReport() {
+export default function PackageReport() {
   const [error, setError] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [packages, setPackages] = useState([]);
 
   const handleShowPackages = async () => {
     try {
-      const res = await fetch(`/api/user/all-Users`);
+      const res = await fetch(`/api/Package/all-packages`);
       const data = await res.json();
       if (data.success === false) {
         setError(true);
         return;
       }
-      setUsers(data);
+      setPackages(data);
     } catch (error) {
       setError(true);
     }
   };
   handleShowPackages();
 
-  function generatePDF(users) {
+  function generatePDF(packages) {
     const doc = new jspdf();
     const tableColumn = [
       "No",
-      "Name",
-      "Email",
-      "Country",
+      "Title",
+      "Category",
       "Type",
+      "Days",
+      "Citys",
+      "Price",
+      "Offer",
       "Created at",
     ];
     const tableRows = [];
 
-    users
+    packages
       .slice(0)
       .reverse()
-      .map((user, index) => {
-        const userProfilePic = new Image();
-        userProfilePic.src = user.avatar; // Assuming profilePicture is the URL of the user's profile picture
-        const ticketData = [
+      .map((packages, index) => {
+        const packagedata = [
           index + 1,
-          user.username,
-          user.email,
-          user.country,
-          user.usertype,
-          moment(user.createdAt).format("MM/DD/YYYY h:mm A"),
+          packages.title,
+          packages.category,
+          packages.type,
+          packages.days,
+          packages.citys,
+          "$" + packages.price,
+          packages.offer.toString(),
+          moment(packages.createdAt).format("MM/DD/YYYY h:mm A"),
         ];
-        tableRows.push(ticketData);
+        tableRows.push(packagedata);
       });
 
     const date = Date().split(" ");
@@ -63,7 +67,7 @@ export default function UserReport() {
     doc.text("TourCraft", 80, 15);
 
     doc.setFont("helvetica", "normal").setFontSize(20).setTextColor(0, 0, 0);
-    doc.text("User Details Report", 75, 25);
+    doc.text("Package Details Report", 65, 25);
 
     doc.setFont("times", "normal").setFontSize(15).setTextColor(100, 100, 100);
     doc.text(`Report Generated Date: ${dateStr}`, 65, 35);
@@ -96,18 +100,17 @@ export default function UserReport() {
       },
     });
 
-    doc.save(`User-Details-Report_${dateStr}.pdf`);
+    doc.save(`Package-Details-Report_${dateStr}.pdf`);
   }
-
   return (
     <div>
-      <div className="grid md:grid-cols-2 gap-1 ml-9">
-        <Link to={"/admin/user/add"} className="btn1">
-          Add User
+      <div className="grid md:grid-cols-2 gap-1 ">
+        <Link to={"/admin/packages/add-pkg"} className="btn1">
+          Add New Package
         </Link>
         <button
           onClick={() => {
-            generatePDF(users);
+            generatePDF(packages);
           }}
           className="btn2"
         >

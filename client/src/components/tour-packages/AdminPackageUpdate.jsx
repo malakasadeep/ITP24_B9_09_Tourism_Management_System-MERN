@@ -2,10 +2,10 @@ import React from "react";
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
 import { Link, Route, Routes } from "react-router-dom";
-import ProfileCard from "./ProfileCard";
+import UpdatePkg from "../../pages/tourPkg/UpdatePkg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-export default function AdminUserInfo() {
+export default function AdminPackageUpdate() {
   return (
     <div
       className="dashboard"
@@ -13,14 +13,14 @@ export default function AdminUserInfo() {
     >
       <Sidebar />
       <div className="dashboard--content">
-        <Link to={"/admin/user"}>
+        <Link to={"/admin/packages"}>
           <button className="bg-slate-700 rounded-xl text-white  text-4xl">
             <IoMdArrowRoundBack />
           </button>
         </Link>
-        <div className="ml-44">
+        <div className="ml-20 bg-slate-100 rounded-lg">
           <Routes>
-            <Route path="/" element={<ProfileCard />} />
+            <Route path="/" element={<UpdatePkg />} />
           </Routes>
         </div>
       </div>

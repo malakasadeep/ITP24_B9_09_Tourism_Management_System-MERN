@@ -2,10 +2,10 @@ import React from "react";
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
 import { Link, Route, Routes } from "react-router-dom";
-import ProfileCard from "./ProfileCard";
+import AddUser from "./AddUser";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-export default function AdminUserInfo() {
+export default function AdminAddUser() {
   return (
     <div
       className="dashboard"
@@ -18,9 +18,9 @@ export default function AdminUserInfo() {
             <IoMdArrowRoundBack />
           </button>
         </Link>
-        <div className="ml-44">
+        <div className="ml-52">
           <Routes>
-            <Route path="/" element={<ProfileCard />} />
+            <Route path="/" element={<AddUser />} />
           </Routes>
         </div>
       </div>

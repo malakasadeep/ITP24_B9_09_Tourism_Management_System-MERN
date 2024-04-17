@@ -14,7 +14,7 @@ input {
 .ctr {
   position: relative;
   width: 100%;
-  background: linear-gradient(to bottom, rgb(244, 245, 246),#c8eefb );
+  background: #dde6ed;
   min-height: 100vh;
   overflow: hidden;
 }
