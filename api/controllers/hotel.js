@@ -1,7 +1,11 @@
-import express from "express";
-import Hotel from "../models/Hotel.js";
-import multer from "multer";
-import path from "path";
+
+
+import express from 'express';
+import Hotel from "../models/Hotel.js"
+
+import path from "path"
+
+
 import { errorHandler } from "../utils/error.js";
 
 // create Hotel//
@@ -88,59 +92,48 @@ export const getAllHotel = async (req, res, next) => {
 
 export const gethotelsSearch = async (req, res, next) => {
   try {
-    const limit = parseInt(req.query.limit) || 9;
-    const startIndex = parseInt(req.query.startIndex) || 0;
 
-    let featured = req.query.featured;
-    if (featured === undefined || featured === "false") {
-      featured = { $in: [false, true] };
-    }
+      const limit = parseInt(req.query.limit) || 9;
+      const startIndex = parseInt(req.query.startIndex) || 0;
 
-    let availableWork = req.query.availableWork;
-    if (availableWork === undefined || availableWork === "false") {
-      availableWork = { $in: [false, true] };
-    }
+  
 
-    let sustainability = req.query.sustainability;
-    if (sustainability === undefined || sustainability === "false") {
-      sustainability = { $in: [false, true] };
-    }
+      let availableWork = req.query.availableWork;
+      if (availableWork === undefined || availableWork === 'false'){
+        availableWork = {$in: [false, true]};
+      }
 
-    let type = req.query.type;
-    if (type === undefined || type === "all") {
-      type = { $in: ["reguler", "couple", "family"] };
-    }
 
-    let hoteltype = req.query.hoteltype;
-    if (hoteltype === undefined || hoteltype === "all") {
-      hoteltype = { $in: ["3 Star Hotel", "4 Star Hotel", "5 Star Hotel"] };
-    }
+      let type = req.query.type;
+      if (type === undefined || type === 'all'){
+          type = {$in: ['3 Star Hotel', '4 Star Hotel', '5 Star Hotel']};
+      }
 
-    const searchTerm = req.query.searchTerm || "";
+      const searchTerm = req.query.searchTerm || '';
 
-    const province = req.query.province || "";
+      const province = req.query.province || '';
+      
+      const city = req.query.city || '';
 
-    const city = req.query.city || "";
+      const sort = req.query.sort || 'createdAt';
 
-    const sort = req.query.sort || "createdAt";
+      const order = req.query.order || 'desc';
 
-    const order = req.query.order || "desc";
 
-    const pkgs = await Hotel.find({
-      name: { $regex: searchTerm, $options: "i" },
-      // province: { $regex: province, $options: "i" },
-      //city: { $regex: city, $options: "i" },
+      const pkgs = await HotelListning.find({
+        name: {$regex: searchTerm, $options: 'i'},
+        province: {$regex: province, $options: 'i'},
+        city: {$regex: city, $options: 'i'},
 
-      // featured,
-      //availableWork,
-      //sustainability,
-      //type,
-      //hoteltype,
-    })
-      .sort({ [sort]: order })
+        
+          
+          availableWork,
+          type,
+      
+      })
+      .sort({[sort]: order})
       .limit(limit)
       .skip(startIndex);
-
     return res.status(200).json(pkgs);
   } catch (error) {
     next(error);
