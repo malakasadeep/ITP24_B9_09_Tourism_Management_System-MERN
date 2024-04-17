@@ -8,6 +8,7 @@ import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+
 //sasindu
 import Hotel from './routes/hotels.js';
 import path from 'path';
