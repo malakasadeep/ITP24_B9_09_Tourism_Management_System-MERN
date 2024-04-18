@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Vehicle from "./Vehicle";
 
 function VehicleBook() {
   const [vehicle, setVehicle] = useState({});
@@ -18,13 +19,13 @@ function VehicleBook() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [vehicleResponse, reservationResponse] = await Promise.all([
-          axios.get(`/vehicle/${id}`),
-          axios.get(`/vehiclereservation/traveler/vehicles/${id}`)
+        const [vehicleResponse] = await Promise.all([
+          axios.get(`/api/vehicle/get-vehi/${id}`),
+          // axios.get(`/vehiclereservation/traveler/vehicles/${id}`)
         ]);
 
         // modify the reservation data format to match the input type of date fields
-        const formattedReservationData = reservationResponse.data.map(
+        /*const formattedReservationData = reservationResponse.data.map(
           (reservation) => ({
             ...reservation,
             pickupDate: new Date(reservation.pickupDate)
@@ -34,11 +35,12 @@ function VehicleBook() {
               .toISOString()
               .slice(0, 10)
           })
-        );
+        );*/
 
         setVehicle(vehicleResponse.data);
         setReserveData(formattedReservationData);
         console.log("Vehicle data: ", vehicleResponse.data);
+        console.log(vehicle);
         console.log("Reservation data: ", formattedReservationData);
       } catch (error) {
         console.log(error);
@@ -57,7 +59,7 @@ function VehicleBook() {
     <div className="lg:p-20">
       <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
         <img
-          src={`${vehicle.vehicleMainImg}`}
+          src={`${vehicle.imageUrls}`}
           alt="vehMainImg"
           className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg"
         />
