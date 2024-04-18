@@ -28,17 +28,23 @@ const ShowVehicle = () => {
     <div className='p-4'>
       <BackButton />
       <h1 className='text-3xl my-4'>Vehicle Details</h1>
-      <img
-        src={vehicle.image[0]}
+      <div className='flex flex-row gap-10 '>
+        <div>
+          <img
+        src={vehicle?.imageUrls[0]}
         alt="vehMainImg"
-        className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg"
-    />
-      {vehicle ? (
+        className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg mt-20"
+    /> 
+    <p className='p-5 text-3xl text-blue-800'> {vehicle?.brand} {vehicle?.model}</p>
+        </div>
+        <div>
+    
+        {vehicle ? (
         
         
         <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
        
-        <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
+        <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[700px] p-4'>
           <div className='my-4'>
             <span className='font-bold'>Owner Name:</span>
             <p className='text-green-900 font-bold'>{vehicle.ownername}</p>
@@ -69,7 +75,7 @@ const ShowVehicle = () => {
           </div>
           <div className='my-4'>
             <span className='font-bold'>Price:</span>
-            <span>{vehicle.price}</span>
+            <span>$ {vehicle.price}</span>
           </div>
           <div className='my-4'>
             <span className='font-bold'>Description:</span>
@@ -85,6 +91,9 @@ const ShowVehicle = () => {
       ) : (
         <p>Loading...</p>
       )}
+        </div>
+      </div>
+      
     </div>
   )
 };
