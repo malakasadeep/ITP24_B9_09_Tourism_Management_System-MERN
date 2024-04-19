@@ -1,61 +1,95 @@
-.profile{
-    flex: 1;
+.profile {
+  flex: 1;
 }
 
-.profile--header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.profile--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.edit{
-    background: #dde6ed;
-    padding: 12px;
-    border-radius: 10px;
-    color: #969393;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.edit {
+  background: #dde6ed;
+  padding: 12px;
+  border-radius: 10px;
+  color: #969393;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.edit .icon{
-    font-size: 20px;
-    transition: 0.5s ease-in-out;
+.edit .icon {
+  font-size: 20px;
+  transition: 0.5s ease-in-out;
 }
 
-.user--profile{
-    height: 85%;
-    margin-top: 2rem;
-    background: #dde6ed;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+.user--profile {
+  height: 85%;
+  margin-top: 2rem;
+  background: #dde6ed;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.user--detail{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+.user--detail {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.user--detail img{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #fff;
+.user--detail img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
 }
 
-.user--action{
-    background: #fff;
-    flex: 1;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.user--action {
+  background: #fff;
+  flex: 1;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actions-00 {
+  background: #dde6ed;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.action--details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.action--cover {
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.action--name,
+.action--title {
+  font-size: 20px;
+  font-weight: 500;
 }

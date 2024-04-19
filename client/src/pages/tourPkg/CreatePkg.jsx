@@ -11,8 +11,9 @@ export default function CreatePkg() {
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         imageUrls: [],
+        hotelName :'',
         title: '',
-        category: '',
+        hotelType: '',
         type: 'reguler',
         dining: false,
 	    transport: false,

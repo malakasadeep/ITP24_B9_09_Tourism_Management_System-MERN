@@ -1,50 +1,63 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+import "./../../assets/css/Home.css";
+import { LuHotel } from "react-icons/lu";
+import { SlCalender } from "react-icons/sl";
 
-
-const HotelCard = () => {
-  const { data, loading, error } = useFetch(`/hotels`);
-  
+export default function HotelCard({ hotell }) {
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {loading ? (
-          "Loading"
-        ) : (
-          <>
-            {data.map((item) => (
-              <div
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-                key={item.id}
-              >
-                <img
-                  src={`hotels/images/${item.HotelImg}`}
-                  alt=""
-                  className="w-full object-cover h-64"
-                />
-                <div className="p-4">
-                  <h2 className="font-bold text-gray-700 text-lg mb-2">
-                    {item.name}
-                  </h2>
-                  <p className="font-light text-gray-500 mb-2">{item.city}</p>
-                  <p className="font-medium text-gray-900 mb-2">
-                    Starting from Rs.{item.cheapestPrice}
-                  </p>
-                  <div className="flex items-center">
-                  <Link to ={`/hotelOverview/${item._id}`}>
-                    <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
-                      View
-                    </button>
-                    </Link>
+    <div className="frame">
+      <div className="border-collapse- shadow-md hover:shadow-lg transition-colors overflow-hidden rounded-lg w-[330px] h-auto backdrop-blur-md">
+        <Link to={`/Hotel/${hotell._id}`}>
+          <img
+            src={hotell.hotelimgs}
+            className="h-[320px] sm:h-[220px] w-full hover:scale-105 transition-scale duration-300"
+          />
+          <div>
+            <div className="flex flex-col items-center justify-center container ">
+              <div className="grid grid-cols-3 gap-x-1 gap-y-1">
+                <div>
+                  <div className="flex flex-row items-center gap-1  rounded-lg">
+                    <SlCalender />
+
+                    <div className="text-center">
+                      <p className="text-sm font-light text-black">
+                        {hotell.city}
+                      </p>
+                      <p className="text-xs text-black">City</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex flex-row items-center gap-1   rounded-lg">
+                    <LuHotel />
+                    <div className="text-center">
+                      <p className="text-sm font-light text-black">
+                        {hotell.province}
+                      </p>
+                      <p className="text-xs text-black">Hotels</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </>
-        )}
+            </div>
+          </div>
+          <div className="p-1">
+            <p className="truncate text-xl font-semibold text-black">
+              {hotell.title}
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="text-center">
+              <p className="font-semibold text-2xl text-white bg-blue-400 ">
+                $ {+hotell.price}
+              </p>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
-};
-
-export default HotelCard;
+}
