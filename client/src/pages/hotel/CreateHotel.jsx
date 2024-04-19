@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import "./../assets/css/addhotel.css";
+
 
 export default function CreateHotel() {
 
