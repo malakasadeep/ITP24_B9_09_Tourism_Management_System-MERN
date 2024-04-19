@@ -32,6 +32,7 @@ import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
+import SearchEvent from "./pages/eventAct/SearchEvent";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -110,7 +111,7 @@ export default function App() {
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
-         <Route path="/events/search/:id" element={<SearchEvent />} />
+         <Route path="/events/search/" element={<SearchEvent />} />
 
 
         {/*Sasindu*/}

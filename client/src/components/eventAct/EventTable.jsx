@@ -5,6 +5,7 @@ import { Sidebar } from "../Sidebar";
 import { MdInfo } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import EventReport from "./EventReport";
 
 function EventTable() {
   const [events, SetEventTable] = useState([]);
@@ -38,10 +39,7 @@ function EventTable() {
             <div className="user--title">
               <h1>Event Management</h1>
               <div className="user--btn">
-                <button className="btn1">
-                  <Link to={`/events/create`}>Add Event</Link>
-                </button>
-                <button className="btn2">Download Report</button>
+                <EventReport events={events}/>
               </div>
             </div>
             <br />

@@ -7,7 +7,8 @@ import Bubbles from "../components/Bubbles";
 
 export default function Home() {
   const [packages, setPackages] = useState([]);
-  const [hotels, sethotels] = useState([]);
+  // const [hotels, sethotels] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchPkg = async () => {
@@ -23,6 +24,19 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const res = await fetch("/api/Event/search/get?limit=3");
+        const data = await res.json();
+        setEvents(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchEvent();
+  }, []);
+
+  /*useEffect(() => {
     const fetchHotels = async () => {
       try {
         const res = await fetch("/api/hotel/gethotels?limit=3");
@@ -33,7 +47,7 @@ export default function Home() {
       }
     };
     fetchHotels();
-  }, []);
+  }, []);*/
 
   return (
     // <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat*/"}}>
@@ -121,6 +135,32 @@ export default function Home() {
               <div className="flex flex-wrap gap-10">
                 {packages.map((pkg) => (
                   <PackageCard pkg={pkg} key={pkg._id} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div>
+        <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
+          {events && events.length > 0 && (
+            <div className="">
+              <div className="my-3">
+                <h2 className="text-2xl font-semibold text-slate-600">
+                  Recent Events
+                </h2>
+                <Link
+                  className="text-sm text-blue-800 hover:underline"
+                  to={"/events/search/"}
+                >
+                  Show more Events
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap gap-10">
+                {events.map((evnt) => (
+                  <EventCard evnt={evnt} key={evnt._id} />
                 ))}
               </div>
             </div>
