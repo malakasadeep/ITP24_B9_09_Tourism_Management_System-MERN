@@ -80,7 +80,7 @@ const EditVehicle = () => {
       <div className='p-4'>
         <BackButton/>
         <h1 className='text-3xl font-bold'>Edit Vehicle</h1>
-        <div className='flex flex-col sm:flex-row gap-4' onSubmit={handleUpdateSubmit}>
+        <div className='flex flex-col sm:flex-col gap-4' onSubmit={handleUpdateSubmit}>
           <div className='my-4'>
             <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='ownername'>
              Owner Name
