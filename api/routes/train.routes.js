@@ -111,9 +111,17 @@ router.route("/search").get ( async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 50;
         const startIndex = parseInt(req.query.startIndex) || 0;
 
-        let category = req.query.category;
+        let category = req.query.type;
+        let from = req.query.from
+        let destination = req.query.destination
         if (category === undefined || category === 'all'){
             category = {$in: ['Express', 'Intercity', 'Slow']};
+        }
+        if (from === undefined || from === 'all'){
+            from = {$in: ['Colombo Fort', 'Galle', 'Matara', 'Badulla', 'Hatton','Batticaloa', 'Vavuniya']};
+        }
+        if (destination === undefined || destination === 'all'){
+            destination = {$in: ['Colombo Fort', 'Galle', 'Matara', 'Badulla', 'Hatton','Batticaloa', 'Vavuniya']};
         }
         const searchTerm = req.query.searchTerm || '';
         const sort = req.query.sort || 'createdAt';
@@ -121,6 +129,8 @@ router.route("/search").get ( async (req, res, next) => {
 
         const users = await train.find({
             trainName: {$regex: searchTerm, $options: 'i'},
+            from,
+            destination,
             category,
         })
         .sort({[sort]: order})

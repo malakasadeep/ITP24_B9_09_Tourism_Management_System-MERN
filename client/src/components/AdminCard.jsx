@@ -34,7 +34,8 @@ const functions = [
     },
     {
         name: 'Train Reservation Management',
-        icon: '🚂'
+        icon: '🚂',
+        link: '/admin/train'
     }
     
 ]

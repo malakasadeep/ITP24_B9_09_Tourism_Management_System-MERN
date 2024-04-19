@@ -29,10 +29,9 @@ import EditBook from './pages/VehicleManagement/EditVehicle';
 import ShowBook from './pages/VehicleManagement/ShowVehicle';
 import ShowVehicle from './pages/VehicleManagement/ShowVehicle';
 import EditVehicle from './pages/VehicleManagement/EditVehicle';
-
-
-
-
+import CreateTrain from './pages/train/CreateTrain';
+import { AdminTrainManagement } from './components/train/AdminTrainManagement';
+import UpdateTrain from './pages/train/UpdateTrain';
 
 
 export default function App() {
@@ -69,16 +68,15 @@ export default function App() {
         <Route path='/admin/profile' element={<ProfileAd/>}/>
       </Route> 
 
-      
-<<<<<<< HEAD
-=======
       <Route path='/Vehicle' element={<Vehicle/>}/>
       <Route path='/Vehicle/add' element={<AddVehicle/>}/>
       <Route path='Vehicle/delete/:id' element={<DeleteVehicle/>}/>
       <Route path='Vehicle/update/:id' element={<EditVehicle/>}/>
       <Route path='Vehicle/get/:id' element={<ShowVehicle/>}/>
-    
->>>>>>> f1bb13ef56ffbd85c8f860b2a269f6e3b2315734
+
+      <Route path='/add-train' element={<CreateTrain/>}/>
+      <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
+      <Route path='/admin/train' element={<AdminTrainManagement/>}/>
 
   </Routes> 
   <Footer/>
