@@ -36,7 +36,7 @@ export default function HotelCard({ hotell }) {
                       <p className="text-sm font-light text-black">
                         {hotell.province}
                       </p>
-                      <p className="text-xs text-black">Hotels</p>
+                   
                     </div>
                   </div>
                 </div>
@@ -56,6 +56,13 @@ export default function HotelCard({ hotell }) {
               </p>
             </div>
           </div>
+          <div className='text-center'>
+                  <div className='text-center'>
+                            <p className='font-semibold text-2xl text-black '>{hotell.availableWork}</p>
+                            
+                            
+                      </div>
+                  </div>
         </Link>
       </div>
     </div>

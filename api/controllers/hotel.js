@@ -107,7 +107,7 @@ export const gethotelsSearch = async (req, res, next) => {
 
       let type = req.query.type;
       if (type === undefined || type === 'all'){
-          type = {$in: ['3 Stars hotel', '4 Star hotel', '5 Star hotel']};
+          type = {$in: ['3 Stars hotel', '4 Stars hotel', '5 Stars hotel']};
       }
 
       const searchTerm = req.query.searchTerm || '';
