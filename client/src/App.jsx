@@ -102,6 +102,7 @@ export default function App() {
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
 
+
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
         <Route path="/events/admin" element={<EventTable />} />
@@ -109,6 +110,8 @@ export default function App() {
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
+         <Route path="/events/search/:id" element={<SearchEvent />} />
+
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
