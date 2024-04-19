@@ -45,6 +45,12 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
+  
+  
+//shadini
+import CreateTrain from './pages/train/CreateTrain';
+import { AdminTrainManagement } from './components/train/AdminTrainManagement';
+import UpdateTrain from './pages/train/UpdateTrain';
 
 export default function App() {
   return (
@@ -107,6 +113,11 @@ export default function App() {
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
+          
+        <Route path='/add-train' element={<CreateTrain/>}/>
+        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
+        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
+        
       </Routes>
       <Footer />
     </BrowserRouter>

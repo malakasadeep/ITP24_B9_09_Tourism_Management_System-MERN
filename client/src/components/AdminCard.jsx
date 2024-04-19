@@ -44,6 +44,7 @@ const functions = [
   {
     name: "Train Reservation Management",
     icon: train,
+    link: '/admin/train'
   },
 ];
 export const AdminCard = () => {
