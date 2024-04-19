@@ -98,15 +98,16 @@ export const gethotelsSearch = async (req, res, next) => {
 
   
 
+     
       let availableWork = req.query.availableWork;
-      if (availableWork === undefined || availableWork === 'false'){
-        availableWork = {$in: [false, true]};
+      if (availableWork === undefined || availableWork === "all") {
+        availableWork = { $in: ["available", "not available"] };
       }
 
 
       let type = req.query.type;
       if (type === undefined || type === 'all'){
-          type = {$in: ['3 Star Hotel', '4 Star Hotel', '5 Star Hotel']};
+          type = {$in: ['3 Stars hotel', '4 Star hotel', '5 Star hotel']};
       }
 
       const searchTerm = req.query.searchTerm || '';
@@ -120,15 +121,12 @@ export const gethotelsSearch = async (req, res, next) => {
       const order = req.query.order || 'desc';
 
 
-      const pkgs = await HotelListning.find({
+      const pkgs = await Hotel.find({
         name: {$regex: searchTerm, $options: 'i'},
         province: {$regex: province, $options: 'i'},
         city: {$regex: city, $options: 'i'},
-
-        
-          
-          availableWork,
-          type,
+       availableWork,
+        type,
       
       })
       .sort({[sort]: order})

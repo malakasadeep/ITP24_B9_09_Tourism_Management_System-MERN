@@ -10,7 +10,6 @@ export default function CreateHotel() {
 
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
-        hotelImg: '',
         title: '',
         name:'',
         roomtype: '',
@@ -23,6 +22,7 @@ export default function CreateHotel() {
 	      description: '',
 	      contactName: '',
 	      contactNo: '',
+        availableWork:'',
 	      numberOfRoom: '',
 	      price: "",
 	      hotelImgs: [],
@@ -102,13 +102,37 @@ export default function CreateHotel() {
     };
 
     const handleChange = (e) => {
-        if (e.target.id === '3 Star Hotel' || e.target.id === '4 Star Hotel' || e.target.id === '5 Star Hotel') {
+        if (e.target.id === '3 Stars hotel' || e.target.id === '4 Stars hotel' || e.target.id === '5 Stars hotel') {
             setFormData({
                 ...formData,
                 type: e.target.id,
             });
+            
           
-        } if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
+        } 
+        if (e.target.id === 'available'||e.target.id === 'not available' ) {
+          setFormData({
+              ...formData,
+              availableWork: e.target.id,
+          });
+          
+        
+      } 
+      if (e.target.id === 'Single room' || e.target.id === 'Double room' || e.target.id === 'All') {
+        let roomtype;
+        if (e.target.id === 'All') {
+            roomtype = ['Single room', 'Double room'];
+        } else {
+            roomtype = e.target.id;
+        }
+    
+        setFormData({
+            ...formData,
+            roomtype: roomtype,
+        });
+    }
+    
+        if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
             setFormData({
                 ...formData,
                 [e.target.id]: e.target.value,
@@ -248,6 +272,27 @@ export default function CreateHotel() {
                   <option>3 Stars hotel</option>
                   <option>4 Stars hotel</option>
                   <option>5 Stars hotel</option>
+                 
+                </select>
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3  md:mb-0">
+                <label
+                  for="Availablility"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
+                  Availablility
+                </label>
+                <select
+                  id="availableWork"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required onChange={handleChange} value={formData.availableWork}
+                >
+                  <option>--Availablility--</option>
+                  <option>available</option>
+                  <option>not available</option>
+                  
                  
                 </select>
               </div>
@@ -408,18 +453,28 @@ export default function CreateHotel() {
                 />
               </div>
             </div>
-            <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype}/>
-                        <span>Single Room</span>
-                    </div>
-                    <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
-                        <span>Double Room</span>
-                    </div>
-                    <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
-                        <span>Family Room</span>
-                    </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3  md:mb-0">
+                <label
+                  for="roomtype"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
+                  Room Type
+                </label>
+                <select
+                  id="roomtype"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required onChange={handleChange} value={formData.roomtype}
+                >
+                  <option>--Room Type--</option>
+                  <option>All</option>
+                  <option>Single Room</option>
+                  <option>Double Room</option>
+                  
+                 
+                </select>
+              </div>
+            </div>
 
     
             <div className="flex flex-wrap -mx-3 mb-6">

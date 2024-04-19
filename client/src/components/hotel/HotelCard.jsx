@@ -10,7 +10,7 @@ export default function HotelCard({ hotell }) {
       <div className="border-collapse- shadow-md hover:shadow-lg transition-colors overflow-hidden rounded-lg w-[330px] h-auto backdrop-blur-md">
         <Link to={`/Hotel/${hotell._id}`}>
           <img
-            src={hotell.hotelimgs}
+            src={hotell.hotelImgs[0]}
             className="h-[320px] sm:h-[220px] w-full hover:scale-105 transition-scale duration-300"
           />
           <div>
