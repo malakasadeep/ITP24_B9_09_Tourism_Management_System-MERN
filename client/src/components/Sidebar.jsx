@@ -1,7 +1,6 @@
 import React from "react";
 import {
   BiHome,
-  BiBookAlt,
   BiSolidUserAccount,
   BiPackage,
   BiHotel,
@@ -11,53 +10,60 @@ import {
   BiTrain,
 } from "react-icons/bi";
 import { PiChalkboardTeacher } from "react-icons/pi";
+import { NavLink } from "react-router-dom"; // Import NavLink from React Router
 import "../assets/css/sidebar.css";
+import logo from "../assets/img/Logo14.png";
 
 export const Sidebar = () => {
   return (
     <div className="menu">
       <div className="logo">
-        <BiBookAlt className="logo-icon" />
-        <h1>TourCraft</h1>
+        <a href="/admin/dashbard" className="">
+          <img src={logo} className="w-56" alt="Logo" />
+        </a>
       </div>
 
       <div className="menu--list">
-        <a href="/admin" className="item">
+        <NavLink to="/admin/dashbard" activeClassName="active" className="item">
           <BiHome className="icon" />
           Dashboard
-        </a>
-        <a href="/admin/user" className="item">
+        </NavLink>
+        <NavLink to="/admin/user" activeClassName="active" className="item">
           <BiSolidUserAccount className="icon" />
           User Management
-        </a>
-        <a href="" className="item">
+        </NavLink>
+        <NavLink to="/admin/packages" activeClassName="active" className="item">
           <BiPackage className="icon" />
           Package Management
-        </a>
-        <a href="" className="item">
+        </NavLink>
+        <NavLink to="/admin/hotels" activeClassName="active" className="item">
           <BiHotel className="icon" />
           Hotel Management
-        </a>
-        <a href="" className="item">
+        </NavLink>
+        <NavLink to="/admin/vehicle" activeClassName="active" className="item">
           <BiCar className="icon" />
           Vehicle Management
-        </a>
-        <a href="" className="item">
+        </NavLink>
+        <NavLink
+          to="/admin/restaurant"
+          activeClassName="active"
+          className="item"
+        >
           <BiRestaurant className="icon" />
-          Restourent Management
-        </a>
-        <a href="" className="item">
+          Restaurant Management
+        </NavLink>
+        <NavLink to="/admin/guid" activeClassName="active" className="item">
           <PiChalkboardTeacher className="icon" />
           Guid Management
-        </a>
-        <a href="/events/admin" className="item">
+        </NavLink>
+        <NavLink to="/admin/events" activeClassName="active" className="item">
           <BiCalendarEvent className="icon" />
           Event Management
-        </a>
-        <a href="" className="item">
+        </NavLink>
+        <NavLink to="/admin/train" activeClassName="active" className="item">
           <BiTrain className="icon" />
           Train Management
-        </a>
+        </NavLink>
       </div>
     </div>
   );

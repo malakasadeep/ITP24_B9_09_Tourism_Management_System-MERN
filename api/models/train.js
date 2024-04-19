@@ -8,7 +8,15 @@ const trainSchema = new Schema({
         type:String,
         required: true
     },
-    arrivalTime : {
+    category : {
+        type:String,
+        required: true
+    },
+    class : {
+        type:String,
+        required: true
+    },
+    from : {
         type:String,
         required: true
     },
@@ -16,11 +24,23 @@ const trainSchema = new Schema({
         type:String,
         required: true
     },
-    departureStaitons : {
+    destination : {
         type:String,
         required: true
     },
-    destination : {
+    arrivalTime : {
+        type:String,
+        required: true
+    },
+    type : {
+        type:String,
+        required: true
+    },
+    noofseats : {
+        type:String,
+        required: true
+    },
+    description : {
         type:String,
         required: true
     }
