@@ -105,7 +105,7 @@ export default function UpdateTrain() {
   return (
     <div>
     <main className='p-3 max-w-4xl mx-auto'>
-    <h1 className='text-3xl font-semibold text-center my-7 mt-24'>Schedule a new train</h1>
+    <h1 className='text-3xl font-semibold text-center my-7 mt-24'>Update train Details</h1>
 
     <form className='flex flex-col sm:flex-row gap-4' onSubmit={handleSubmit}>
         <div className='flex flex-col gap-4 flex-1'>
