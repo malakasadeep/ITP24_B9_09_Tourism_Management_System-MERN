@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import "./../assets/css/addhotel.css";
 
 export default function CreateHotel() {
 
@@ -208,6 +209,14 @@ export default function CreateHotel() {
 
     return (
         <div className="flex justify-center">
+          <div id="clouds">
+	<div class="cloud x1"></div>
+
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
           <form
             className="w-full max-w-lg"
          
