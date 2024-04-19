@@ -110,9 +110,9 @@ router.get("/find",async (req, res, next) => {
         const order = req.query.order || 'desc';
 
         const vehi = await Vehicle.find({
-            //title: {$regex: searchTerm, $options: 'i'},
+           // title: {$regex: searchTerm, $options: 'i'},
             type,
-            location,
+           location,
         })
         .sort({[sort]: order})
         .limit(limit)

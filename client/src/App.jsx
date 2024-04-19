@@ -36,11 +36,12 @@ import DeleteEvent from "./pages/eventAct/DeleteEvent";
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
-import DeleteVehicle from "./pages/VehicleManagement/DeleteVehicle";
+import DeleteVehicle from "./pages/VehicleManagement/Vehicle";
 import EditBook from "./pages/VehicleManagement/EditVehicle";
 import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
+import VehicleHome from "./pages/VehicleManagement/VehicleHome"
 
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
@@ -100,6 +101,7 @@ export default function App() {
         <Route path="/Vehicle/add" element={<AddVehicle />} />
         <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
+        <Route path="/VehicleHome" element={<VehicleHome />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
 
 
@@ -110,8 +112,7 @@ export default function App() {
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
-         <Route path="/events/search/:id" element={<SearchEvent />} />
-
+     { /*   <Route path="/events/search/:id" element={<SearchEvent />} />*/}
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />

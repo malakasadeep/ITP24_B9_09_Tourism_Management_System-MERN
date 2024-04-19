@@ -3,7 +3,7 @@ import SearchBar from "../../components/VehicleManagement/SearchBar";
 import VehicleListHeader from "../../components/VehicleManagement/VehicleListHeader";
 import RentCarAd from "../../components/VehicleManagement/RentCarAd";
 import { useLocation, useNavigate } from "react-router-dom";
-import VehicleCard from "../../components/VehicleManagement/vehicleCard";
+import VehicleCard from "../../components/VehicleManagement/VehicleCard";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Import axios for making API requests
 
