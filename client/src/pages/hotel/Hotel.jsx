@@ -48,7 +48,7 @@ export default function Hotel() {
 
         try {
           setLoading(true);
-          const response = await fetch(`/api/hotels/get-update/${params.hotelId}`)
+          const response = await fetch(`/api/hotel/get-update/${params.hotelId}`)
           const data = await response.json()
           if(data.success === false){
             setError(true)
@@ -169,7 +169,7 @@ export default function Hotel() {
                   )}
                 </div>
 
-                <div>
+                 {/* <div>
                   {packagee.noofactivities && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={activities} alt="" className='w-12 h-auto object-contain' />
@@ -179,7 +179,7 @@ export default function Hotel() {
                     </div>
                   </div>
                   )}
-                </div>
+                </div>  */}
             </div>
           </div>
           <hr className='w-3/4 h-2 mx-auto my-4 bg-gray-100 border-0 rounded md:my-4 dark:bg-blue-950'/> 
@@ -191,7 +191,7 @@ export default function Hotel() {
                   <img src={hotels} alt="" className='w-12 h-auto object-contain' />
                       <p className='text-xl font-serif text-slate-700'>: </p>                        
                   </div>
-                  <p className='text-sm font-serif text-slate-900 m-7 mt-0 text-center justify-center'>{packagee.title}</p>
+                  <p className='text-sm font-serif text-slate-900 m-7 mt-0 text-center justify-center'>{hotell.title}</p>
                 </div>
                 
                 )}

@@ -15,7 +15,7 @@ export default function SearchHotel() {
         order: 'desc',
     });
     const [loading, setLoading] = useState(false);
-    const [packages, setPackages] = useState([]);
+    const [hotels, setHotels] = useState([]);
     
     useEffect (() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -33,7 +33,7 @@ export default function SearchHotel() {
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/Hotel/gethotels?${searchQuery}`);
             const data = await res.json();
-            setPackages(data);
+            setHotels(data);
             setLoading(false);
         }
         fetchhotel();
@@ -146,7 +146,7 @@ export default function SearchHotel() {
                     )}
                     {!loading && hotels &&
                     hotels.map((hotel) => (
-                        <HotelCard key={hotel._id} hotel={hotel}/>
+                        <HotelCard key={hotel._id} hotell={hotel}/>
                     ))}
                 </div>
             </div>

@@ -63,7 +63,7 @@ export const updatehotel = async (req, res, next) => {
 //get Hotel//
 export const gethotel = async (req, res, next) => {
   try {
-    const hotel = await hotelListning.findById(req.params.id);
+    const hotel = await Hotel.findById(req.params.id);
     if (!hotel) {
       return next(errorHandler(404, "Hotel not found"));
     }

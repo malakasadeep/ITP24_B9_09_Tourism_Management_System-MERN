@@ -45,6 +45,7 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
+import SearchHotel from "./pages/hotel/SearchHotel";
 
 export default function App() {
   return (
@@ -106,7 +107,8 @@ export default function App() {
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
-        <Route path="/my-hotel/:hotelId" element={<Hotel />} />
+        <Route path="/Hotel/:hotelId" element={<Hotel />} />
+        <Route path="/hotel-search" element={<SearchHotel />} />
   
       </Routes>
       <Footer />
