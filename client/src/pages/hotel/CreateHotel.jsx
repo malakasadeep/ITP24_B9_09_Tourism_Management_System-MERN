@@ -209,14 +209,7 @@ export default function CreateHotel() {
 
     return (
         <div className="flex justify-center">
-          <div id="clouds">
-	<div class="cloud x1"></div>
-
-	<div class="cloud x2"></div>
-	<div class="cloud x3"></div>
-	<div class="cloud x4"></div>
-	<div class="cloud x5"></div>
-</div>
+ 
           <form
             className="w-full max-w-lg"
          

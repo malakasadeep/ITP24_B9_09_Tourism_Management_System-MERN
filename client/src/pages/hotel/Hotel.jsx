@@ -30,7 +30,7 @@ import description from '../../assets/img/icons/package-page/description.png'
 import policy from '../../assets/img/icons/package-page/policy.png'
 import { useSelector } from 'react-redux';
 import Contact from '../../components/tour-packages/Contact';
-import Booking from '../../components/tour-packages/Booking';
+import HotelBooking from '../../components/hotel/HotelBooking';
 
 export default function Hotel() {
 
@@ -260,7 +260,7 @@ export default function Hotel() {
                       <div>
                         {currentUser && currentUser.usertype === 'Tourist' && (
                           <div>
-                            <Booking/>
+                            <HotelBooking/>
                           </div>
                         )}
                       </div>

@@ -107,6 +107,7 @@ export default function App() {
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
+  
       </Routes>
       <Footer />
     </BrowserRouter>
