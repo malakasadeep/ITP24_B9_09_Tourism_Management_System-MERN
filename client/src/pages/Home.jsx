@@ -22,7 +22,7 @@ export default function Home() {
     fetchPkg();
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchHotels = async () => {
       try {
         const res = await fetch("/api/hotel/gethotels?limit=3");
@@ -33,7 +33,7 @@ export default function Home() {
       }
     };
     fetchHotels();
-  }, []);
+  }, []);*/
 
   return (
     // <div style={{ height: '100%',  backgroundSize: "cover",backgroundPosition: "center", backgroundRepeat: "no-repeat*/"}}>

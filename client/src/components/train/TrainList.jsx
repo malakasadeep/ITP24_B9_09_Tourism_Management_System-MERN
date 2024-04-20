@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/css/user/userList.css'
-
+import loadingimg from "../../assets/img/loading.gif";
 import { FcInfo } from "react-icons/fc";
 import { MdDeleteForever } from "react-icons/md";
 import { MdEditSquare } from "react-icons/md";
 import Swal from 'sweetalert2';
+import TrainReport from './TrainReport';
+import Modal from 'react-modal';
+import './../../assets/css/train/seats.css'
 
 export const TrainList = () => {
 
@@ -104,17 +107,28 @@ const handleTrainDelete = async (trainID) => {
         }
       });
   };
+
+      const [modalIsOpen, setModalIsOpen] = useState(false);
+      const [seats, setSeats] = useState([]);
+
+      const openModal = async (trainID) => {
+          try {
+              const res = await fetch(`/api/train/seats/${trainID}`);
+              const data = await res.json();
+              setSeats(data.seats);
+              setModalIsOpen(true);
+          } catch (error) {
+              console.error(error);
+          }
+      };
   return (
     <div>
-         <div>
+         <div className='mb-20'>
       <div className="list--header">
         <div className='user--title'>
           <h1>Train Management</h1>
           <div className='user--btn'>
-            <Link to={"/add-train"}>
-                <button className="btn1">Add Train</button>
-            </Link>
-            <button className="btn2">Download Report</button>
+            <TrainReport trains={trains} searchData={searchData}/>
           </div>
         </div>
         <br/>
@@ -123,12 +137,14 @@ const handleTrainDelete = async (trainID) => {
           <input type="text" placeholder="Search..." onChange={handleChange} id='searchTerm'/>
           <select className='border p-3 rounded-lg' name='type' id='type' required onChange={handleChange} >
               <option className='text-slate-400' hidden >Type</option>
+              <option value="all">All</option>
               <option value="Express">Express</option>
               <option value="Intercity">Intercity</option>
               <option value="Slow">Slow</option>
           </select>
           <select className='border p-3 rounded-lg' name='from' id='from' required onChange={handleChange} >
               <option className='text-slate-400' hidden >From</option>
+              <option value="all">All</option>
               <option value="Colombo Fort">Colombo Fort</option>
               <option value="Galle">Galle</option>
               <option value="Matara">Matara</option>
@@ -140,6 +156,7 @@ const handleTrainDelete = async (trainID) => {
           <p className='mt-3 text-lg'>to</p>
           <select className='border p-3 rounded-lg' name='destination' id='destination' required onChange={handleChange} >
               <option className='text-slate-400' hidden >Destination</option>
+              <option value="all">All</option>
               <option value="Colombo Fort">Colombo Fort</option>
               <option value="Galle">Galle</option>
               <option value="Matara">Matara</option>
@@ -154,6 +171,18 @@ const handleTrainDelete = async (trainID) => {
         </form>
 
         <div className="list--container">
+        {!loading && trains.length === 0 && (
+            <p className="text-2xl text-center p-5 text-blue-950">
+              No Trains found
+            </p>
+          )}
+          {loading && (
+            <div className="flex flex-col items-center justify-center">
+              <img src={loadingimg} alt="loading" className="w-28" />
+              <p className="text-lg w-full text-center">Loading....</p>
+            </div>
+          )}
+          {!loading && trains.length > 0 &&(
           <table className="list">
             <tbody>
               <tr className='font-semibold text-blue-900 text-lg text-center'>
@@ -179,8 +208,8 @@ const handleTrainDelete = async (trainID) => {
                     <td>{train.arrivalTime}</td>
                     <td>
                         <div className='flex flex-row gap-3 '>
-                            <button className="text-3xl text-blue-700 font-bold"><FcInfo /></button>
-                            <Link to={`/update-train/${train._id}`}>
+                            <button onClick={() => openModal(train._id)} className="text-3xl text-blue-700 font-bold"><FcInfo /></button>
+                            <Link to={`/admin/train/update/${train._id}`}>
                             <button className="text-green-700 text-3xl hover:text-green-400 focus:scale-95 transition-all duration-200 ease-out"><MdEditSquare/></button>
                             </Link>
                             
@@ -191,9 +220,23 @@ const handleTrainDelete = async (trainID) => {
             ))}
             </tbody>
           </table>
+          )}
         </div>
       </div>
     </div>
+    <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+    <div className="modal-content">
+        <h2>Seat Information</h2>
+        <div className="seats-container">
+            {seats.map((seat, index) => (
+                <div key={index} className={`seat ${seat.available ? 'available' : 'booked'}`}>
+                    <p>No: {seat.seatNumber}</p>
+                </div>
+            ))}
+        </div>
+        <button className="close-btn" onClick={() => setModalIsOpen(false)}>Close</button>
+    </div>
+</Modal>
     </div>
   )
 }
