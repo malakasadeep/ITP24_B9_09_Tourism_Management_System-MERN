@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "./../../assets/css/Home.css";
 import { LuHotel } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
+import personico from '../../assets/img/icons/package-page/person.png'
+import { RxActivityLog } from "react-icons/rx";
+
 
 export default function HotelCard({ hotell }) {
   return (
@@ -24,7 +27,7 @@ export default function HotelCard({ hotell }) {
                       <p className="text-sm font-light text-black">
                         {hotell.city}
                       </p>
-                      <p className="text-xs text-black">City</p>
+                     
                     </div>
                   </div>
                 </div>
@@ -40,6 +43,16 @@ export default function HotelCard({ hotell }) {
                     </div>
                   </div>
                 </div>
+                <div>
+                  
+                  <div className='flex flex-row items-center gap-1  rounded-lg'>
+                  <RxActivityLog />
+                  <div className='text-center'>
+                    <p className='text-sm font-light text-black'>{hotell.type}</p>
+                  </div>
+                </div>
+                
+              </div>
               </div>
             </div>
           </div>
@@ -48,6 +61,15 @@ export default function HotelCard({ hotell }) {
               {hotell.title}
             </p>
           </div>
+          <div className='flex flex-row items-center gap-1 p-1 rounded-lg'>
+          <img src={personico} alt="" className='w-5 h-auto object-contain' />
+                  <div className='text-center'>
+                 
+                            <p className='font-semibold  text-black text-base '>{hotell.name}</p>
+                            
+                            
+                      </div>
+                  </div>
 
           <div className="text-center">
             <div className="text-center">
@@ -58,7 +80,7 @@ export default function HotelCard({ hotell }) {
           </div>
           <div className='text-center'>
                   <div className='text-center'>
-                            <p className='font-semibold text-2xl text-black '>{hotell.availableWork}</p>
+                            <p className='font-semibold text-sm text-black '>{hotell.availableWork}</p>
                             
                             
                       </div>

@@ -329,15 +329,15 @@ export default function CreateHotel() {
                     required onChange={handleChange} value={formData.province}
                     
                   >
-                    <option>SOUTHERN PROVINCE</option>
-                    <option>WESTERN PROVINCE</option>
-                    <option>CENTRAL PROVINCE</option>
-                    <option>SABARAGAMUWA PROVINCE</option>
-                    <option>EASTERN PROVINCE</option>
-                    <option>UVA PROVINCE</option>
-                    <option>NORTH WESTERN PROVINCE</option>
-                    <option>NORTH CENTRAL PROVINCE</option>
-                    <option>NORTHERN PROVINCE</option>
+                    <option>Southern Province</option>
+                    <option>Western Province</option>
+                    <option>Central Province</option>
+                    <option>Sabaragamuwa Province</option>
+                    <option>Eastern Province</option>
+                    <option>Uva Province</option>
+                    <option>North Western Province</option>
+                    <option>North Central Province</option>
+                    <option>Northern Province</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
