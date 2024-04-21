@@ -2,12 +2,14 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 import{Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useNavigate}from 'react-router-dom';
+
 
 function Vehicle() {
   const[vehicles,setVehicles]=useState([]);
   const[loading,setLoading]=useState(false);
+  const navigate = useNavigate();
  
-  const {setUserPackage} = useState([]);
   useEffect(()=>{
   setLoading(true);
    axios
@@ -50,7 +52,9 @@ function Vehicle() {
               title: "Deleted!",
               text: "Your package has been deleted.",
               icon: "success"
+              
             });
+            navigate('/Vehicle');
             setUserPackage((prev)=> prev.filter((vehicles)=> vehicles._id !== packageId));
           } catch (error) {
             console.log(error.message);

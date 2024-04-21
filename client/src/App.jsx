@@ -42,6 +42,7 @@ import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import VehicleHome from "./pages/VehicleManagement/VehicleHome"
+import VehicleAdmin from "./pages/VehicleManagement/AdminVM";
 
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
@@ -103,6 +104,8 @@ export default function App() {
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="/VehicleHome" element={<VehicleHome />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="VehicleAdmin" element={<VehicleAdmin />} />
+
 
 
         {/*Dewni*/}
