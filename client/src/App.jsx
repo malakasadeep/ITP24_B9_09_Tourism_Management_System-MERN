@@ -45,14 +45,15 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
-  
-  
+import SearchHotel from "./pages/hotel/SearchHotel";
+
 //shadini
 import CreateTrain from './pages/train/CreateTrain';
 import { AdminTrainManagement } from './components/train/AdminTrainManagement';
 import UpdateTrain from './pages/train/UpdateTrain';
 import AdminAddTrain from "./components/train/AdminAddTrain";
 import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+
 
 export default function App() {
   return (
@@ -117,6 +118,8 @@ export default function App() {
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
+        <Route path="/Hotel/:hotelId" element={<Hotel />} />
+        <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
           
         {/*Shadini*/}
@@ -126,6 +129,7 @@ export default function App() {
         <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
         <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
         
+
       </Routes>
       <Footer />
     </BrowserRouter>

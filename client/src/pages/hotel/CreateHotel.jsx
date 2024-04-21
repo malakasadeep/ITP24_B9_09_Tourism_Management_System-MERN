@@ -6,11 +6,11 @@ import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function CreateHotel() {
 
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
-        hotelImg: '',
         title: '',
         name:'',
         roomtype: '',
@@ -23,6 +23,7 @@ export default function CreateHotel() {
 	      description: '',
 	      contactName: '',
 	      contactNo: '',
+        availableWork:'',
 	      numberOfRoom: '',
 	      price: "",
 	      hotelImgs: [],
@@ -102,13 +103,37 @@ export default function CreateHotel() {
     };
 
     const handleChange = (e) => {
-        if (e.target.id === '3 Star Hotel' || e.target.id === '4 Star Hotel' || e.target.id === '5 Star Hotel') {
+        if (e.target.id === '3 Stars hotel' || e.target.id === '4 Stars hotel' || e.target.id === '5 Stars hotel') {
             setFormData({
                 ...formData,
                 type: e.target.id,
             });
+            
           
-        } if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
+        } 
+        if (e.target.id === 'available'||e.target.id === 'not available' ) {
+          setFormData({
+              ...formData,
+              availableWork: e.target.id,
+          });
+          
+        
+      } 
+      if (e.target.id === 'Single room' || e.target.id === 'Double room' || e.target.id === 'All') {
+        let roomtype;
+        if (e.target.id === 'All') {
+            roomtype = ['Single room', 'Double room'];
+        } else {
+            roomtype = e.target.id;
+        }
+    
+        setFormData({
+            ...formData,
+            roomtype: roomtype,
+        });
+    }
+    
+        if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
             setFormData({
                 ...formData,
                 [e.target.id]: e.target.value,
@@ -184,6 +209,7 @@ export default function CreateHotel() {
 
     return (
         <div className="flex justify-center">
+ 
           <form
             className="w-full max-w-lg"
          
@@ -252,6 +278,27 @@ export default function CreateHotel() {
                 </select>
               </div>
             </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3  md:mb-0">
+                <label
+                  for="Availablility"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
+                  Availablility
+                </label>
+                <select
+                  id="availableWork"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required onChange={handleChange} value={formData.availableWork}
+                >
+                  <option>--Availablility--</option>
+                  <option>available</option>
+                  <option>not available</option>
+                  
+                 
+                </select>
+              </div>
+            </div>
     
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -282,15 +329,15 @@ export default function CreateHotel() {
                     required onChange={handleChange} value={formData.province}
                     
                   >
-                    <option>SOUTHERN PROVINCE</option>
-                    <option>WESTERN PROVINCE</option>
-                    <option>CENTRAL PROVINCE</option>
-                    <option>SABARAGAMUWA PROVINCE</option>
-                    <option>EASTERN PROVINCE</option>
-                    <option>UVA PROVINCE</option>
-                    <option>NORTH WESTERN PROVINCE</option>
-                    <option>NORTH CENTRAL PROVINCE</option>
-                    <option>NORTHERN PROVINCE</option>
+                    <option>Southern Province</option>
+                    <option>Western Province</option>
+                    <option>Central Province</option>
+                    <option>Sabaragamuwa Province</option>
+                    <option>Eastern Province</option>
+                    <option>Uva Province</option>
+                    <option>North Western Province</option>
+                    <option>North Central Province</option>
+                    <option>Northern Province</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
@@ -408,18 +455,28 @@ export default function CreateHotel() {
                 />
               </div>
             </div>
-            <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype}/>
-                        <span>Single Room</span>
-                    </div>
-                    <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
-                        <span>Double Room</span>
-                    </div>
-                    <div className='flex gap-2'>
-                        <input type='checkbox' id='roomtype' className='w-5' onChange={handleChange} checked={formData.roomtype} />
-                        <span>Family Room</span>
-                    </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3  md:mb-0">
+                <label
+                  for="roomtype"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
+                  Room Type
+                </label>
+                <select
+                  id="roomtype"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  required onChange={handleChange} value={formData.roomtype}
+                >
+                  <option>--Room Type--</option>
+                  <option>All</option>
+                  <option>Single Room</option>
+                  <option>Double Room</option>
+                  
+                 
+                </select>
+              </div>
+            </div>
 
     
             <div className="flex flex-wrap -mx-3 mb-6">
