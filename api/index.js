@@ -6,13 +6,9 @@ import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
-import cors from "cors";
-
 
 //sasindu
 import Hotel from './routes/hotels.js';
-import path from 'path';
-const __dirname = path.resolve();
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
@@ -37,7 +33,6 @@ mongoose
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 

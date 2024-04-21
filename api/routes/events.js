@@ -6,6 +6,7 @@ import {
   getEvent,
   deleteEvent,
   updateEvent,
+  getEventSearch,
 } from "../controllers/eventController.js";
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.delete("/:id", deleteEvent);
 
 //UPDATE a event
 router.put("/:id", updateEvent);
+
+//SEARCH
+router.get("/search/get", getEventSearch);
 
 export default router;

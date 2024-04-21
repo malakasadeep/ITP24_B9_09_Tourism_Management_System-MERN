@@ -47,6 +47,14 @@ import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
 import SearchHotel from "./pages/hotel/SearchHotel";
 
+//shadini
+import CreateTrain from './pages/train/CreateTrain';
+import { AdminTrainManagement } from './components/train/AdminTrainManagement';
+import UpdateTrain from './pages/train/UpdateTrain';
+import AdminAddTrain from "./components/train/AdminAddTrain";
+import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -97,6 +105,7 @@ export default function App() {
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
 
+
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
         <Route path="/events/admin" element={<EventTable />} />
@@ -104,12 +113,23 @@ export default function App() {
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
+        {/*<Route path="/events/search/:id" element={<SearchEvent />} />*/}
+
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/Hotel/:hotelId" element={<Hotel />} />
         <Route path="/hotel-search" element={<SearchHotel />} />
-  
+        <Route path="/my-hotel/:hotelId" element={<Hotel />} />
+          
+        {/*Shadini*/}
+        <Route path='/add-train' element={<CreateTrain/>}/>
+        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
+        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
+        <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
+        <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
+        
+
       </Routes>
       <Footer />
     </BrowserRouter>
