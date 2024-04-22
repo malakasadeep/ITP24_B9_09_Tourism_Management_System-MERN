@@ -24,19 +24,19 @@ export default function HotelList() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchTerm = urlParams.get('searchTerm') || '';
-    const type = urlParams.get('type') || 'all';
-    const availableWork = urlParams.get('availableWork') || '';
-    const province = urlParams.get('province') || '';
-    const city = urlParams.get('city') || '';
-    const sort = urlParams.get('sort') || 'created_at';
-    const order = urlParams.get('order') || 'desc';
-    setSearchData({searchTerm, type, availableWork,province, city, sort, order});
+   // const type = urlParams.get('type') || 'all';
+   // const availableWork = urlParams.get('availableWork') || '';
+   // const province = urlParams.get('province') || '';
+   // const city = urlParams.get('city') || '';
+   // const sort = urlParams.get('sort') || 'created_at';
+    //const order = urlParams.get('order') || 'desc';
+    setSearchData({searchTerm});
     
 
     const fetchHotel = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/Hotel/gethotels?${searchQuery}`);
+      const res = await fetch(`/api/hotel/gethotels?${searchQuery}`);
       const data = await res.json();
       setHotels(data);
       setLoading(false);
@@ -73,12 +73,12 @@ export default function HotelList() {
     e.preventDefault();
     const urlParame = new URLSearchParams()
     urlParame.set('searchTerm', searchData.searchTerm)
-    urlParame.set('type', searchData.type)
-    urlParame.set('availableWork', searchData.availableWork)
-    urlParame.set('province', searchData.province)
-    urlParame.set('city', searchData.city)
-    urlParame.set('sort', searchData.sort)
-    urlParame.set('order', searchData.order)
+    // urlParame.set('type', searchData.type)
+    // urlParame.set('availableWork', searchData.availableWork)
+    // urlParame.set('province', searchData.province)
+    // urlParame.set('city', searchData.city)
+    // urlParame.set('sort', searchData.sort)
+    // urlParame.set('order', searchData.order)
     const searchQuery = urlParame.toString();
     navigate(`/admin/hotels?${searchQuery}`);
 };
@@ -129,7 +129,7 @@ export default function HotelList() {
         <div className="user--title">
           <h1>Hotel Management</h1>
           <div className="user--btn ml-60">
-            <HotelReport />
+            <HotelReport hotels={hotels} />
           </div>
         </div>
         <br />

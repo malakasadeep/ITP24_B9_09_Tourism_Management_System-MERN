@@ -31,7 +31,7 @@ export default function SearchHotel() {
         const fetchhotel = async () => {
             setLoading(true);
             const searchQuery = urlParams.toString();
-            const res = await fetch(`/api/Hotel/gethotels?${searchQuery}`);
+            const res = await fetch(`/api/hotels/gethotels?${searchQuery}`);
             const data = await res.json();
             setHotels(data);
             setLoading(false);

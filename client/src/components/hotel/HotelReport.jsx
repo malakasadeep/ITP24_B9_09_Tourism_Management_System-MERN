@@ -5,24 +5,8 @@ import "jspdf-autotable";
 import moment from "moment";
 import "../../assets/css/user/userList.css";
 
-export default function HotelReport() {
-  const [error, setError] = useState(false);
-  const [hotels, setHotels] = useState([]);
-
-  const handleShowHotels = async () => {
-    try {
-      const res = await fetch(`/api/Hotel/all-hotels`);
-      const data = await res.json();
-      if (data.success === false) {
-        setError(true);
-        return;
-      }
-      setHotels(data);
-    } catch (error) {
-      setError(true);
-    }
-  };
-  handleShowHotels();
+export default function HotelReport({hotels}) {
+  
 
   function generatePDF(hotels) {
     const doc = new jspdf();
