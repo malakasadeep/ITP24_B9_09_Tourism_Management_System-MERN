@@ -55,6 +55,16 @@ import AdminAddTrain from "./components/train/AdminAddTrain";
 import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
 
 
+//prabodhi
+import Add_Guide from "./pages/tourGuid/Add_Guide";
+import UpdateGuide from "./pages/tourGuid/UpdateGuide";
+import Guides from "./pages/tourGuid/Guides";
+import SearchGuid from "./pages/tourGuid/SearchGuid";
+import AdminGM from "./components/TourGuid/AdminGM";
+import AdminAddGuid from "./components/TourGuid/AdminAddGuid";
+import AdminGuidUpdate from "./components/TourGuid/AdminGuidUpdate";
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -128,8 +138,24 @@ export default function App() {
         <Route path='/admin/train' element={<AdminTrainManagement/>}/>
         <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
         <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
-        
 
+
+        {/* prabodhi */}
+        <Route path="/add-guide" element={<Add_Guide />}></Route>
+        <Route
+          path="/update-guide/:guidingId"
+          element={<UpdateGuide />}
+        ></Route>
+         <Route path="/guiding/:guidingId" element={<Guides />}></Route>
+         <Route path="/guid/search" element={<SearchGuid />} />
+         <Route path="/admin/guid" element={<AdminGM />} />
+        <Route path="/admin/guid/add" element={<AdminAddGuid />} />
+        <Route path="/admin/guid/:guidingId" element={<Guides />} />
+        <Route
+          path="/admin/guid/update/:guidingId"
+          element={<AdminGuidUpdate />}
+        />
+        
       </Routes>
       <Footer />
     </BrowserRouter>
