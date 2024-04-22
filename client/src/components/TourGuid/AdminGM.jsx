@@ -1,12 +1,10 @@
 import React from "react";
-import { AdminCard } from "../AdminCard";
-import { UserList } from "./UserList";
-
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
 import { Route, Routes } from "react-router-dom";
+import GuidList from "./GuidList";
 
-export const AdminUM = () => {
+export default function AdminGM() {
   return (
     <div
       className="dashboard"
@@ -16,10 +14,10 @@ export const AdminUM = () => {
       <div className="dashboard--content">
         <div>
           <Routes>
-            <Route path="/" element={<UserList />} />
+            <Route path="/" element={<GuidList />} />
           </Routes>
         </div>
       </div>
     </div>
   );
-};
+}

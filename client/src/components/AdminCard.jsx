@@ -35,6 +35,7 @@ const functions = [
   {
     name: "Tour Guid Management",
     icon: tour_agent,
+    link: "/admin/guid"
   },
   {
     name: "Event and Activity Management",

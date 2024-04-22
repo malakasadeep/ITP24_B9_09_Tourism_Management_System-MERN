@@ -6,13 +6,9 @@ import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
-import cors from "cors";
 
 //sasindu
 import Hotel from './routes/hotels.js';
-
-import path from 'path';
-const __dirname = path.resolve();
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
@@ -23,6 +19,9 @@ import trainRouter from './routes/train.routes.js';
 
 //dewni
 import eventRouter from "./routes/events.js";
+
+//prabodhi
+import guideRouter from './routes/tour-guideRouter.js';
 
 dotenv.config();
 
@@ -37,7 +36,6 @@ mongoose
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
@@ -60,6 +58,9 @@ app.use("/api/vehicle", Vehicle);
 
 //shadini
 app.use("/api/train",trainRouter);
+
+//prabodhi
+app.use('/api/tour-guide',guideRouter)
 
 
 
