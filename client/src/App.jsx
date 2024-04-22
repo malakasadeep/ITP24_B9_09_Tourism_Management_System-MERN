@@ -46,6 +46,10 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
 import SearchHotel from "./pages/hotel/SearchHotel";
+import UpdateHotel from "./pages/hotel/UpdateHotel";
+import AdminHM from "./components/hotel/AdminHm";
+import AdminHotelUpdate from "./components/hotel/AdminHotelUpdate";
+import AdminAddHotel from "./components/hotel/AdminAddHotel";
 
 //shadini
 import CreateTrain from "./pages/train/CreateTrain";
@@ -127,6 +131,16 @@ export default function App() {
         <Route path="/Hotel/:hotelId" element={<Hotel />} />
         <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
+        <Route path="/admin/hotels/*" element={<AdminHM />} />
+          <Route
+            path="/admin/hotels/update/:hotelId/*"
+            element={<AdminHotelUpdate />}
+          />
+          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
+        
+          
 
         {/*Shadini*/}
         <Route path="/add-train" element={<CreateTrain />} />

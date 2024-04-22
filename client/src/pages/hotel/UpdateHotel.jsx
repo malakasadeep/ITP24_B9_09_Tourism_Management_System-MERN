@@ -39,7 +39,8 @@ export default function UpdateHotel() {
     const [loading, setLoading] = useState(false);
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
-    const params = useParams();
+
+    console.log(formData);
   
     useEffect(() => {
       const fetchHotel = async () => {
@@ -162,80 +163,76 @@ if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 't
       [e.target.id]: e.target.value,
   });
 }
+}
 const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    if (formData.hotelImgs.length < 1) {
-      setError("Please upload atleast one image");
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Please upload atleast one image",
-      });
-      return;
-    }
-    if (+formData.price < +formData.offerprice) {
-      setError("Discount price must be lower than the regular price");
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Discount price must be lower than the regular price",
-      });
-      return;
-    }
-    setLoading(true);
-    setError(false);
-    const res = await fetch(`/api/hotel/update/${params.hotelId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...formData,
-        userRef: formData.userRef,
-      }),
-    });
-    const data = await res.json();
-    setLoading(false);
-    if (data.success === false) {
-      setError(data.message);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: `${data.message}`,
-      });
-    } else {
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Package Updated successfully",
-      });
-      if (currentUser.isadmin) {
-        navigate(`/admin/hotels`);
-      } else {
-        navigate(`/my-hotels/${data._id}`);
+    e.preventDefault();
+    try {
+      if (formData.imageUrls.length < 1) {
+        setError("Please upload atleast one image");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Please upload atleast one image",
+        });
+        return;
       }
+      if (+formData.price < +formData.offerprice) {
+        setError("Discount price must be lower than the regular price");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Discount price must be lower than the regular price",
+        });
+        return;
+      }
+      setLoading(true);
+      setError(false);
+      const res = await fetch(`/api/hotel/update/${params.hotelId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          userRef: formData.userRef,
+        }),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (data.success === false) {
+        setError(data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: `${data.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Package Updated successfully",
+        });
+        if (currentUser.isadmin) {
+          navigate(`/admin/hotels/*`);
+        } else {
+          navigate(`/my-hotels/${data._id}`);
+        }
+      }
+    } catch (error) {
+      setError(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: `${error.message}`,
+      });
+      setLoading(false);
     }
-  } catch (error) {
-    setError(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: `${error.message}`,
-    });
-    setLoading(false);
-  }
-};
-  }
+  };
 
   return (
     <div className="flex justify-center" >
  
-          <form
-            className="w-full max-w-lg"
-         
-            encType="multipart/form-data"onSubmit={handleSubmit}
-          >
+          <form  onSubmit={handleSubmit} className="w-full max-w-lg"encType="multipart/form-data">
             <h1 className="text-2xl font-bold mb-8 mt-8">
               Update Your <span className="text-[#41A4FF]">Hotel</span> and{" "}
               <span className="text-[#41A4FF]">Join</span> with us
