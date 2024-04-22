@@ -46,12 +46,11 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
-  
-  
+
 //shadini
-import CreateTrain from './pages/train/CreateTrain';
-import { AdminTrainManagement } from './components/train/AdminTrainManagement';
-import UpdateTrain from './pages/train/UpdateTrain';
+import CreateTrain from "./pages/train/CreateTrain";
+import { AdminTrainManagement } from "./components/train/AdminTrainManagement";
+import UpdateTrain from "./pages/train/UpdateTrain";
 
 export default function App() {
   return (
@@ -103,25 +102,23 @@ export default function App() {
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
 
-
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
-        <Route path="/events/admin" element={<EventTable />} />
+        <Route path="/admin/events" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
-        <Route path="/event/get/:id" element={<ShowEvent />} />
-         <Route path="/events/search/" element={<SearchEvent />} />
-
+        <Route path="/events/get/:id" element={<ShowEvent />} />
+        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
+        <Route path="/events/search/" element={<SearchEvent />} />
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
-          
-        <Route path='/add-train' element={<CreateTrain/>}/>
-        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
-        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
-        
+
+        <Route path="/add-train" element={<CreateTrain />} />
+        <Route path="/update-train/:trainID" element={<UpdateTrain />} />
+        <Route path="/admin/train" element={<AdminTrainManagement />} />
       </Routes>
       <Footer />
     </BrowserRouter>

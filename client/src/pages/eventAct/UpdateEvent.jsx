@@ -241,8 +241,8 @@ function CreateEvent() {
           title: "Success",
           text: "Package updated successfully",
         });
-        navigate(`/event/get/${data._id}`);
-        // navigate("/events/admin");
+        //navigate(`/event/get/${data._id}`);
+        navigate("/admin/events");
       }
     } catch (error) {
       setError(error.message);
@@ -258,7 +258,7 @@ function CreateEvent() {
   return (
     <div className=" mt-36">
       <h1 className="text-3xl font-semibold text-center my-7 mt-24">
-        Update  Event or Activity
+        Update Event or Activity
       </h1>
       <div className="flex items-center justify-center mt-2 container mx-auto">
         <form
@@ -353,13 +353,20 @@ function CreateEvent() {
                 >
                   Location
                 </label>
-                <input
+                <select
                   className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="location"
                   type="text"
                   onChange={handleChange}
-                  value={formData.location}
-                />
+                  checked={formData.location}
+                >
+                  <option value="Colombo">Colombo</option>
+                  <option value="Galle">Galle</option>
+                  <option value="Kandy">Kandy</option>
+                  <option value="Jaffna">Jaffna</option>
+                  <option value="Matara">Matara</option>
+                  <option value="Negombo">Negombo</option>
+                </select>
               </div>
 
               <div className="w-full">

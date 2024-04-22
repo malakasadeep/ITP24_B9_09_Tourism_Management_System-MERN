@@ -222,8 +222,8 @@ function CreateEvent() {
           title: "Success",
           text: "Event added successfully",
         });
-        navigate(`/event/get/${data._id}`);
-        //navigate("/events/admin");
+        //navigate(`/event/get/${data._id}`);
+        navigate("/admin/events");
       }
     } catch (error) {
       setError(error.message);
@@ -334,13 +334,20 @@ function CreateEvent() {
                 >
                   Location
                 </label>
-                <input
+                <select
                   className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="location"
                   type="text"
                   onChange={handleChange}
                   checked={formData.location}
-                />
+                >
+                  <option value="Colombo">Colombo</option>
+                  <option value="Galle">Galle</option>
+                  <option value="Kandy">Kandy</option>
+                  <option value="Jaffna">Jaffna</option>
+                  <option value="Matara">Matara</option>
+                  <option value="Negombo">Negombo</option>
+                </select>
               </div>
 
               <div className="w-full">

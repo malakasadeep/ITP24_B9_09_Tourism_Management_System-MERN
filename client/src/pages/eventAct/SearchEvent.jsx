@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "../../assets/img/event/event.jpg";
+import { EventCard } from "../../components/eventAct/EventCard";
+
+const ActivityList = ({ events }) => {
+  console.log(events);
+  return (
+    <div>
+      {events.map((event) => (
+        <EventCard
+          key={event._id}
+          id={event._id}
+          title={event.title}
+          description={event.description}
+          date={event.date}
+          location={event.location}
+          price={event.price}
+          image={event.imageUrls[0]}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default function SearchEvent() {
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState({
     searchTerm: "",
-    type: "all",
-    Event: false,
-    Activity: false,
-    participants: 0,
+    location: "all",
+    usertype: "all",
     sort: "created_at",
     order: "desc",
   });
-
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState([]);
 
@@ -20,53 +39,30 @@ export default function SearchEvent() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchTerm = urlParams.get("searchTerm") || "";
     const type = urlParams.get("type") || "all";
-    const offer = urlParams.get("Event") || false;
-    const dining = urlParams.get("Activity") || false;
-    const days = urlParams.get("Participants") || 0;
+    const location = urlParams.get("location") || "all";
     const sort = urlParams.get("sort") || "created_at";
     const order = urlParams.get("order") || "desc";
-    setSearchData({
-      searchTerm,
-      type,
-      Event,
-      Activity,
-      participants,
-      sort,
-      order,
-    });
+    setSearchData({ searchTerm, type, location, sort, order });
 
     const fetchEvent = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/Event/search/get?${searchQuery}`);
+      const res = await fetch(`/api/events/search/get?${searchQuery}`);
       const data = await res.json();
       setEvents(data);
+      console.log(data);
       setLoading(false);
     };
     fetchEvent();
   }, [location.search]);
 
   const handleChange = (e) => {
-    if (
-      e.target.id === "all" ||
-      e.target.id === "Event" ||
-      e.target.id === "Activity"
-    ) {
-      setSearchData({ ...searchData, type: e.target.id });
+    if (e.target.type === "select-one") {
+      setSearchData({ ...searchData, type: e.target.value });
+      setSearchData({ ...searchData, location: e.target.value });
     }
-
-    if (e.target.id === "Participants") {
-      setSearchData({ ...searchData, days: e.target.value });
-    }
-
     if (e.target.id === "searchTerm") {
       setSearchData({ ...searchData, searchTerm: e.target.value });
-    }
-
-    if (e.target.id === "sort_order") {
-      const sort = e.target.value.split("_")[0] || "created_at";
-      const order = e.target.value.split("_")[1] || "desc";
-      setSearchData({ ...searchData, sort, order });
     }
   };
 
@@ -75,126 +71,110 @@ export default function SearchEvent() {
     const urlParame = new URLSearchParams();
     urlParame.set("searchTerm", searchData.searchTerm);
     urlParame.set("type", searchData.type);
-    urlParame.set("Event", searchData.Event);
-    urlParame.set("Activity", searchData.Activity);
-    urlParame.set("Participants", searchData.participants);
-    urlParame.set("sort", searchData.sort);
-    urlParame.set("order", searchData.order);
+    urlParame.set("location", searchData.location);
     const searchQuery = urlParame.toString();
-    navigate(`/events/search/:id?${searchQuery}`);
+    navigate(`/events/search?${searchQuery}`);
   };
 
   return (
-    <>
-      <div className="flex flex-col md:flex-row mt-16">
-        <div className="p-7 border-b-2  md:border-r-2  border-white md:min-h-screen">
-          <form onSubmit={handleSubmit} className=" flex flex-col gap-8">
-            <div cla ssName="flex items-center gap-2">
-              <label className="whitespace-nowrap font-semibold">
-                {" "}
-                Search Term:
-              </label>
+    <div className="bg-cover bg-center">
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          marginTop: "120px",
+        }}
+      >
+        <div className="bg-[#DEEFFF] flex items-center justify-center w-full flex-col lg:flex-row ">
+          <div className="p-8 pt-5 md:p-24 md:pt-5 lg:p-5  ">
+            <h1 className="text-3xl md:text-3xl font-bold uppercase text-[#272727]">
+              Find the
+              <span className="text-[#41A4FF]"> Special Activity</span>
+              <br />
+              for your next stay today!
+              <span className="text-2xl block md:text-3xl font-bold uppercase text-[#272727]">
+                Explore our activities
+              </span>
+            </h1>
+            <div className="mb-1">
               <input
+                className="border rounded-lg px-4 py-2 w-full mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style={{ width: "700px" }}
                 type="text"
+                placeholder="Search activities"
+                onChange={handleChange}
                 id="searchTerm"
-                placeholder="Search...."
-                className="border rounded-lg p-3 w-full"
-                value={searchData.searchTerm}
-                onChange={handleChange}
               />
             </div>
-            <div className="flex flex-wrap gap-2 items-center">
-              <label htmlFor="" className="font-semibold">
-                Type:{" "}
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="checkbox"
-                  id="all"
-                  className="w-5"
-                  onChange={handleChange}
-                  checked={searchData.type === "all"}
-                />
-                <span>All</span>
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="checkbox"
-                  id="reguler"
-                  className="w-5"
-                  onChange={handleChange}
-                  checked={searchData.type === "Event"}
-                />
-                <span>Event</span>
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="checkbox"
-                  id="couple"
-                  className="w-5"
-                  onChange={handleChange}
-                  checked={searchData.type === "Activity"}
-                />
-                <span>Activity</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <label className="whitespace-nowrap font-semibold">
-                {" "}
-                No of Participants:
-              </label>
-              <input
-                type="number"
-                id="days"
-                placeholder="Participants"
-                className="border rounded-lg p-3 w-full"
-                value={searchData.participants}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex items-center gap-2">
-              <label className="font-semibold">Sort:</label>
-              <select
-                id="sort_order"
-                className="border rounded-lg p-3"
-                onChange={handleChange}
-                defaultValue={"created_at_desc"}
-              >
-                <option value="price_desc">Price high to low</option>
-                <option value="price_asc">Price low to hight</option>
-                <option value="createdAt_desc">Latest</option>
-                <option value="createdAt_asc">Oldest</option>
-              </select>
-            </div>
-            <button className="bg-transparent hover:bg-blue-500 text-blue-900 font-semibold text-2xl  hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded w-3/4 ml-12 mb-4">
-              Search
-            </button>
-          </form>
-        </div>
-        <div className="flex-1">
-          <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
-            Event results:
-          </h1>
-          <div className="p-7 flex flex-wrap gap-2">
-            {!loading && events.length === 0 && (
-              <p className="text-2xl text-center p-5 text-blue-950">
-                No event found!
-              </p>
-            )}
-            {loading && (
-              <div className="flex flex-col items-center justify-center">
-                <img src={loadingimg} alt="loading" className="w-28" />
-                <p className="text-lg w-full text-center">Loading....</p>
-              </div>
-            )}
-            {!loading &&
-              events &&
-              events.map((evnt) => <EventCard key={evnt._id} evnt={evnt} />)}
+          </div>
+          <div className="p-4">
+            <img
+              src={backgroundImage}
+              alt="image-description"
+              style={{ borderRadius: "10px", width: "500px", height: "auto" }}
+            />
           </div>
         </div>
       </div>
-    </>
+      <div
+        className="flex max-w-7xl mx-auto p-4 gap-10 mt-10"
+        style={{ marginBottom: "20rem" }}
+      >
+        <div className="w-1/3 pr-4 ">
+          <h2 className="text-lg font-semibold mb-2">Filter Activities</h2>
+          <div className="mb-4">
+            <label className="block font-medium mb-2">Location</label>
+            <select
+              className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="location"
+              onChange={handleChange}
+            >
+              <option value="all">ALL</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Galle">Galle</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Matara">Matara</option>
+              <option value="Negombo">Negombo</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block font-medium mb-2">Activity Type</label>
+            <select
+              className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="type"
+              onChange={handleChange}
+            >
+              <option value="all">All</option>
+              <option value="Activity">Activity</option>
+              <option value="Event">Event</option>
+            </select>
+          </div>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4"
+            onClick={handleSubmit}
+          >
+            Search
+          </button>
+        </div>
+        <div className="w-3/4 ">
+          {loading ? (
+            <div className="flex items-center justify-center">
+              {/* <CircularProgress /> */}
+            </div>
+          ) : (
+            <>
+              {events.length > 0 ? (
+                <ActivityList events={events} />
+              ) : (
+                <p>No activities found.</p>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
