@@ -40,12 +40,12 @@ const functions = [
   {
     name: "Event and Activity Management",
     icon: event,
-    link: "/events/admin",
+    link: "/admin/events",
   },
   {
     name: "Train Reservation Management",
     icon: train,
-    link: '/admin/train'
+    link: "/admin/train",
   },
 ];
 export const AdminCard = () => {

@@ -32,6 +32,7 @@ import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
+import SearchEvent from "./pages/eventAct/SearchEvent";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -66,6 +67,7 @@ import SearchGuid from "./pages/tourGuid/SearchGuid";
 import AdminGM from "./components/tourGuid/AdminGM";
 import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
 import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
+
 
 export default function App() {
   return (
@@ -119,12 +121,16 @@ export default function App() {
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
-        <Route path="/events/admin" element={<EventTable />} />
+        <Route path="/admin/events" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
+        <Route path="/events/get/:id" element={<ShowEvent />} />
+        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
+        <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
         {/*<Route path="/events/search/:id" element={<SearchEvent />} />*/}
+
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
@@ -167,6 +173,8 @@ export default function App() {
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
+            
+            
       </Routes>
       <Footer />
     </BrowserRouter>

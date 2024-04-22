@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import "./../assets/css/Home.css";
 import guidimg from "./../assets/img/4670.gif";
 import Bubbles from "../components/Bubbles";
+import eventbanner from "../assets/img/event/banner.jpg";
 
 export default function Home() {
   const [packages, setPackages] = useState([]);
-  const [hotels, sethotels] = useState([]);
+  // const [hotels, sethotels] = useState([]);
 
   useEffect(() => {
     const fetchPkg = async () => {
@@ -129,6 +130,43 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      <div>
+        <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
+          <div className="relative">
+            {/* Image */}
+            <img src={eventbanner} className="h-80 w-full" alt="Event Banner" />
+
+            {/* Overlay Content */}
+            <div className="absolute inset-0 flex flex-col mt-10 ml-10">
+              <h2 className="text-2xl font-semibold text-slate-600">
+                Events and Activities
+              </h2>
+              <p>
+                This heading, "Events," serves as a prominent title for the
+                <br />
+                section dedicated to events and activities within a tourism
+                <br />
+                management system. It signifies a focal point where users can
+                <br />
+                explore various events and activities available through the
+                <br />
+                system.
+              </p>
+              <Link
+                to={"/events/search/"}
+                className="text-sm text-white hover:underline"
+              >
+                <button className="bg-blue-900 p-5 w-80 rounded-3xl mt-6">
+                  Explore Events
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div>
 
       {
         <div>
