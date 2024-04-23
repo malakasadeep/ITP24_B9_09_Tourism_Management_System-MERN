@@ -1,12 +1,11 @@
 import React from "react";
-import { AdminCard } from "../AdminCard";
-import { UserList } from "./UserList";
 
 import "../../assets/css/adminContent.css";
 import { Sidebar } from "../Sidebar";
 import { Route, Routes } from "react-router-dom";
+import HotelList from "./HotelList";
 
-export const AdminUM = () => {
+export default function AdminPM() {
   return (
     <div
       className="dashboard"
@@ -16,10 +15,10 @@ export const AdminUM = () => {
       <div className="dashboard--content">
         <div>
           <Routes>
-            <Route path="/" element={<UserList />} />
+            <Route path="/" element={<HotelList />} />
           </Routes>
         </div>
       </div>
     </div>
   );
-};
+}
