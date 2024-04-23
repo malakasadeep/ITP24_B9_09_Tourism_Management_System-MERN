@@ -220,10 +220,10 @@ function CreateEvent() {
         Swal.fire({
           icon: "success",
           title: "Success",
-          text: "Package added successfully",
+          text: "Event added successfully",
         });
-        navigate(`/event/get/${data._id}`);
-        //navigate("/events/admin");
+        //navigate(`/event/get/${data._id}`);
+        navigate("/admin/events");
       }
     } catch (error) {
       setError(error.message);
@@ -258,7 +258,7 @@ function CreateEvent() {
                 </label>
                 <div className="relative">
                   <select
-                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="block appearance-none w-full bg-white-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="type"
                     type="text"
                     onChange={handleChange}
@@ -288,7 +288,7 @@ function CreateEvent() {
                   Name
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  className="appearance-none block w-full bg-white-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="title"
                   type="text"
                   onChange={handleChange}
@@ -303,7 +303,7 @@ function CreateEvent() {
                   Date
                 </label>
                 <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="date"
                   type="date"
                   onChange={handleChange}
@@ -318,7 +318,7 @@ function CreateEvent() {
                   Time
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="time"
                   type="time"
                   placeholder="12.00 AM"
@@ -334,13 +334,20 @@ function CreateEvent() {
                 >
                   Location
                 </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                <select
+                  className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="location"
                   type="text"
                   onChange={handleChange}
                   checked={formData.location}
-                />
+                >
+                  <option value="Colombo">Colombo</option>
+                  <option value="Galle">Galle</option>
+                  <option value="Kandy">Kandy</option>
+                  <option value="Jaffna">Jaffna</option>
+                  <option value="Matara">Matara</option>
+                  <option value="Negombo">Negombo</option>
+                </select>
               </div>
 
               <div className="w-full">
@@ -351,7 +358,7 @@ function CreateEvent() {
                   Price
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="price"
                   type="number"
                   onChange={handleChange}
@@ -367,7 +374,7 @@ function CreateEvent() {
                   Max participants (0 = unlimited)
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="MaxParticipants"
                   type="number"
                   onChange={handleChange}
@@ -384,7 +391,7 @@ function CreateEvent() {
                 </label>
                 <textarea
                   type="text"
-                  className="border p-3 rounded-lg resize appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="border p-3 rounded-lg resize appearance-none block w-full bg-white-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="description"
                   onChange={handleChange}
                   checked={formData.description}
