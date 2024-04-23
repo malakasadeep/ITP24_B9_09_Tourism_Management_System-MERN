@@ -15,9 +15,9 @@ const AddVehicle = () => {
         brand: '',
         model:'',
         type: '',
-	      regno: "",
-	      seats: 0,
-	      transmission: "",
+	    regno: "",
+	    seats: 0,
+	    transmission: "",
         price:0,
 	      description: "",
 	      location: "",
@@ -190,7 +190,7 @@ const handleChange = (e) => {
 
         return (
           <main className='p-3 max-w-4xl mx-auto'>
-            
+            <BackButton/>
           <h1 className='text-3xl font-semibold text-center my-7 mt-24'>Update Vehicle</h1>
   
           <form className='flex flex-col sm:flex-row gap-4' onSubmit={handleSubmit}>

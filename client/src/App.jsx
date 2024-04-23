@@ -1,3 +1,4 @@
+
 //malaka
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./pages/About";
@@ -26,6 +27,7 @@ import AdminAddUser from "./components/user/AdminAddUser";
 import AdminPM from "./components/tour-packages/AdminPM";
 import AdminPackageUpdate from "./components/tour-packages/AdminPackageUpdate";
 import AdminAddPkg from "./components/tour-packages/AdminAddPkg";
+
 
 //dewni
 import CreateEvent from "./pages/eventAct/CreateEvent";
@@ -113,8 +115,6 @@ export default function App() {
         <Route path="/Admin/Vehicle/get/:id" element={<ShowVehicle />} />
         <Route path="/admin/vehicle/add" element={<AdminVehicleAdd />} />
         <Route path="/admin/vehicle/update/:id" element={<AdminVehicleUpdate />} />
-
-
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />

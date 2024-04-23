@@ -46,7 +46,9 @@ router.get("/", (req, res)=>{
 
 router.route("/update/:id").put(async (req,res)=>{
     let vehiId =req.params.id;
+
     const {ownername,brand,model,type,regno,seats,transmission,capacity,price,description,location} = req.body;
+
 
     const updateVehicle = {
         ownername,
@@ -114,6 +116,10 @@ router.get("/find",async (req, res, next) => {
            // title: {$regex: searchTerm, $options: 'i'},
             type,
            location,
+            //title: {$regex: searchTerm, $options: 'i'},
+            type,
+            location,
+
         })
         .sort({[sort]: order})
         .limit(limit)

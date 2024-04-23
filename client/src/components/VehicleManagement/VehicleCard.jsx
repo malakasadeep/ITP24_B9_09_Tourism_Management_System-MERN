@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { LuHotel } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 import { RxActivityLog } from "react-icons/rx";
+import {  FaStar } from "react-icons/fa";
+
 
 const VehicleCard = (props) => {
 
