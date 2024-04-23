@@ -73,7 +73,13 @@ const ShowEvent = () => {
         )}
         {event && !loading && !error && (
           <div className="">
-            <div className="w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl ">
+            <div
+              className="w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: "cover",
+              }}
+            >
               <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -203,15 +209,7 @@ const ShowEvent = () => {
                   </div>
                 )}
               </div>
-              <hr
-                className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950"
-                style={{
-                  backgroundImage: `url(${bg})`,
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                }}
-              />
+              <hr className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950" />
             </div>
             {/*<div className="absolute top-0 right-0 mt-[550px] mr-[30px] w-[400px] h-auto  bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl">
               <div>
