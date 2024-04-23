@@ -43,6 +43,7 @@ import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import VehicleHome from "./pages/VehicleManagement/VehicleHome"
 import VehicleAdmin from "./pages/VehicleManagement/AdminVM";
+import VehicleBook from "./pages/VehicleManagement/VehicleBook";
 
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
@@ -53,6 +54,8 @@ import Hotel from "./pages/hotel/Hotel";
 import CreateTrain from './pages/train/CreateTrain';
 import { AdminTrainManagement } from './components/train/AdminTrainManagement';
 import UpdateTrain from './pages/train/UpdateTrain';
+import AdminVehicleAdd from "./components/VehicleManagement/AdminVehicleAdd";
+import AdminVehicleUpdate from "./components/VehicleManagement/AdminVehicleUpdate";
 
 export default function App() {
   return (
@@ -103,8 +106,13 @@ export default function App() {
         <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="/VehicleHome" element={<VehicleHome />} />
-        <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
-        <Route path="VehicleAdmin" element={<VehicleAdmin />} />
+        <Route path="/Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="/Vehicle/book/:id" element={<VehicleBook />} />
+
+        <Route path="/Admin/Vehicle" element={<VehicleAdmin />} />
+        <Route path="/Admin/Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="/admin/vehicle/add" element={<AdminVehicleAdd />} />
+        <Route path="/admin/vehicle/update/:id" element={<AdminVehicleUpdate />} />
 
 
 

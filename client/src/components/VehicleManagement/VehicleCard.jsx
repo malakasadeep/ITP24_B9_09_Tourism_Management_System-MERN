@@ -1,39 +1,76 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 //import {  FaStar } from "react-icons/fa";
+import { LuHotel } from "react-icons/lu";
+import { SlCalender } from "react-icons/sl";
+import { RxActivityLog } from "react-icons/rx";
 
 const VehicleCard = (props) => {
 
   return (
-    <div className='flex flex-col w-[300px] md:w-[300px] items-center border shadow-lg m-auto mb-8  rounded-lg bg-white'>
-        <img src = {props.image[0]} alt='vehicle' className='rounded-lg'/>
-        
-        <h1 className='py-2 text-1xl font-bold border-b'>{props.brand + " " + props.model}</h1>
-        {/* <div className='flex items-center'>
-            <div className='flex'>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            <FaStar/>
-            </div>
-            <p className='px-2'>4.5</p>
-        </div> */}
-        <div className='flex '>
-            <p className=''>{props.capacity} People</p>
-            <p className='px-4'>{props.transmissionType}</p>
-        </div>
-        <p>{props.fuelType}</p>
-        <div className='flex items-center justify-center'>
-        <h1 className='text-2xl font-bold py-3'>Rs. {props.price}</h1>
-        <h1 className=''>/per day</h1>
-        </div>
-        <Link to ={`/VehicleBook/${props.id}`} className='w-full'>
-        <button className='bg-[#41A4FF] text-white rounded-md font-medium py-3 w-full'  >Reserve Now</button>
-        </Link>
-    </div>
+    <div className='frame'>
+    <div className='border-collapse- shadow-md hover:shadow-lg transition-colors overflow-hidden rounded-lg w-[330px] h-auto backdrop-blur-md' >
+       <Link to={`/Vehicle/book/${props.id}`}>
+            
+            <img src={props.image} className='h-[320px] sm:h-[220px] w-full hover:scale-105 transition-scale duration-300'/>
+            <div>
+                
+          <div className='flex flex-col items-center justify-center container '>
+            <div className='grid grid-cols-3 gap-x-1 gap-y-1'>
+              <div>
+                  
+                    <div className='flex flex-row items-center gap-1  rounded-lg'>
+                    <SlCalender />
 
-    
+                    <div className='text-center'>
+                      <p className='text-sm font-light text-black'>{+props.seats}</p>
+                      <p className='text-xs text-black'>seats</p>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div>
+                  
+                    <div className='flex flex-row items-center gap-1   rounded-lg'>
+                    <LuHotel />
+                    <div className='text-center'>
+                      <p className='text-sm font-light text-black'>{+props.capacity}</p>
+                      <p className='text-xs text-black'>CC</p>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div>
+                  
+                    <div className='flex flex-row items-center gap-1  rounded-lg'>
+                    <RxActivityLog />
+                    <div className='text-center'>
+                      <p className='text-sm font-light text-black'>{+props.transmission}</p>
+                     
+                    </div>
+                  </div>
+                  
+                </div>
+            </div>
+          </div>
+            </div>
+            <div className='p-1'>
+                <p className='truncate text-xl font-semibold text-black'>{props.brand}  {props.model}</p>
+            </div>
+
+         
+              <div className='text-center'>
+                  <div className='text-center'>
+                            <p className='font-semibold text-2xl text-white bg-blue-400 '>$ {props.price}</p>
+                            
+                            
+                      </div>
+                  </div>
+        </Link>
+        </div>
+    </div>
   )
 }
 

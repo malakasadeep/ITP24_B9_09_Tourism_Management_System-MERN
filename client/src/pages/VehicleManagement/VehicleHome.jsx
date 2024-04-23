@@ -126,7 +126,7 @@ const VehicleHome = () => {
                       <VehicleCard
                           key={vehicle._id}
                           brand={vehicle.brand}
-                          image={vehicle.imageUrls}
+                          image={vehicle.imageUrls[0]}
                           model={vehicle.model}
                           price={vehicle.price}
                           transmissionType={vehicle.transmissionType}

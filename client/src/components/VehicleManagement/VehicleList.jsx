@@ -1,74 +1,93 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdInfo } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import "../../assets/css/user/userList.css";
-import UserReport from "./UserReport";
+import VehicleReport from "./VehicleReport";
 import Swal from "sweetalert2";
 import loadingimg from "../../assets/img/loading.gif";
+import axios from 'axios';
 
 export const VehicleList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Initial state setup for search parameters and vehicle data
+  const urlParams = new URLSearchParams(location.search); // Create an instance of URLSearchParams
   const [searchData, setSearchData] = useState({
-    searchTerm: "",
-    usertype: "all",
-    sort: "created_at",
-    order: "desc",
+      type: urlParams.get('type') || 'all',
+      location: urlParams.get('location') || 'all',
+      sort: urlParams.get('sort') || 'created_at',
+      order: urlParams.get('order') || 'desc',
   });
+  const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
+
+  // Debounce function to delay search request
+  const debounce = (func, delay) => {
+      let timer;
+      return function() {
+          clearTimeout(timer);
+          timer = setTimeout(() => func.apply(this, arguments), delay);
+      };
+  };
+
+  // Fetch vehicles based on search data
+  const fetchVehicles = debounce(async () => {
+      setLoading(true);
+      try {
+          const urlParams = new URLSearchParams(searchData).toString();
+          const response = await axios.get(`/api/vehicle/find?${urlParams}`);
+          setVehicles(response.data);
+          setError(null);
+      } catch (err) {
+          setError("Failed to fetch vehicles. Please try again.");
+          console.error(err);
+      } finally {
+          setLoading(false);
+      }
+  }, 300);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchTerm = urlParams.get("searchTerm") || "";
-    const type = urlParams.get("type") || "all";
-    const sort = urlParams.get("sort") || "created_at";
-    const order = urlParams.get("order") || "desc";
-    setSearchData({ searchTerm, type, sort, order });
+      fetchVehicles();
+  }, [searchData]);
 
-    const fetchPkg = async () => {
-      setLoading(true);
-      const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/user/search?${searchQuery}`);
-      const data = await res.json();
-      setUsers(data);
-      setLoading(false);
-    };
-    fetchPkg();
-  }, [location.search]);
-
+  // Handler for search form changes
   const handleChange = (e) => {
-    if (e.target.type === "select-one") {
-      setSearchData({ ...searchData, type: e.target.value });
-    }
-    if (e.target.id === "searchTerm") {
-      setSearchData({ ...searchData, searchTerm: e.target.value });
-    }
+      const { id, value, type } = e.target;
+      const field = id || e.target.name; // Use id or name as the field identifier
+
+      setSearchData(prevSearchData => ({
+          ...prevSearchData,
+          [field]: value
+      }));
   };
 
+  // Handler for form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParame = new URLSearchParams();
-    urlParame.set("searchTerm", searchData.searchTerm);
-    urlParame.set("type", searchData.type);
-    const searchQuery = urlParame.toString();
-    navigate(`/admin/user?${searchQuery}`);
+      e.preventDefault();
+      const urlParams = new URLSearchParams(searchData).toString();
+      navigate(`/admin/vehicle?${urlParams}`);
+      fetchVehicles();
   };
 
-  const handleUserDelete = async (userId) => {
+
+  const handleUserDelete = async (vehicleId) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#3085d6", 
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`/api/user/delete-user/${userId}`, {
+          
+          const res = await fetch(`/api/vehicle/delete/${vehicleId}`, {
             method: "DELETE",
           });
           const data = await res.json();
@@ -81,7 +100,7 @@ export const VehicleList = () => {
             text: "User has been deleted.",
             icon: "success",
           });
-          setUsers((prev) => prev.filter((user) => user._id !== userId));
+          setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== vehicleId));
         } catch (error) {
           console.log(error.message);
         }
@@ -94,33 +113,25 @@ export const VehicleList = () => {
       <div className="list--header">
         <div className="user--title">
           <h1>Vehicles Management</h1>
-          <div className="user--btn ml-96">
-            <UserReport />
+          <div className="user--btn">
+            <VehicleReport vehicles={vehicles} />
           </div>
         </div>
-        <br />
-        <div className="search--line">
-          <input
-            type="text"
-            placeholder="Search..."
-            onChange={handleChange}
-            id="searchTerm"
-          />
-          <select
-            className="border p-3 rounded-lg ml-5 bg-slate-200"
-            name="type"
-            id="type"
-            required
-            onChange={handleChange}
-          >
-            <option className="text-slate-400" hidden>
-              User Type
-            </option>
-            <option value="all">All</option>
-            <option value="car">car</option>
-            <option value="van">van</option>
-            <option value="bike">bike</option>
-          </select>
+        <br /> 
+          <div className='search--line'>
+                          <label htmlFor='location' className='py-3'>Pick-up Location</label>
+                          <input type='text' list='city' className='border rounded-md p-3 lg:w-[300px] w-full' placeholder='Colombo' onChange={handleChange} id="location" name="location" />
+                          <datalist id='city'>
+                          <option value='all' />
+                              <option value='Colombo' />
+                              <option value='Galle' />
+                              <option value='Matara' />
+                              <option value='Mount Lavinia' />
+                              <option value='Kandy' />
+                              <option value='Katunayake Airport' />
+                              <option value='Negombo' />
+                          </datalist>
+                      
           <button
             onClick={handleSubmit}
             className="bg-transparent hover:bg-blue-500 text-blue-900 font-semibold text-2xl  hover:text-white border border-blue-900 hover:border-transparent rounded ml-10 px-16"
@@ -130,7 +141,7 @@ export const VehicleList = () => {
         </div>
 
         <div class="list--container">
-          {!loading && users.length === 0 && (
+          {!loading && vehicles.length === 0 && (
             <p className="text-2xl text-center p-5 text-blue-950">
               No Users found
             </p>
@@ -141,42 +152,64 @@ export const VehicleList = () => {
               <p className="text-lg w-full text-center">Loading....</p>
             </div>
           )}
-          {!loading && users.length > 0 && (
+          {!loading && vehicles.length > 0 && (
             <table class="list">
-              <tbody>
-                <tr className="font-semibold text-blue-900 text-lg text-left">
-                  <td>User</td>
-                  <td>Name</td>
-                  <td>Email</td>
+              <tbody className="text-center items-center">
+                <tr className="font-semibold text-blue-900 text-lg text-center">
+                  <td>Vehicle</td>
                   <td>Type</td>
-                  <td>Country</td>
+                  <td>Owner Name</td>
+                  <td>Reg.No</td>
+                  <td>Location</td>
+                  <td>Seats</td>
+                  <td>Price</td>
                   <td>Action</td>
                 </tr>
 
-                {users.map((user) => (
-                  <tr className="text-left" key={user._id}>
-                    <td>
-                      <div className="user--details text-left ">
-                        <img src={user.avatar} alt="" className="user--img" />
-                        <h2>{user.username}</h2>
+                {vehicles.map((vehicles) => (
+                  <tr className="w-1/2 mx-auto text-center" key={vehicles._id}>
+                    <td className="w-full">
+                      <div className="flex flex-col items-center justify-center">
+                      <div className="flex items-center">
+                          <img
+                            src={vehicles.imageUrls[0]}
+                            alt=""
+                            className="h-20 w-20 object-contain"
+                          />
+                        </div>
+                        <div>
+                          <h2 className="">{vehicles.brand } {vehicles.model}</h2>
+                        </div>
                       </div>
                     </td>
-                    <td>{user.firstname}</td>
-                    <td>{user.email}</td>
-                    <td>{user.usertype}</td>
-                    <td>{user.country}</td>
+                    <td>{vehicles.type}</td>
+                    <td>{vehicles.ownername}</td>
+                    <td>{vehicles.regno}</td>
+                    <td>{vehicles.location}</td>
+                    <td>{vehicles.seats}</td>
+                    <td>{vehicles.price}</td>
                     <td className="">
-                      <div className="flex">
-                        <Link to={`/admin/user/${user._id}`} className="btn1">
+                    <div className="flex gap-2">
+                        <Link
+                          to={`/admin/vehicle/get/${vehicles._id}`}
+                          className="p-2 bg-blue-700 rounded-lg text-white"
+                        >
                           <MdInfo className="text-2xl" />
                         </Link>
+                        <Link
+                          to={`/admin/vehicle/update/${vehicles._id}`}
+                          className="p-2 bg-green-700 rounded-lg text-white"
+                        >
+                          <FaEdit className="text-2xl" />
+                        </Link>
                         <button
-                          className="btnD"
-                          onClick={() => handleUserDelete(user._id)}
+                          className="p-2 bg-red-700 rounded-lg text-white"
+                          onClick={() => handleUserDelete(vehicles._id)}
                         >
                           <MdDeleteForever className="text-2xl" />
                         </button>
                       </div>
+                      
                     </td>
                   </tr>
                 ))}

@@ -46,7 +46,7 @@ router.get("/", (req, res)=>{
 
 router.route("/update/:id").put(async (req,res)=>{
     let vehiId =req.params.id;
-    const {ownername,brand,model,type,regno,seats,transmission,price,description,location} = req.body;
+    const {ownername,brand,model,type,regno,seats,transmission,capacity,price,description,location} = req.body;
 
     const updateVehicle = {
         ownername,
@@ -56,6 +56,7 @@ router.route("/update/:id").put(async (req,res)=>{
         regno,
         seats,
         transmission,
+        capacity,
         price,
         description,
         location

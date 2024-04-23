@@ -32,7 +32,11 @@ const vehicleSchema = new Schema({
     },
     transmission:{
         type : String,
-       
+        required: true,
+    },
+    capacity:{
+        type : Number,
+        required: true,
     },
     price:{
         type : Number,

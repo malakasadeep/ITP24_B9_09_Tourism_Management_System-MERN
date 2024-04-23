@@ -5,65 +5,46 @@ import "jspdf-autotable";
 import moment from "moment";
 import "../../assets/css/user/userList.css";
 
-export default function UserReport() {
-  const [error, setError] = useState(false);
-  const [users, setUsers] = useState([]);
+export default function VehicleReport({vehicles}) {
 
-  const handleShowPackages = async () => {
-    try {
-      const res = await fetch(`/api/user/all-Users`);
-      const data = await res.json();
-      if (data.success === false) {
-        setError(true);
-        return;
-      }
-      setUsers(data);
-    } catch (error) {
-      setError(true);
-    }
-  };
-  handleShowPackages();
-
-  function generatePDF(users) {
+  function generatePDF(vehicles) {
     const doc = new jspdf();
     const tableColumn = [
       "No",
-      "Name",
-      "Email",
-      "Country",
-      "Type",
-      "Created at",
+      "Vehicle",
+      "Owner Name",
+      "Reg.No",
+      "Location",
+      "No of Seats",
+      "Price",
     ];
     const tableRows = [];
 
-    users
+    vehicles
       .slice(0)
       .reverse()
-      .map((user, index) => {
-        const userProfilePic = new Image();
-        userProfilePic.src = user.avatar; // Assuming profilePicture is the URL of the user's profile picture
-        const ticketData = [
+      .map((vehicles, index) => {
+        const Data = [
           index + 1,
-          user.username,
-          user.email,
-          user.country,
-          user.usertype,
-          moment(user.createdAt).format("MM/DD/YYYY h:mm A"),
+          vehicles.brand + " " + vehicles.model,
+          vehicles.ownername,
+          vehicles.regno,
+          vehicles.location,
+          vehicles.seats,
+          "$" + vehicles.price,
         ];
-        tableRows.push(ticketData);
+        tableRows.push(Data);
       });
 
     const date = Date().split(" ");
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
-    const logo = new Image();
-    logo.src = "../../assets/img/Logo14.png";
 
     doc.setFontSize(28).setFont("Mooli", "bold").setTextColor(65, 164, 255);
     doc.text("TourCraft", 80, 15);
 
     doc.setFont("helvetica", "normal").setFontSize(20).setTextColor(0, 0, 0);
-    doc.text("User Details Report", 75, 25);
+    doc.text("Vehicles Details Report", 75, 25);
 
     doc.setFont("times", "normal").setFontSize(15).setTextColor(100, 100, 100);
     doc.text(`Report Generated Date: ${dateStr}`, 65, 35);
@@ -96,18 +77,18 @@ export default function UserReport() {
       },
     });
 
-    doc.save(`User-Details-Report_${dateStr}.pdf`);
+    doc.save(`Vehicles-Details-Report_${dateStr}.pdf`);
   }
 
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-1 ml-9">
-        <Link to={"/admin/user/add"} className="btn1">
-          Add User
+        <Link to={"/admin/vehicle/add"} className="btn1">
+          Add New Vehicle
         </Link>
         <button
           onClick={() => {
-            generatePDF(users);
+            generatePDF(vehicles);
           }}
           className="btn2"
         >
