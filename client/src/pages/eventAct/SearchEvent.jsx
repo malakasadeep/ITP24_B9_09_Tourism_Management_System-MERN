@@ -6,24 +6,22 @@ import { EventCard } from "../../components/eventAct/EventCard";
 const ActivityList = ({ events }) => {
   console.log(events);
   return (
-    <div>
-      <div className="flex flex-cols-3 gap-4">
-        {events.map((event) => (
-          <div key={event._id}>
-            <EventCard
-              id={event._id}
-              title={event.title}
-              description={event.description}
-              date={event.date}
-              location={event.location}
-              price={event.price}
-              type={event.type}
-              time={event.time}
-              image={event.imageUrls[0]}
-            />
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-3 gap-10">
+      {events.map((event) => (
+        <div key={event._id}>
+          <EventCard
+            id={event._id}
+            title={event.title}
+            description={event.description}
+            date={event.date}
+            location={event.location}
+            price={event.price}
+            type={event.type}
+            time={event.time}
+            image={event.imageUrls[0]}
+          />
+        </div>
+      ))}
     </div>
   );
 };
@@ -126,7 +124,7 @@ export default function SearchEvent() {
         className="flex max-w-7xl mx-auto  mt-10"
         style={{ marginBottom: "20rem" }}
       >
-        <div className="w-1/3 pr-4 ">
+        <div className="w-1/5 pr-4 ">
           <h2 className="text-lg font-semibold mb-2">Filter Activities</h2>
           <div className="mb-4">
             <label className="block font-medium mb-2">Location</label>
@@ -164,9 +162,9 @@ export default function SearchEvent() {
             Search
           </button>
         </div>
-        <div className="w-full flex items-center justify-center">
+        <div className="w-5/6">
           {loading ? (
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-cente">
               {/* <CircularProgress /> */}
             </div>
           ) : (

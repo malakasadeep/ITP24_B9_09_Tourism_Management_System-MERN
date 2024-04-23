@@ -1,4 +1,3 @@
-
 //malaka
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./pages/About";
@@ -28,7 +27,6 @@ import AdminPM from "./components/tour-packages/AdminPM";
 import AdminPackageUpdate from "./components/tour-packages/AdminPackageUpdate";
 import AdminAddPkg from "./components/tour-packages/AdminAddPkg";
 
-
 //dewni
 import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
@@ -44,7 +42,7 @@ import EditBook from "./pages/VehicleManagement/EditVehicle";
 import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
-import VehicleHome from "./pages/VehicleManagement/VehicleHome"
+import VehicleHome from "./pages/VehicleManagement/VehicleHome";
 import VehicleAdmin from "./pages/VehicleManagement/AdminVM";
 import VehicleBook from "./pages/VehicleManagement/VehicleBook";
 import AdminVehicleAdd from "./components/VehicleManagement/AdminVehicleAdd";
@@ -74,7 +72,6 @@ import SearchGuid from "./pages/tourGuid/SearchGuid";
 import AdminGM from "./components/tourGuid/AdminGM";
 import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
 import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
-
 
 export default function App() {
   return (
@@ -131,8 +128,10 @@ export default function App() {
         <Route path="/Admin/Vehicle" element={<VehicleAdmin />} />
         <Route path="/Admin/Vehicle/get/:id" element={<ShowVehicle />} />
         <Route path="/admin/vehicle/add" element={<AdminVehicleAdd />} />
-        <Route path="/admin/vehicle/update/:id" element={<AdminVehicleUpdate />} />
-
+        <Route
+          path="/admin/vehicle/update/:id"
+          element={<AdminVehicleUpdate />}
+        />
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
@@ -145,22 +144,19 @@ export default function App() {
         <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
 
-
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/Hotel/:hotelId" element={<Hotel />} />
         <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
         <Route path="/admin/hotels/*" element={<AdminHM />} />
-          <Route
-            path="/admin/hotels/update/:hotelId/*"
-            element={<AdminHotelUpdate />}
-          />
-          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
-          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
-          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
-        
-          
+        <Route
+          path="/admin/hotels/update/:hotelId/*"
+          element={<AdminHotelUpdate />}
+        />
+        <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+        <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+        <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
 
         {/*Shadini*/}
         <Route path="/add-train" element={<CreateTrain />} />
@@ -187,8 +183,6 @@ export default function App() {
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
-            
-            
       </Routes>
       <Footer />
     </BrowserRouter>
