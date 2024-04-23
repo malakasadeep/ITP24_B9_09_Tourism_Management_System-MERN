@@ -149,14 +149,16 @@ export default function App() {
         <Route path="/Hotel/:hotelId" element={<Hotel />} />
         <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
-        <Route path="/admin/hotels/*" element={<AdminHM />} />
-        <Route
-          path="/admin/hotels/update/:hotelId/*"
-          element={<AdminHotelUpdate />}
-        />
-        <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
-        <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
-        <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
+        <Route path="/admin/hotels" element={<AdminHM />} />
+          <Route
+            path="/admin/hotels/update/:hotelId"
+            element={<AdminHotelUpdate />}
+          />
+          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
+        
+          
 
         {/*Shadini*/}
         <Route path="/add-train" element={<CreateTrain />} />
