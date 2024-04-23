@@ -154,6 +154,7 @@ export default function Hotel() {
                     <img src={transfers} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-3xl font-serif text-slate-900'>{+hotell.numberOfRoom}</p>
+                      
                       <p className='text-sm font-serif text-slate-700'>Rooms Are Avalible</p>
                     </div>
                   </div>
@@ -172,17 +173,18 @@ export default function Hotel() {
                   )}
                 </div>
 
-                 {/* <div>
-                  {packagee.noofactivities && (
+
+                 { <div>
+                  {hotell.roomtype && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={activities} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-serif text-slate-900'>{+packagee.noofactivities}</p>
-                      <p className='text-sm font-serif text-slate-700'>Activities</p>
+                      <p className='text-3xl font-serif text-slate-900'>{hotell.roomtype}</p>
+                      <p className='text-sm font-serif text-slate-700'>Room types Avalible</p>
                     </div>
                   </div>
                   )}
-                </div>  */}
+                </div>  }
             </div>
           </div>
           <hr className='w-3/4 h-2 mx-auto my-4 bg-gray-100 border-0 rounded md:my-4 dark:bg-blue-950'/> 

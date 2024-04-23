@@ -177,15 +177,7 @@ const handleSubmit = async (e) => {
         });
         return;
       }
-      if (+formData.price < +formData.offerprice) {
-        setError("Discount price must be lower than the regular price");
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Discount price must be lower than the regular price",
-        });
-        return;
-      }
+     
       setLoading(true);
       setError(false);
       const res = await fetch(`/api/hotel/update/${params.hotelId}`, {

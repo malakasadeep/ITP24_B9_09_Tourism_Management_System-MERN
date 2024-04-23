@@ -39,6 +39,15 @@ export default function CreateHotel() {
     const navigate = useNavigate();
 
     console.log(formData);
+  //  const validateSchema = Yup.object().shape({
+    //  location: Yup.string().required('Location is Required').matches(/^[A-Za-z\s,.0-9]+$/, 'Location must contain only letters'),
+     // description: Yup.string().required('Description is Required').matches(/^[A-Za-z\s,.0-9]+$/, 'Description must contain only letters'),
+    //  contactName: Yup.string().required('Name is Required').matches(/^[A-Za-z\s]+$/, 'Name must contain only letters'),
+    //  contactNo: Yup.string().matches(/^0\d{9}$/, 'Invalid Contact Number').required('Contact Number is Required'),
+    //  availableWork: Yup.string().required('available is required').oneOf(['available', 'not available'], 'Invalid available'),
+   // });
+   
+     
 
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.hotelImgs.length < 7) {
@@ -159,15 +168,22 @@ export default function CreateHotel() {
                 })
                 return;
             }
-            if(+formData.price < +formData.offerprice){
-                setError('Discount price must be lower than the regular price');
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: 'Discount price must be lower than the regular price'
-                });
-                return;
+           // if (/^[A-Za-z\s,.0-9]+$/.test(formData.description)) {
+          //   Swal.fire("Description must contain only letters", "", "error");
+           //   return;
+            
+          //  }
+           // if (/^[A-Za-z\s,.0-9]+$/.test(formData.contactName)) {
+           //   Swal.fire("Name must contain only letters", "", "error");
+           //   return;
+            
+          //  }
+            if (/^0\d{9}$/.test(formData.contactNo)) {
+              Swal.fire("Invalid Contact Number", "", "error");
+              return;
+            
             }
+          
             setLoading(true);
             setError(false);
             const res = await fetch('/api/hotel/createhotel', {
