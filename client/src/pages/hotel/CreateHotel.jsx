@@ -27,6 +27,7 @@ export default function CreateHotel() {
 	      numberOfRoom: '',
 	      price: "",
 	      hotelImgs: [],
+        userRef:'',
 	    
     });
     const [fileUploadError, setFileUploadError] = useState(false);
@@ -445,7 +446,7 @@ export default function CreateHotel() {
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
-                  NUmber of room 
+                  Number of Avilable Rooms 
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 borderrounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"

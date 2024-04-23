@@ -39,6 +39,7 @@ export default function UpdateHotel() {
     const [loading, setLoading] = useState(false);
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const params = useParams();
 
     console.log(formData);
   
@@ -167,7 +168,7 @@ if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 't
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.imageUrls.length < 1) {
+      if (formData.hotelImgs.length < 1) {
         setError("Please upload atleast one image");
         Swal.fire({
           icon: "error",
@@ -213,7 +214,7 @@ const handleSubmit = async (e) => {
           text: "Package Updated successfully",
         });
         if (currentUser.isadmin) {
-          navigate(`/admin/hotels/*`);
+          navigate(`/admin/hotels`);
         } else {
           navigate(`/my-hotels/${data._id}`);
         }
@@ -464,7 +465,7 @@ const handleSubmit = async (e) => {
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
-                  NUmber of room 
+                  Number of Avilable rooms 
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 borderrounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -554,7 +555,7 @@ const handleSubmit = async (e) => {
                      }
                 </p>
                 {
-                    formData.hotelImgs.length > 0 && formData.hotelImgs.map((url, index) => (
+                     formData.hotelImgs.map((url, index) => (
                         <div key={url} className='flex justify-between p-3 border border-blue-700 items-center'>
                             <img src={url} alt="pkg images" className='w-24 h-24 object-contain rounded-lg' />
                             <button type='button' onClick={() => handleremoveImage(index)} className='text-red-700 text-5xl font-extrabold rounded-lg uppercase hover:opacity-60'><MdDeleteForever /></button>
