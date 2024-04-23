@@ -20,6 +20,9 @@ import trainRouter from './routes/train.routes.js';
 //dewni
 import eventRouter from "./routes/events.js";
 
+//prabodhi
+import guideRouter from './routes/tour-guideRouter.js';
+
 dotenv.config();
 
 mongoose
@@ -55,6 +58,9 @@ app.use("/api/vehicle", Vehicle);
 
 //shadini
 app.use("/api/train",trainRouter);
+
+//prabodhi
+app.use('/api/tour-guide',guideRouter)
 
 
 
