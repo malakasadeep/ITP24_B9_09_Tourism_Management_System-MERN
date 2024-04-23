@@ -7,18 +7,23 @@ const ActivityList = ({ events }) => {
   console.log(events);
   return (
     <div>
-      {events.map((event) => (
-        <EventCard
-          key={event._id}
-          id={event._id}
-          title={event.title}
-          description={event.description}
-          date={event.date}
-          location={event.location}
-          price={event.price}
-          image={event.imageUrls[0]}
-        />
-      ))}
+      <div className="flex flex-cols-3 gap-4">
+        {events.map((event) => (
+          <div key={event._id}>
+            <EventCard
+              id={event._id}
+              title={event.title}
+              description={event.description}
+              date={event.date}
+              location={event.location}
+              price={event.price}
+              type={event.type}
+              time={event.time}
+              image={event.imageUrls[0]}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -118,7 +123,7 @@ export default function SearchEvent() {
         </div>
       </div>
       <div
-        className="flex max-w-7xl mx-auto p-4 gap-10 mt-10"
+        className="flex max-w-7xl mx-auto  mt-10"
         style={{ marginBottom: "20rem" }}
       >
         <div className="w-1/3 pr-4 ">
@@ -159,7 +164,7 @@ export default function SearchEvent() {
             Search
           </button>
         </div>
-        <div className="w-3/4 ">
+        <div className="w-full flex items-center justify-center">
           {loading ? (
             <div className="flex items-center justify-center">
               {/* <CircularProgress /> */}
@@ -167,7 +172,9 @@ export default function SearchEvent() {
           ) : (
             <>
               {events.length > 0 ? (
-                <ActivityList events={events} />
+                <div className="">
+                  <ActivityList events={events} />
+                </div>
               ) : (
                 <p>No activities found.</p>
               )}
