@@ -13,7 +13,7 @@ const router = Express.Router();
 
 router.get("/gethotels", gethotelsSearch);
 router.post("/createhotel", createhotel);
-router.delete("/delete/:id", veryfyTocken, deletehotel);
+router.delete("/delete/:id", deletehotel);
 router.post("/update/:id", veryfyTocken, updatehotel);
 router.get("/get-update/:id", gethotel);
 router.get("/all-hotels", veryfyTocken, getAllHotels);

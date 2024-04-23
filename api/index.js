@@ -1,4 +1,3 @@
-
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -8,20 +7,19 @@ import packageRouter from "./routes/package.route.js";
 import cookieParser from "cookie-parser";
 
 //sasindu
-import Hotel from './routes/hotels.js';
+import Hotel from "./routes/hotels.js";
 
 //vehicle
 import Vehicle from "./routes/Vehicle.js";
 
 //shadini
-import trainRouter from './routes/train.routes.js';
-
+import trainRouter from "./routes/train.routes.js";
 
 //dewni
 import eventRouter from "./routes/events.js";
 
 //prabodhi
-import guideRouter from './routes/tour-guideRouter.js';
+import guideRouter from "./routes/tour-guideRouter.js";
 
 dotenv.config();
 
@@ -48,7 +46,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/Package", packageRouter);
 
 //sasindu
-app.use("/api/hotel",Hotel);
+app.use("/api/hotel", Hotel);
 
 //dewni
 app.use("/api/events", eventRouter);
@@ -57,12 +55,10 @@ app.use("/api/events", eventRouter);
 app.use("/api/vehicle", Vehicle);
 
 //shadini
-app.use("/api/train",trainRouter);
+app.use("/api/train", trainRouter);
 
 //prabodhi
-app.use('/api/tour-guide',guideRouter)
-
-
+app.use("/api/tour-guide", guideRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

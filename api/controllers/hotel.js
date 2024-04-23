@@ -19,18 +19,18 @@ export const createhotel = async (req, res, next) => {
 };
 //delete Hotel//
 export const deletehotel = async (req, res, next) => {
-  const hotel = await hotelListning.findById(req.params.id);
+  const hotel = await Hotel.findById(req.params.id);
 
   if (!hotel) {
     return next(errorHandler(404, "Hotel not found"));
   }
 
-  if (req.user.id !== pkg.userRef) {
-    return next(errorHandler(401, "you can delete your own Hotel"));
-  }
+  //  if (req.user.id !== hotel.userRef) {
+  //    return next(errorHandler(401, "you can delete your own Hotel"));
+  //  }
 
   try {
-    await hotelListning.findByIdAndDelete(req.params.id);
+    await Hotel.findByIdAndDelete(req.params.id);
     res.status(200).json("Hotel deleted");
   } catch (error) {
     next(error);
@@ -38,18 +38,18 @@ export const deletehotel = async (req, res, next) => {
 };
 //update Hotel//
 export const updatehotel = async (req, res, next) => {
-  const hotel = await hotelListning.findById(req.params.id);
+  const hotel = await Hotel.findById(req.params.id);
 
   if (!hotel) {
     return next(errorHandler(404, "Hotel not found"));
   }
 
-  if (req.user.id !== hotel.userRef) {
-    return next(errorHandler(401, "you can update your own Hotel"));
-  }
+  // if (req.user.id !== hotel.userRef) {
+  //   return next(errorHandler(401, "you can update your own Hotel"));
+  // }
 
   try {
-    const updatedhotel = await hotelListning.findByIdAndUpdate(
+    const updatedhotel = await Hotel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
