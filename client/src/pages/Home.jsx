@@ -34,7 +34,7 @@ export default function Home() {
         sethotels(data);
         console.log(data);
       } catch (error) {
-        console.log(error);
+      
       }
     };
     fetchHotels();
