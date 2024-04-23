@@ -23,6 +23,10 @@ import eventRouter from "./routes/events.js";
 //prabodhi
 import guideRouter from './routes/tour-guideRouter.js';
 
+//mithun
+import restaurantRouter from './routes/restaurant.route.js'
+import respackageRouter from './routes/res.package.route.js'
+
 dotenv.config();
 
 mongoose
@@ -62,7 +66,9 @@ app.use("/api/train",trainRouter);
 //prabodhi
 app.use('/api/tour-guide',guideRouter)
 
-
+//mithun
+app.use('/api/restaurant', restaurantRouter)
+app.use('/api/package', respackageRouter)
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

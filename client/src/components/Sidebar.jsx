@@ -45,7 +45,7 @@ export const Sidebar = () => {
           Vehicle Management
         </NavLink>
         <NavLink
-          to="/admin/restaurant"
+          to="/admin/res-dash?tab=restaurant"
           activeClassName="active"
           className="item"
         >

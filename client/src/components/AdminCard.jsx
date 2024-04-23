@@ -31,6 +31,7 @@ const functions = [
   {
     name: "Restourent Management",
     icon: restaurant,
+    link: "/admin/res-dash?tab=restaurant"
   },
   {
     name: "Tour Guid Management",
