@@ -11,26 +11,17 @@ import 'swiper/css/bundle';
 import hotelbanner from '../../assets/img/bg/hhbanner.jpg';
 import back from '../../assets/img/bg/sky.jpg';
 import loadingimg from '../../assets/img/loading.gif'
-import personico from '../../assets/img/icons/package-page/person.png'
-import family from '../../assets/img/icons/package-page/family.png'
-import couple from '../../assets/img/icons/package-page/couple.png'
-import culture from '../../assets/img/icons/package-page/culture.png'
-import adventurer from '../../assets/img/icons/package-page/adventurer.png'
-import wild from '../../assets/img/icons/package-page/wild.png'
-import namaste from '../../assets/img/icons/package-page/namaste.png'
-import dining from '../../assets/img/icons/package-page/dining.png'
-import transport from '../../assets/img/icons/package-page/transport.png'
-import days from '../../assets/img/icons/package-page/days.png'
+import fistar from '../../assets/img/icons/hotel/5s.png'
+import fstar from '../../assets/img/icons/hotel/4s.png'
+import tstar from '../../assets/img/icons/hotel/3s.png'
+import con from '../../assets/img/icons/hotel/phone.png'
+import types from '../../assets/img/icons/hotel/bedroom.png'
 import transfers from '../../assets/img/icons/package-page/transfers.png'
-import hotels from '../../assets/img/icons/package-page/hotels.png'
-import activities from '../../assets/img/icons/package-page/activities.png'
-import best from '../../assets/img/icons/package-page/best.png'
+import titles from '../../assets/img/icons/hotel/tag.png'
+import room from '../../assets/img/icons/hotel/booking.png'
 import location from '../../assets/img/icons/package-page/location.png'
-import spactivity from '../../assets/img/icons/package-page/spactivity.png'
 import description from '../../assets/img/icons/package-page/description.png'
-import policy from '../../assets/img/icons/package-page/policy.png'
 import { useSelector } from 'react-redux';
-import Contact from '../../components/tour-packages/Contact';
 import HotelBooking from '../../components/hotel/HotelBooking';
 
 export default function Hotel() {
@@ -98,30 +89,30 @@ export default function Hotel() {
           <hr className='w-3/4 h-2 mx-auto my-4 bg-gray-100 border-0 rounded md:my-4 dark:bg-blue-950'/>
 
           <div className='flex items-center justify-center mt-2 container mx-auto'>
-            <div  className='grid grid-cols-2 gap-x-36 gap-y-8'>
+            <div  className='grid grid-cols-1 gap-x-36 gap-y-8'>
 
               <div>
-              {hotell.type === '3 Star Hotel' ? (
+              {hotell.type === '3 Stars hotel' ? (
                 <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                <img src={couple} alt="" className='w-12 h-auto object-contain' />
+                <img src={tstar} alt="" className='w-12 h-auto object-contain' />
                 <div className='text-center'>
                   <p className='text-xl font-serif text-slate-900'>3 Star Hotel</p>
                   
                 </div>
               </div>
                   ) :
-                hotell.type === '4 Star Hotel' ? (
+                hotell.type === '4 Stars hotel' ? (
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={family} alt="" className='w-12 h-auto object-contain' />
+                    <img src={fstar} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-xl font-serif text-slate-900'>4 Star Hotel</p>
                    
                     </div>
                   </div>
                   ) :
-                hotell.type === '5 Star Hotel'? (
+                hotell.type === '5 Stars hotel'? (
                   <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={personico} alt="" className='w-12 h-auto object-contain' />
+                    <img src={fistar} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-xl font-serif text-slate-900'>5 Star Hotel</p>
                   
@@ -138,7 +129,7 @@ export default function Hotel() {
               <div>
                   {hotell.contactNo && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={days} alt="" className='w-12 h-auto object-contain' />
+                    <img src={con} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-2xl font-serif text-slate-900'>{+hotell.contactNo}</p>
                       <p className='text-sm font-serif text-slate-900'>{hotell.contactName}</p>
@@ -151,7 +142,7 @@ export default function Hotel() {
                 <div>
                   {hotell.numberOfRoom && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={transfers} alt="" className='w-12 h-auto object-contain' />
+                    <img src={room} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-3xl font-serif text-slate-900'>{+hotell.numberOfRoom}</p>
                       
@@ -164,7 +155,7 @@ export default function Hotel() {
                 <div>
                   {hotell.distance && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={hotels} alt="" className='w-12 h-auto object-contain' />
+                    <img src={transfers} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-3xl font-serif text-slate-900'>{+hotell.distance}Km</p>
                       <p className='text-sm font-serif text-slate-700'>From {hotell.city} </p>
@@ -177,7 +168,7 @@ export default function Hotel() {
                  { <div>
                   {hotell.roomtype && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
-                    <img src={activities} alt="" className='w-12 h-auto object-contain' />
+                    <img src={types} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-3xl font-serif text-slate-900'>{hotell.roomtype}</p>
                       <p className='text-sm font-serif text-slate-700'>Room types Avalible</p>
@@ -193,7 +184,7 @@ export default function Hotel() {
               {hotell.title && (
                 <div>
                   <div className='flex flex-row  h-auto gap-4 mt-9 ml-9 mr-9 items-center justify-center'>
-                  <img src={hotels} alt="" className='w-12 h-auto object-contain' />
+                  <img src={titles} alt="" className='w-12 h-auto object-contain' />
                       <p className='text-xl font-serif text-slate-700'>: </p>                        
                   </div>
                   <p className='text-sm font-serif text-slate-900 m-7 mt-0 text-center justify-center'>{hotell.title}</p>
