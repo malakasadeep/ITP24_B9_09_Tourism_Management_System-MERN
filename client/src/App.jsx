@@ -152,26 +152,25 @@ export default function App() {
         <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
         <Route path="/admin/hotels" element={<AdminHM />} />
-          <Route
-            path="/admin/hotels/update/:hotelId"
-            element={<AdminHotelUpdate />}
-          />
-          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
-          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
-          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
-        
-          
+        <Route
+          path="/admin/hotels/update/:hotelId"
+          element={<AdminHotelUpdate />}
+        />
+        <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+        <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+        <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
 
         {/*Shadini*/}
-        <Route path='/add-train' element={<CreateTrain/>}/>
-        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
-        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
-        <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
-        <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
-        <Route path='/train/search' element={<TrainHome/>}/>
-        <Route path='/train/book/:id' element={<TrainBook/>}/>
-        
-
+        <Route path="/add-train" element={<CreateTrain />} />
+        <Route path="/update-train/:trainID" element={<UpdateTrain />} />
+        <Route path="/admin/train" element={<AdminTrainManagement />} />
+        <Route path="/admin/train/add" element={<AdminAddTrain />} />
+        <Route
+          path="/admin/train/update/:trainID"
+          element={<AdminTrainUpdate />}
+        />
+        <Route path="/train/search" element={<TrainHome />} />
+        <Route path="/train/book/:id" element={<TrainBook />} />
 
         {/* prabodhi */}
         <Route path="/add-guide" element={<Add_Guide />}></Route>
@@ -184,11 +183,10 @@ export default function App() {
         <Route path="/admin/guid" element={<AdminGM />} />
         <Route path="/admin/guid/add" element={<AdminAddGuid />} />
         <Route path="/admin/guid/:guidingId" element={<Guides />} />
-        <Route
+        <Routes
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
-
       </Routes>
       <Footer />
     </BrowserRouter>

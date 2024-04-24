@@ -25,5 +25,5 @@ export default function AdminAddTrain() {
         </div>
       </div>
     </div>
-  )
+  );
 }

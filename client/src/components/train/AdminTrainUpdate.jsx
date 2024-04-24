@@ -5,7 +5,6 @@ import { Link, Route, Routes } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import UpdateTrain from "../../pages/train/UpdateTrain";
 
-
 export default function AdminTrainUpdate() {
   return (
     <div
@@ -21,10 +20,10 @@ export default function AdminTrainUpdate() {
         </Link>
         <div className="ml-6 bg-slate-100 rounded-lg">
           <Routes>
-            <Route path="/" element={<UpdateTrain/>} />
+            <Route path="/" element={<UpdateTrain />} />
           </Routes>
         </div>
       </div>
     </div>
-  )
+  );
 }

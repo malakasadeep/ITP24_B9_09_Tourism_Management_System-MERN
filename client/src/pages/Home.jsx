@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import "./../assets/css/Home.css";
 import guidimg from "./../assets/img/4670.jpg";
 import Bubbles from "../components/Bubbles";
-import trainbanner from "../assets/img/TrainImages/train-banner.jpg"
+import trainbanner from "../assets/img/TrainImages/train-banner.jpg";
 import eventbanner from "../assets/img/event/banner.jpg";
 import { EventCard } from "../components/eventAct/EventCard";
-
 
 export default function Home() {
   const [packages, setPackages] = useState([]);
@@ -147,34 +146,6 @@ export default function Home() {
         </div>
       </div>
 
-
-      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
-    <div className="relative">
-        <div
-            className="inset-0 bg-cover bg-center rounded-md"
-            style={{
-                backgroundImage: `url(${trainbanner})`,
-                width: '100%',
-                height: '300px', // Adjust height as needed
-            }}
-        >
-            <div className="absolute top-0 right-0 m-5">
-              <Link to={"/train/search"}>
-                <button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 mt-20">
-                    Book Your Seat
-                </button>
-                </Link>
-            </div>
-            <div className="flex flex-col justify-items-stretch">
-                <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-right mr-4">
-                    Welcome to TourCraft Railways
-                </h1>
-                <p className="text-right text-xl text-sky-200 mt-2 mr-4">Online Advance Train Seats Reservation</p>
-            </div>
-        </div>
-    </div>
-</div>
-
       {
         <div>
           <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
@@ -271,6 +242,35 @@ export default function Home() {
                   Explore Guides
                 </button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
+        <div className="relative">
+          <div
+            className="inset-0 bg-cover bg-center rounded-md"
+            style={{
+              backgroundImage: `url(${trainbanner})`,
+              width: "100%",
+              height: "300px", // Adjust height as needed
+            }}
+          >
+            <div className="absolute top-0 right-0 m-5">
+              <Link to={"/train/search"}>
+                <button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 mt-20">
+                  Book Your Seat
+                </button>
+              </Link>
+            </div>
+            <div className="flex flex-col justify-items-stretch">
+              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-right mr-4">
+                Welcome to TourCraft Railways
+              </h1>
+              <p className="text-right text-xl text-sky-200 mt-2 mr-4">
+                Online Advance Train Seats Reservation
+              </p>
             </div>
           </div>
         </div>
