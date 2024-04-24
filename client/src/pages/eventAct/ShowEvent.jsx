@@ -51,16 +51,7 @@ const ShowEvent = () => {
 
   return (
     <div>
-      <div
-        style={{
-          backgroundImage: `url(${banner})`, // Use backgroundImage instead of background for better image quality
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: "300px",
-          marginTop: "110px",
-        }}
-      ></div>
+      <div className="mt-96"></div>
       <main>
         {loading && (
           <div className="flex flex-col items-center justify-center">
@@ -76,7 +67,7 @@ const ShowEvent = () => {
             <div
               className="w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl"
               style={{
-                backgroundImage: `url(${backgroundImage})`,
+                backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
               }}
             >
