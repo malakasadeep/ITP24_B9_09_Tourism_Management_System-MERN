@@ -33,6 +33,8 @@ import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 import SearchEvent from "./pages/eventAct/SearchEvent";
+import AdminAddEvent from "./components/eventAct/AdminAddEvent";
+import AdminUpdateEvent from "./components/eventAct/AdminUpdateEvent";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -145,14 +147,18 @@ export default function App() {
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
-        <Route path="/admin/events" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/events/get/:id" element={<ShowEvent />} />
-        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
         <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
+        <Route path="/seller/event/get/:id" element={<ShowEvent />} />
+
+        <Route path="/admin/events" element={<EventTable />} />
+        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
+        <Route path="/admin/add-event" element={<AdminAddEvent />} />
+        <Route path="/admin/evt-update/:id" element={<AdminUpdateEvent />} />
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />

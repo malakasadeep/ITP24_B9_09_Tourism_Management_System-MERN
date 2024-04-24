@@ -8,6 +8,7 @@ import { IoChevronDownCircle } from "react-icons/io5";
 // import tour_agent from "../assets/img/icons/tour-agent.png";
 
 import UserPackages from "../components/tour-packages/UserPackages";
+import UserEvents from "../components/eventAct/UserEvents";
 
 export default function ListedItems() {
   return (
@@ -15,6 +16,7 @@ export default function ListedItems() {
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-14  ">
         <UserPackages />
 
+        <UserEvents />
         {/* <div className="rounded-xl shadow-lg w-100px h-auto bg-white ">
           <div className="p-5 flex flex-col">
             <div className="flex flex-row  overflow-hidden items-center gap-5">
