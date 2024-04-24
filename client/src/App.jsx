@@ -183,7 +183,7 @@ export default function App() {
         <Route path="/admin/guid" element={<AdminGM />} />
         <Route path="/admin/guid/add" element={<AdminAddGuid />} />
         <Route path="/admin/guid/:guidingId" element={<Guides />} />
-        <Routes
+        <Route
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
