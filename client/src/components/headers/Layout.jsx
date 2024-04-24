@@ -25,6 +25,7 @@ const Layout = () => {
     location.pathname === "/profile" ||
     location.pathname === "/profile-update" ||
     location.pathname.startsWith("/packages/") ||
+    location.pathname.startsWith("/res") ||
     location.pathname.startsWith("/train/") ||
     location.pathname === "/package-search";
 

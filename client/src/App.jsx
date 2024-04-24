@@ -75,6 +75,19 @@ import AdminGM from "./components/tourGuid/AdminGM";
 import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
 import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
 
+
+//mithun
+import Restaurant from "./pages/restaurants/Restaurants"
+import ResPackages from "./pages/restaurants/Packages"
+import Dashboard from "./pages/restaurants/Dashboard"
+import CreateRestaurant from "./pages/restaurants/CreateRestaurant"
+import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant"
+import CreatePackage from "./pages/restaurants/CreatePackage"
+import UpdatePackage from "./pages/restaurants/UpdatePackage"
+import Booking from "./pages/restaurants/Booking"
+
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -187,6 +200,18 @@ export default function App() {
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
+
+            
+        {/* //mithun */}
+            <Route path="/restaurants" element={<Restaurant />} />
+            <Route path="/res-pkg" element={<ResPackages />} />
+            <Route path="/admin/res-dash" element={<Dashboard />} />
+            <Route path="/admin/create-res" element={<CreateRestaurant />} />
+            <Route path="/admin/update-res/:id" element={<UpdateRestaurant />} />
+            <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
+            <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
+            <Route path="/res-pkg-book/:id" element={<Booking />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
