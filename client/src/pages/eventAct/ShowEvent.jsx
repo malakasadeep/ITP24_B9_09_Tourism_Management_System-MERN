@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import pkgbanner from "../../assets/img/bg/pkg-banner.jpg";
+import banner from "../../assets/img/bg/event-banner.jpg";
+import bg from "../../assets/img/bg/eventbg.jpg";
 import loadingimg from "../../assets/img/loading.gif";
 import { BsCalendarDateFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { MdEventNote } from "react-icons/md";
+import { MdTour } from "react-icons/md";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "../../assets/css/eventact/swiper.css";
+import SwiperCore from "swiper";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 const ShowEvent = () => {
   const [event, setEvent] = useState(null);
@@ -15,6 +25,7 @@ const ShowEvent = () => {
   const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const [contact, setContact] = useState(false);
+  SwiperCore.use([Autoplay]);
 
   useEffect(() => {
     const fetchPackage = async () => {
@@ -42,9 +53,12 @@ const ShowEvent = () => {
     <div>
       <div
         style={{
-          background: `url(${pkgbanner})center no-repeat`,
+          backgroundImage: `url(${banner})`, // Use backgroundImage instead of background for better image quality
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          height: "400px",
+          height: "300px",
+          marginTop: "110px",
         }}
       ></div>
       <main>
@@ -59,22 +73,37 @@ const ShowEvent = () => {
         )}
         {event && !loading && !error && (
           <div className="">
-            <div className="w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl ">
-              <div>
-                <br />
-                <img
-                  src={event.imageUrls[0]}
-                  className="m-5 rounded-lg w-[420px]  object-contain mt-5"
-                />
-                <img
-                  src={event.imageUrls[1]}
-                  className="m-5 rounded-lg w-[420px] object-contain mt-5 absolute top-6 right-0"
-                />
-                <img
-                  src={event.imageUrls[2]}
-                  className="m-5 rounded-lg w-[620px] object-contain mt-5 mx-auto"
-                />
-              </div>
+            <div
+              className="w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: "cover",
+              }}
+            >
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                pagination={true}
+                autoplay={{ delay: 3000 }}
+                modules={[EffectCoverflow, Pagination]}
+                className="mySwiper swiper-container " // Add your custom class here
+              >
+                {event.imageUrls.map((imageUrl, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={imageUrl} alt={`Image ${index + 1}`} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
               <div>
                 <h1 className="mt-16 text-center font-semibold text-3xl text-blue-950">
                   {event.title}
@@ -87,11 +116,7 @@ const ShowEvent = () => {
                   <div>
                     {event.type === "Event" ? (
                       <div className="flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg">
-                        <img
-                          src="{}"
-                          alt=""
-                          className="w-12 h-auto object-contain"
-                        />
+                        <MdTour className="text-3xl" />
                         <div className="text-center">
                           <p className="text-xl font-serif text-slate-900">
                             Event
@@ -100,11 +125,7 @@ const ShowEvent = () => {
                       </div>
                     ) : event.type === "Activity" ? (
                       <div className="flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg">
-                        <img
-                          src=""
-                          alt=""
-                          className="w-12 h-auto object-contain"
-                        />
+                        <MdTour className="text-3xl" />
                         <div className="text-center">
                           <p className="text-xl font-serif text-slate-900">
                             Activity

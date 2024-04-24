@@ -45,15 +45,10 @@ const HotelSchema=new mongoose.Schema({
         type:Number, 
         reqiured:true 
     },
-    HotelImg:{
-        type:String}
-    , 
-    HotelImgs:{ 
-        type: [String], 
+    hotelImgs:{ 
+        type: Array, 
     },  
-    certificates:{ 
-        type: [String],
-    },
+  
     description:{ 
         type:String,
         reqiured:true
@@ -67,25 +62,24 @@ const HotelSchema=new mongoose.Schema({
         min:0,
         max:5
     },
-    rooms:{
-        type: [String],
-    },
-    sustainability:{
-        type: Boolean,
-        default: false,
-    },
+  
     availableWork:{
-        type: Boolean,
-        default: false,
+        type: String,
+        reqiured:true 
     },
     featured:{
         type: Boolean,
         default: true,
     },
-    roomtype:{
-        type: String,
-        reqiured:true
+    roomtype: {
+        type: [String, Array], 
+        required: true
     },
+    userRef: {
+        type: String, 
+        required: true
+    },
+    
   
    
 }) 

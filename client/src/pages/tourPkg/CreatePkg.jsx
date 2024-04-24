@@ -159,7 +159,7 @@ export default function CreatePkg() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                },
+                }, 
                 body: JSON.stringify({
                     ...formData,
                     userRef: currentUser._id,

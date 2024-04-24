@@ -19,18 +19,18 @@ export const createhotel = async (req, res, next) => {
 };
 //delete Hotel//
 export const deletehotel = async (req, res, next) => {
-  const hotel = await hotelListning.findById(req.params.id);
+  const hotel = await Hotel.findById(req.params.id);
 
   if (!hotel) {
     return next(errorHandler(404, "Hotel not found"));
   }
 
-  if (req.user.id !== pkg.userRef) {
-    return next(errorHandler(401, "you can delete your own Hotel"));
-  }
+  //  if (req.user.id !== hotel.userRef) {
+  //    return next(errorHandler(401, "you can delete your own Hotel"));
+  //  }
 
   try {
-    await hotelListning.findByIdAndDelete(req.params.id);
+    await Hotel.findByIdAndDelete(req.params.id);
     res.status(200).json("Hotel deleted");
   } catch (error) {
     next(error);
@@ -38,18 +38,18 @@ export const deletehotel = async (req, res, next) => {
 };
 //update Hotel//
 export const updatehotel = async (req, res, next) => {
-  const hotel = await hotelListning.findById(req.params.id);
+  const hotel = await Hotel.findById(req.params.id);
 
   if (!hotel) {
     return next(errorHandler(404, "Hotel not found"));
   }
 
-  if (req.user.id !== hotel.userRef) {
-    return next(errorHandler(401, "you can update your own Hotel"));
-  }
+  // if (req.user.id !== hotel.userRef) {
+  //   return next(errorHandler(401, "you can update your own Hotel"));
+  // }
 
   try {
-    const updatedhotel = await hotelListning.findByIdAndUpdate(
+    const updatedhotel = await Hotel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -63,7 +63,7 @@ export const updatehotel = async (req, res, next) => {
 //get Hotel//
 export const gethotel = async (req, res, next) => {
   try {
-    const hotel = await hotelListning.findById(req.params.id);
+    const hotel = await Hotel.findById(req.params.id);
     if (!hotel) {
       return next(errorHandler(404, "Hotel not found"));
     }
@@ -74,7 +74,7 @@ export const gethotel = async (req, res, next) => {
 };
 
 //get all Hotels
-export const getAllHotel = async (req, res, next) => {
+export const getAllHotels = async (req, res, next) => {
   const { min, max, ...others } = req.query;
   try {
     const hotels = await Hotel.find({
@@ -98,15 +98,16 @@ export const gethotelsSearch = async (req, res, next) => {
 
   
 
+     
       let availableWork = req.query.availableWork;
-      if (availableWork === undefined || availableWork === 'false'){
-        availableWork = {$in: [false, true]};
+      if (availableWork === undefined || availableWork === "all") {
+        availableWork = { $in: ["available", "not available"] };
       }
 
 
       let type = req.query.type;
       if (type === undefined || type === 'all'){
-          type = {$in: ['3 Star Hotel', '4 Star Hotel', '5 Star Hotel']};
+          type = {$in: ['3 Stars hotel', '4 Stars hotel', '5 Stars hotel']};
       }
 
       const searchTerm = req.query.searchTerm || '';
@@ -120,15 +121,12 @@ export const gethotelsSearch = async (req, res, next) => {
       const order = req.query.order || 'desc';
 
 
-      const pkgs = await HotelListning.find({
+      const pkgs = await Hotel.find({
         name: {$regex: searchTerm, $options: 'i'},
         province: {$regex: province, $options: 'i'},
         city: {$regex: city, $options: 'i'},
-
-        
-          
-          availableWork,
-          type,
+       availableWork,
+        type,
       
       })
       .sort({[sort]: order})

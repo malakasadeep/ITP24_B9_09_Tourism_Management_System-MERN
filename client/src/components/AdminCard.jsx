@@ -1,13 +1,14 @@
 import React from "react";
-import hotel from "../assets/img/icons/hotel.png";
-import restaurant from "../assets/img/icons/restaurant.png";
-import vehicle from "../assets/img/icons/vehicle.png";
-import event from "../assets/img/icons/event.png";
-import tour_agent from "../assets/img/icons/tour-agent.png";
-import tour_pkg from "../assets/img/icons/tour_pkg.png";
-import profile from "../assets/img/icons/profile.png";
-import train from "../assets/img/icons/train.png";
 import { Link } from "react-router-dom";
+
+import profile from "../assets/img/icons/admin/user.png";
+import pack from "../assets/img/icons/admin/package.png";
+import hotell from "../assets/img/icons/admin/hotel.png";
+import vehicle from "../assets/img/icons/admin/vehicle.png";
+import restaurant from "../assets/img/icons/admin/restaurant.png";
+import guid from "../assets/img/icons/admin/guid.png";
+import event from "../assets/img/icons/admin/event.png";
+import train from "../assets/img/icons/admin/train.png";
 
 const functions = [
   {
@@ -17,12 +18,12 @@ const functions = [
   },
   {
     name: "Tour Package Management",
-    icon: tour_pkg,
+    icon: pack,
     link: "/admin/packages",
   },
   {
     name: "Hotel and Room Management",
-    icon: hotel,
+    icon: hotell,
   },
   {
     name: "Vehicle Management",
@@ -34,17 +35,18 @@ const functions = [
   },
   {
     name: "Tour Guid Management",
-    icon: tour_agent,
+    icon: guid,
+    link: "/admin/guid"
   },
   {
     name: "Event and Activity Management",
     icon: event,
-    link: "/events/admin",
+    link: "/admin/events",
   },
   {
     name: "Train Reservation Management",
     icon: train,
-    link: '/admin/train'
+    link: "/admin/train",
   },
 ];
 export const AdminCard = () => {
