@@ -18,7 +18,7 @@ export default function AdminAddHotel() {
             <IoMdArrowRoundBack />
           </button>
         </Link>
-        <div className="ml-20 bg-slate-100 rounded-lg">
+        <div className="ml-20 bg-slate-1000 rounded-lg">
           <Routes>
             <Route path="/" element={<CreateHotel />} />
           </Routes>
