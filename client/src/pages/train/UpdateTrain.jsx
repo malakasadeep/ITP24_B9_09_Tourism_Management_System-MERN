@@ -14,6 +14,7 @@ export default function UpdateTrain() {
         arrivalTime:'',
         type:'daily',
         noofseats:'1',
+        price:'1',
         description:''
     })
     const [error, setError] = useState(false);
@@ -64,6 +65,15 @@ export default function UpdateTrain() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if(formData.destination === formData.from){
+                setError('Start and destination stations are same');
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: 'Start and destination stations are same'
+                });
+                return;
+            }
             setLoading(true);
             setError(false);
             const res = await fetch(`/api/train/update/${params.trainID}`, {
@@ -116,6 +126,10 @@ export default function UpdateTrain() {
                 <option value="Intercity">Intercity</option>
                 <option value="Slow">Slow</option>
             </select>
+            <div className='flex items-center gap-2'>
+                        <input type='number' id='price' min='1' className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.price} />
+                        <p>Ticket Price</p>
+                    </div>
             <div className='flex gap-6 flex-wrap'>
                 <div className='flex gap-2'>
                     <input type='checkbox' id='1st' className='w-5' onChange={handleChange} checked={formData.class === '1st'}/>

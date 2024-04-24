@@ -63,6 +63,8 @@ import { AdminTrainManagement } from "./components/train/AdminTrainManagement";
 import UpdateTrain from "./pages/train/UpdateTrain";
 import AdminAddTrain from "./components/train/AdminAddTrain";
 import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+import TrainHome from "./pages/train/TrainHome";
+import TrainBook from "./pages/train/TrainBook";
 
 //prabodhi
 import Add_Guide from "./pages/tourGuid/Add_Guide";
@@ -161,14 +163,15 @@ export default function App() {
           
 
         {/*Shadini*/}
-        <Route path="/add-train" element={<CreateTrain />} />
-        <Route path="/update-train/:trainID" element={<UpdateTrain />} />
-        <Route path="/admin/train" element={<AdminTrainManagement />} />
-        <Route path="/admin/train/add" element={<AdminAddTrain />} />
-        <Route
-          path="/admin/train/update/:trainID"
-          element={<AdminTrainUpdate />}
-        />
+        <Route path='/add-train' element={<CreateTrain/>}/>
+        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
+        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
+        <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
+        <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
+        <Route path='/train/search' element={<TrainHome/>}/>
+        <Route path='/train/book/:id' element={<TrainBook/>}/>
+        
+
 
         {/* prabodhi */}
         <Route path="/add-guide" element={<Add_Guide />}></Route>
@@ -185,6 +188,7 @@ export default function App() {
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
+
       </Routes>
       <Footer />
     </BrowserRouter>
