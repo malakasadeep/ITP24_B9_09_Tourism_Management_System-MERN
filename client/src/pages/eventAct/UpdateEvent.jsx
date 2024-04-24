@@ -223,7 +223,7 @@ function CreateEvent() {
         },
         body: JSON.stringify({
           ...formData,
-          //userRef: currentUser._id,
+          userRef: formData.userRef,
         }),
       });
       const data = await res.json();
@@ -242,7 +242,12 @@ function CreateEvent() {
           text: "Package updated successfully",
         });
         //navigate(`/event/get/${data._id}`);
-        navigate("/admin/events");
+        //navigate("/admin/events");
+        if (currentUser.isadmin) {
+          navigate(`/admin/events`);
+        } else {
+          navigate(`/seller/event/get/${data._id}`);
+        }
       }
     } catch (error) {
       setError(error.message);

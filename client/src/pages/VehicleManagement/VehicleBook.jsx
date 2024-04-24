@@ -51,12 +51,12 @@ function VehicleBook() {
 
   const handleReserveClick = () => {
     navigate("/vehicle/payment", {
-      state: { vehicle, pickupDate, returnDate, driver }
+      state: { vehicle, pickupDate, returnDate, driver },
     });
   };
 
   return (
-    <div className="lg:p-20">
+    <div className="lg:p-20 mt-10">
       <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
         <img
           src={`${vehicle.imageUrls}`}

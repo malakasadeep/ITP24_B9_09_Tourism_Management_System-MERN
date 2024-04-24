@@ -168,16 +168,32 @@ export default function CreateHotel() {
                 })
                 return;
             }
-           // if (/^[A-Za-z\s,.0-9]+$/.test(formData.description)) {
-          //   Swal.fire("Description must contain only letters", "", "error");
-           //   return;
-            
-          //  }
-           // if (/^[A-Za-z\s,.0-9]+$/.test(formData.contactName)) {
-           //   Swal.fire("Name must contain only letters", "", "error");
-           //   return;
-            
-          //  }
+            if (formData.contactName.length <= 5) {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Contact Name must at least have 8 charaters",
+              });
+              return;
+            }
+            if (formData.contactNo.length <= 9) {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Contact Number is not Correct",
+              });
+              return;
+            }
+          
+            var zipPattern = /^\d{5}$/; 
+  if (!zipPattern.test(formData.zip)) {
+     Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "ZIP Code is not Correct",
+    });
+    return;
+}
             if (/^0\d{9}$/.test(formData.contactNo)) {
               Swal.fire("Invalid Contact Number", "", "error");
               return;

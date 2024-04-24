@@ -115,7 +115,7 @@ export default function SearchGuid() {
     navigate(`/guid/search?${searchQuery}`);
   };
   return (
-    <div>
+    <div className="mt-28">
       {" "}
       <div className="bg-cover bg-center">
         <div
@@ -129,11 +129,11 @@ export default function SearchGuid() {
             <div className="p-8 pt-5 md:p-24 md:pt-5 lg:p-5">
               <h1 className="text-3xl md:text-3xl font-bold uppercase text-[#272727] mb-10">
                 Find the
-                <span className="text-[#41A4FF]"> Tour Guid</span>
+                <span className="text-[#41A4FF]"> Tour Guie</span>
                 <br />
                 for your next stay today!
                 <span className="text-2xl block md:text-3xl font-bold uppercase text-[#272727]">
-                  Explore our activities
+                  Explore our Guides
                 </span>
               </h1>
               <div className="mb-4">
@@ -141,7 +141,7 @@ export default function SearchGuid() {
                   className="border rounded-lg px-4 py-2 w-full mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   style={{ width: "700px" }}
                   type="text"
-                  placeholder="Search activities"
+                  placeholder="Search Guide"
                   onChange={handleChange}
                   id="searchTerm"
                 />
@@ -178,21 +178,8 @@ export default function SearchGuid() {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block font-medium mb-2">End Date</label>
-              <input
-                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="date"
-                // value={endDate}
-                // onChange={(event) => setEndDate(event.target.value)}
-                // min={
-                //   startDate ? startDate : new Date().toISOString().split("T")[0]
-                // }
-                // max={
-                //   new Date(new Date().getFullYear() + 1, 11, 31)
-                //     .toISOString()
-                //     .split("T")[0]
-                // }
-              />
+              <label className="block font-medium mb-2">Address</label>
+              <input className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4"

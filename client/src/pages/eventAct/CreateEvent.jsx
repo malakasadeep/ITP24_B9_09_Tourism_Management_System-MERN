@@ -197,14 +197,14 @@ function CreateEvent() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch("http://localhost:3000/api/events/add", {
+      const res = await fetch("/api/events/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
-          //userRef: currentUser._id,
+          userRef: currentUser._id,
         }),
       });
       const data = await res.json();
@@ -223,7 +223,12 @@ function CreateEvent() {
           text: "Event added successfully",
         });
         //navigate(`/event/get/${data._id}`);
-        navigate("/admin/events");
+        //navigate("/admin/events");
+        if (currentUser.isadmin) {
+          navigate(`/admin/events`);
+        } else {
+          navigate(`/seller/event/get/${data._id}`);
+        }
       }
     } catch (error) {
       setError(error.message);
@@ -341,6 +346,9 @@ function CreateEvent() {
                   onChange={handleChange}
                   checked={formData.location}
                 >
+                  <option className="text-slate-400" hidden>
+                    Location
+                  </option>
                   <option value="Colombo">Colombo</option>
                   <option value="Galle">Galle</option>
                   <option value="Kandy">Kandy</option>

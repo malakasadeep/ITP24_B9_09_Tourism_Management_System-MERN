@@ -24,9 +24,15 @@ const Layout = () => {
     location.pathname === "/sign-in" ||
     location.pathname === "/profile" ||
     location.pathname === "/profile-update" ||
+    location.pathname === "/hotel-search" ||
+    location.pathname === "/guid/search" ||
+    location.pathname === "/VehicleHome" ||
     location.pathname.startsWith("/packages/") ||
     location.pathname.startsWith("/res") ||
     location.pathname.startsWith("/train/") ||
+    location.pathname.startsWith("/Hotel/") ||
+    location.pathname.startsWith("/guiding/") ||
+    location.pathname.startsWith("/Vehicle/book/") ||
     location.pathname === "/package-search";
 
   const showSellerHeader =
@@ -35,6 +41,9 @@ const Layout = () => {
     location.pathname === "/seller/profile-update" ||
     location.pathname === "/create-package" ||
     location.pathname === "/my-items" ||
+    location.pathname === "/create-hotel" ||
+    location.pathname === "/Vehicle/add" ||
+    location.pathname === "/add-guide" ||
     location.pathname.startsWith("/update-package/") ||
     location.pathname.startsWith("/my-packages/") ||
     location.pathname.startsWith("/seller/") ||
