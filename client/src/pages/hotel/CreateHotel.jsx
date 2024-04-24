@@ -209,7 +209,7 @@ export default function CreateHotel() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Package added successfully",
+                    text: "Hotels added successfully",
                 });
                 navigate(`/my-hotels/${data._id}`);
             }

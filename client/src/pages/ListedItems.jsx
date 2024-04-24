@@ -9,6 +9,7 @@ import { IoChevronDownCircle } from "react-icons/io5";
 
 import UserPackages from "../components/tour-packages/UserPackages";
 import UserHotels from "../components/hotel/UserHotels";
+import UserVehicles from "../components/VehicleManagement/UserVehicles";
 
 export default function ListedItems() {
   return (
@@ -16,6 +17,7 @@ export default function ListedItems() {
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-14  ">
         <UserPackages />
         <UserHotels/>
+        <UserVehicles/>
 
         {/* <div className="rounded-xl shadow-lg w-100px h-auto bg-white ">
           <div className="p-5 flex flex-col">
