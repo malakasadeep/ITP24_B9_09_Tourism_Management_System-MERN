@@ -8,7 +8,8 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/navigation';
 import 'swiper/css/bundle';
-import pkgbanner from '../../assets/img/bg/pkg-banner.jpg';
+import hotelbanner from '../../assets/img/bg/hhbanner.jpg';
+import back from '../../assets/img/bg/sky.jpg';
 import loadingimg from '../../assets/img/loading.gif'
 import personico from '../../assets/img/icons/package-page/person.png'
 import family from '../../assets/img/icons/package-page/family.png'
@@ -68,7 +69,8 @@ export default function Hotel() {
     }, [params.hotelId]);
   return (
     <div>
-      <div style={{background:`url(${pkgbanner})center no-repeat`, backgroundSize:'cover', height: '400px'}} ></div>
+      <div style={{background:`url(${hotelbanner})center no-repeat`, backgroundSize:'cover', height: '400px'}} ></div>
+      
       <main >
         {loading && 
         <div className='flex flex-col items-center justify-center'>
@@ -78,7 +80,7 @@ export default function Hotel() {
         {error && <p className='text-center my-7 text-2xl'>Something went wrong!!</p>}
         {hotell && !loading && !error && 
         <div className=''>
-          <div className='w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl '>
+          <div className='w-[900px] h-auto ml-32 -mt-56 bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl 'style={{background:`url(${back})center no-repeat`,backgroundSize:'cover'}}>
           <Swiper autoplay={{ delay: 3000 }} effect="cards" className='w-[600px] h-[400px] object-contain' >
             {hotell.hotelImgs.map((url) => (
               <SwiperSlide key={url} className='mt-10'>
@@ -132,13 +134,14 @@ export default function Hotel() {
             </div>  
           </div>
           <div className='flex flex-col items-center justify-center mt-8 container mx-auto'>
-            <div className='grid grid-cols-4 gap-x-4 gap-y-8'>
+            <div className='grid grid-cols-2 gap-x-4 gap-y-8'>
               <div>
                   {hotell.contactNo && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={days} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-serif text-slate-900'>{+hotell.contactNo}</p>
+                      <p className='text-2xl font-serif text-slate-900'>{+hotell.contactNo}</p>
+                      <p className='text-sm font-serif text-slate-900'>{hotell.contactName}</p>
                       <p className='text-sm font-serif text-slate-700'>Contact Us</p>
                     </div>
                   </div>
@@ -151,6 +154,7 @@ export default function Hotel() {
                     <img src={transfers} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
                       <p className='text-3xl font-serif text-slate-900'>{+hotell.numberOfRoom}</p>
+                      
                       <p className='text-sm font-serif text-slate-700'>Rooms Are Avalible</p>
                     </div>
                   </div>
@@ -162,24 +166,25 @@ export default function Hotel() {
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={hotels} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-serif text-slate-900'>{+hotell.distance}</p>
-                      <p className='text-sm font-serif text-slate-700'>From {+hotell.city} </p>
+                      <p className='text-3xl font-serif text-slate-900'>{+hotell.distance}Km</p>
+                      <p className='text-sm font-serif text-slate-700'>From {hotell.city} </p>
                     </div>
                   </div>
                   )}
                 </div>
 
-                 {/* <div>
-                  {packagee.noofactivities && (
+
+                 { <div>
+                  {hotell.roomtype && (
                     <div className='flex flex-row items-center gap-4 border border-blue-900 p-5 rounded-lg'>
                     <img src={activities} alt="" className='w-12 h-auto object-contain' />
                     <div className='text-center'>
-                      <p className='text-3xl font-serif text-slate-900'>{+packagee.noofactivities}</p>
-                      <p className='text-sm font-serif text-slate-700'>Activities</p>
+                      <p className='text-3xl font-serif text-slate-900'>{hotell.roomtype}</p>
+                      <p className='text-sm font-serif text-slate-700'>Room types Avalible</p>
                     </div>
                   </div>
                   )}
-                </div>  */}
+                </div>  }
             </div>
           </div>
           <hr className='w-3/4 h-2 mx-auto my-4 bg-gray-100 border-0 rounded md:my-4 dark:bg-blue-950'/> 

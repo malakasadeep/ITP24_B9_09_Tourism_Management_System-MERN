@@ -3,14 +3,16 @@ import PackageCard from "../components/tour-packages/PackageCard";
 import HotelCard from "../components/hotel/HotelCard";
 import { Link } from "react-router-dom";
 import "./../assets/css/Home.css";
-import guidimg from "./../assets/img/4670.gif";
+import guidimg from "./../assets/img/4670.jpg";
 import Bubbles from "../components/Bubbles";
+import trainbanner from "../assets/img/TrainImages/train-banner.jpg";
 import eventbanner from "../assets/img/event/banner.jpg";
+import { EventCard } from "../components/eventAct/EventCard";
 
 export default function Home() {
   const [packages, setPackages] = useState([]);
   const [hotels, sethotels] = useState([]);
-
+  const [events, setevents] = useState([]);
   useEffect(() => {
     const fetchPkg = async () => {
       try {
@@ -31,11 +33,23 @@ export default function Home() {
         const data = await res.json();
         sethotels(data);
         console.log(data);
+      } catch (error) {}
+    };
+    fetchHotels();
+  }, []);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("/api/events/search/get?limit=3");
+        const data = await res.json();
+        setevents(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchHotels();
+    fetchEvents();
   }, []);
 
   return (
@@ -131,43 +145,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
-          <div className="relative">
-            {/* Image */}
-            <img src={eventbanner} className="h-80 w-full" alt="Event Banner" />
-
-            {/* Overlay Content */}
-            <div className="absolute inset-0 flex flex-col mt-10 ml-10">
-              <h2 className="text-2xl font-semibold text-slate-600">
-                Events and Activities
-              </h2>
-              <p>
-                This heading, "Events," serves as a prominent title for the
-                <br />
-                section dedicated to events and activities within a tourism
-                <br />
-                management system. It signifies a focal point where users can
-                <br />
-                explore various events and activities available through the
-                <br />
-                system.
-              </p>
-              <Link
-                to={"/events/search/"}
-                className="text-sm text-white hover:underline"
-              >
-                <button className="bg-blue-900 p-5 w-80 rounded-3xl mt-6">
-                  Explore Events
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div>
-
       {
         <div>
           <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
@@ -195,20 +172,106 @@ export default function Home() {
           </div>
         </div>
       }
+
+      {
+        <div>
+          <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
+            {events && events.length > 0 && (
+              <div className="">
+                <div className="my-3">
+                  <h2 className="text-2xl font-semibold text-slate-600">
+                    Recent Events and Activities
+                  </h2>
+                  <Link
+                    className="text-sm text-blue-800 hover:underline"
+                    to={"/events/search/"}
+                  >
+                    Show more Events and Activities
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap gap-16">
+                  {events.map((event) => (
+                    <EventCard
+                      id={event._id}
+                      title={event.title}
+                      description={event.description}
+                      date={event.date}
+                      location={event.location}
+                      price={event.price}
+                      type={event.type}
+                      time={event.time}
+                      image={event.imageUrls[0]}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      }
+
       <div>
         <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
-          {hotels && hotels.length > 0 && (
-            <div className="">
-              <div className="my-3">
-                <Link
-                  className="text-sm text-blue-800 hover:underline"
-                  to={"/guid/search"}
-                >
-                  <img src={guidimg} />
-                </Link>
-              </div>
+          <div className="relative">
+            {/* Image */}
+            <img src={guidimg} className="h-80 w-full" alt="Event Banner" />
+
+            {/* Overlay Content */}
+            <div className="absolute inset-0 flex flex-col mt-10 ml-10">
+              <h2 className="text-2xl font-semibold text-slate-600">
+                Tour Guid
+              </h2>
+              <p>
+                This heading, "Events," serves as a prominent title for the
+                <br />
+                section dedicated to events and activities within a tourism
+                <br />
+                management system. It signifies a focal point where users can
+                <br />
+                explore various events and activities available through the
+                <br />
+                system.
+              </p>
+              <Link
+                to={"/guid/search"}
+                className="text-sm text-white hover:underline"
+              >
+                <button className="bg-blue-900 p-5 w-80 rounded-3xl mt-6">
+                  Explore Guides
+                </button>
+              </Link>
             </div>
-          )}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
+        <div className="relative">
+          <div
+            className="inset-0 bg-cover bg-center rounded-md"
+            style={{
+              backgroundImage: `url(${trainbanner})`,
+              width: "100%",
+              height: "300px", // Adjust height as needed
+            }}
+          >
+            <div className="absolute top-0 right-0 m-5">
+              <Link to={"/train/search"}>
+                <button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 mt-20">
+                  Book Your Seat
+                </button>
+              </Link>
+            </div>
+            <div className="flex flex-col justify-items-stretch">
+              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-right mr-4">
+                Welcome to TourCraft Railways
+              </h1>
+              <p className="text-right text-xl text-sky-200 mt-2 mr-4">
+                Online Advance Train Seats Reservation
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 

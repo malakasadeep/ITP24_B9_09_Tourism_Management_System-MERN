@@ -74,7 +74,11 @@ const HotelSchema=new mongoose.Schema({
     roomtype: {
         type: [String, Array], 
         required: true
-    }
+    },
+    userRef: {
+        type: String, 
+        required: true
+    },
     
   
    
