@@ -192,12 +192,11 @@ const handleChange = (e) => {
             <label for className='lg:text-lg text-left'>Vehicle Type</label>
             <select className='p-2 border rounded-md w-full bg-white mt-2' id='type' onChange={handleChange} value={formData.type} required>
             
-            
+            <option>Tuk Tuk</option>
             <option>Car</option>
             <option>SUV</option>
             <option>Van</option>
             <option>Motor Bike</option>
-            <option>Tuk Tuk</option>
             <option>Bus</option>
           </select>
 
@@ -210,9 +209,17 @@ const handleChange = (e) => {
 
           <label for className='lg:text-lg text-left'>Transmission Type</label>
           <select className='p-2 border rounded-md w-full bg-white mt-2' id='transmission' onChange={handleChange} value={formData.transmission} required>
-            <option value='Auto'>Auto</option>
+         
             <option value='Manual'>Manual</option>
+            <option value='Auto'>Auto</option>
+            
           </select>
+
+          <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
+            Capacity
+              </label>
+          <input type='number' className='border rounded-lg w-full p-2  mt-2' placeholder='12500' id='capacity' onChange={handleChange} value={formData.capacity} required/>
+
 
 
           <label for className='lg:text-lg text-left'>Fuel Type</label>

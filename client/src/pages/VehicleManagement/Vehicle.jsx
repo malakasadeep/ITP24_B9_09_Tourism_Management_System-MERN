@@ -54,8 +54,7 @@ function Vehicle() {
               icon: "success"
               
             });
-            navigate('/Vehicle');
-            setUserPackage((prev)=> prev.filter((vehicles)=> vehicles._id !== packageId));
+            setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== vehicleId));
           } catch (error) {
             console.log(error.message);
           } 
