@@ -20,13 +20,12 @@ export default function SearchHotel() {
     useEffect (() => {
         const urlParams = new URLSearchParams(window.location.search);
         const searchTerm = urlParams.get('searchTerm') || '';
-        const type = urlParams.get('type') || 'all';
+        const type = urlParams.get('type') || '';
         const availableWork = urlParams.get('availableWork') || '';
-        const province = urlParams.get('province') || '';
-        const city = urlParams.get('city') || '';
+        const province = urlParams.get('province') || ''; 
         const sort = urlParams.get('sort') || 'created_at';
         const order = urlParams.get('order') || 'desc';
-        setSearchData({searchTerm, type, availableWork,province, city, sort, order});
+        setSearchData({searchTerm, type, availableWork,province, sort, order});
 
         const fetchhotel = async () => {
             setLoading(true);
@@ -43,7 +42,7 @@ export default function SearchHotel() {
     
     const handleChange = (e) => {
  
-        if(e.target.id === 'all'||e.target.id === '3 Star Hotel'  || e.target.id === '4 Star Hotel' || e.target.id === '5 Star Hotel'){
+        if(e.target.id === '3 Stars hotel'  || e.target.id === '4 Stars hotel' || e.target.id === '5 Stars hotel'){
             setSearchData({...searchData, type: e.target.id});
         }
         if(e.target.id === 'available'||e.target.id === 'not available' ){
@@ -56,9 +55,7 @@ export default function SearchHotel() {
         if(e.target.id === 'province'){
             setSearchData({...searchData, province: e.target.value});
         }
-        if(e.target.id === 'city'){
-            setSearchData({...searchData, city: e.target.value});
-        }
+      
         if(e.target.id === 'sort_order'){
             const sort = e.target.value.split('_')[0] || 'created_at';
             const order = e.target.value.split('_')[1] || 'desc';
@@ -73,7 +70,6 @@ export default function SearchHotel() {
         urlParame.set('type', searchData.type)
         urlParame.set('availableWork', searchData.availableWork)
         urlParame.set('province', searchData.province)
-        urlParame.set('city', searchData.city)
         urlParame.set('sort', searchData.sort)
         urlParame.set('order', searchData.order)
         const searchQuery = urlParame.toString();
@@ -91,34 +87,44 @@ export default function SearchHotel() {
                 <div className='flex flex-wrap gap-2 items-center'>
                     <label htmlFor="" className='font-semibold'>Type: </label>
                     <div className='flex gap-2'>
-                        <input type="checkbox"  id="all" className='w-5' onChange={handleChange} checked={searchData.type === 'all'} />
-                        <span>All</span>
+                        <input type="checkbox"  id="3 Stars hotel" className='w-5' onChange={handleChange} checked={searchData.type === '3 Stars hotel'}/>
+                        <span>&#9733;&#9733;&#9733;</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input type="checkbox"  id="3 Star Hotel" className='w-5' onChange={handleChange} checked={searchData.type === '3 Star Hotel'}/>
-                        <span>3 Star Hotel</span>
+                        <input type="checkbox"  id="4 Stars hotel" className='w-5' onChange={handleChange} checked={searchData.type === '4 Stars hotel'}/>
+                        <span>&#9733;&#9733;&#9733;&#9733;</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input type="checkbox"  id="4 Star Hotel" className='w-5' onChange={handleChange} checked={searchData.type === '4 Star Hotel'}/>
-                        <span>4 Star Hotel</span>
-                    </div>
-                    <div className='flex gap-2'>
-                        <input type="checkbox"  id="5 Star Hotel" className='w-5' onChange={handleChange} checked={searchData.type === '5 Star Hotel'} />
-                        <span>5 Star Hotel</span>
+                        <input type="checkbox"  id="5 Stars hotel" className='w-5' onChange={handleChange} checked={searchData.type === '5 Stars hotel'} />
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                     </div>
                 </div>
               
                 <div className='flex gap-2 flex-wrap items-center'>
-                    <label htmlFor="" className='font-semibold'>Accomedation:</label>
+                    <label htmlFor="" className='font-semibold'>Available Hotel:</label>
                     <div className='flex gap-2'>
                         <input type="checkbox" id="available" className='w-5' onChange={handleChange} checked={searchData.availableWork === 'available'}/>
-                        <span>&#9733;&#9733;&#9733;</span>
+                        <span>Available</span>
                     </div>
                     <div className='flex gap-2'>
                         <input type="checkbox" id="not available" className='w-5' onChange={handleChange} checked={searchData.availableWork === 'not available'}/>
-                        <span>&#9733;&#9733;&#9733;&#9733;</span>
+                        <span>Not Available</span>
                     </div>
                     
+                </div>
+                <div className='flex items-center gap-2'>
+                    <label className='font-semibold'>Province:</label>
+                    <select id='province' className='border rounded-lg p-3' onChange={handleChange} value={searchData.province}>
+                    <option>Southern Province</option>
+                    <option>Western Province</option>
+                    <option>Central Province</option>
+                    <option>Sabaragamuwa Province</option>
+                    <option>Eastern Province</option>
+                    <option>Uva Province</option>
+                    <option>North Western Province</option>
+                    <option>North Central Province</option>
+                    <option>Northern Province</option>
+                    </select>
                 </div>
                 
                 <div className='flex items-center gap-2'>
