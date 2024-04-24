@@ -112,11 +112,23 @@ export const getEventSearch = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 10;
     const startIndex = parseInt(req.query.startIndex) || 0;
-    // let offer = req.query.offer;
 
+    let type = req.query.type;
+    if (type === undefined || type === "all") {
+      type = { $in: ["Event", "Activity"] };
+    }
+
+    let location = req.query.location;
+    if (location === undefined || location === "all") {
+      location = {
+        $in: ["Colombo", "Galle", "Kandy", "Jaffna", "Matara", "Negombo"],
+      };
+    }
+
+    // let offer = req.query.offer;
     // if(offer === undefined || offer === 'false'){
     //   offer = { $in: [false, true] };
-    // }  
+    // }
 
     const searchTerm = req.query.searchTerm || "";
 
@@ -126,7 +138,8 @@ export const getEventSearch = async (req, res, next) => {
 
     const events = await Event.find({
       title: { $regex: searchTerm, $options: "i" },
-      // offer,
+      type,
+      location,
     })
       .sort({ [sort]: order })
       .skip(startIndex)

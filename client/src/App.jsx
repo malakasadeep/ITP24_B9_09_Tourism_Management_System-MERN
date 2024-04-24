@@ -34,6 +34,7 @@ import CreateEvent from "./pages/eventAct/CreateEvent";
 import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
+import SearchEvent from "./pages/eventAct/SearchEvent";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -46,18 +47,34 @@ import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import VehicleHome from "./pages/VehicleManagement/VehicleHome"
 import VehicleAdmin from "./pages/VehicleManagement/AdminVM";
 import VehicleBook from "./pages/VehicleManagement/VehicleBook";
+import AdminVehicleAdd from "./components/VehicleManagement/AdminVehicleAdd";
+import AdminVehicleUpdate from "./components/VehicleManagement/AdminVehicleUpdate";
 
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
 import Hotel from "./pages/hotel/Hotel";
-  
-  
+import SearchHotel from "./pages/hotel/SearchHotel";
+import UpdateHotel from "./pages/hotel/UpdateHotel";
+import AdminHM from "./components/hotel/AdminHm";
+import AdminHotelUpdate from "./components/hotel/AdminHotelUpdate";
+import AdminAddHotel from "./components/hotel/AdminAddHotel";
+
 //shadini
-import CreateTrain from './pages/train/CreateTrain';
-import { AdminTrainManagement } from './components/train/AdminTrainManagement';
-import UpdateTrain from './pages/train/UpdateTrain';
-import AdminVehicleAdd from "./components/VehicleManagement/AdminVehicleAdd";
-import AdminVehicleUpdate from "./components/VehicleManagement/AdminVehicleUpdate";
+import CreateTrain from "./pages/train/CreateTrain";
+import { AdminTrainManagement } from "./components/train/AdminTrainManagement";
+import UpdateTrain from "./pages/train/UpdateTrain";
+import AdminAddTrain from "./components/train/AdminAddTrain";
+import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+
+//prabodhi
+import Add_Guide from "./pages/tourGuid/Add_Guide";
+import UpdateGuide from "./pages/tourGuid/UpdateGuide";
+import Guides from "./pages/tourGuid/Guides";
+import SearchGuid from "./pages/tourGuid/SearchGuid";
+import AdminGM from "./components/tourGuid/AdminGM";
+import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
+import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
+
 
 export default function App() {
   return (
@@ -116,23 +133,62 @@ export default function App() {
         <Route path="/admin/vehicle/add" element={<AdminVehicleAdd />} />
         <Route path="/admin/vehicle/update/:id" element={<AdminVehicleUpdate />} />
 
+
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
-        <Route path="/events/admin" element={<EventTable />} />
+        <Route path="/admin/events" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
+        <Route path="/events/get/:id" element={<ShowEvent />} />
+        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
+        <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
-     { /*   <Route path="/events/search/:id" element={<SearchEvent />} />*/}
+
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
+        <Route path="/Hotel/:hotelId" element={<Hotel />} />
+        <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
-          
-        <Route path='/add-train' element={<CreateTrain/>}/>
-        <Route path='/update-train/:trainID' element={<UpdateTrain/>}/>
-        <Route path='/admin/train' element={<AdminTrainManagement/>}/>
+        <Route path="/admin/hotels/*" element={<AdminHM />} />
+          <Route
+            path="/admin/hotels/update/:hotelId/*"
+            element={<AdminHotelUpdate />}
+          />
+          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
         
+          
+
+        {/*Shadini*/}
+        <Route path="/add-train" element={<CreateTrain />} />
+        <Route path="/update-train/:trainID" element={<UpdateTrain />} />
+        <Route path="/admin/train" element={<AdminTrainManagement />} />
+        <Route path="/admin/train/add" element={<AdminAddTrain />} />
+        <Route
+          path="/admin/train/update/:trainID"
+          element={<AdminTrainUpdate />}
+        />
+
+        {/* prabodhi */}
+        <Route path="/add-guide" element={<Add_Guide />}></Route>
+        <Route
+          path="/update-guide/:guidingId"
+          element={<UpdateGuide />}
+        ></Route>
+        <Route path="/guiding/:guidingId" element={<Guides />}></Route>
+        <Route path="/guid/search" element={<SearchGuid />} />
+        <Route path="/admin/guid" element={<AdminGM />} />
+        <Route path="/admin/guid/add" element={<AdminAddGuid />} />
+        <Route path="/admin/guid/:guidingId" element={<Guides />} />
+        <Route
+          path="/admin/guid/update/:guidingId"
+          element={<AdminGuidUpdate />}
+        />
+            
+            
       </Routes>
       <Footer />
     </BrowserRouter>
