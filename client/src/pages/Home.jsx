@@ -3,9 +3,10 @@ import PackageCard from "../components/tour-packages/PackageCard";
 import HotelCard from "../components/hotel/HotelCard";
 import { Link } from "react-router-dom";
 import "./../assets/css/Home.css";
-import guidimg from "./../assets/img/4670.jpg";
+import guidimg from "./../assets/img/guidBanner.png";
 import Bubbles from "../components/Bubbles";
 import trainbanner from "../assets/img/TrainImages/train-banner.jpg";
+import resbanner from "../assets/img/bg/resbanner.png";
 import eventbanner from "../assets/img/event/banner.jpg";
 import { EventCard } from "../components/eventAct/EventCard";
 
@@ -211,41 +212,36 @@ export default function Home() {
         </div>
       }
 
-      <div>
-        <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
-          <div className="relative">
-            {/* Image */}
-            <img src={guidimg} className="h-80 w-full" alt="Event Banner" />
-
-            {/* Overlay Content */}
-            <div className="absolute inset-0 flex flex-col mt-10 ml-10">
-              <h2 className="text-2xl font-semibold text-slate-600">
-                Tour Guid
-              </h2>
-              <p>
-                This heading, "Events," serves as a prominent title for the
-                <br />
-                section dedicated to events and activities within a tourism
-                <br />
-                management system. It signifies a focal point where users can
-                <br />
-                explore various events and activities available through the
-                <br />
-                system.
-              </p>
-              <Link
-                to={"/guid/search"}
-                className="text-sm text-white hover:underline"
-              >
-                <button className="bg-blue-900 p-5 w-80 rounded-3xl mt-6">
-                  Explore Guides
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
+        <div className="relative">
+          <div
+            className="inset-0 bg-cover bg-center rounded-md"
+            style={{
+              backgroundImage: `url(${resbanner})`,
+              width: "100%",
+              height: "300px", // Adjust height as needed
+            }}
+          >
+            <div className="absolute top-36 left-2 m-5">
+              <Link to={"/restaurants"}>
+                <button className="bg-blue-500 text-white px-6 text-3xl py-3 rounded-3xl hover:bg-blue-600 w-96 h-24">
+                  Find the Foods
                 </button>
               </Link>
+            </div>
+            <div className="flex flex-col justify-items-stretch">
+              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-left mr-4 mt-4">
+                ONLINE RESTAURANT FOOD DELIVERY
+              </h1>
+              <p className="text-left ml-10 text-xl text-sky-200 mt-2 mr-4">
+                Whether you want to order breakfast, lunch, dinner, or a snack,
+                <br /> TourCraft makes it easy to discover new and
+                <br /> nearby places to eat in sri lanka.
+              </p>
             </div>
           </div>
         </div>
       </div>
-
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
         <div className="relative">
           <div
@@ -258,13 +254,13 @@ export default function Home() {
           >
             <div className="absolute top-0 right-0 m-5">
               <Link to={"/train/search"}>
-                <button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 mt-20">
-                  Book Your Seat
+                <button className="bg-blue-500 text-white px-6 py-3 rounded-3xl hover:bg-blue-600 mt-20 w-72 text-3xl h-20">
+                  Book your Train
                 </button>
               </Link>
             </div>
             <div className="flex flex-col justify-items-stretch">
-              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-right mr-4">
+              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-right mr-4 uppercase mt-4">
                 Welcome to TourCraft Railways
               </h1>
               <p className="text-right text-xl text-sky-200 mt-2 mr-4">
@@ -274,37 +270,31 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <div>
-        <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
-          <div className="relative">
-            {/* Image */}
-            <img src={eventbanner} className="h-80 w-full" alt="Event Banner" />
-
-            {/* Overlay Content */}
-            <div className="absolute inset-0 flex flex-col mt-10 ml-10">
-              <h2 className="text-2xl font-semibold text-slate-600">
-                Events and Activities
-              </h2>
-              <p>
-                This heading, "Events," serves as a prominent title for the
-                <br />
-                section dedicated to events and activities within a tourism
-                <br />
-                management system. It signifies a focal point where users can
-                <br />
-                explore various events and activities available through the
-                <br />
-                system.
-              </p>
-              <Link
-                to={"/restaurants"}
-                className="text-sm text-white hover:underline"
-              >
-                <button className="bg-blue-900 p-5 w-80 rounded-3xl mt-6">
-                  Explore Events
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
+        <div className="relative">
+          <div
+            className="inset-0 bg-cover bg-center rounded-md"
+            style={{
+              backgroundImage: `url(${guidimg})`,
+              width: "100%",
+              height: "300px", // Adjust height as needed
+            }}
+          >
+            <div className="absolute top-36 left-2 m-5">
+              <Link to={"/restaurants"}>
+                <button className="bg-blue-500 text-white px-6 text-3xl py-3 rounded-3xl hover:bg-blue-600 w-96 h-24">
+                  Get Your Guide
                 </button>
               </Link>
+            </div>
+            <div className="flex flex-col justify-items-stretch">
+              <h1 className="text-4xl ml-10 font-semibold text-slate-100 text-left mr-4 mt-4 uppercase">
+                Sell more Experiences
+              </h1>
+              <p className="text-left ml-10 text-xl text-slate-700 mt-2 mr-4">
+                Make memories on your next trip with <br />
+                the perfect local guide.
+              </p>
             </div>
           </div>
         </div>
