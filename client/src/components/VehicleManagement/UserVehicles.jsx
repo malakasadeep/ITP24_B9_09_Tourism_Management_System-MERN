@@ -4,33 +4,33 @@ import { Link } from "react-router-dom";
 import { IoChevronDownCircle } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
-import tour_pkg from "../../assets/img/icons/hotel.png";
+import tour_pkg from "../../assets/img/icons/tour_pkg.png";
 import Swal from "sweetalert2";
 
-export default function UserHotels() {
-  const [showHotelError, setShowHotelError] = useState(false);
+export default function UserVehicles() {
+  const [showVehicleError, setShowVehicleError] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
-  const [userHotels, setUserHotels] = useState([]);
-  const [hotelsLoaded, setHotelsLoaded] = useState(false);
+  const [userVehicles, setUserVehicles] = useState([]);
+  const [vehiclesLoaded, setVehiclesLoaded] = useState(false);
 
-  const handleShowHotels = async () => {
+  const handleShowVehicles = async () => {
     try {
-      setShowHotelError(false);
-      const res = await fetch(`/api/user/hotels/${currentUser._id}`);
+      setShowVehicleError(false);
+      const res = await fetch(`/api/vehicle/get-vehi/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
-        setShowHotelError(true);
+        setShowVehicleError(true);
         return;
       }
 
-      setUserHotels(data);
-      setHotelsLoaded(true);
+      setUserVehicles(data);
+      setVehiclesLoaded(true);
     } catch (error) {
-      setShowHotelError(true);
+      setShowVehicleError(true);
     }
   };
 
-  const handleHotelDelete = async (hotelId) => {
+  const handleVehicleDelete = async (vehicleId) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -42,7 +42,7 @@ export default function UserHotels() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`/api/hotel/delete/${hotelId}`, {
+          const res = await fetch(`/api/vehicle/delete/${vehicleId}`, {
             method: "DELETE",
           });
           const data = await res.json();
@@ -52,11 +52,11 @@ export default function UserHotels() {
           }
           Swal.fire({
             title: "Deleted!",
-            text: "Your hotel has been deleted.",
+            text: "Your vehicle has been deleted.",
             icon: "success",
           });
-          setUserHotels((prev) =>
-            prev.filter((hotel) => hotel._id !== hotelId)
+          setUserVehicles((prev) =>
+            prev.filter((vehicle) => vehicle._id !== vehicleId)
           );
         } catch (error) {
           console.log(error.message);
@@ -70,51 +70,51 @@ export default function UserHotels() {
         <div className="flex flex-row rounded-xl overflow-hidden items-center gap-5">
           <img src={tour_pkg} alt="" className="w-20 h-20 object-contain" />
           <h5 className="text-blue-900 text-4xl  font-medium text-center flex flex-row items-center gap-5">
-            My Hotels <IoChevronDownCircle />
+            My Vehicles <IoChevronDownCircle />
           </h5>
         </div>
         <button
-          onClick={handleShowHotels}
+          onClick={handleShowVehicles}
           className="text-center bg-blue-400 text-blue-800 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-200 focus:scale-95 transition-all duration-200 ease-out "
         >
           Explore{" "}
         </button>
         <p className="text-red-700 mt-5">
-          {showHotelError && "Error showing listings"}
+          {showVehicleError && "Error showing listings"}
         </p>
-        {hotelsLoaded && userHotels.length > 0 ? (
+        {vehiclesLoaded && userVehicles.length > 0 ? (
           <div className="flex flex-col gap-4">
             <h1 className="text-center mt-7 text-4xl font-extralight">
-              Your Hotels
+              Your Vehicles
             </h1>
-            {userHotels.map((hotel) => (
+            {userVehicles.map((vehicle) => (
               <div
-                key={hotel._id}
+                key={vehicle._id}
                 className="border border-blue-600 rounded-lg p-3 flex justify-between items-center gap-4 transition duration-300 ease-in-out hover:scale-105"
               >
-                <Link to={`/listing/${hotel._id}`}>
+                <Link to={`/listing/${vehicle._id}`}>
                   <img
-                    src={hotel.hotelImgs[0]}
+                    src={vehicle.imageUrls[0]}
                     alt="listing cover"
                     className="h-20 w-20 object-contain"
                   />
                 </Link>
                 <Link
                   className="text-slate-700 font-semibold  hover:underline truncate flex-1"
-                  to={`/my-hotels/${hotel._id}`}
+                  to={`/Vehicle/${vehicle._id}`}
                 >
-                  <p className="text-2lg">{hotel.title}</p>
+                  <p className="text-2lg">{vehicle.regno}</p>
                 </Link>
 
                 <div className="flex flex-row item-center gap-4">
                   <button
-                    onClick={() => handleHotelDelete(hotel._id)}
+                    onClick={() => handleVehicleDelete(vehicle._id)}
                     className="text-red-700  text-4xl hover:text-red-400 focus:scale-95 transition-all duration-200 ease-out "
                   >
                     {" "}
                     <MdDeleteOutline />
                   </button>
-                  <Link to={`/update-hotel/${hotel._id}`}>
+                  <Link to={`Vehicle/update/${vehicle._id}`}>
                     <button className="text-green-700 text-4xl hover:text-green-400 focus:scale-95 transition-all duration-200 ease-out ">
                       <FaRegEdit />
                     </button>
@@ -123,9 +123,9 @@ export default function UserHotels() {
               </div>
             ))}
           </div>
-        ) : hotelsLoaded ? (
+        ) : vehiclesLoaded ? (
           <div className="text-center mt-7 text-4xl font-extralight">
-            {showHotelError ? "Error showing listings" : "No Hotels found."}
+            {showVehicleError ? "Error showing listings" : "No Vehicles found."}
           </div>
         ) : null}
       </div>
