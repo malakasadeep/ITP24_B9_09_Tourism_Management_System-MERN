@@ -76,7 +76,9 @@ export default function AddItems() {
                   Demo of pixel perfect pure CSS simple responsive card grid
                   layout
                 </p>
-                <button className="btn card_btn">Add Vehicles</button>
+                <Link to={"/Vehicle/add"}>
+                  <button className="btn card_btn">Add Vehicles</button>
+                </Link>
               </div>
             </div>
           </li>
@@ -109,7 +111,7 @@ export default function AddItems() {
                   layout
                 </p>
                 <Link to={"/add-guide"}>
-                <button className="btn card_btn">Add Guides</button>
+                  <button className="btn card_btn">Add Guides</button>
                 </Link>
               </div>
             </div>
