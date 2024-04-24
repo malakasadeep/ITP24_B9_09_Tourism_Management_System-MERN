@@ -14,6 +14,7 @@ export default function CreateTrain() {
         arrivalTime:'',
         type:'daily',
         noofseats:'1',
+        price:'1',
         description:''
     })
     const [error, setError] = useState(false);
@@ -42,12 +43,33 @@ export default function CreateTrain() {
                 [e.target.id]: e.target.value,
             });
         }
+
+        
+        
     };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if(formData.destination === formData.from){
+                setError('Start and destination stations are same');
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: 'Start and destination stations are same'
+                });
+                return;
+            }
+            if(formData.noofseats > 0 && formData.price > 0){
+                setError('Seats or prices are not valid');
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: 'Seats or prices are not valid'
+                });
+                return;
+            }
             setLoading(true);
             setError(false);
             const res = await fetch('/api/train/add', {
@@ -100,6 +122,10 @@ export default function CreateTrain() {
                     <option value="Intercity">Intercity</option>
                     <option value="Slow">Slow</option>
                 </select>
+                <div className='flex items-center gap-2'>
+                        <input type='number' id='price' min='1' className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.price} />
+                        <p>Ticket Price</p>
+                </div>
                 <div className='flex gap-6 flex-wrap'>
                     <div className='flex gap-2'>
                         <input type='checkbox' id='1st' className='w-5' onChange={handleChange} checked={formData.class === '1st'}/>
@@ -129,11 +155,11 @@ export default function CreateTrain() {
                         <p>Start Station</p>
                     </div>
                     <div className='flex items-center gap-2'>
-                        <input type='time' id='departureTime' min='1' max='10' className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.departureTime} />
+                        <input type='time' id='departureTime' className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.departureTime} />
                         <p>Departure Time</p>
                     </div>
                     <div className='flex items-center gap-2'>
-                        <select type='text' id='destination' min='1' max='20' className='p-3 border border-blue-300 rounded-lg w-60' required onChange={handleChange} value={formData.destination} >
+                        <select type='text' id='destination' className='p-3 border border-blue-300 rounded-lg w-60' required onChange={handleChange} value={formData.destination} >
                             <option value='Colombo Fort'>Colombo Fort </option>
                             <option value = 'Galle'>Galle</option>
                             <option value = 'Matara'>Matara</option>
@@ -145,7 +171,7 @@ export default function CreateTrain() {
                         <p>Destination</p>
                     </div>
                     <div className='flex items-center gap-2'>
-                        <input type='time' id='arrivalTime' min='1' max='15' className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.arrivalTime}/>
+                        <input type='time' id='arrivalTime'  className='p-3 border border-blue-300 rounded-lg' required onChange={handleChange} value={formData.arrivalTime}/>
                         <p>Arrival Time</p>
                     </div>
 

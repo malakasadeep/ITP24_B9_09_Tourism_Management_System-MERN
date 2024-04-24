@@ -225,16 +225,24 @@ const handleTrainDelete = async (trainID) => {
       </div>
     </div>
     <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-    <div className="modal-content">
-        <h2>Seat Information</h2>
-        <div className="seats-container">
+    <div className="modal-content bg-skyblue-200 rounded-lg p-6 relative">
+        <button className="close-btn absolute top-0 right-0 mt-4 mr-4 bg-skyblue-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-skyblue-600" onClick={() => setModalIsOpen(false)}>X</button>
+        <h2 className="text-xl font-bold mb-4">Seat Information</h2>
+        <div className="flex items-center mb-2">
+            <div className="w-3 h-3 mr-2 bg-green-500 rounded-full"></div>
+            <p className="text-sm text-skyblue-500">Available Seats</p>
+        </div>
+        <div className="flex items-center mb-2">
+            <div className="w-3 h-3 mr-2 bg-red-500 rounded-full"></div>
+            <p className="text-sm text-skyblue-500">Booked Seats</p>
+        </div>
+        <div className="seats-container grid grid-cols-4 gap-4">
             {seats.map((seat, index) => (
-                <div key={index} className={`seat ${seat.available ? 'available' : 'booked'}`}>
-                    <p>No: {seat.seatNumber}</p>
+                <div key={index} className={`seat ${seat.available ? 'bg-red-200' : 'bg-green-200'} rounded-lg p-3 flex items-center justify-center`}>
+                    <p className="text-lg font-semibold">{seat.seatNumber}</p>
                 </div>
             ))}
         </div>
-        <button className="close-btn" onClick={() => setModalIsOpen(false)}>Close</button>
     </div>
 </Modal>
     </div>

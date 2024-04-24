@@ -53,6 +53,8 @@ import { AdminTrainManagement } from './components/train/AdminTrainManagement';
 import UpdateTrain from './pages/train/UpdateTrain';
 import AdminAddTrain from "./components/train/AdminAddTrain";
 import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+import TrainHome from "./pages/train/TrainHome";
+import TrainBook from "./pages/train/TrainBook";
 
 export default function App() {
   return (
@@ -125,6 +127,8 @@ export default function App() {
         <Route path='/admin/train' element={<AdminTrainManagement/>}/>
         <Route path='/admin/train/add' element={<AdminAddTrain/>}/>
         <Route path='/admin/train/update/:trainID' element={<AdminTrainUpdate/>}/>
+        <Route path='/train/search' element={<TrainHome/>}/>
+        <Route path='/train/book/:id' element={<TrainBook/>}/>
         
       </Routes>
       <Footer />

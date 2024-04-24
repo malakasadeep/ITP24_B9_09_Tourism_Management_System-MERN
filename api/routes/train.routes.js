@@ -16,7 +16,8 @@ router.route("/add").post(async (req,res)=>{
         arrivalTime,
         type,
         noofseats,
-        description
+        description,
+        price
     } = req.body;
 
     try {
@@ -31,7 +32,8 @@ router.route("/add").post(async (req,res)=>{
             arrivalTime,
             type,
             noofseats,
-            description
+            description,
+            price
         });
 
         // Save train to database
@@ -77,7 +79,8 @@ router.route("/update/:id").put(async(req,res, next)=> {
         arrivalTime,
         type,
         noofseats,
-        description
+        description,
+        price
     } = req.body;
     
     try {
@@ -99,6 +102,7 @@ router.route("/update/:id").put(async(req,res, next)=> {
         existingTrain.type = type;
         existingTrain.noofseats = noofseats;
         existingTrain.description = description;
+        existingTrain.price = price;
     
         // Save the updated train document
         const updatedTrain = await existingTrain.save();
@@ -124,17 +128,23 @@ router.route("/update/:id").put(async(req,res, next)=> {
     }
 })
  
-router.route("/delete/:id").delete(async(req,res)=>{
-    let trainId = req.params.id;
+router.route("/delete/:id").delete(async (req, res) => {
+    try {
+        let trainId = req.params.id;
 
-    await train.findByIdAndDelete(trainId).then(()=>{
-        res.status(200).send({status: "Train deleted"})
-    }).catch((err)=>{
+        // Delete the train document
+        await train.findByIdAndDelete(trainId);
+
+        // Delete associated seats
+        await Seat.deleteMany({ trainId });
+
+        res.status(200).send({ status: "Train and associated seats deleted" });
+    } catch (err) {
         console.log(err.message);
-        res.status(500).send({status: "Error with delete train",error: err.message});
-    })
+        res.status(500).send({ status: "Error with delete train", error: err.message });
+    }
+});
 
-})
 
 router.route("/get/:id").get(async(req,res)=>{
     //let trainId = req.params.id;
