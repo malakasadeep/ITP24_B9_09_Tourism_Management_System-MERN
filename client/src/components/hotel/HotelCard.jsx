@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import "./../../assets/css/Home.css";
 import { LuHotel } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
-import personico from '../../assets/img/icons/package-page/person.png'
+import hotelphoto from '../../assets/img/icons/hotel/hotel.png'
 import { RxActivityLog } from "react-icons/rx";
 
-
+import { SlLocationPin } from "react-icons/sl";
+import { CiLocationArrow1 } from "react-icons/ci";
+import { TbStars } from "react-icons/tb";
 export default function HotelCard({ hotell }) {
   return (
     <div className="frame">
@@ -21,7 +23,8 @@ export default function HotelCard({ hotell }) {
               <div className="grid grid-cols-3 gap-x-1 gap-y-1">
                 <div>
                   <div className="flex flex-row items-center gap-1  rounded-lg">
-                    <SlCalender />
+                  <CiLocationArrow1 />
+
 
                     <div className="text-center">
                       <p className="text-sm font-light text-black">
@@ -34,7 +37,7 @@ export default function HotelCard({ hotell }) {
 
                 <div>
                   <div className="flex flex-row items-center gap-1   rounded-lg">
-                    <LuHotel />
+                  <SlLocationPin />
                     <div className="text-center">
                       <p className="text-sm font-light text-black">
                         {hotell.province}
@@ -46,7 +49,7 @@ export default function HotelCard({ hotell }) {
                 <div>
                   
                   <div className='flex flex-row items-center gap-1  rounded-lg'>
-                  <RxActivityLog />
+                  < TbStars />
                   <div className='text-center'>
                     <p className='text-sm font-light text-black'>{hotell.type}</p>
                   </div>
@@ -62,7 +65,7 @@ export default function HotelCard({ hotell }) {
             </p>
           </div>
           <div className='flex flex-row items-center gap-1 p-1 rounded-lg'>
-          <img src={personico} alt="" className='w-5 h-auto object-contain' />
+          <img src={hotelphoto} alt="" className='w-5 h-auto object-contain' />
                   <div className='text-center'>
                  
                             <p className='font-semibold  text-black text-base '>{hotell.name}</p>

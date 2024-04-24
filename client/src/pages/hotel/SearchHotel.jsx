@@ -25,12 +25,12 @@ export default function SearchHotel() {
         const province = urlParams.get('province') || ''; 
         const sort = urlParams.get('sort') || 'created_at';
         const order = urlParams.get('order') || 'desc';
-        setSearchData({searchTerm, type, availableWork,province, sort, order});
+        setSearchData({searchTerm, type, availableWork,province});
 
         const fetchhotel = async () => {
             setLoading(true);
             const searchQuery = urlParams.toString();
-            const res = await fetch(`/api/hotels/gethotels?${searchQuery}`);
+            const res = await fetch(`/api/hotel/gethotels?${searchQuery}`);
             const data = await res.json();
             setHotels(data);
             setLoading(false);
@@ -56,9 +56,10 @@ export default function SearchHotel() {
             setSearchData({...searchData, province: e.target.value});
         }
       
-        if(e.target.id === 'sort_order'){
-            const sort = e.target.value.split('_')[0] || 'created_at';
-            const order = e.target.value.split('_')[1] || 'desc';
+      
+       if(e.target.id === 'sort_order'){
+           const sort = e.target.value.split('_')[0] || 'created_at';
+           const order = e.target.value.split('_')[1] || 'desc';
             setSearchData({...searchData, sort, order});
         }
     };
@@ -115,6 +116,7 @@ export default function SearchHotel() {
                 <div className='flex items-center gap-2'>
                     <label className='font-semibold'>Province:</label>
                     <select id='province' className='border rounded-lg p-3' onChange={handleChange} value={searchData.province}>
+                    <option>Select the Province</option>
                     <option>Southern Province</option>
                     <option>Western Province</option>
                     <option>Central Province</option>
@@ -126,7 +128,6 @@ export default function SearchHotel() {
                     <option>Northern Province</option>
                     </select>
                 </div>
-                
                 <div className='flex items-center gap-2'>
                     <label className='font-semibold'>Sort:</label>
                     <select id='sort_order' className='border rounded-lg p-3' onChange={handleChange} defaultValue={'created_at_desc'}>
@@ -136,6 +137,8 @@ export default function SearchHotel() {
                         <option value='createdAt_asc'>Oldest</option>
                     </select>
                 </div>
+                
+               
                 <button className='bg-transparent hover:bg-blue-500 text-blue-900 font-semibold text-2xl  hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded w-3/4 ml-12 mb-4'>Search</button>
             </form>
             
