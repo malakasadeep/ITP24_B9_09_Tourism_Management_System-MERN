@@ -5,6 +5,7 @@ import {
   getAllUsers,
   getUser,
   getUserPackages,
+  getUserHotels,
   getUserSearch,
   test,
   updateUser,
@@ -20,6 +21,7 @@ router.get("/search", getUserSearch);
 router.post("/update/:id", veryfyTocken, updateUser);
 router.delete("/delete/:id", veryfyTocken, deleteUser);
 router.get("/packages/:id", veryfyTocken, getUserPackages);
+router.get("/hotels/:id", veryfyTocken, getUserHotels);
 router.get("/:id", veryfyTocken, getUser);
 
 export default router;

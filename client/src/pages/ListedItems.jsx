@@ -8,12 +8,14 @@ import { IoChevronDownCircle } from "react-icons/io5";
 // import tour_agent from "../assets/img/icons/tour-agent.png";
 
 import UserPackages from "../components/tour-packages/UserPackages";
+import UserHotels from "../components/hotel/UserHotels";
 
 export default function ListedItems() {
   return (
     <div className="flex items-center justify-center mt-32 container mx-auto mb-8">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-14  ">
         <UserPackages />
+        <UserHotels/>
 
         {/* <div className="rounded-xl shadow-lg w-100px h-auto bg-white ">
           <div className="p-5 flex flex-col">

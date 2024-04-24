@@ -1,6 +1,7 @@
 import PkgListning from "../models/pkglistning.model.js";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
+import Hotel from "../models/Hotel.js"
 import mongoose from "mongoose";
 
 export const test = (req, res) => {
@@ -63,6 +64,18 @@ export const getUserPackages = async (req, res, next) => {
     }
   } else {
     return next(errorHandler(401, "you can only see your own packages"));
+  }
+};
+export const getUserHotels = async (req, res, next) => {
+  if (req.user.id === req.params.id) {
+    try {
+      const hotels = await Hotel.find({ userRef: req.params.id });
+      res.status(200).json(hotels);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(errorHandler(401, "you can only see your own hotels"));
   }
 };
 
