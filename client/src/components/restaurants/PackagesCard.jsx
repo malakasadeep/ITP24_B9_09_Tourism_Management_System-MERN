@@ -26,7 +26,9 @@ export default function PackagesCard({ packageData }) {
       </div>
 
       <Link to={`/res-pkg-book/${packageData._id}`}>
-        <Button color="dark">Book Now</Button>
+        <Button color="dark" className="bg-red-700">
+          Book Now
+        </Button>
       </Link>
     </Card>
   );

@@ -72,7 +72,7 @@ export default function CreateTrain() {
         });
         return;
       }
-      if (formData.noofseats > 0 && formData.price > 0) {
+      if (formData.noofseats < 0 || formData.price < 0) {
         setError("Seats or prices are not valid");
         Swal.fire({
           icon: "error",
