@@ -131,8 +131,8 @@ export default function App() {
         {/*Wikasith*/}
         <Route path="/Vehicle" element={<Vehicle />} />
         <Route path="/Vehicle/add" element={<AddVehicle />} />
-        <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
-        <Route path="Vehicle/update/:id" element={<EditVehicle />} />
+        <Route path="/Vehicle/delete/:id" element={<DeleteVehicle />} />
+        <Route path="/Vehicle/update/:id" element={<EditVehicle />} />
         <Route path="/VehicleHome" element={<VehicleHome />} />
         <Route path="/Vehicle/get/:id" element={<ShowVehicle />} />
         <Route path="/Vehicle/book/:id" element={<VehicleBook />} />

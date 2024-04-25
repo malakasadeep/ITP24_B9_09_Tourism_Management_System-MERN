@@ -16,7 +16,7 @@ export default function UserVehicles() {
   const handleShowVehicles = async () => {
     try {
       setShowVehicleError(false);
-      const res = await fetch(`/api/vehicle/get-vehi/${currentUser._id}`);
+      const res = await fetch(`/api/user/vehicles/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
         setShowVehicleError(true);
@@ -101,7 +101,7 @@ export default function UserVehicles() {
                 </Link>
                 <Link
                   className="text-slate-700 font-semibold  hover:underline truncate flex-1"
-                  to={`/Vehicle/${vehicle._id}`}
+                  to={`/Vehicle/get/${vehicle._id}`}
                 >
                   <p className="text-2lg">{vehicle.regno}</p>
                 </Link>
@@ -114,7 +114,7 @@ export default function UserVehicles() {
                     {" "}
                     <MdDeleteOutline />
                   </button>
-                  <Link to={`Vehicle/update/${vehicle._id}`}>
+                  <Link to={`/Vehicle/update/${vehicle._id}`}>
                     <button className="text-green-700 text-4xl hover:text-green-400 focus:scale-95 transition-all duration-200 ease-out ">
                       <FaRegEdit />
                     </button>
