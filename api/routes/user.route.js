@@ -4,6 +4,7 @@ import {
   deleteUserByid,
   getAllUsers,
   getUser,
+  getUserEvent,
   getUserPackages,
   getUserHotels,
   getUserSearch,
@@ -24,6 +25,7 @@ router.delete("/delete/:id", veryfyTocken, deleteUser);
 router.get("/packages/:id", veryfyTocken, getUserPackages);
 router.get("/vehicles/:id", veryfyTocken, getUserVehicles);
 router.get("/hotels/:id", veryfyTocken, getUserHotels);
+router.get("/events/:id", veryfyTocken, getUserEvent);
 router.get("/:id", veryfyTocken, getUser);
 
 export default router;

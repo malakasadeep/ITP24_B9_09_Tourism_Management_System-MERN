@@ -33,13 +33,13 @@ import ShowEvent from "./pages/eventAct/ShowEvent";
 import UpdateEvent from "./pages/eventAct/UpdateEvent";
 import DeleteEvent from "./pages/eventAct/DeleteEvent";
 import SearchEvent from "./pages/eventAct/SearchEvent";
+import AdminAddEvent from "./components/eventAct/AdminAddEvent";
+import AdminUpdateEvent from "./components/eventAct/AdminUpdateEvent";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
 import DeleteVehicle from "./pages/VehicleManagement/Vehicle";
-import EditBook from "./pages/VehicleManagement/EditVehicle";
-import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
 import VehicleHome from "./pages/VehicleManagement/VehicleHome";
@@ -75,18 +75,15 @@ import AdminGM from "./components/tourGuid/AdminGM";
 import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
 import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
 
-
 //mithun
-import Restaurant from "./pages/restaurants/Restaurants"
-import ResPackages from "./pages/restaurants/Packages"
-import Dashboard from "./pages/restaurants/Dashboard"
-import CreateRestaurant from "./pages/restaurants/CreateRestaurant"
-import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant"
-import CreatePackage from "./pages/restaurants/CreatePackage"
-import UpdatePackage from "./pages/restaurants/UpdatePackage"
-import Booking from "./pages/restaurants/Booking"
-
-
+import Restaurant from "./pages/restaurants/Restaurants";
+import ResPackages from "./pages/restaurants/Packages";
+import Dashboard from "./pages/restaurants/Dashboard";
+import CreateRestaurant from "./pages/restaurants/CreateRestaurant";
+import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant";
+import CreatePackage from "./pages/restaurants/CreatePackage";
+import UpdatePackage from "./pages/restaurants/UpdatePackage";
+import Booking from "./pages/restaurants/Booking";
 
 export default function App() {
   return (
@@ -150,14 +147,18 @@ export default function App() {
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
-        <Route path="/admin/events" element={<EventTable />} />
         <Route path="/events/details/:id" element={<ShowEvent />} />
         <Route path="/events/update/:id" element={<UpdateEvent />} />
         <Route path="/events/delete/:id" element={<DeleteEvent />} />
         <Route path="/events/get/:id" element={<ShowEvent />} />
-        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
         <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
+        <Route path="/seller/event/get/:id" element={<ShowEvent />} />
+
+        <Route path="/admin/events" element={<EventTable />} />
+        <Route path="/admin/events/get/:id" element={<ShowEvent />} />
+        <Route path="/admin/add-event" element={<AdminAddEvent />} />
+        <Route path="/admin/evt-update/:id" element={<AdminUpdateEvent />} />
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
@@ -201,17 +202,15 @@ export default function App() {
           element={<AdminGuidUpdate />}
         />
 
-            
-        {/* //mithun */}
-            <Route path="/restaurants" element={<Restaurant />} />
-            <Route path="/res-pkg" element={<ResPackages />} />
-            <Route path="/admin/res-dash" element={<Dashboard />} />
-            <Route path="/admin/create-res" element={<CreateRestaurant />} />
-            <Route path="/admin/update-res/:id" element={<UpdateRestaurant />} />
-            <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
-            <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
-            <Route path="/res-pkg-book/:id" element={<Booking />} />
-
+        {/* mithun */}
+        <Route path="/restaurants" element={<Restaurant />} />
+        <Route path="/res-pkg" element={<ResPackages />} />
+        <Route path="/admin/res-dash" element={<Dashboard />} />
+        <Route path="/admin/create-res" element={<CreateRestaurant />} />
+        <Route path="/admin/update-res/:id" element={<UpdateRestaurant />} />
+        <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
+        <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
+        <Route path="/res-pkg-book/:id" element={<Booking />} />
       </Routes>
       <Footer />
     </BrowserRouter>

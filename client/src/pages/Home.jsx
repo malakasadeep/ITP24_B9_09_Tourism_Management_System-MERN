@@ -9,11 +9,13 @@ import trainbanner from "../assets/img/TrainImages/train-banner.jpg";
 import resbanner from "../assets/img/bg/resbanner.png";
 import eventbanner from "../assets/img/event/banner.jpg";
 import { EventCard } from "../components/eventAct/EventCard";
+import VehicleCard from "../components/VehicleManagement/VehicleCard";
 
 export default function Home() {
   const [packages, setPackages] = useState([]);
   const [hotels, sethotels] = useState([]);
   const [events, setevents] = useState([]);
+  const [vehicles, setVehicls] = useState([]);
   useEffect(() => {
     const fetchPkg = async () => {
       try {
@@ -51,6 +53,20 @@ export default function Home() {
       }
     };
     fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    const fetchVehi = async () => {
+      try {
+        const res = await fetch("/api/vehicle/find?limit=3");
+        const data = await res.json();
+        setVehicls(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchVehi();
   }, []);
 
   return (
@@ -211,6 +227,44 @@ export default function Home() {
           </div>
         </div>
       }
+      {
+        <div>
+          <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
+            {vehicles && vehicles.length > 0 && (
+              <div className="">
+                <div className="my-3">
+                  <h2 className="text-2xl font-semibold text-slate-600">
+                    Recent Vehicles
+                  </h2>
+                  <Link
+                    className="text-sm text-blue-800 hover:underline"
+                    to={"/VehicleHome"}
+                  >
+                    Show more Vehicles
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap gap-16">
+                  {vehicles.map((vehicle) => (
+                    <VehicleCard
+                      key={vehicle._id}
+                      brand={vehicle.brand}
+                      image={vehicle.imageUrls[0]}
+                      model={vehicle.model}
+                      price={vehicle.price}
+                      transmissionType={vehicle.transmissionType}
+                      fuelType={vehicle.fuelType}
+                      capacity={vehicle.seats}
+                      vehicleMainImg={vehicle.vehicleMainImg}
+                      id={vehicle._id}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      }
 
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 mt-3">
         <div className="relative">
@@ -281,7 +335,7 @@ export default function Home() {
             }}
           >
             <div className="absolute top-36 left-2 m-5">
-              <Link to={"/restaurants"}>
+              <Link to={"/guid/search"}>
                 <button className="bg-blue-500 text-white px-6 text-3xl py-3 rounded-3xl hover:bg-blue-600 w-96 h-24">
                   Get Your Guide
                 </button>

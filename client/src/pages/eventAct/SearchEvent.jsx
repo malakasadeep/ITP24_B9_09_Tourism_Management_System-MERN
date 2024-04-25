@@ -31,7 +31,7 @@ export default function SearchEvent() {
   const [searchData, setSearchData] = useState({
     searchTerm: "",
     location: "all",
-    usertype: "all",
+    type: "all",
     sort: "created_at",
     order: "desc",
   });
@@ -62,6 +62,8 @@ export default function SearchEvent() {
   const handleChange = (e) => {
     if (e.target.type === "select-one") {
       setSearchData({ ...searchData, type: e.target.value });
+    }
+    if (e.target.type === "select-one") {
       setSearchData({ ...searchData, location: e.target.value });
     }
     if (e.target.id === "searchTerm") {

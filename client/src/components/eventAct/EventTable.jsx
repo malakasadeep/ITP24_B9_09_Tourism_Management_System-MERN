@@ -7,9 +7,9 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import EventReport from "./EventReport";
 import loadingimg from "../../assets/img/loading.gif";
+import Swal from "sweetalert2";
 
 function EventTable() {
-
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState({
     searchTerm: "",
@@ -57,6 +57,38 @@ function EventTable() {
     navigate(`/admin/events?${searchQuery}`);
   };
 
+  const handleDelete = async (eventId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch(`/api/events/${eventId}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (data.success === false) {
+            console.log(data.message);
+            return;
+          }
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your package has been deleted.",
+            icon: "success",
+          });
+          setEvents((prev) => prev.filter((event) => event._id !== eventId));
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+    });
+  };
   return (
     <div
       className="dashboard"
@@ -160,7 +192,7 @@ function EventTable() {
                               <MdInfo className="text-2xl" />
                             </Link>
                             <Link
-                              to={`/events/update/${event._id}`}
+                              to={`/admin/evt-update/${event._id}`}
                               className="btnU"
                             >
                               <FaEdit className="text-2xl" />
