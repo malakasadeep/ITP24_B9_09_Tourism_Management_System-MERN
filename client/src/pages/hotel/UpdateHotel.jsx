@@ -169,13 +169,44 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (formData.hotelImgs.length < 1) {
-        setError("Please upload atleast one image");
+          setError('Please upload atleast one image');
+          Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: 'Please upload atleast one image',
+          })
+          return;
+      }
+      if (formData.contactName.length <= 5) {
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Please upload atleast one image",
+          title: "Oops...",
+          text: "Contact Name must at least have 8 charaters",
         });
         return;
+      }
+      if (formData.contactNo.length <= 9) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Contact Number is not Correct",
+        });
+        return;
+      }
+    
+      var zipPattern = /^\d{5}$/; 
+if (!zipPattern.test(formData.zip)) {
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "ZIP Code is not Correct",
+});
+return;
+}
+      if (/^0\d{9}$/.test(formData.contactNo)) {
+        Swal.fire("Invalid Contact Number", "", "error");
+        return;
+      
       }
      
       setLoading(true);
