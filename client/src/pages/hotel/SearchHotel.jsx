@@ -15,7 +15,7 @@ export default function SearchHotel() {
         order: 'desc',
     });
     const [loading, setLoading] = useState(false);
-    const [packages, setPackages] = useState([]);
+    const [hotels, setHotels] = useState([]);
     
     useEffect (() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -31,9 +31,9 @@ export default function SearchHotel() {
         const fetchhotel = async () => {
             setLoading(true);
             const searchQuery = urlParams.toString();
-            const res = await fetch(`/api/Hotel/gethotels?${searchQuery}`);
+            const res = await fetch(`/api/hotels/gethotels?${searchQuery}`);
             const data = await res.json();
-            setPackages(data);
+            setHotels(data);
             setLoading(false);
         }
         fetchhotel();
@@ -135,18 +135,18 @@ export default function SearchHotel() {
             
         </div>
             <div className='flex-1'>
-                <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Package results:</h1>
+                <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Hotels results:</h1>
                 <div className='p-7 flex flex-wrap gap-2'>
-                    {!loading && packages.length === 0 && <p className='text-2xl text-center p-5 text-blue-950'>No package found</p>}
+                    {!loading && hotels.length === 0 && <p className='text-2xl text-center p-5 text-blue-950'>No hotels found</p>}
                     {loading && (
                         <div className='flex flex-col items-center justify-center'>
                             <img src={loadingimg} alt="loading" className='w-28'/><p className='text-lg w-full text-center'>Loading....</p>
                         </div>
                         
                     )}
-                    {!loading && packages &&
-                    packages.map((pkg) => (
-                        <PackageCard key={pkg._id} pkg={pkg}/>
+                    {!loading && hotels &&
+                    hotels.map((hotel) => (
+                        <HotelCard key={hotel._id} hotell={hotel}/>
                     ))}
                 </div>
             </div>
