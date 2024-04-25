@@ -24,7 +24,7 @@ export default function DashSideBar() {
             <Sidebar.Item
               active={tab === "restaurant"}
               icon={BsFillHousesFill}
-              labelColor="dark"
+              className="bg-slate-700"
               as="div"
             >
               Restaurant
@@ -35,6 +35,7 @@ export default function DashSideBar() {
             <Sidebar.Item
               active={tab === "package"}
               icon={IoDocumentTextSharp}
+              className="bg-slate-700"
               as="div"
             >
               Package

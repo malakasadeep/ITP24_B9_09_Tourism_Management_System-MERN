@@ -111,7 +111,7 @@ export default function UpdatePackage() {
         <div className="flex justify-between">
           <div>
             <Link to="/dashboard?tab=package">
-              <Button type="button" color="dark">
+              <Button type="button" className="bg-red-700">
                 Back
               </Button>
             </Link>

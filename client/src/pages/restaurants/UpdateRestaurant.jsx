@@ -66,13 +66,13 @@ export default function UpdateRestaurant() {
         <h1 className="text-center text-3xl my-7 font-semibold">
           Create Restaurant
         </h1>
-        <div className="flex flex-col gap-4 sm:flex-row justify-between mt-5">
+        <div className="flex flex-col gap-4 sm:flex-row justify-between mt-5 text-slate-900">
           <TextInput
             type="text"
             placeholder="Restaurant owner name"
             required
             name="ownerName"
-            className="flex-1"
+            className="flex-1 to-slate-700"
             value={formData.ownerName || ""}
             onChange={handleChange}
           />
@@ -121,7 +121,7 @@ export default function UpdateRestaurant() {
         <div className="flex justify-between">
           <div>
             <Link to="/dashboard?tab=restaurant">
-              <Button type="button" color="dark">
+              <Button type="button" className="bg-red-700">
                 Back
               </Button>
             </Link>
