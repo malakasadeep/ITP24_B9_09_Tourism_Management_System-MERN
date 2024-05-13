@@ -90,18 +90,21 @@ export default function Booking() {
       }}
     >
       <div className="p-3 max-w-3xl mx-auto min-h-screen">
-        <form className="flex flex-col gap-4 bg-white p-5">
+        <form
+          className="flex flex-col gap-4 bg-slate-500 mt-20 p-5"
+          onSubmit={generatePDF}
+        >
           <h1 className="text-center text-3xl my-7 font-semibold">
             Package Booking
           </h1>
 
           <div className="flex flex-col gap-4 sm:flex-row justify-between mt-5">
             <Label value="Package Name" />
-            <TextInput
+            <input
               type="text"
               required
               id="packageName"
-              className="flex-1"
+              className="flex-1 bg-gray-00"
               value={packageData.packageName || ""}
               disabled
             />
@@ -176,7 +179,7 @@ export default function Booking() {
               </Link>
             </div>
             <div>
-              <Button type="submit" color="blue" onClick={generatePDF}>
+              <Button type="submit" color="blue">
                 Book
               </Button>
             </div>

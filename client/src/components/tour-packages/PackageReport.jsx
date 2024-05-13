@@ -34,7 +34,7 @@ export default function PackageReport() {
       "Days",
       "Citys",
       "Price",
-      "Offer",
+      //"Offer",
       "Created at",
     ];
     const tableRows = [];
@@ -51,7 +51,7 @@ export default function PackageReport() {
           packages.days,
           packages.citys,
           "$" + packages.price,
-          packages.offer.toString(),
+          //packages.offer.toString(),
           moment(packages.createdAt).format("MM/DD/YYYY h:mm A"),
         ];
         tableRows.push(packagedata);
