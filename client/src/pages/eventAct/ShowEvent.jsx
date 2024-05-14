@@ -26,6 +26,7 @@ const ShowEvent = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [contact, setContact] = useState(false);
   SwiperCore.use([Autoplay]);
+  console.log("currentUser", currentUser);
 
   useEffect(() => {
     const fetchPackage = async () => {
@@ -202,7 +203,6 @@ const ShowEvent = () => {
               </div>
               <hr className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950" />
             </div>
-
 
             <div className="absolute top-[1000px] right-[30px] w-[400px]">
               {currentUser &&
