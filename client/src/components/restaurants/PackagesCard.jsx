@@ -10,7 +10,7 @@ export default function PackagesCard({ packageData }) {
         {packageData.packageName}
       </h5>
       <p>
-        <b>Price: </b> Rs.{packageData.packagePrice}
+        <b>Price: </b> ${packageData.packagePrice}
       </p>
 
       <p className="font-normal text-gray-700 dark:text-gray-400">

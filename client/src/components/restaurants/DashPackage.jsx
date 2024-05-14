@@ -17,9 +17,11 @@ export default function DashPackage() {
         console.error(error);
       }
     };
+    
 
     fetchPackages();
   }, []);
+  //Admin part Restuarants
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
@@ -83,7 +85,7 @@ export default function DashPackage() {
         </td>
         <td className="px-6 py-4 whitespace-nowrap">{pckg.packageName}</td>
         <td className="px-6 py-4 whitespace-nowrap">{truncateDescription(pckg.packageDetails, 50)}</td>
-        <td className="px-6 py-4 whitespace-nowrap">Rs.{pckg.packagePrice}</td>
+        <td className="px-6 py-4 whitespace-nowrap">${pckg.packagePrice}</td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <a
             href={`/admin/update-res-pkg/${pckg._id}`}
