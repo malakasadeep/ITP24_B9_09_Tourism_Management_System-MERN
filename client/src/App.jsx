@@ -37,11 +37,16 @@ import SearchEvent from "./pages/eventAct/SearchEvent";
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
 import AddVehicle from "./pages/VehicleManagement/AddVehicle";
-import DeleteVehicle from "./pages/VehicleManagement/DeleteVehicle";
+import DeleteVehicle from "./pages/VehicleManagement/Vehicle";
 import EditBook from "./pages/VehicleManagement/EditVehicle";
 import ShowBook from "./pages/VehicleManagement/ShowVehicle";
 import ShowVehicle from "./pages/VehicleManagement/ShowVehicle";
 import EditVehicle from "./pages/VehicleManagement/EditVehicle";
+import VehicleHome from "./pages/VehicleManagement/VehicleHome";
+import VehicleAdmin from "./pages/VehicleManagement/AdminVM";
+import VehicleBook from "./pages/VehicleManagement/VehicleBook";
+import AdminVehicleAdd from "./components/VehicleManagement/AdminVehicleAdd";
+import AdminVehicleUpdate from "./components/VehicleManagement/AdminVehicleUpdate";
 
 //sasindu
 import CreateHotel from "./pages/hotel/CreateHotel";
@@ -58,6 +63,8 @@ import { AdminTrainManagement } from "./components/train/AdminTrainManagement";
 import UpdateTrain from "./pages/train/UpdateTrain";
 import AdminAddTrain from "./components/train/AdminAddTrain";
 import AdminTrainUpdate from "./components/train/AdminTrainUpdate";
+import TrainHome from "./pages/train/TrainHome";
+import TrainBook from "./pages/train/TrainBook";
 
 //prabodhi
 import Add_Guide from "./pages/tourGuid/Add_Guide";
@@ -68,6 +75,7 @@ import AdminGM from "./components/tourGuid/AdminGM";
 import AdminAddGuid from "./components/tourGuid/AdminAddGuid";
 import AdminGuidUpdate from "./components/tourGuid/AdminGuidUpdate";
 
+
 //mithun
 import Restaurant from "./pages/restaurants/Restaurants"
 import ResPackages from "./pages/restaurants/Packages"
@@ -77,6 +85,7 @@ import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant"
 import CreatePackage from "./pages/restaurants/CreatePackage"
 import UpdatePackage from "./pages/restaurants/UpdatePackage"
 import Booking from "./pages/restaurants/Booking"
+
 
 
 export default function App() {
@@ -127,7 +136,17 @@ export default function App() {
         <Route path="/Vehicle/add" element={<AddVehicle />} />
         <Route path="Vehicle/delete/:id" element={<DeleteVehicle />} />
         <Route path="Vehicle/update/:id" element={<EditVehicle />} />
-        <Route path="Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="/VehicleHome" element={<VehicleHome />} />
+        <Route path="/Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="/Vehicle/book/:id" element={<VehicleBook />} />
+
+        <Route path="/Admin/Vehicle" element={<VehicleAdmin />} />
+        <Route path="/Admin/Vehicle/get/:id" element={<ShowVehicle />} />
+        <Route path="/admin/vehicle/add" element={<AdminVehicleAdd />} />
+        <Route
+          path="/admin/vehicle/update/:id"
+          element={<AdminVehicleUpdate />}
+        />
 
         {/*Dewni*/}
         <Route path="/events/create" element={<CreateEvent />} />
@@ -139,24 +158,20 @@ export default function App() {
         <Route path="/admin/events/get/:id" element={<ShowEvent />} />
         <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
-        {/*<Route path="/events/search/:id" element={<SearchEvent />} />*/}
-
 
         {/*Sasindu*/}
         <Route path="/create-hotel" element={<CreateHotel />} />
         <Route path="/Hotel/:hotelId" element={<Hotel />} />
         <Route path="/hotel-search" element={<SearchHotel />} />
         <Route path="/my-hotel/:hotelId" element={<Hotel />} />
-        <Route path="/admin/hotels/*" element={<AdminHM />} />
-          <Route
-            path="/admin/hotels/update/:hotelId/*"
-            element={<AdminHotelUpdate />}
-          />
-          <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
-          <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
-          <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
-        
-          
+        <Route path="/admin/hotels" element={<AdminHM />} />
+        <Route
+          path="/admin/hotels/update/:hotelId"
+          element={<AdminHotelUpdate />}
+        />
+        <Route path="/admin/hotels/:hotelId" element={<Hotel />} />
+        <Route path="/admin/hotels/add-hotel" element={<AdminAddHotel />} />
+        <Route path="/update-hotel/:hotelId" element={<UpdateHotel />} />
 
         {/*Shadini*/}
         <Route path="/add-train" element={<CreateTrain />} />
@@ -167,6 +182,8 @@ export default function App() {
           path="/admin/train/update/:trainID"
           element={<AdminTrainUpdate />}
         />
+        <Route path="/train/search" element={<TrainHome />} />
+        <Route path="/train/book/:id" element={<TrainBook />} />
 
         {/* prabodhi */}
         <Route path="/add-guide" element={<Add_Guide />}></Route>
@@ -183,6 +200,7 @@ export default function App() {
           path="/admin/guid/update/:guidingId"
           element={<AdminGuidUpdate />}
         />
+
             
         {/* //mithun */}
             <Route path="/restaurants" element={<Restaurant />} />
@@ -193,6 +211,7 @@ export default function App() {
             <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
             <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
             <Route path="/res-pkg-book/:id" element={<Booking />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

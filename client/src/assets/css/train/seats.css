@@ -44,3 +44,60 @@
   .close-btn:hover {
     background-color: #ff4444;
   }
+
+  .modal-content {
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.seat-sign {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+}
+
+.available-sign {
+    background-color: green;
+    left: 10px;
+}
+
+.booked-sign {
+    background-color: red;
+    right: 10px;
+}
+
+.seats-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seat {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
