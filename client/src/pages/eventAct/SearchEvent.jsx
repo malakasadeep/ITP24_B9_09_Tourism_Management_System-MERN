@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/img/event/event.jpg";
 import { EventCard } from "../../components/eventAct/EventCard";
+import EventCalendarPage from "../../components/eventAct/EventCalendar";
 
 const ActivityList = ({ events }) => {
   console.log(events);
@@ -113,7 +114,7 @@ export default function SearchEvent() {
               />
             </div>
           </div>
-          <div className="p-4">
+          <div className="p-4 w-96">
             <img
               src={backgroundImage}
               alt="image-description"
@@ -180,6 +181,9 @@ export default function SearchEvent() {
               )}
             </>
           )}
+          <div className="p-6 mt-12">
+            <EventCalendarPage />
+          </div>
         </div>
       </div>
     </div>
