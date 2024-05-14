@@ -204,10 +204,11 @@ export const VehicleList = () => {
                         </Link>
                         <button
                           className="p-2 bg-red-700 rounded-lg text-white"
-                          onClick={() => handleUserDelete(vehicles._id)}
-                        >
-                          <MdDeleteForever className="text-2xl" />
+                           onClick={() => handleUserDelete(vehicles._id)}
+                              >
+                            Reject <MdDeleteForever className="text-2xl" />
                         </button>
+
                       </div>
                       
                     </td>
