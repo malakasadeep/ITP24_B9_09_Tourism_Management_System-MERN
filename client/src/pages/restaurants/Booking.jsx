@@ -147,6 +147,7 @@ export default function Booking() {
             <TextInput
               type="number"
               id="Quantity"
+              min={1}
               className="flex-1"
               // value={formData.Quantity}
               onChange={handleChange}
