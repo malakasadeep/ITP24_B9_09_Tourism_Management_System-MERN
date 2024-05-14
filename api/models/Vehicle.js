@@ -28,14 +28,14 @@ const vehicleSchema = new Schema(
       type: Number,
       required: true,
     },
-    // transmission:{
-    //     type : String,
-    //     required: true,
-    // },
-    // capacity:{
-    //     type : Number,
-    //     required: true,
-    // },
+    transmission:{
+        type : String,
+        required: true,
+    },
+    capacity:{
+        type : Number,
+        required: true,
+    },
     price: {
       type: Number,
       required: true,
