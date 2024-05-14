@@ -82,30 +82,49 @@ export const VehicleList = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6", 
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, reject it!",
+      cancelButtonText: "Cancel",
+      input: 'text', // Add an input field
+      inputPlaceholder: 'Enter reason for rejection' // Placeholder for the input field
     }).then(async (result) => {
       if (result.isConfirmed) {
+        const reason = result.value; // Retrieve the reason entered by the user
         try {
-          
           const res = await fetch(`/api/vehicle/delete/${vehicleId}`, {
             method: "DELETE",
+            body: JSON.stringify({ reason }), // Pass the reason in the request body
+            headers: {
+              "Content-Type": "application/json"
+            }
           });
           const data = await res.json();
           if (data.success === false) {
             console.log(data.message);
             return;
           }
-          Swal.fire({
-            title: "Deleted!",
-            text: "User has been deleted.",
-            icon: "success",
+          // Send email to user with the reason for rejection
+          await fetch(`/api/send-email`, {
+            method: "POST",
+            body: JSON.stringify({ userId: userId, reason: reason }), // Pass user ID and reason in the request body
+            headers: {
+              "Content-Type": "application/json"
+            }
           });
-          setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== vehicleId));
+          Swal.fire({
+            title: "Rejected!",
+            text: "Vehicle has been rejected.",
+            icon: "success",
+          }).then(() => {
+            // Remove the deleted vehicle from the list displayed on the UI
+            setVehicles(prevVehicles => prevVehicles.filter(vehicle => vehicle._id !== vehicleId));
+          });
         } catch (error) {
           console.log(error.message);
         }
       }
     });
+    
+    
   };
 
   return (
