@@ -109,7 +109,7 @@ export default function Booking() {
 
     pdf.setFontSize(16);
     pdf.text(`Package Name: ${packageData.packageName}`, 20, 40);
-    pdf.text(`Price: Rs.${packageData.packagePrice}`, 20, 50);
+    pdf.text(`Price: $ ${packageData.packagePrice}`, 20, 50);
     pdf.text(`Item: ${packageData.packageDetails}`, 20, 60);
     pdf.text(`Quantity: ${formData.Quantity}`, 20, 70);
     pdf.text(`Date: ${formData.Date}`, 20, 80);
@@ -118,7 +118,7 @@ export default function Booking() {
     pdf.text(`--------------------------------------`, 20, 100);
 
     pdf.text(`Discount: ${formData.Discount}%`, 20, 110);
-    pdf.text(`Total Bill: Rs.${TotalBill}`, 20, 120);
+    pdf.text(`Total Bill: $ ${TotalBill}`, 20, 120);
 
     pdf.save("booking-confirmation.pdf");
   };
