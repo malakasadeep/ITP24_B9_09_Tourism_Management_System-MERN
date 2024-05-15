@@ -4,6 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import JsPDF from "jspdf";
 //import backgroundImage from "../image/bg.jpg";
+import emailjs from "emailjs-com";
+
+// Initialize EmailJS
+emailjs.init("v53cNBlrti0pL_RxD");
 
 export default function Booking() {
   const { id } = useParams();
@@ -35,6 +39,25 @@ export default function Booking() {
 
     fetchPackages();
   }, [id]);
+
+  //Send an email
+  const sendEmailToAdmin = () => { 
+    const emailConfig = {
+        serviceID: 'service_p1zv9rh',
+        templateID: 'template_pua7ayd',
+        userID: 'v53cNBlrti0pL_RxD'
+    };
+
+    emailjs.send(
+        emailConfig.serviceID,
+        emailConfig.templateID,
+        {
+            to_email: 'lasalmdissanayake@gmail.com',
+            message: `jydhvcjsdcbj`
+        },
+        emailConfig.userID
+    );
+  };
 
   useEffect(() => {
     // Calculate the total bill based on quantity and discount
@@ -79,6 +102,9 @@ export default function Booking() {
     pdf.text(`Total Bill: Rs.${TotalBill}`, 20, 120);
 
     pdf.save("booking-confirmation.pdf");
+
+    // Send email after generating PDF
+    sendEmailToAdmin();
   };
 
   return (

@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa6";
 
 export default function RestaurantCard({ restaurant }) {
   return (
-    <Card className="min-w-sm" imgSrc={restaurant.image} horizontal>
+    <Card className="w-72 mx-auto" imgSrc={restaurant.image} horizontal={false}>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {restaurant.restaurantName}
       </h5>
