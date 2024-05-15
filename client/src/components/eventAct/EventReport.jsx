@@ -6,8 +6,9 @@ import "../../assets/css/user/userList.css";
 
 export default function EventReport({ events }) {
   function generatePDF(events) {
-    const doc = new jspdf();
+    const doc = new jspdf(); //Creates a new instance of jspdf, which represents a PDF document.
     const tableColumn = [
+      //Defines an array tableColumn containing the column headers for the table in the PDF.
       "No",
       "Type",
       "Title",
@@ -17,7 +18,7 @@ export default function EventReport({ events }) {
       "Price",
       "Participants",
     ];
-    const tableRows = [];
+    const tableRows = []; //Initializes an empty array tableRows to store rows of data for the table.
 
     events
       .slice(0)
@@ -27,8 +28,7 @@ export default function EventReport({ events }) {
           index + 1,
           events.type,
           events.title,
-          events.type,
-          events.date,
+          events.date.split("T")[0],
           events.time,
           events.location,
           "$" + events.price,
@@ -37,7 +37,7 @@ export default function EventReport({ events }) {
         tableRows.push(eventdata);
       });
 
-    const date = Date().split(" ");
+    const date = Date().split(" "); // Gets the current date and formats it as a string (MM-DD-YYYY).
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
     const logo = new Image();
@@ -80,7 +80,7 @@ export default function EventReport({ events }) {
       },
     });
 
-    doc.save(`Event-Details-Report_${dateStr}.pdf`);
+    doc.save(`Event-Details-Report_${dateStr}.pdf`); // Saves the PDF document with a filename containing the current.
   }
   return (
     <div>

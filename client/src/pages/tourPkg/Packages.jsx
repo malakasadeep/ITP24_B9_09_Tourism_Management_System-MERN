@@ -557,7 +557,7 @@ export default function Packages() {
                     <div>
                       {currentUser && currentUser.usertype === "Tourist" && (
                         <div>
-                          <Booking />
+                          <Booking packagee={packagee} />
                         </div>
                       )}
                     </div>
@@ -566,7 +566,7 @@ export default function Packages() {
               </div>
             </div>
 
-            <div className="absolute top-[1000px] right-[30px] w-[400px]">
+            <div className="absolute top-[1280px] right-[30px] w-[400px]">
               {currentUser &&
                 currentUser.usertype === "Tourist" &&
                 !contact && (

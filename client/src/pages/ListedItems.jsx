@@ -20,8 +20,8 @@ export default function ListedItems() {
         <UserPackages />
         <UserHotels/>
         <UserVehicles/>
-
         <UserEvents />
+
         {/* <div className="rounded-xl shadow-lg w-100px h-auto bg-white ">
           <div className="p-5 flex flex-col">
             <div className="flex flex-row  overflow-hidden items-center gap-5">

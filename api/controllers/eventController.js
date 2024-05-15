@@ -125,11 +125,6 @@ export const getEventSearch = async (req, res, next) => {
       };
     }
 
-    // let offer = req.query.offer;
-    // if(offer === undefined || offer === 'false'){
-    //   offer = { $in: [false, true] };
-    // }
-
     const searchTerm = req.query.searchTerm || "";
 
     const sort = req.query.sort || "createdAt";
