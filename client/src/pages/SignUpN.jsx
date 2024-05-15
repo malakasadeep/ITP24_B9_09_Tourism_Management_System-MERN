@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,8 +10,15 @@ import OAuth from "../components/OAuth";
 import Swal from "sweetalert2";
 import "./../assets/css/signUp.css";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
+
 export default function SignUpN() {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [isOtpModalOpen, setIsOtpModalOpen] = useState(false);
+  const [otpsending, setOtpSending] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [creating, setcreating] = useState(false);
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -128,10 +135,9 @@ export default function SignUpN() {
       });
       return;
     }
-
     try {
-      setSignUpLoading(true);
-      const res = await fetch("/api/auth/signup", {
+      setOtpSending(true);
+      const res = await fetch("/api/auth/sendotp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formDataUP),
@@ -141,28 +147,117 @@ export default function SignUpN() {
       console.log(data);
 
       if (data.success === false) {
-        setSignUpLoading(false);
-        setSignUpError(data.message);
+        // Handle error if OTP sending fails
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: `${data.message}`,
         });
-        return;
+        setOtpSending(false);
+      } else {
+        // OTP sent successfully, display popup to enter OTP
+        setIsOtpModalOpen(true);
+        setOtpSending(false);
       }
-
-      setSignUpLoading(false);
-      setSignUpError(null);
+    } catch (error) {
+      // Handle error if fetch fails
       Swal.fire({
-        title: "Succedd!",
-        text: "Your profile created!",
-        icon: "success",
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+      });
+      setOtpSending(false);
+    }
+  };
+
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const inputRefs = useRef(Array.from({ length: 6 }, () => createRef()));
+
+  const handleInputChange = (e, index) => {
+    const value = e.target.value;
+    setOtp((prevOtp) => {
+      const newOtp = [...prevOtp];
+      newOtp[index] = value;
+      return newOtp;
+    });
+
+    if (value && index < 5) {
+      inputRefs.current[index + 1].current.focus(); // Move focus to the next input
+    }
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const enteredOtp = otp.join("");
+    console.log(enteredOtp);
+
+    try {
+      const res = await fetch("/api/auth/verifyotp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formDataUP.email, otp: enteredOtp }), // Send entered OTP to server for verification
       });
 
-      navigation("/sign-in");
+      const data = await res.json();
+      console.log(data);
+
+      if (data.success === false) {
+        // Handle error if OTP verification fails
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${data.message}`,
+        });
+      } else {
+        // OTP verified successfully, proceed with account creation
+        setIsOtpModalOpen(false); // Close OTP popup
+        // Proceed with account creation
+        // Call function to submit sign-up form or navigate to next step
+
+        try {
+          setSignUpLoading(true);
+          const res = await fetch("/api/auth/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formDataUP),
+          });
+
+          const data = await res.json();
+          console.log(data);
+
+          if (data.success === false) {
+            setSignUpLoading(false);
+            setSignUpError(data.message);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${data.message}`,
+            });
+            return;
+          }
+
+          setSignUpLoading(false);
+          setSignUpError(null);
+          Swal.fire({
+            title: "Succedd!",
+            text: "Your profile created!",
+            icon: "success",
+          });
+
+          navigation("/sign-in");
+        } catch (error) {
+          setSignUpLoading(false);
+          setSignUpError(error.message);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
+        }
+      }
     } catch (error) {
-      setSignUpLoading(false);
-      setSignUpError(error.message);
+      // Handle error if fetch fails
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -170,6 +265,7 @@ export default function SignUpN() {
       });
     }
   };
+
   return (
     <div className={`ctr ${isSignUpMode ? "sign-up-mode" : ""}`}>
       <div className="forms-ctr">
@@ -279,10 +375,14 @@ export default function SignUpN() {
             </div>
 
             <button
-              disabled={loading}
+              disabled={otpsending || signUpLoading}
               className="btn uppercase hover:opacity-95 disabled:opacity-80"
             >
-              {loading ? "Loading..." : "sign up"}
+              {otpsending
+                ? "Sending OTP..."
+                : signUpLoading
+                ? "creating Account..."
+                : "sign up"}
             </button>
             <p className="social-text">Or Sign in with Google</p>
             <div className="social-media">
@@ -291,6 +391,43 @@ export default function SignUpN() {
           </form>
         </div>
       </div>
+      {/* OTP Popup */}
+      <Modal
+        isOpen={isOtpModalOpen}
+        onRequestClose={() => setIsOtpModalOpen(false)}
+        contentLabel="OTP Modal"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <div className="p-6">
+          <h2 className="text-lg font-semibold mb-4">Enter OTP</h2>
+          <p className="text-gray-600 mb-4">
+            A 6-digit OTP has been sent to your email. Please check your email
+            inbox and enter the OTP below to continue.
+          </p>
+          <form onSubmit={handleFormSubmit}>
+            <div className="flex justify-center space-x-4">
+              {otp.map((value, index) => (
+                <input
+                  key={index}
+                  ref={inputRefs.current[index]}
+                  type="text"
+                  maxLength={1}
+                  className="w-12 h-12 text-center border border-blue-700 rounded focus:outline-none"
+                  value={value}
+                  onChange={(e) => handleInputChange(e, index)}
+                />
+              ))}
+            </div>
+            <button
+              type="submit"
+              className="mt-4 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+            >
+              Confirm
+            </button>
+          </form>
+        </div>
+      </Modal>
 
       <div className="panels-ctr">
         <div className="panel left-panel">
