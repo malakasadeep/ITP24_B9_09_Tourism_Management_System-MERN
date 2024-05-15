@@ -51,6 +51,35 @@ export default function CreateRestaurant() {
           />
         </div>
         <TextInput
+            type="text"
+            placeholder="Restaurant name"
+            required
+            name="restaurantName"
+            className="flex-1"
+            onChange={handleChange}
+          />
+        <div>
+          <TextInput
+            type="email"
+            placeholder="Email"
+            required
+            name="email"
+            className="flex-1"
+            onChange={handleChange}
+          />
+        </div>
+
+        <TextInput
+          type="number"
+          placeholder="number"
+          required
+          pattern="/^0\d{9}$/"
+          name="number"
+          className="flex-1"
+          onChange={handleChange}
+        />
+
+        <TextInput
           type="text"
           placeholder="Restaurant location"
           required
@@ -78,10 +107,11 @@ export default function CreateRestaurant() {
             onChange={handleChange}
           />
         </div>
+      
 
         <div className="flex justify-between">
           <div>
-            <Link to="/dashboard?tab=restaurant">
+            <Link to="/dashboard?tab=res-pkg">
               <Button type="button" color="dark">
                 Back
               </Button>

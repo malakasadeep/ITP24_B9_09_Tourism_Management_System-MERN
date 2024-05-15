@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/img/event/event.jpg";
 import { EventCard } from "../../components/eventAct/EventCard";
+import EventCalendarPage from "../../components/eventAct/EventCalendar";
 
 const ActivityList = ({ events }) => {
   console.log(events);
@@ -28,29 +29,29 @@ const ActivityList = ({ events }) => {
 
 export default function SearchEvent() {
   const navigate = useNavigate();
-  const [searchData, setSearchData] = useState({
+  const [searchData, setSearchData] = useState({//initializes state variables for search data (searchData) 
     searchTerm: "",
     location: "all",
     type: "all",
     sort: "created_at",
     order: "desc",
   });
-  const [loading, setLoading] = useState(false);
-  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(false);//initializes state variables for loading status (loading)
+  const [events, setEvents] = useState([]);//initializes state variables for search events (events)
 
-  useEffect(() => {
+  useEffect(() => {//to fetch events data from the API
     const urlParams = new URLSearchParams(window.location.search);
     const searchTerm = urlParams.get("searchTerm") || "";
-    const type = urlParams.get("type") || "all";
-    const location = urlParams.get("location") || "all";
+    const type = urlParams.get("type") || "all"; //get the type from the URL parameter
+    const location = urlParams.get("location") || "all"; //get the location from the URL parameter
     const sort = urlParams.get("sort") || "created_at";
-    const order = urlParams.get("order") || "desc";
+    const order = urlParams.get("order") || "desc";//get the order from the URL parameter
     setSearchData({ searchTerm, type, location, sort, order });
 
-    const fetchEvent = async () => {
-      setLoading(true);
+    const fetchEvent = async () => {//get the events data from the API based on the search query
+      setLoading(true);//set the loading status to true
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/events/search/get?${searchQuery}`);
+      const res = await fetch(`/api/events/search/get?${searchQuery}`);//fetches events data from the API based on the search query
       const data = await res.json();
       setEvents(data);
       console.log(data);
@@ -59,7 +60,7 @@ export default function SearchEvent() {
     fetchEvent();
   }, [location.search]);
 
-  const handleChange = (e) => {
+  const handleChange = (e) => {// updates the searchData state based on user input changes in the search inputs.
     if (e.target.type === "select-one") {
       setSearchData({ ...searchData, type: e.target.value });
     }
@@ -71,7 +72,7 @@ export default function SearchEvent() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {//The handleSubmit function is triggered when the search button is clicked
     e.preventDefault();
     const urlParame = new URLSearchParams();
     urlParame.set("searchTerm", searchData.searchTerm);
@@ -113,7 +114,7 @@ export default function SearchEvent() {
               />
             </div>
           </div>
-          <div className="p-4">
+          <div className="p-4 w-96">
             <img
               src={backgroundImage}
               alt="image-description"
@@ -180,6 +181,9 @@ export default function SearchEvent() {
               )}
             </>
           )}
+          <div className="p-6 mt-12">
+            <EventCalendarPage />
+          </div>
         </div>
       </div>
     </div>

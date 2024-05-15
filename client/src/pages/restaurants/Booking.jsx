@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import JsPDF from "jspdf";
+import emailjs from "emailjs-com";
 //import backgroundImage from "../image/bg.jpg";
 
 export default function Booking() {
@@ -59,6 +60,50 @@ export default function Booking() {
     return priceAfterDiscount.toFixed(2); // Rounds to two decimal places
   };
 
+  const sendEmailToSupplier = () => {
+    const emailConfig = {
+      serviceID: "service_p1zv9rh",
+      templateID: "template_pua7ayd",
+      userID: "v53cNBlrti0pL_RxD",
+    };
+    //email content
+    const emailContent = `
+      Dear Supplier,
+
+      We have a new booking with the following details:
+      
+      Package Name: ${packageData.packageName}
+      Price: Rs.${packageData.packagePrice}
+      Item: ${packageData.packageDetails}
+      Quantity: ${formData.Quantity}
+      Date: ${formData.Date}
+      Time: ${formData.Time}
+      
+      Discount: ${formData.Discount}%
+      Total Bill: Rs.${TotalBill}
+      
+      Best regards,
+      TourCraf
+    `;
+
+    emailjs
+      .send(
+        emailConfig.serviceID,
+        emailConfig.templateID,
+        {
+          to_email: "mithunmh19@gmail.com",
+          message: emailContent,
+        },
+        emailConfig.userID
+      )
+      .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+      })
+      .catch((err) => {
+        console.error("Failed to send email:", err);
+      });
+  };
+
   const generatePDF = () => {
     const pdf = new JsPDF();
 
@@ -81,6 +126,12 @@ export default function Booking() {
     pdf.save("booking-confirmation.pdf");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendEmailToSupplier();
+    generatePDF();
+  };
+
   return (
     <div
       style={{
@@ -92,7 +143,7 @@ export default function Booking() {
       <div className="p-3 max-w-3xl mx-auto min-h-screen">
         <form
           className="flex flex-col gap-4 bg-slate-500 mt-20 p-5"
-          onSubmit={generatePDF}
+          onSubmit={handleSubmit}
         >
           <h1 className="text-center text-3xl my-7 font-semibold">
             Package Booking
@@ -104,7 +155,7 @@ export default function Booking() {
               type="text"
               required
               id="packageName"
-              className="flex-1 bg-gray-00"
+              className="flex-1"
               value={packageData.packageName || ""}
               disabled
             />
@@ -115,7 +166,8 @@ export default function Booking() {
               required
               id="packagePrice"
               className="flex-1"
-              value={"Rs." + packageData.packagePrice}
+              style={{ color: "black" }}
+              value={"$ " + packageData.packagePrice}
               disabled
             />
           </div>
@@ -126,7 +178,8 @@ export default function Booking() {
               type="date"
               required
               id="Date"
-              className="flex-1"
+              className="flex-1 black-text"
+              style={{ color: "black" }}
               value={formData.Date}
               onChange={handleChange}
             />
@@ -137,6 +190,7 @@ export default function Booking() {
               required
               id="Time"
               className="flex-1"
+              style={{ color: "black" }}
               value={formData.Time}
               onChange={handleChange}
             />
@@ -147,16 +201,21 @@ export default function Booking() {
             <TextInput
               type="number"
               id="Quantity"
+              min={1}
+              style={{ color: "black" }}
               className="flex-1"
-              // value={formData.Quantity}
+              value={formData.Quantity}
               onChange={handleChange}
             />
             <Label value="Discount" />
             <TextInput
               type="number"
               id="Discount"
+              min={0}
+              step={0.01}
+              style={{ color: "black" }}
               className="flex-1"
-              // value={formData.Discount}
+              value={formData.Discount}
               onChange={handleChange}
             />
           </div>
@@ -166,13 +225,14 @@ export default function Booking() {
             required
             id="totalBill"
             className="flex-1"
-            value={"Rs." + TotalBill}
+            style={{ color: "black" }}
+            value={"$ " + TotalBill}
             disabled
           />
 
           <div className="flex justify-between">
             <div>
-              <Link to="/packages">
+              <Link to="/res-pkg">
                 <Button type="button" color="dark">
                   Back
                 </Button>

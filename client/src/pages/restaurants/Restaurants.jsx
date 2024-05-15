@@ -26,35 +26,34 @@ export default function Restaurants() {
 
   return (
     <div>
-    
-    <div className="mt-32 ml-10 mb-48">
-    
-      <div className="w-96 mx-auto mb-10">
-      <Header/>
-        <form>
-          <TextInput
-            type="text"
-            placeholder="Search By Restaurant Name..."
-            rightIcon={AiOutlineSearch}
-            className="hidden lg:inline"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </form>
-      </div>
+      <div className="mt-32 ml-10 mb-48">
+        <div className="w-96 mx-auto mb-10">
+          <Header />
+          <form>
+            <TextInput
+              type="text"
+              placeholder="Search By Restaurant Name..."
+              rightIcon={AiOutlineSearch}
+              style={{ color: "black" }}
+              className="hidden lg:inline"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
+        </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        {restaurants.length > 0 ? (
-          restaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant._id} restaurant={restaurant} />
-          ))
-        ) : (
-          <div className="col-span-2 text-center">
-            No matching restaurants found.
-          </div>
-        )}
+        <div className="grid grid-cols-2 gap-4">
+          {restaurants.length > 0 ? (
+            restaurants.map((restaurant) => (
+              <RestaurantCard key={restaurant._id} restaurant={restaurant} />
+            ))
+          ) : (
+            <div className="col-span-2 text-center">
+              No matching restaurants found.
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

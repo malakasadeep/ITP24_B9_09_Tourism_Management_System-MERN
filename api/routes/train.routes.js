@@ -220,4 +220,46 @@ router.get('/seats/:trainID', async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 });
+
+// Route to book seats for a train
+router.post('/book-seats/:trainID', async (req, res) => {
+    const trainID = req.params.trainID;
+    const selectedSeats = req.body.selectedSeats;
+
+    // Check if selectedSeats is an array
+    if (!Array.isArray(selectedSeats)) {
+        return res.status(400).json({ success: false, message: 'selectedSeats must be an array' });
+    }
+
+    try {
+        // Loop through each selected seat and update its availability
+        for (const seat of selectedSeats) {
+            const updatedSeat = await Seat.findOneAndUpdate(
+                { trainId: trainID, seatNumber: seat.seatNumber },
+                { $set: { available: false } }, // Set availability to false (booked)
+                { new: true } // Return the updated document
+            );
+
+            if (!updatedSeat) {
+                return res.status(404).json({ success: false, message: 'Seat not found' });
+            }
+        }
+
+        // Generate receipt data (you can customize this based on your requirements)
+        const receiptData = {
+            trainID: trainID,
+            bookedSeats: selectedSeats.map(seat => seat.seatNumber),
+            totalPrice: selectedSeats.length * singleTrain.price // Assuming singleTrain contains the price
+            // Add more receipt data as needed
+        };
+
+        // Respond with success message and receipt data
+        res.json({ success: true, message: 'Seats booked successfully', receipt: receiptData });
+    } catch (error) {
+        // If an error occurs, respond with an error message
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Failed to book seats. Please try again later.' });
+    }
+});
+
 export default router

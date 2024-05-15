@@ -7,10 +7,13 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
+import jsPDF from "jspdf";
 
 export default function TrainBook() {
   const id = useParams().id;
   const [singleTrain, setSingleTrain] = useState({});
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const getOneTrain = () => {
@@ -31,7 +34,7 @@ export default function TrainBook() {
     localStorage.setItem("trainName", singleTrain.trainName);
     localStorage.setItem("price", singleTrain.price);
     localStorage.setItem("trainID", singleTrain._id);
-    localStorage.setItem("TO", singleTrain.to);
+    localStorage.setItem("TO", singleTrain.destination);
     localStorage.setItem("FROM", singleTrain.from);
     localStorage.setItem("ATime", singleTrain.arrivalTime);
     localStorage.setItem("DTime", singleTrain.depatureTime);
@@ -44,7 +47,8 @@ export default function TrainBook() {
     try {
       const res = await fetch(`/api/train/seats/${trainID}`);
       const data = await res.json();
-      setSeats(data.seats);
+      const sortedSeats = data.seats.sort((a, b) => a.seatNumber - b.seatNumber);
+      setSeats(sortedSeats);
       setModalIsOpen(true);
     } catch (error) {
       console.error(error);
@@ -69,10 +73,58 @@ export default function TrainBook() {
     }
   };
 
-  const handleBookSeat = () => {
-    console.log("Booked seats:", selectedSeats);
-    setSelectedSeats([]);
+  const handleBookSeat = async () => {
+    try {
+      // Update seat availability as booked in the database
+      const seatNumbers = selectedSeats.map((seat) => seat.seatNumber);
+      const res = await fetch(`/api/train/book-seats/${singleTrain._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ selectedSeats: seatNumbers }),
+      });
+      const data = await res.json();
+      console.log(data); // Log the response from the server
+  
+      // Generate PDF report with booking details and user information
+      generatePDF(selectedSeats, selectedSeats.length * singleTrain.price);
+    } catch (error) {
+      console.error(error);
+      // Show error message using Swal or any other method
+    }
   };
+  
+  const generatePDF = (selectedSeats, totalPrice) => {
+    // Create a new instance of jsPDF
+    const doc = new jsPDF();
+  
+    // Define the content of the PDF
+    const reportContent = `
+      Booking Details:
+      -----------------
+      Train Name: ${singleTrain.trainName}
+      From: ${singleTrain.from}
+      To: ${singleTrain.destination}
+      Departure Time: ${singleTrain.departureTime}
+      Arrival Time: ${singleTrain.arrivalTime}
+      
+      Selected Seats: ${selectedSeats.map(seat => seat.seatNumber).join(', ')}
+      Total Price: ${totalPrice}
+  
+      User Details:
+      ----------------
+      Name: ${currentUser.username}
+      Email: ${currentUser.email}
+    `;
+  
+    // Add content to the PDF
+    doc.text(reportContent, 10, 10);
+  
+    // Save the PDF
+    doc.save('train_booking_report.pdf');
+  };
+
   return (
     <div className="min-h-screen mt-6">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8">
@@ -95,13 +147,13 @@ export default function TrainBook() {
             <div className="flex items-center mb-4">
               <FaTrain className="text-gray-600 mr-2" />
               <p className="text-gray-600 text-sm">
-                {singleTrain.to} - {singleTrain.from}
+                {singleTrain.destination} - {singleTrain.from}
               </p>
             </div>
             <div className="flex items-center mb-4">
               <WiTime3 className="text-gray-600 mr-2" />
               <p className="text-gray-600 text-sm">
-                {singleTrain.depatureTime} - {singleTrain.arrivalTime}
+                {singleTrain.departureTime} - {singleTrain.arrivalTime}
               </p>
             </div>
             <div className="flex items-center mb-4">

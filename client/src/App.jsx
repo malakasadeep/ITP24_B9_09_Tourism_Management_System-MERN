@@ -35,6 +35,7 @@ import DeleteEvent from "./pages/eventAct/DeleteEvent";
 import SearchEvent from "./pages/eventAct/SearchEvent";
 import AdminAddEvent from "./components/eventAct/AdminAddEvent";
 import AdminUpdateEvent from "./components/eventAct/AdminUpdateEvent";
+import EventCalendarPage from "./components/eventAct/EventCalendar";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -84,6 +85,7 @@ import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant";
 import CreatePackage from "./pages/restaurants/CreatePackage";
 import UpdatePackage from "./pages/restaurants/UpdatePackage";
 import Booking from "./pages/restaurants/Booking";
+import PackageCard from "./components/tour-packages/PackageCard";
 
 export default function App() {
   return (
@@ -100,6 +102,7 @@ export default function App() {
         <Route element={<PrivateRouteTourist />}>
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile-update" element={<Profile />} />
+          <Route path="/train/book/:id" element={<TrainBook />} />
         </Route>
 
         <Route element={<PrivateRouteSeller />}>
@@ -155,6 +158,8 @@ export default function App() {
         <Route path="/event/get/:id" element={<ShowEvent />} />
         <Route path="/seller/event/get/:id" element={<ShowEvent />} />
 
+        <Route path="/events/calendar" element={<EventCalendarPage />} />
+
         <Route path="/admin/events" element={<EventTable />} />
         <Route path="/admin/events/get/:id" element={<ShowEvent />} />
         <Route path="/admin/add-event" element={<AdminAddEvent />} />
@@ -184,7 +189,7 @@ export default function App() {
           element={<AdminTrainUpdate />}
         />
         <Route path="/train/search" element={<TrainHome />} />
-        <Route path="/train/book/:id" element={<TrainBook />} />
+        
 
         {/* prabodhi */}
         <Route path="/add-guide" element={<Add_Guide />}></Route>
@@ -211,6 +216,9 @@ export default function App() {
         <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
         <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
         <Route path="/res-pkg-book/:id" element={<Booking />} />
+        
+
+        
       </Routes>
       <Footer />
     </BrowserRouter>

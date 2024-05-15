@@ -6,14 +6,14 @@ import {
 } from "firebase/storage";
 import React, { useState } from "react";
 import { app } from "../../firebase";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"; //Error messages are displayed
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";//used for navigation
 
 function CreateEvent() {
-  const [files, setFiles] = useState([]);
-  const [formData, setFormData] = useState({
+  const [files, setFiles] = useState([]);//useState used to initialize state variables(files,formData,fileUploadError,...)
+  const [formData, setFormData] = useState({//store form data including event details and image URLs
     imageUrls: [],
     type: "",
     title: "",
@@ -24,22 +24,22 @@ function CreateEvent() {
     MaxParticipants: 0,
     description: "",
   });
-  const [fileUploadError, setFileUploadError] = useState(false);
-  const [filePerc, setFilePerc] = useState(0);
-  const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [fileUploadError, setFileUploadError] = useState(false);//A boolean to track if there's an error during file upload.
+  const [filePerc, setFilePerc] = useState(0);// A number to track the upload progress of each file.
+  const [uploading, setUploading] = useState(false);// A boolean to indicate if files are currently being uploaded.
+  const [error, setError] = useState(false);// A boolean to indicate if there's an error
+  const [loading, setLoading] = useState(false);//A boolean to indicate if the component is loading
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  const handleImageSubmit = (e) => {
-    if (files.length > 0 && files.length + formData.imageUrls.length < 4) {
+  const handleImageSubmit = (e) => { //Handles the submission of images
+    if (files.length > 0 && files.length + formData.imageUrls.length < 4) {//checks if the number of selected files is within the limit
       setUploading(true);
       setFileUploadError(false);
       const promises = [];
 
       for (let i = 0; i < files.length; i++) {
-        promises.push(storeImage(files[i]));
+        promises.push(storeImage(files[i]));// Uploads a single image file to Firebase Storage
       }
       Promise.all(promises)
         .then((urls) => {
@@ -51,7 +51,7 @@ function CreateEvent() {
           setUploading(false);
         })
         .catch((err) => {
-          setFileUploadError(
+          setFileUploadError(//set the max image size to 2MB
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -72,9 +72,9 @@ function CreateEvent() {
     }
   };
 
-  const storeImage = async (file) => {
+  const storeImage = async (file) => { //Uploads a single image file to Firebase Storage
     return new Promise((resolve, reject) => {
-      const storage = getStorage(app);
+      const storage = getStorage(app);//creates a storage reference with a unique filename, uploads the file, and returns the download URL
       const fileName = new Date().getTime() + file.name;
       const storageRef = ref(storage, `eventImages/${fileName}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -98,14 +98,14 @@ function CreateEvent() {
     });
   };
 
-  const handleremoveImage = (index) => {
+  const handleremoveImage = (index) => { //Removes an image from the imageUrls array when the user clicks on a remove button
     setFormData({
       ...formData,
       imageUrls: formData.imageUrls.filter((_, i) => i !== index),
     });
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e) => {//handles changes in form inputs
     if (
       e.target.type === "number" ||
       e.target.type === "text" ||
@@ -127,7 +127,7 @@ function CreateEvent() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();//This prevents the page from reloading when the form is submitted.
     /*if (
       !formData.type ||
       !formData.title ||
@@ -147,7 +147,8 @@ function CreateEvent() {
     }*/
 
     // Additional validation for specific fields
-    if (isNaN(formData.price)) {
+
+    if (isNaN(formData.price)) {//If price is not a number, it displays an error message using Swal.fire.
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -156,7 +157,7 @@ function CreateEvent() {
       return;
     }
 
-    if (formData.price <= 0) {
+    if (formData.price <= 0) {//price must be greater than or equal to 0. if not display error msj
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -165,7 +166,7 @@ function CreateEvent() {
       return;
     }
 
-    if (isNaN(formData.MaxParticipants)) {
+    if (isNaN(formData.MaxParticipants)) {//participant must be a number. if not display error msj
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -174,7 +175,7 @@ function CreateEvent() {
       return;
     }
 
-    if (formData.MaxParticipants < 0) {
+    if (formData.MaxParticipants < 0) {//participants must be greater than to 0.
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -186,7 +187,7 @@ function CreateEvent() {
     // Validate future date
     const selectedDate = new Date(formData.date);
     const currentDate = new Date();
-    if (selectedDate < currentDate) {
+    if (selectedDate < currentDate) {//if selected date is before current date then display error msj
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -209,7 +210,7 @@ function CreateEvent() {
       });
       const data = await res.json();
       setLoading(false);
-      if (data.success === false) {
+      if (data.success === false) {//id data added successfully then display success msj
         setError(data.message);
         Swal.fire({
           icon: "error",
@@ -379,7 +380,7 @@ function CreateEvent() {
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-last-name"
                 >
-                  Max participants (0 = unlimited)
+                  Max participants
                 </label>
                 <input
                   className="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -425,7 +426,7 @@ function CreateEvent() {
                 />
                 <button
                   type="button"
-                  onClick={handleImageSubmit}
+                  onClick={handleImageSubmit} //handling image uploads
                   className="p-3 text-blue-700 border border-blue-700 rounded uppercase hover:shadow-xl disabled:opacity-80"
                   disabled={uploading}
                 >
@@ -458,7 +459,7 @@ function CreateEvent() {
                     />
                     <button
                       type="button"
-                      onClick={() => handleremoveImage(index)}
+                      onClick={() => handleremoveImage(index)}// remove uploaded images from the form
                       className="text-red-700 text-5xl font-extrabold rounded-lg uppercase hover:opacity-60"
                     >
                       <MdDeleteForever />
