@@ -11,6 +11,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../../components/VehicleManagement/BackButton";
+import emailjs from 'emailjs-com';
 
 const AddVehicle = () => {
   const [files, setFiles] = useState([]);
@@ -26,7 +27,11 @@ const AddVehicle = () => {
     price: 0,
     description: "",
     location: "",
+    email:"",
   });
+
+
+  
   const [fileUploadError, setFileUploadError] = useState(false);
   const [filePerc, setFilePerc] = useState(0);
   const [uploading, setUploading] = useState(false);
@@ -218,6 +223,22 @@ const AddVehicle = () => {
             value={formData.ownername}
             required
           />
+
+
+<label className="lg:text-lg text-left">
+  Vehicle Owner's Email
+</label>
+<input
+  type="text"
+  className="border rounded-lg w-full p-2 mt-2"
+  placeholder="example@example.com"
+  id="email"
+  onChange={handleChange}
+  value={formData.email}
+  required
+/>
+
+
 
           <label for className="lg:text-lg text-left">
             Vehicle Brand Name

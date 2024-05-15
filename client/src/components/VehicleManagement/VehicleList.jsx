@@ -8,6 +8,7 @@ import VehicleReport from "./VehicleReport";
 import Swal from "sweetalert2";
 import loadingimg from "../../assets/img/loading.gif";
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 
 export const VehicleList = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export const VehicleList = () => {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
 
   // Debounce function to delay search request
   const debounce = (func, delay) => {
@@ -72,60 +74,89 @@ export const VehicleList = () => {
       navigate(`/admin/vehicle?${urlParams}`);
       fetchVehicles();
   };
+  const sendEmailToowner=(vemail, reason)=>{
+    const emailConfig={
+      serviceID:'service_ksu006o',
+      templateID:'template_10abhbb',
+      userId:'y2jxfyf3tAUECPBoZ'
+    };
+    emailjs.send(
+      emailConfig.serviceID,
+      emailConfig.templateID,
+      {
+        to_email: `${vemail}`,
+        message: `Your vehicle was rejected because ${reason}`
+      },
+      emailConfig.userId
+    )
+  };
 
-
-  const handleUserDelete = async (vehicleId) => {
-    Swal.fire({
+  const handleUserDelete = async (vehicleId, vemail) => {
+    const { value: reason } = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6", 
+      confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, reject it!",
       cancelButtonText: "Cancel",
       input: 'text', // Add an input field
-      inputPlaceholder: 'Enter reason for rejection' // Placeholder for the input field
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const reason = result.value; // Retrieve the reason entered by the user
-        try {
-          const res = await fetch(`/api/vehicle/delete/${vehicleId}`, {
-            method: "DELETE",
-            body: JSON.stringify({ reason }), // Pass the reason in the request body
-            headers: {
-              "Content-Type": "application/json"
-            }
-          });
-          const data = await res.json();
-          if (data.success === false) {
-            console.log(data.message);
-            return;
-          }
-          // Send email to user with the reason for rejection
-          await fetch(`/api/send-email`, {
-            method: "POST",
-            body: JSON.stringify({ userId: userId, reason: reason }), // Pass user ID and reason in the request body
-            headers: {
-              "Content-Type": "application/json"
-            }
-          });
-          Swal.fire({
-            title: "Rejected!",
-            text: "Vehicle has been rejected.",
-            icon: "success",
-          }).then(() => {
-            // Remove the deleted vehicle from the list displayed on the UI
-            setVehicles(prevVehicles => prevVehicles.filter(vehicle => vehicle._id !== vehicleId));
-          });
-        } catch (error) {
-          console.log(error.message);
-        }
+      inputPlaceholder: 'Enter reason for rejection', // Placeholder for the input field
+      showLoaderOnConfirm: true, // Display loader while processing
+      preConfirm: (inputReason) => {
+        return inputReason; // Return the input value
       }
     });
-    
-    
+  
+    if (reason) {
+      // If the user entered a reason, proceed with sending the email and deletion
+      sendEmailToowner(vemail, reason); // Pass vehicleId and reason to the email function
+      try {
+        const res = await fetch(`/api/vehicle/delete/${vehicleId}`, {
+          method: "DELETE",
+          body: JSON.stringify({ reason }), // Pass the reason in the request body
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        const data = await res.json();
+        if (data.success === false) {
+          console.log(data.message);
+          return;
+        }
+        Swal.fire({
+          title: "Rejected!",
+          text: "Vehicle has been rejected.",
+          icon: "success",
+        }).then(() => {
+          // Remove the deleted vehicle from the list displayed on the UI
+          setVehicles(prevVehicles => prevVehicles.filter(vehicle => vehicle._id !== vehicleId));
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   };
+  
+  
+  // Function to send email to owner
+  const sendEmailToOwner = async (vehicleId, reason) => {
+    try {
+      // Send email to user with the reason for rejection
+      await fetch(`/api/send-email`, {
+        method: "POST",
+        body: JSON.stringify({ userId: userId, reason: reason }), // Pass user ID and reason in the request body
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    } catch (error) {
+      console.log(error.message);
+      throw new Error(error.message); // Throw error to Swal if email sending fails
+    }
+  };
+  ;
 
   return (
     <div>
@@ -178,6 +209,7 @@ export const VehicleList = () => {
                   <td>Vehicle</td>
                   <td>Type</td>
                   <td>Owner Name</td>
+                  <td>Owner email</td>
                   <td>Reg.No</td>
                   <td>Location</td>
                   <td>Seats</td>
@@ -186,6 +218,7 @@ export const VehicleList = () => {
                 </tr>
 
                 {vehicles.map((vehicles) => (
+                  
                   <tr className="w-1/2 mx-auto text-center" key={vehicles._id}>
                     <td className="w-full">
                       <div className="flex flex-col items-center justify-center">
@@ -203,6 +236,7 @@ export const VehicleList = () => {
                     </td>
                     <td>{vehicles.type}</td>
                     <td>{vehicles.ownername}</td>
+                    <td>{vehicles.email}</td>
                     <td>{vehicles.regno}</td>
                     <td>{vehicles.location}</td>
                     <td>{vehicles.seats}</td>
@@ -223,7 +257,7 @@ export const VehicleList = () => {
                         </Link>
                         <button
                           className="p-2 bg-red-700 rounded-lg text-white"
-                           onClick={() => handleUserDelete(vehicles._id)}
+                           onClick={() => handleUserDelete(vehicles._id, vehicles.email)}
                               >
                             Reject <MdDeleteForever className="text-2xl" />
                         </button>
