@@ -100,6 +100,7 @@ export default function App() {
         <Route element={<PrivateRouteTourist />}>
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile-update" element={<Profile />} />
+          <Route path="/train/book/:id" element={<TrainBook />} />
         </Route>
 
         <Route element={<PrivateRouteSeller />}>
@@ -184,7 +185,7 @@ export default function App() {
           element={<AdminTrainUpdate />}
         />
         <Route path="/train/search" element={<TrainHome />} />
-        <Route path="/train/book/:id" element={<TrainBook />} />
+        
 
         {/* prabodhi */}
         <Route path="/add-guide" element={<Add_Guide />}></Route>
