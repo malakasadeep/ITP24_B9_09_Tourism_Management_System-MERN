@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//import {  FaStar } from "react-icons/fa";
 import { LuHotel } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 import { RxActivityLog } from "react-icons/rx";
@@ -18,7 +17,7 @@ const VehicleCard = (props) => {
             <div>
                 
           <div className='flex flex-col items-center justify-center container '>
-            <div className='grid grid-cols-3 gap-x-1 gap-y-1'>
+            <div className='grid grid-cols-3 gap-x-2 gap-y-1'>
               <div>
                   
                     <div className='flex flex-row items-center gap-1  rounded-lg'>
@@ -37,7 +36,7 @@ const VehicleCard = (props) => {
                     <div className='flex flex-row items-center gap-1   rounded-lg'>
                     <LuHotel />
                     <div className='text-center'>
-                      <p className='text-sm font-light text-black'>{+props.capacity}</p>
+                      <p className='text-sm font-light text-black'>{props.capacity}</p>
                       <p className='text-xs text-black'>CC</p>
                     </div>
                   </div>
@@ -49,7 +48,7 @@ const VehicleCard = (props) => {
                     <div className='flex flex-row items-center gap-1  rounded-lg'>
                     <RxActivityLog />
                     <div className='text-center'>
-                      <p className='text-sm font-light text-black'>{+props.transmission}</p>
+                      <p className='text-sm font-light text-black'>{props.transmission}</p>
                      
                     </div>
                   </div>

@@ -48,6 +48,12 @@ const ShowVehicle = () => {
                   </p>
                 </div>
                 <div className="my-4">
+                  <span className="font-bold">Owner Email:</span>
+                  <p className="text-green-900 font-bold">
+                    {vehicle.email}
+                  </p>
+                </div>
+                <div className="my-4">
                   <span className="font-bold">Brand:</span>
                   <span>{vehicle.brand}</span>
                 </div>
