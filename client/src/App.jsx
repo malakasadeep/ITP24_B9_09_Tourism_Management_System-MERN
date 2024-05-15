@@ -85,6 +85,7 @@ import UpdateRestaurant from "./pages/restaurants/UpdateRestaurant";
 import CreatePackage from "./pages/restaurants/CreatePackage";
 import UpdatePackage from "./pages/restaurants/UpdatePackage";
 import Booking from "./pages/restaurants/Booking";
+import PackageCard from "./components/tour-packages/PackageCard";
 
 export default function App() {
   return (
@@ -215,6 +216,9 @@ export default function App() {
         <Route path="/admin/create-res-pkg" element={<CreatePackage />} />
         <Route path="/admin/update-res-pkg/:id" element={<UpdatePackage />} />
         <Route path="/res-pkg-book/:id" element={<Booking />} />
+        
+
+        
       </Routes>
       <Footer />
     </BrowserRouter>

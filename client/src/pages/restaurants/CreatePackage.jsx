@@ -38,19 +38,24 @@ export default function CreatePackage() {
           type="text"
           placeholder="Package name"
           required
+          
           name="packageName"
           className="flex-1"
           onChange={handleChange}
         />
+       
 
         <TextInput
           type="number"
           placeholder="Price"
           required
+           min={1}
           name="packagePrice"
           className="flex-1"
           onChange={handleChange}
         />
+
+       
 
         <TextInput
           type="text"
@@ -72,9 +77,9 @@ export default function CreatePackage() {
         </div>
         <div className="flex justify-between">
           <div>
-            <Link to="/dashboard?tab=package">
+            <Link to="/packageCard">
               <Button type="button" color="dark">
-                Back
+                Back 
               </Button>
             </Link>
           </div>
