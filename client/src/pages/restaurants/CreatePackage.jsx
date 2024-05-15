@@ -38,19 +38,24 @@ export default function CreatePackage() {
           type="text"
           placeholder="Package name"
           required
+          
           name="packageName"
           className="flex-1"
           onChange={handleChange}
         />
+       
 
         <TextInput
           type="number"
           placeholder="Price"
           required
+           min={1}
           name="packagePrice"
           className="flex-1"
           onChange={handleChange}
         />
+
+       
 
         <TextInput
           type="text"

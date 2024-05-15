@@ -115,7 +115,7 @@ export default function Booking() {
               required
               id="packagePrice"
               className="flex-1"
-              value={"Rs." + packageData.packagePrice}
+              value={"$ " + packageData.packagePrice}
               disabled
             />
           </div>
@@ -156,6 +156,7 @@ export default function Booking() {
             <TextInput
               type="number"
               id="Discount"
+              min={1}
               className="flex-1"
               // value={formData.Discount}
               onChange={handleChange}
@@ -167,7 +168,7 @@ export default function Booking() {
             required
             id="totalBill"
             className="flex-1"
-            value={"Rs." + TotalBill}
+            value={"$ " + TotalBill}
             disabled
           />
 
