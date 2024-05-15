@@ -5,7 +5,7 @@ import { FaRegStar } from "react-icons/fa6";
 
 export default function PackagesCard({ packageData }) {
   return (
-    <Card className="min" imgSrc={packageData.image} horizontal>
+    <Card className="min-w-32" imgSrc={packageData.image} horizontal>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {packageData.packageName}
       </h5>

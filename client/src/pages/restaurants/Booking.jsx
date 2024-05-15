@@ -174,7 +174,7 @@ export default function Booking() {
 
           <div className="flex justify-between">
             <div>
-              <Link to="/packages">
+              <Link to="/res-pkg">
                 <Button type="button" color="dark">
                   Back
                 </Button>

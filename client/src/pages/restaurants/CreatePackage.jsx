@@ -77,9 +77,9 @@ export default function CreatePackage() {
         </div>
         <div className="flex justify-between">
           <div>
-            <Link to="/dashboard?tab=package">
+            <Link to="/packageCard">
               <Button type="button" color="dark">
-                Back
+                Back 
               </Button>
             </Link>
           </div>
