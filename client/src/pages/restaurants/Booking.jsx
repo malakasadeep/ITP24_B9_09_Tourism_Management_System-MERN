@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import JsPDF from "jspdf";
+import emailjs from 'emailjs-com';
 //import backgroundImage from "../image/bg.jpg";
-import emailjs from "emailjs-com";
-
-// Initialize EmailJS
-emailjs.init("v53cNBlrti0pL_RxD");
 
 export default function Booking() {
   const { id } = useParams();
@@ -40,25 +37,6 @@ export default function Booking() {
     fetchPackages();
   }, [id]);
 
-  //Send an email
-  const sendEmailToAdmin = () => { 
-    const emailConfig = {
-        serviceID: 'service_p1zv9rh',
-        templateID: 'template_pua7ayd',
-        userID: 'v53cNBlrti0pL_RxD'
-    };
-
-    emailjs.send(
-        emailConfig.serviceID,
-        emailConfig.templateID,
-        {
-            to_email: 'lasalmdissanayake@gmail.com',
-            message: `jydhvcjsdcbj`
-        },
-        emailConfig.userID
-    );
-  };
-
   useEffect(() => {
     // Calculate the total bill based on quantity and discount
     const updatedTotalBill = calculateTotalBill(
@@ -82,6 +60,47 @@ export default function Booking() {
     return priceAfterDiscount.toFixed(2); // Rounds to two decimal places
   };
 
+  const sendEmailToSupplier = () => {
+    const emailConfig = {
+      serviceID: 'service_p1zv9rh',
+      templateID: 'template_pua7ayd',
+      userID: 'v53cNBlrti0pL_RxD'
+    };
+//email content
+    const emailContent = `
+      Dear Supplier,
+
+      We have a new booking with the following details:
+      
+      Package Name: ${packageData.packageName}
+      Price: Rs.${packageData.packagePrice}
+      Item: ${packageData.packageDetails}
+      Quantity: ${formData.Quantity}
+      Date: ${formData.Date}
+      Time: ${formData.Time}
+      
+      Discount: ${formData.Discount}%
+      Total Bill: Rs.${TotalBill}
+      
+      Best regards,
+      TourCraf
+    `;
+
+    emailjs.send(
+      emailConfig.serviceID,
+      emailConfig.templateID,
+      {
+        to_email: 'mithunmh19@gmail.com',
+        message: emailContent
+      },
+      emailConfig.userID
+    ).then((response) => {
+      console.log('Email sent successfully!', response.status, response.text);
+    }).catch((err) => {
+      console.error('Failed to send email:', err);
+    });
+  };
+
   const generatePDF = () => {
     const pdf = new JsPDF();
 
@@ -102,9 +121,12 @@ export default function Booking() {
     pdf.text(`Total Bill: Rs.${TotalBill}`, 20, 120);
 
     pdf.save("booking-confirmation.pdf");
+  };
 
-    // Send email after generating PDF
-    sendEmailToAdmin();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendEmailToSupplier();
+    generatePDF();
   };
 
   return (
@@ -118,7 +140,7 @@ export default function Booking() {
       <div className="p-3 max-w-3xl mx-auto min-h-screen">
         <form
           className="flex flex-col gap-4 bg-slate-500 mt-20 p-5"
-          onSubmit={generatePDF}
+          onSubmit={handleSubmit}
         >
           <h1 className="text-center text-3xl my-7 font-semibold">
             Package Booking
@@ -175,16 +197,17 @@ export default function Booking() {
               id="Quantity"
               min={1}
               className="flex-1"
-              // value={formData.Quantity}
+              value={formData.Quantity}
               onChange={handleChange}
             />
             <Label value="Discount" />
             <TextInput
               type="number"
               id="Discount"
-              min={1}
+              min={0}
+              step={0.01}
               className="flex-1"
-              // value={formData.Discount}
+              value={formData.Discount}
               onChange={handleChange}
             />
           </div>
