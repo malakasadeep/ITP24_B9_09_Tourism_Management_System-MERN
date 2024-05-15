@@ -8,6 +8,11 @@ const vehicleSchema = new Schema(
       type: String,
       required: true,
     },
+    // email:{
+    //   type:email,
+    //   required:true,
+
+    // },
     brand: {
       type: String,
       required: true,

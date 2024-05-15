@@ -17,7 +17,7 @@ const VehicleCard = (props) => {
             <div>
                 
           <div className='flex flex-col items-center justify-center container '>
-            <div className='grid grid-cols-3 gap-x-20 gap-y-1'>
+            <div className='grid grid-cols-3 gap-x-2 gap-y-1'>
               <div>
                   
                     <div className='flex flex-row items-center gap-1  rounded-lg'>
@@ -36,7 +36,7 @@ const VehicleCard = (props) => {
                     <div className='flex flex-row items-center gap-1   rounded-lg'>
                     <LuHotel />
                     <div className='text-center'>
-                      <p className='text-sm font-light text-black'>{+props.capacity}</p>
+                      <p className='text-sm font-light text-black'>{props.capacity}</p>
                       <p className='text-xs text-black'>CC</p>
                     </div>
                   </div>

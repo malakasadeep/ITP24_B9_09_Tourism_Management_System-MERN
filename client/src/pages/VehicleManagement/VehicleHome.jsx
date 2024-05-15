@@ -142,11 +142,13 @@ const VehicleHome = () => {
               image={vehicle.imageUrls[0]}
               model={vehicle.model}
               price={vehicle.price}
-              transmissionType={vehicle.transmissionType}
+              transmission={vehicle.transmission}
               fuelType={vehicle.fuelType}
-              capacity={vehicle.seats}
+              seats={vehicle.seats}
               vehicleMainImg={vehicle.vehicleMainImg}
               id={vehicle._id}
+              capacity={vehicle.capacity}
+
             />
           ))}
         </div>

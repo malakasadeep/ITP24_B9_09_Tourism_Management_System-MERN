@@ -247,16 +247,18 @@ export default function Home() {
                 <div className="flex flex-wrap gap-16">
                   {vehicles.map((vehicle) => (
                     <VehicleCard
-                      key={vehicle._id}
-                      brand={vehicle.brand}
-                      image={vehicle.imageUrls[0]}
-                      model={vehicle.model}
-                      price={vehicle.price}
-                      transmissionType={vehicle.transmissionType}
-                      fuelType={vehicle.fuelType}
-                      capacity={vehicle.seats}
-                      vehicleMainImg={vehicle.vehicleMainImg}
-                      id={vehicle._id}
+                    key={vehicle._id}
+                    brand={vehicle.brand}
+                    image={vehicle.imageUrls[0]}
+                    model={vehicle.model}
+                    price={vehicle.price}
+                    transmission={vehicle.transmission}
+                    fuelType={vehicle.fuelType}
+                    seats={vehicle.seats}
+                    vehicleMainImg={vehicle.vehicleMainImg}
+                    id={vehicle._id}
+                    capacity={vehicle.capacity}
+      
                     />
                   ))}
                 </div>

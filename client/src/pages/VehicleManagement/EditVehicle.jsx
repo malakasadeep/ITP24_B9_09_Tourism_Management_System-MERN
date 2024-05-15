@@ -158,7 +158,7 @@ const AddVehicle = () => {
         return;
       }
       const regex =
-        /^[A-Z]{3}-\d{4}$|^\d{2}-\d{4}$|^[A-Z]{2}-\d{4}$|^\d{1}-\d{4}$/;
+      /^(?:[A-Z]{3}-\d{4}|^\d{2}-\d{4}|^[A-Z]{2}-\d{4}|^\d{1}-\d{4}|^\d{2}\SRI-\d{4})$/;
       if (!regex.test(formData.regno)) {
         setError(
           "Invalid vehicle number. Please enter a valid vehicle number."
@@ -228,7 +228,7 @@ const AddVehicle = () => {
           <input
             type="text"
             className="border rounded-lg w-full p-2 mt-2"
-            placeholder="Yasiru Deshan"
+            placeholder="Wikasith Dilshan"
             id="ownername"
             onChange={handleChange}
             value={formData.ownername}
@@ -350,6 +350,7 @@ const AddVehicle = () => {
             onChange={handleChange}
             value={formData.price}
             required
+            min="1"
           />
 
           <label
