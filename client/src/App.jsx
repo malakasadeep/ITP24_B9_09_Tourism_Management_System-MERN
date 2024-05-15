@@ -35,6 +35,7 @@ import DeleteEvent from "./pages/eventAct/DeleteEvent";
 import SearchEvent from "./pages/eventAct/SearchEvent";
 import AdminAddEvent from "./components/eventAct/AdminAddEvent";
 import AdminUpdateEvent from "./components/eventAct/AdminUpdateEvent";
+import EventCalendarPage from "./components/eventAct/EventCalendar";
 
 //wikasith
 import Vehicle from "./pages/VehicleManagement/Vehicle";
@@ -155,6 +156,8 @@ export default function App() {
         <Route path="/events/search/" element={<SearchEvent />} />
         <Route path="/event/get/:id" element={<ShowEvent />} />
         <Route path="/seller/event/get/:id" element={<ShowEvent />} />
+
+        <Route path="/events/calendar" element={<EventCalendarPage />} />
 
         <Route path="/admin/events" element={<EventTable />} />
         <Route path="/admin/events/get/:id" element={<ShowEvent />} />

@@ -7,18 +7,18 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import EventReport from "./EventReport";
 import loadingimg from "../../assets/img/loading.gif";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2";//for displaying alerts
 
 function EventTable() {
   const navigate = useNavigate();
-  const [searchData, setSearchData] = useState({
+  const [searchData, setSearchData] = useState({//searchData: Manages the search input and selected type for filtering events.
     searchTerm: "",
     usertype: "all",
     sort: "created_at",
     order: "desc",
   });
-  const [loading, setLoading] = useState(false);
-  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(false);// Tracks the loading state while fetching events data.
+  const [events, setEvents] = useState([]);//Holds the array of events fetched from the server.
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -39,7 +39,7 @@ function EventTable() {
     fetchEvent();
   }, [location.search]);
 
-  const handleChange = (e) => {
+  const handleChange = (e) => {// Updates the searchData state based on changes in the search input or select dropdowns.
     if (e.target.type === "select-one") {
       setSearchData({ ...searchData, type: e.target.value });
     }
@@ -48,7 +48,7 @@ function EventTable() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {//Handles the form submission when the user clicks the search button
     e.preventDefault();
     const urlParame = new URLSearchParams();
     urlParame.set("searchTerm", searchData.searchTerm);
@@ -57,7 +57,7 @@ function EventTable() {
     navigate(`/admin/events?${searchQuery}`);
   };
 
-  const handleDelete = async (eventId) => {
+  const handleDelete = async (eventId) => {// Handles the deletion of an event. Displays a confirmation dialog using SweetAlert2. 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -180,9 +180,10 @@ function EventTable() {
                         <td>{event.time}</td>
                         <td>{event.location}</td>
                         <td>{event.price}</td>
-                        <td>
+                         <td>
                           {event.participants}/{event.MaxParticipants}
                         </td>
+                
                         <td className="">
                           <div className="flex">
                             <Link
