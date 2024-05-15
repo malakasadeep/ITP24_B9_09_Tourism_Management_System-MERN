@@ -38,29 +38,28 @@ export default function CreatePackage() {
           type="text"
           placeholder="Package name"
           required
-          
+          style={{ color: "black" }}
           name="packageName"
           className="flex-1"
           onChange={handleChange}
         />
-       
 
         <TextInput
           type="number"
           placeholder="Price"
           required
-           min={1}
+          min={1}
+          style={{ color: "black" }}
           name="packagePrice"
           className="flex-1"
           onChange={handleChange}
         />
 
-       
-
         <TextInput
           type="text"
           placeholder="Package details"
           required
+          style={{ color: "black" }}
           name="packageDetails"
           className="flex-1"
           onChange={handleChange}
@@ -70,6 +69,7 @@ export default function CreatePackage() {
             type="text"
             placeholder="image URL"
             required
+            style={{ color: "black" }}
             name="image"
             className="flex-1"
             onChange={handleChange}
@@ -79,7 +79,7 @@ export default function CreatePackage() {
           <div>
             <Link to="/packageCard">
               <Button type="button" color="dark">
-                Back 
+                Back
               </Button>
             </Link>
           </div>

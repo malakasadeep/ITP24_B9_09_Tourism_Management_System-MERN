@@ -95,7 +95,7 @@ export const UserList = () => {
         <div className="user--title">
           <h1>Users Management</h1>
           <div className="user--btn ml-96">
-            <UserReport />
+            <UserReport users={users} />
           </div>
         </div>
         <br />

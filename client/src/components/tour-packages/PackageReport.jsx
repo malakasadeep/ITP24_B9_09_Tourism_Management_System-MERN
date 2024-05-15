@@ -5,24 +5,8 @@ import "jspdf-autotable";
 import moment from "moment";
 import "../../assets/css/user/userList.css";
 
-export default function PackageReport() {
+export default function PackageReport({ packages }) {
   const [error, setError] = useState(false);
-  const [packages, setPackages] = useState([]);
-
-  const handleShowPackages = async () => {
-    try {
-      const res = await fetch(`/api/Package/all-packages`);
-      const data = await res.json();
-      if (data.success === false) {
-        setError(true);
-        return;
-      }
-      setPackages(data);
-    } catch (error) {
-      setError(true);
-    }
-  };
-  handleShowPackages();
 
   function generatePDF(packages) {
     const doc = new jspdf();

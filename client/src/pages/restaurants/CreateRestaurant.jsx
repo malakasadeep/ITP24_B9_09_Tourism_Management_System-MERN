@@ -37,6 +37,7 @@ export default function CreateRestaurant() {
             placeholder="Restaurant owner name"
             required
             name="ownerName"
+            style={{ color: "black" }}
             className="flex-1"
             onChange={handleChange}
           />
@@ -45,36 +46,18 @@ export default function CreateRestaurant() {
             type="text"
             placeholder="Restaurant name"
             required
+            style={{ color: "black" }}
             name="restaurantName"
             className="flex-1"
             onChange={handleChange}
           />
         </div>
         <TextInput
-            type="text"
-            placeholder="Restaurant name"
-            required
-            name="restaurantName"
-            className="flex-1"
-            onChange={handleChange}
-          />
-        <div>
-          <TextInput
-            type="email"
-            placeholder="Email"
-            required
-            name="email"
-            className="flex-1"
-            onChange={handleChange}
-          />
-        </div>
-
-        <TextInput
-          type="number"
-          placeholder="number"
+          type="text"
+          placeholder="Restaurant name"
           required
-          pattern="/^0\d{9}$/"
-          name="number"
+          style={{ color: "black" }}
+          name="restaurantName"
           className="flex-1"
           onChange={handleChange}
         />
@@ -83,6 +66,7 @@ export default function CreateRestaurant() {
           type="text"
           placeholder="Restaurant location"
           required
+          style={{ color: "black" }}
           name="location"
           className="flex-1"
           onChange={handleChange}
@@ -92,6 +76,7 @@ export default function CreateRestaurant() {
           type="text"
           placeholder="description"
           required
+          style={{ color: "black" }}
           name="description"
           className="flex-1"
           onChange={handleChange}
@@ -102,12 +87,12 @@ export default function CreateRestaurant() {
             type="text"
             placeholder="image URL"
             required
+            style={{ color: "black" }}
             name="image"
             className="flex-1"
             onChange={handleChange}
           />
         </div>
-      
 
         <div className="flex justify-between">
           <div>

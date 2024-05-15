@@ -9,7 +9,6 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { MdEventNote } from "react-icons/md";
 import { MdTour } from "react-icons/md";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -202,7 +201,6 @@ const ShowEvent = () => {
                 )}
               </div>
               <hr className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950" />
-
             </div>
 
             <div className="absolute top-[1000px] right-[30px] w-[400px]">

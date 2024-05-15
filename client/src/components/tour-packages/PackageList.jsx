@@ -159,7 +159,7 @@ export default function PackageList() {
         <div className="user--title">
           <h1>Tour Package Management</h1>
           <div className="user--btn ml-60">
-            <PackageReport />
+            <PackageReport packages={packages} />
           </div>
         </div>
         <br />

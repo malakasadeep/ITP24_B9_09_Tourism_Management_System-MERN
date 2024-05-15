@@ -53,7 +53,7 @@ export default function DashPackage() {
     <div className="overflow-x-auto mx-auto w-full mr-2 mt-6 ml-2">
       <div className="mb-5 ml-1">
         <Link to="/admin/create-res-pkg">
-          <Button outline className="bg-slate-700">
+          <Button outline className="bg-slate-700" style={{ color: "black" }}>
             <IoIosAddCircleOutline className="mr-2 text-xl " />
             ADD PACKAGE
           </Button>
