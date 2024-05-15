@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import JsPDF from "jspdf";
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
 //import backgroundImage from "../image/bg.jpg";
 
 export default function Booking() {
@@ -62,11 +62,11 @@ export default function Booking() {
 
   const sendEmailToSupplier = () => {
     const emailConfig = {
-      serviceID: 'service_p1zv9rh',
-      templateID: 'template_pua7ayd',
-      userID: 'v53cNBlrti0pL_RxD'
+      serviceID: "service_p1zv9rh",
+      templateID: "template_pua7ayd",
+      userID: "v53cNBlrti0pL_RxD",
     };
-//email content
+    //email content
     const emailContent = `
       Dear Supplier,
 
@@ -86,19 +86,22 @@ export default function Booking() {
       TourCraf
     `;
 
-    emailjs.send(
-      emailConfig.serviceID,
-      emailConfig.templateID,
-      {
-        to_email: 'mithunmh19@gmail.com',
-        message: emailContent
-      },
-      emailConfig.userID
-    ).then((response) => {
-      console.log('Email sent successfully!', response.status, response.text);
-    }).catch((err) => {
-      console.error('Failed to send email:', err);
-    });
+    emailjs
+      .send(
+        emailConfig.serviceID,
+        emailConfig.templateID,
+        {
+          to_email: "mithunmh19@gmail.com",
+          message: emailContent,
+        },
+        emailConfig.userID
+      )
+      .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+      })
+      .catch((err) => {
+        console.error("Failed to send email:", err);
+      });
   };
 
   const generatePDF = () => {
@@ -152,7 +155,7 @@ export default function Booking() {
               type="text"
               required
               id="packageName"
-              className="flex-1 bg-gray-00"
+              className="flex-1"
               value={packageData.packageName || ""}
               disabled
             />
@@ -163,6 +166,7 @@ export default function Booking() {
               required
               id="packagePrice"
               className="flex-1"
+              style={{ color: "black" }}
               value={"$ " + packageData.packagePrice}
               disabled
             />
@@ -174,7 +178,8 @@ export default function Booking() {
               type="date"
               required
               id="Date"
-              className="flex-1"
+              className="flex-1 black-text"
+              style={{ color: "black" }}
               value={formData.Date}
               onChange={handleChange}
             />
@@ -185,6 +190,7 @@ export default function Booking() {
               required
               id="Time"
               className="flex-1"
+              style={{ color: "black" }}
               value={formData.Time}
               onChange={handleChange}
             />
@@ -196,6 +202,7 @@ export default function Booking() {
               type="number"
               id="Quantity"
               min={1}
+              style={{ color: "black" }}
               className="flex-1"
               value={formData.Quantity}
               onChange={handleChange}
@@ -206,6 +213,7 @@ export default function Booking() {
               id="Discount"
               min={0}
               step={0.01}
+              style={{ color: "black" }}
               className="flex-1"
               value={formData.Discount}
               onChange={handleChange}
@@ -217,6 +225,7 @@ export default function Booking() {
             required
             id="totalBill"
             className="flex-1"
+            style={{ color: "black" }}
             value={"$ " + TotalBill}
             disabled
           />

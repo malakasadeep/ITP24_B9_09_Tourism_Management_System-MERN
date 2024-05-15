@@ -27,13 +27,14 @@ export default function Packages() {
   return (
     <div className="mt-32 ml-10 mb-48">
       <div className="w-96 mx-auto mb-10">
-        <Header/>
+        <Header />
         <form>
           <TextInput
             type="text"
             placeholder="Search By Package Name..."
             rightIcon={AiOutlineSearch}
             className="hidden lg:inline"
+            style={{ color: "black" }}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
