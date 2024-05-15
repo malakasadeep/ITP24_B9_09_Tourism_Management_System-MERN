@@ -202,6 +202,7 @@ const ShowEvent = () => {
                 )}
               </div>
               <hr className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950" />
+
             </div>
 
             <div className="absolute top-[1000px] right-[30px] w-[400px]">
@@ -209,12 +210,12 @@ const ShowEvent = () => {
                 currentUser.usertype === "Tourist" &&
                 !contact && (
                   <div>
-                    <button
+                    {/* <button
                       className="bg-sky-800 text-white font-serif rounded-lg uppercase hover:opacity-95 p-3 w-[400px]"
                       onClick={() => setContact(true)}
                     >
                       Contact for more details.
-                    </button>
+                    </button> */}
                   </div>
                 )}
               {/*contact && <Contact packagee={packagee} />*/}

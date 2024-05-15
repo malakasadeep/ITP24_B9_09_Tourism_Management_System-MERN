@@ -21,17 +21,17 @@ function EventCalendarPage() {
         textColor,
       };
     });
-    setEvents(formattedEvents);
+    setEvents(formattedEvents);//The formatted events are set in the events state
   }, []);
 
   return (
     <div className="flex w-full justify-center items-center">
       <FullCalendar
         plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
-        weekends={true}
-        events={events}
-        eventContent={renderEventContent}
+        initialView="dayGridMonth"//sets the initial view of the calendar
+        weekends={true}//indicates whether weekends should be displayed.
+        events={events}//passes the array of events to be displayed on the calendar
+        eventContent={renderEventContent}//specifies a custom function (renderEventContent) to render the content of each event.
         height="auto"
         style={{ width: "100%" }}
       />
@@ -39,7 +39,7 @@ function EventCalendarPage() {
   );
 }
 
-function renderEventContent(eventInfo) {
+function renderEventContent(eventInfo) {//This function takes an eventInfo object as input, which contains information about the event being rendered.
   return (
     <>
       <b>{eventInfo.timeText}</b>
