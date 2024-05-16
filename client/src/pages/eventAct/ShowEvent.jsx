@@ -16,6 +16,7 @@ import "swiper/css/pagination";
 import "../../assets/css/eventact/swiper.css";
 import SwiperCore from "swiper";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import EventBooking from "../../components/eventAct/EventBooking";
 
 const ShowEvent = () => {
   const [event, setEvent] = useState(null);
@@ -203,20 +204,34 @@ const ShowEvent = () => {
               <hr className="w-3/4 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-blue-950" />
             </div>
 
-            <div className="absolute top-[1000px] right-[30px] w-[400px]">
-              {currentUser &&
-                currentUser.usertype === "Tourist" &&
-                !contact && (
+            <div
+              className="absolute top-0 right-0 mt-[250px] mr-[30px] w-[400px] h-auto  bg-white/10 z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl"
+              style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+              }}
+            >
+              <div>
+                <div className="flex flex-wrap justify-between gap-10 items-center m-4">
                   <div>
-                    {/* <button
-                      className="bg-sky-800 text-white font-serif rounded-lg uppercase hover:opacity-95 p-3 w-[400px]"
-                      onClick={() => setContact(true)}
-                    >
-                      Contact for more details.
-                    </button> */}
+                    <p className="font-extralight text-4xl text-blue-700">
+                      Price
+                    </p>
                   </div>
-                )}
-              {/*contact && <Contact packagee={packagee} />*/}
+                  <div className="text-center">
+                    <p className="font-semibold text-5xl text-slate-800">
+                      $ {event.price}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  {currentUser && currentUser.usertype === "Tourist" && (
+                    <div>
+                      <EventBooking event={event} />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}

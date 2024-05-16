@@ -166,6 +166,7 @@ export default function HotelList() {
                 <tr className="font-semibold text-blue-900 text-lg text-center">
                   <td>Hotels</td>
                   <td>Name</td>
+                  <td>Email</td>
                   <td>Type</td>
                   <td>City</td>
                   <td>Province</td>
@@ -192,6 +193,7 @@ export default function HotelList() {
                       </div>
                     </td>
                     <td>{hotel.name}</td>
+                    <td>{hotel.email}</td>
                     <td>{hotel.type}</td>
                     <td>{hotel.city}</td>
                     <td>{hotel.province}</td>

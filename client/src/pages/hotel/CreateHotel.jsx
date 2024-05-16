@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com'; // Import emailjs library
 
 
 export default function CreateHotel() {
@@ -28,6 +29,7 @@ export default function CreateHotel() {
 	      price: "",
 	      hotelImgs: [],
         userRef:'',
+        email:'',
 	    
     });
     const [fileUploadError, setFileUploadError] = useState(false);
@@ -47,6 +49,8 @@ export default function CreateHotel() {
     //  availableWork: Yup.string().required('available is required').oneOf(['available', 'not available'], 'Invalid available'),
    // });
    
+
+ 
      
 
     const handleImageSubmit = (e) => {
@@ -143,7 +147,7 @@ export default function CreateHotel() {
         });
     }
     
-        if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea' ){
+        if (e.target.type === 'number' || e.target.type === 'text'||e.target.type === 'textarea'||e.target.type === 'email' ){
             setFormData({
                 ...formData,
                 [e.target.id]: e.target.value,
@@ -168,14 +172,8 @@ export default function CreateHotel() {
                 })
                 return;
             }
-            if (formData.contactName.length <= 5) {
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Contact Name must at least have 8 charaters",
-              });
-              return;
-            }
+            
+            
             if (formData.contactNo.length <= 9) {
               Swal.fire({
                 icon: "error",
@@ -194,11 +192,7 @@ export default function CreateHotel() {
     });
     return;
 }
-            if (/^0\d{9}$/.test(formData.contactNo)) {
-              Swal.fire("Invalid Contact Number", "", "error");
-              return;
-            
-            }
+          
           
             setLoading(true);
             setError(false);
@@ -222,6 +216,9 @@ export default function CreateHotel() {
                     text: `${data.message}`,
                 })
             }else{
+// Send email to the hotel owner
+sendEmailToSupplier();
+
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -239,6 +236,32 @@ export default function CreateHotel() {
             setLoading(false);
         }
     }
+
+// Function to send email to the hotel owner
+const sendEmailToSupplier = () => {
+  const emailConfig = {
+      serviceID: 'service_p1zv9rh',
+      templateID: 'template_pua7ayd',
+      userID: 'v53cNBlrti0pL_RxD'
+  };
+
+  emailjs.send(
+      emailConfig.serviceID,
+      emailConfig.templateID,
+      {
+          to_email: formData.email, // Use the hotel owner's email from the form
+          message: `${formData.name} Is Successfully Added to the Hotel List.`
+      },
+      emailConfig.userID
+  )
+  .then((response) => {
+      console.log('Email sent:', response);
+  })
+  .catch((error) => {
+      console.error('Email error:', error);
+  });
+};
+
 
     return (
         <div className="flex justify-center">
@@ -285,6 +308,24 @@ export default function CreateHotel() {
                   type="text"
                   placeholder="Enter title for your Hotel"
                   required onChange={handleChange} value={formData.title}
+                
+                />
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 ">
+              <div className="w-full  px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
+                >
+                  Email
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="email"
+                  type="email"
+                  placeholder="Enter the Email"
+                  required onChange={handleChange} value={formData.email}
                 
                 />
               </div>

@@ -30,6 +30,7 @@ export default function UpdateHotel() {
 	      numberOfRoom: '',
 	      price: "",
 	      hotelImgs: [],
+        email:"",
 	    
     });
     const [fileUploadError, setFileUploadError] = useState(false);
@@ -176,16 +177,9 @@ const handleSubmit = async (e) => {
               text: 'Please upload atleast one image',
           })
           return;
+      
       }
-      if (formData.contactName.length <= 5) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Contact Name must at least have 8 charaters",
-        });
-        return;
-      }
-      if (formData.contactNo.length <= 9) {
+      if (formData.contactNo.length <= 10) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -203,11 +197,7 @@ Swal.fire({
 });
 return;
 }
-      if (/^0\d{9}$/.test(formData.contactNo)) {
-        Swal.fire("Invalid Contact Number", "", "error");
-        return;
       
-      }
      
       setLoading(true);
       setError(false);
@@ -295,6 +285,25 @@ return;
                   type="text"
                   placeholder="Enter title for your Hotel"
                   required onChange={handleChange} value={formData.title}
+                
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap -mx-3 ">
+              <div className="w-full  px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
+                >
+                  Email
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="email"
+                  type="email"
+                  placeholder="Enter the Email"
+                  required onChange={handleChange} value={formData.email}
                 
                 />
               </div>

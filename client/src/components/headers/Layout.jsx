@@ -33,7 +33,8 @@ const Layout = () => {
     location.pathname.startsWith("/Hotel/") ||
     location.pathname.startsWith("/guiding/") ||
     location.pathname.startsWith("/Vehicle/book/") ||
-    location.pathname === "/package-search";
+    location.pathname === "/package-search" ||
+    location.pathname.startsWith("/events/");
 
   const showSellerHeader =
     location.pathname === "/additems" ||
@@ -48,8 +49,7 @@ const Layout = () => {
     location.pathname.startsWith("/Vehicle/get/") ||
     location.pathname.startsWith("/Vehicle/update/") ||
     location.pathname.startsWith("/my-packages/") ||
-    location.pathname.startsWith("/seller/") ||
-    location.pathname.startsWith("/events/");
+    location.pathname.startsWith("/seller/");
 
   return (
     <div>

@@ -19,13 +19,25 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link to="#">About</Link>
+            <Link to="/package-search">Packaages</Link>
           </li>
           <li>
-            <Link to="#">Events</Link>
+            <Link to="/hotel-search">Hotels</Link>
           </li>
           <li>
-            <Link to="#">Contact</Link>
+            <Link to="/VehicleHome">Vehicles</Link>
+          </li>
+          <li>
+            <Link to="/restaurants">Restourents</Link>
+          </li>
+          <li>
+            <Link to="/guid/search">Tour Guides</Link>
+          </li>
+          <li>
+            <Link to="/events/search/">Events</Link>
+          </li>
+          <li>
+            <Link to="/train/search">Trains</Link>
           </li>
 
           <Link to="/profile">

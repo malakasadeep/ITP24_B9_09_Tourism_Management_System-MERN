@@ -107,7 +107,7 @@ export default function Booking({ packagee }) {
           />
         </div>
       )}
-      <div id="qrcode" className="justify-center">
+      <div id="qrcode" className="flex justify-center">
         {orderId ? <QRCode value={orderId} size={100} /> : ""}
       </div>
       <button
