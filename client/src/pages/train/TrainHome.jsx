@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function TrainHome() {
   const navigate = useNavigate();
-  const [searchData, setSearchData] = useState({
+  const [searchData, setSearchData] = useState({ //searchData stores the search criteria entered by the user
     searchTerm: "",
     type: "all",
     from: "all",
@@ -14,8 +14,8 @@ export default function TrainHome() {
     sort: "created_at",
     order: "desc",
   });
-  const [loading, setLoading] = useState(false);
-  const [trains, setTrains] = useState([]);
+  const [loading, setLoading] = useState(false);//loading indicates whether data is being fetched from the server
+  const [trains, setTrains] = useState([]);//trains stores the train data fetched from the server based on the search criteria
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +37,7 @@ export default function TrainHome() {
     };
     fetchTrains();
   }, [location.search]);
-  const handleChange = (e) => {
+  const handleChange = (e) => {//handleChange function updates the searchData state based on user input in the search form fields
     if (
       e.target.id === "all" ||
       e.target.id === "Colombo Fort" ||
@@ -70,7 +70,7 @@ export default function TrainHome() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {//When the user submits the search form, the handleSubmit function is invoked
     e.preventDefault();
     const urlParame = new URLSearchParams();
     urlParame.set("searchTerm", searchData.searchTerm);
