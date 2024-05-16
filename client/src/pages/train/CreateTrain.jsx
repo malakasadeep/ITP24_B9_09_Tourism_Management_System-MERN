@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function CreateTrain() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({ //useState used to manage state variables(formData,error,loading)
     trainName: "",
     category: "",
     class: "1st",
@@ -20,7 +20,7 @@ export default function CreateTrain() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { //updating the formData state based on user input.
     if (
       e.target.id === "1st" ||
       e.target.id === "2nd" ||
@@ -60,11 +60,11 @@ export default function CreateTrain() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { //performs form validation and sends a POST request to the server to add the train schedule
     e.preventDefault();
     try {
-      if (formData.destination === formData.from) {
-        setError("Start and destination stations are same");
+      if (formData.destination === formData.from) { //destination and from should not be same
+        setError("Start and destination stations are same");//error message
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -72,8 +72,8 @@ export default function CreateTrain() {
         });
         return;
       }
-      if (formData.noofseats < 0 || formData.price < 0) {
-        setError("Seats or prices are not valid");
+      if (formData.noofseats < 0 || formData.price < 0) { //noOfSeats and price should be positive numbers
+        setError("Seats or prices are not valid");//error message
         Swal.fire({
           icon: "error",
           title: "Error",

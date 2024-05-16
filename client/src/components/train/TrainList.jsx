@@ -43,7 +43,7 @@ export const TrainList = () => {
     };
     fetchTrains();
   }, [location.search]);
-  const handleChange = (e) => {
+  const handleChange = (e) => {//handleChange function updates the searchData state based on user input
     if (
       e.target.id === "all" ||
       e.target.id === "Colombo Fort" ||
@@ -76,7 +76,7 @@ export const TrainList = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {//handleSubmit function is invoked when the search form is submitted
     e.preventDefault();
     const urlParame = new URLSearchParams();
     urlParame.set("searchTerm", searchData.searchTerm);
@@ -87,7 +87,7 @@ export const TrainList = () => {
     navigate(`/admin/train?${searchQuery}`);
   };
 
-  const handleTrainDelete = async (trainID) => {
+  const handleTrainDelete = async (trainID) => { //train deletion
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -287,7 +287,7 @@ export const TrainList = () => {
           >
             X
           </button>
-          <h2 className="text-xl font-bold mb-4">Seat Information</h2>
+          <h2 className="text-xl font-bold mb-4">Seat Information</h2> 
           <div className="flex items-center mb-2">
             <div className="w-3 h-3 mr-2 bg-green-500 rounded-full"></div>
             <p className="text-sm text-skyblue-500">Available Seats</p>
