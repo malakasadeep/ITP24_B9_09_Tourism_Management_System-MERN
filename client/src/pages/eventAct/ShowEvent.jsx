@@ -72,7 +72,7 @@ const ShowEvent = () => {
                 backgroundSize: "cover",
               }}
             >
-              <Swiper
+              <Swiper // image
                 effect={"coverflow"}
                 grabCursor={true}
                 centeredSlides={true}
@@ -87,7 +87,7 @@ const ShowEvent = () => {
                 pagination={true}
                 autoplay={{ delay: 3000 }}
                 modules={[EffectCoverflow, Pagination]}
-                className="mySwiper swiper-container " // Add your custom class here
+                className="mySwiper swiper-container " 
               >
                 {event.imageUrls.map((imageUrl, index) => (
                   <SwiperSlide key={index}>

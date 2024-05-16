@@ -37,7 +37,7 @@ export default function SearchEvent() {
     order: "desc",
   });
   const [loading, setLoading] = useState(false);//initializes state variables for loading status (loading)
-  const [events, setEvents] = useState([]);//initializes state variables for search events (events)
+  const [events, setEvents] = useState([]);//initializes state variables for events (events)
 
   useEffect(() => {//to fetch events data from the API
     const urlParams = new URLSearchParams(window.location.search);
